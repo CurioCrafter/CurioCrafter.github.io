@@ -19,9 +19,9 @@ This runs ESLint and a production Vite build.
 
 ## Publishing On GitHub Pages
 
-This repository is intended to be named `CurioCrafter.github.io` on GitHub. When pushed to the `main` branch, `.github/workflows/pages.yml` builds the site and deploys the `dist` folder to GitHub Pages.
+This repository is intended to be named `CurioCrafter.github.io` on GitHub. The source app lives in `src/`, while `npm run build` compiles the Vite output and copies the static files to the repository root for GitHub Pages branch publishing.
 
-In the GitHub repository settings, set Pages to deploy from GitHub Actions. The site should publish at:
+The site should publish at:
 
 ```text
 https://CurioCrafter.github.io/
