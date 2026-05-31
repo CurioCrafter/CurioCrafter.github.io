@@ -12,6 +12,7 @@ node_modules
 dist
 dist-ssr
 test-results
+evidence
 *.local
 
 # Editor directories and files

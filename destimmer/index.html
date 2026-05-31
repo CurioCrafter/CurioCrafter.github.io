@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Destimmer</title>
+    <meta
+      name="description"
+      content="A generative kinetic altar for sacred geometry, ambient audio, and immersive visual stimming."
+    >
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2302050b'/%3E%3Cpath d='M16 4 28 16 16 28 4 16Z' fill='none' stroke='%238be8dd' stroke-width='2.8'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23ff74b7'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles.css?v=psych-3d-12">
+  </head>
+  <body>
+    <main class="experience" aria-label="Destimmer kinetic altar">
+      <canvas id="webglStage" aria-hidden="true"></canvas>
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div id="grain" aria-hidden="true"></div>
+
+      <section class="title-mark" aria-label="Artwork title">
+        <p>DESTIMMER</p>
+        <span id="sourceLine">generative geometry</span>
+      </section>
+
+      <nav class="quickbar" aria-label="Immediate controls">
+        <button id="soundToggle" class="glyph-button" type="button" aria-label="Start audio">
+          <span aria-hidden="true">play</span>
+        </button>
+        <button id="stillnessToggle" class="glyph-button" type="button" aria-label="Pause motion">
+          <span aria-hidden="true">still</span>
+        </button>
+        <button id="menuToggle" class="glyph-button is-active" type="button" aria-label="Close studio menu" aria-expanded="true">
+          <span aria-hidden="true">studio</span>
+        </button>
+        <button id="tripToggle" class="glyph-button" type="button" aria-label="Open trips menu">
+          <span aria-hidden="true">trips</span>
+        </button>
+        <button id="resetButton" class="glyph-button" type="button" aria-label="Reset experience">
+          <span aria-hidden="true">reset</span>
+        </button>
+        <button id="calmButton" class="glyph-button" type="button" aria-label="Emergency calm">
+          <span aria-hidden="true">calm</span>
+        </button>
+        <button id="hideUiButton" class="glyph-button" type="button" aria-label="Hide all interface">
+          <span aria-hidden="true">hide</span>
+        </button>
+      </nav>
+
+      <aside id="studioPanel" class="studio-panel is-open" aria-label="Kinetic altar studio">
+        <header class="studio-header">
+          <div>
+            <p>Studio</p>
+            <span id="stateLine">Kinetic Altar</span>
+          </div>
+          <button id="closeStudio" class="icon-button" type="button" aria-label="Close studio menu">x</button>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Studio settings">
+          <button class="tab-button is-active" type="button" role="tab" aria-selected="true" data-tab="visuals">Visuals</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="motion">Motion</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="images">Images</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="audio">Generator</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="instrument">Instrument</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="three">3D</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="trips">Trips</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="presets">Presets</button>
+        </div>
+
+        <div class="panel-scroll">
+          <section class="tab-panel is-active" data-panel="visuals" aria-label="Visual settings">
+            <label class="field">
+              <span>Form</span>
+              <select id="modeSelect" aria-label="Geometry form">
+                <option value="flower">Flower</option>
+                <option value="spiral">Spiral</option>
+                <option value="metatron">Metatron</option>
+                <option value="orbit">Orbit</option>
+                <option value="veil">Veil</option>
+                <option value="kaleidoscope">Kaleidoscope</option>
+                <option value="lattice">Lattice</option>
+                <option value="tunnel">Tunnel</option>
+                <option value="chrysalis">Chrysalis</option>
+                <option value="rose">Rose Engine</option>
+                <option value="waveform">Waveform Mandala</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Mood</span>
+              <select id="moodSelect" aria-label="Color mood">
+                <option value="aurora">Aurora</option>
+                <option value="moon">Moon</option>
+                <option value="deep">Deep</option>
+                <option value="garden">Garden</option>
+                <option value="ember">Ember</option>
+                <option value="violet">Violet</option>
+                <option value="prism">Prism</option>
+                <option value="infrared">Infrared</option>
+              </select>
+            </label>
+
+            <label class="field range-field">
+              <span>Intensity</span>
+              <input id="intensityInput" type="range" min="0.2" max="1" step="0.01" aria-label="Visual intensity">
+            </label>
+
+            <label class="field range-field">
+              <span>Symmetry</span>
+              <input id="symmetryInput" type="range" min="3" max="18" step="1" aria-label="Symmetry count">
+            </label>
+
+            <label class="field range-field">
+              <span>Line Glow</span>
+              <input id="glowInput" type="range" min="0.2" max="1.5" step="0.01" aria-label="Line glow">
+            </label>
+
+            <label class="field range-field">
+              <span>Color Drift</span>
+              <input id="colorShiftInput" type="range" min="0" max="1" step="0.01" aria-label="Color drift">
+            </label>
+
+            <label class="toggle-field">
+              <input id="titleInput" type="checkbox" aria-label="Show title mark">
+              <span>Title Mark</span>
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="motion" aria-label="Motion settings">
+            <label class="field range-field">
+              <span>Speed</span>
+              <input id="speedInput" type="range" min="0.1" max="2.4" step="0.01" aria-label="Motion speed">
+            </label>
+
+            <label class="field range-field">
+              <span>Density</span>
+              <input id="densityInput" type="range" min="0.2" max="1.5" step="0.01" aria-label="Visual density">
+            </label>
+
+            <label class="field range-field">
+              <span>Trails</span>
+              <input id="trailsInput" type="range" min="0" max="0.92" step="0.01" aria-label="Trail length">
+            </label>
+
+            <label class="field range-field">
+              <span>Pulse</span>
+              <input id="pulseInput" type="range" min="0" max="1" step="0.01" aria-label="Pulse depth">
+            </label>
+
+            <label class="field range-field">
+              <span>Orbit</span>
+              <input id="orbitInput" type="range" min="0.2" max="1.8" step="0.01" aria-label="Orbit spread">
+            </label>
+
+            <label class="field range-field">
+              <span>Warp</span>
+              <input id="warpInput" type="range" min="0" max="1.4" step="0.01" aria-label="Warp amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Pointer</span>
+              <input id="pointerInput" type="range" min="0" max="1" step="0.01" aria-label="Pointer influence">
+            </label>
+
+            <label class="field range-field">
+              <span>Breath</span>
+              <input id="breathInput" type="range" min="0" max="1" step="0.01" aria-label="Breathing amount">
+            </label>
+
+            <label class="toggle-field">
+              <input id="autoEvolveInput" type="checkbox" aria-label="Auto evolve">
+              <span>Auto Evolve</span>
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="images" aria-label="Image settings">
+            <div class="button-row">
+              <button id="imageToggle" class="action-button" type="button" aria-label="Toggle online imagery">Image On</button>
+              <button id="shuffleImageButton" class="action-button" type="button" aria-label="Shuffle image collection">Shuffle</button>
+              <button id="nextImageButton" class="action-button" type="button" aria-label="Next image">Next</button>
+            </div>
+
+            <label class="field">
+              <span>Collection</span>
+              <select id="collectionSelect" aria-label="Image collection">
+                <option value="aurora">Aurora</option>
+                <option value="moon">Moon</option>
+                <option value="nebula">Nebula</option>
+                <option value="galaxy">Galaxy</option>
+                <option value="earth">Earth</option>
+                <option value="solar">Solar Flare</option>
+                <option value="jupiter">Jupiter</option>
+                <option value="saturn">Saturn</option>
+                <option value="mars">Mars</option>
+                <option value="ocean">Ocean Earth</option>
+                <option value="vegetation">Vegetation</option>
+                <option value="stars">Stars</option>
+                <option value="clouds">Clouds</option>
+                <option value="deepfield">Deep Field</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Blend</span>
+              <select id="blendSelect" aria-label="Image blend mode">
+                <option value="screen">Screen</option>
+                <option value="lighter">Lighter</option>
+                <option value="soft-light">Soft Light</option>
+                <option value="overlay">Overlay</option>
+                <option value="source-over">Natural</option>
+              </select>
+            </label>
+
+            <label class="field range-field">
+              <span>Opacity</span>
+              <input id="imageOpacityInput" type="range" min="0" max="0.7" step="0.01" aria-label="Image opacity">
+            </label>
+
+            <label class="field range-field">
+              <span>Blur</span>
+              <input id="imageBlurInput" type="range" min="0" max="8" step="0.1" aria-label="Image blur">
+            </label>
+
+            <label class="field range-field">
+              <span>Zoom</span>
+              <input id="imageZoomInput" type="range" min="1" max="1.55" step="0.01" aria-label="Image zoom">
+            </label>
+
+            <label class="field range-field">
+              <span>Pan</span>
+              <input id="imagePanInput" type="range" min="0" max="1.4" step="0.01" aria-label="Image pan">
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="audio" aria-label="Music generator settings">
+            <div class="button-row generator-actions">
+              <button id="seedButton" class="action-button" type="button" aria-label="Randomize music seed">Seed</button>
+              <button class="trip-button compact-trip" type="button" data-trip="fastTrance">Fast Trance</button>
+              <button class="trip-button compact-trip" type="button" data-trip="shapeStorm">Shape Storm</button>
+            </div>
+
+            <label class="field">
+              <span>Music</span>
+              <select id="musicModeSelect" aria-label="Music generator mode">
+                <option value="trance">Melodic Trance</option>
+                <option value="ambient">Deep Ambient</option>
+                <option value="pulse">Bass Pulse</option>
+                <option value="crystal">Crystal Arp</option>
+                <option value="euphoric">Euphoric Harmony</option>
+                <option value="polyrhythm">Polyrhythm Swarm</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Key</span>
+              <select id="keySelect" aria-label="Music key">
+                <option value="C">C</option>
+                <option value="Db">Db</option>
+                <option value="D">D</option>
+                <option value="Eb">Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="Gb">Gb</option>
+                <option value="G">G</option>
+                <option value="Ab">Ab</option>
+                <option value="A">A</option>
+                <option value="Bb">Bb</option>
+                <option value="B">B</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Scale</span>
+              <select id="scaleSelect" aria-label="Music scale">
+                <option value="minor">Minor</option>
+                <option value="dorian">Dorian</option>
+                <option value="lydian">Lydian</option>
+                <option value="mixolydian">Mixolydian</option>
+                <option value="pentatonic">Pentatonic</option>
+                <option value="harmonic">Harmonic</option>
+                <option value="wholeTone">Whole Tone</option>
+              </select>
+            </label>
+
+            <label class="field range-field">
+              <span>Tempo</span>
+              <input id="tempoInput" type="range" min="45" max="155" step="1" aria-label="Sequencer tempo">
+            </label>
+
+            <label class="field range-field">
+              <span>Complexity</span>
+              <input id="complexityInput" type="range" min="0" max="1" step="0.01" aria-label="Music complexity">
+            </label>
+
+            <label class="field range-field">
+              <span>Groove</span>
+              <input id="grooveInput" type="range" min="0" max="1" step="0.01" aria-label="Music groove">
+            </label>
+
+            <label class="field range-field">
+              <span>Harmony</span>
+              <input id="harmonyInput" type="range" min="0" max="1" step="0.01" aria-label="Extended harmony amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Rhythm</span>
+              <input id="rhythmInput" type="range" min="0" max="1" step="0.01" aria-label="Polyrhythm amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Generator</span>
+              <input id="sequenceInput" type="range" min="0" max="1" step="0.01" aria-label="Sequencer amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Bass</span>
+              <input id="bassInput" type="range" min="0" max="1" step="0.01" aria-label="Bass generator amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Arp</span>
+              <input id="arpInput" type="range" min="0" max="1" step="0.01" aria-label="Arpeggiator amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Melody</span>
+              <input id="melodyInput" type="range" min="0" max="1" step="0.01" aria-label="Melody generator amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Percussion</span>
+              <input id="percussionInput" type="range" min="0" max="1" step="0.01" aria-label="Percussion generator amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Level</span>
+              <input id="audioLevelInput" type="range" min="0" max="1" step="0.01" aria-label="Audio level">
+            </label>
+
+            <label class="field range-field">
+              <span>Drone</span>
+              <input id="droneInput" type="range" min="0" max="1" step="0.01" aria-label="Drone amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Shimmer</span>
+              <input id="shimmerInput" type="range" min="0" max="1" step="0.01" aria-label="Shimmer amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Pulse Mix</span>
+              <input id="pulseMixInput" type="range" min="0" max="1" step="0.01" aria-label="Pulse mix">
+            </label>
+
+            <label class="field range-field">
+              <span>Stereo</span>
+              <input id="stereoInput" type="range" min="0" max="1" step="0.01" aria-label="Stereo width">
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="instrument" aria-label="Music-reactive instrument settings">
+            <div class="button-row">
+              <button id="hideUiFromPanelButton" class="action-button" type="button" aria-label="Hide all interface">Hide UI</button>
+              <button id="showTitleButton" class="action-button" type="button" aria-label="Toggle title mark">Title</button>
+              <button class="trip-button compact-trip" type="button" data-trip="fastTrance">Fast Trance</button>
+            </div>
+
+            <label class="toggle-field">
+              <input id="reactiveInput" type="checkbox" aria-label="Music reactive visuals">
+              <span>Music Reactive</span>
+            </label>
+
+            <label class="field range-field">
+              <span>Beat Drive</span>
+              <input id="beatDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Beat reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Bass Depth</span>
+              <input id="bassDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Bass depth reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Arp Spin</span>
+              <input id="arpDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Arpeggio spin reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Melody Bloom</span>
+              <input id="melodyDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Melody bloom reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Pattern Flow</span>
+              <input id="patternDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Pattern music reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Camera Hit</span>
+              <input id="cameraDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Camera music reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Shape Hit</span>
+              <input id="shapeDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Shape music reaction amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Particle Hit</span>
+              <input id="particleDriveInput" type="range" min="0" max="1.8" step="0.01" aria-label="Particle music reaction amount">
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="three" aria-label="3D settings">
+            <label class="toggle-field">
+              <input id="webglInput" type="checkbox" aria-label="WebGL 3D enabled">
+              <span>WebGL 3D</span>
+            </label>
+
+            <label class="field">
+              <span>View</span>
+              <select id="view3dSelect" aria-label="3D view mode">
+                <option value="templeTunnel">Temple Tunnel</option>
+                <option value="crystalOrbit">Crystal Orbit</option>
+                <option value="metatronEngine">Metatron Engine</option>
+                <option value="hypersphereField">Hypersphere Field</option>
+                <option value="torusGate">Torus Gate</option>
+                <option value="icosaBloom">Icosa Bloom</option>
+                <option value="psychedelicCorridor">Psychedelic Corridor</option>
+                <option value="kaleidoTemple">Kaleido Temple</option>
+                <option value="neuralBloom">Neural Bloom</option>
+                <option value="prismVortex">Prism Vortex</option>
+                <option value="fractalCathedral">Fractal Cathedral</option>
+                <option value="polytopeSwarm">Polytope Swarm</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Pattern</span>
+              <select id="patternSelect" aria-label="3D shader pattern">
+                <option value="kaleido">Kaleido</option>
+                <option value="vortex">Vortex</option>
+                <option value="lattice">Lattice</option>
+                <option value="petal">Petal</option>
+                <option value="ripple">Ripple</option>
+                <option value="moire">Moire</option>
+                <option value="plasma">Plasma</option>
+              </select>
+            </label>
+
+            <label class="field range-field">
+              <span>Depth</span>
+              <input id="depthInput" type="range" min="0" max="1" step="0.01" aria-label="3D depth">
+            </label>
+
+            <label class="field range-field">
+              <span>Camera</span>
+              <input id="cameraInput" type="range" min="0" max="1" step="0.01" aria-label="Camera drift">
+            </label>
+
+            <label class="field range-field">
+              <span>Tunnel</span>
+              <input id="tunnelInput" type="range" min="0" max="1.6" step="0.01" aria-label="Tunnel speed">
+            </label>
+
+            <label class="field range-field">
+              <span>Spin</span>
+              <input id="spinInput" type="range" min="0" max="2" step="0.01" aria-label="3D shape spin">
+            </label>
+
+            <label class="field range-field">
+              <span>Spread</span>
+              <input id="fieldSpreadInput" type="range" min="0.35" max="1.7" step="0.01" aria-label="3D field spread">
+            </label>
+
+            <label class="field range-field">
+              <span>3D Density</span>
+              <input id="density3dInput" type="range" min="0.25" max="1.35" step="0.01" aria-label="3D density">
+            </label>
+
+            <label class="field range-field">
+              <span>Wire Glow</span>
+              <input id="wireGlowInput" type="range" min="0.2" max="1.6" step="0.01" aria-label="Wireframe glow">
+            </label>
+
+            <label class="field range-field">
+              <span>Warp</span>
+              <input id="perspectiveWarpInput" type="range" min="0" max="1" step="0.01" aria-label="Perspective warp">
+            </label>
+
+            <label class="field range-field">
+              <span>Morph</span>
+              <input id="morphInput" type="range" min="0" max="1.4" step="0.01" aria-label="Shape morph amount">
+            </label>
+
+            <label class="field range-field">
+              <span>Interaction</span>
+              <input id="interactionInput" type="range" min="0" max="1.4" step="0.01" aria-label="3D interaction force">
+            </label>
+
+            <label class="field range-field">
+              <span>Connect</span>
+              <input id="connectivityInput" type="range" min="0" max="1.4" step="0.01" aria-label="3D connection density">
+            </label>
+          </section>
+
+          <section class="tab-panel" data-panel="trips" aria-label="Trip presets">
+            <div class="trip-grid">
+              <button class="trip-button" type="button" data-trip="fastTrance">Fast Trance</button>
+              <button class="trip-button" type="button" data-trip="deepTunnel">Deep Tunnel</button>
+              <button class="trip-button" type="button" data-trip="crystalSpin">Crystal Spin</button>
+              <button class="trip-button" type="button" data-trip="shapeStorm">Shape Storm</button>
+              <button class="trip-button" type="button" data-trip="softFloat">Soft Float</button>
+              <button class="trip-button" type="button" data-trip="bassPulse">Bass Pulse</button>
+              <button class="trip-button" type="button" data-trip="hyperMandala">Hyper Mandala</button>
+              <button class="trip-button" type="button" data-trip="fractalCathedral">Fractal Cathedral</button>
+              <button class="trip-button" type="button" data-trip="polytopeSwarm">Polytope Swarm</button>
+              <button class="trip-button" type="button" data-trip="emergencyCalm">Emergency Calm</button>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="presets" aria-label="Presets">
+            <div class="preset-grid">
+              <button class="preset-button" type="button" data-preset="calmOrbit">Calm Orbit</button>
+              <button class="preset-button" type="button" data-preset="neonMandala">Neon Mandala</button>
+              <button class="preset-button" type="button" data-preset="solarBloom">Solar Bloom</button>
+              <button class="preset-button" type="button" data-preset="lunarDrift">Lunar Drift</button>
+              <button class="preset-button" type="button" data-preset="deepField">Deep Field</button>
+              <button class="preset-button" type="button" data-preset="verdantPulse">Verdant Pulse</button>
+              <button class="preset-button" type="button" data-preset="kineticAltar">Kinetic Altar</button>
+              <button class="preset-button" type="button" data-preset="stillMirror">Still Mirror</button>
+            </div>
+          </section>
+        </div>
+      </aside>
+    </main>
+
+    <script src="./app.js?v=psych-3d-12"></script>
+  </body>
+</html>

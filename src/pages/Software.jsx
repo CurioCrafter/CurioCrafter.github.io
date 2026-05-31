@@ -1,15 +1,20 @@
 import ProjectCard from "../components/ProjectCard";
-import { projects } from "../data/portfolio";
+import { blenderToolchain, projects } from "../data/portfolio";
 
-const toolProjects = projects.filter((project) =>
-  [
-    "ocean-drift-level-builder",
-    "curiomesh",
-    "blender-alignment-suite",
-    "codexforworkflow",
-    "disk-space-inspector",
-  ].includes(project.id),
-);
+const toolProjectIds = [
+  "destimmer",
+  "codex-3d-studio",
+  "rts-builder",
+  "song-deconstructor",
+  "terrainforge",
+  "blender-tools-pipeline",
+  "ocean-drift-level-builder",
+  "curiomesh",
+  "blender-alignment-suite",
+  "codexforworkflow",
+  "disk-space-inspector",
+];
+const toolProjects = toolProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 
 function Software() {
   return (
@@ -21,6 +26,30 @@ function Software() {
           This slice emphasizes Python/Blender tools, editor workflows, desktop utilities,
           local-first software, and safety-conscious automation.
         </p>
+      </section>
+
+      <section className="blender-feature">
+        <div className="blender-feature-copy">
+          <p className="eyebrow">Blender add-on workbench</p>
+          <h2>More than one add-on: a small pipeline of artist tools.</h2>
+          <p>
+            I inspected the Blender project folders and pulled the strongest evidence into the
+            portfolio: TerrainForge terrain export workflows, Laser Saw mesh cutting, remesh
+            matrix artifacts, character-generation QA, rigging workflows, hard-surface boolean
+            systems, and an in-Blender AI command surface.
+          </p>
+        </div>
+        <img src="images/blender-tools-suite.png" alt="Blender tools pipeline proof sheet" />
+      </section>
+
+      <section className="toolchain-strip" aria-label="Blender toolchain projects">
+        {blenderToolchain.map((tool) => (
+          <article key={tool.name}>
+            <p>{tool.role}</p>
+            <h3>{tool.name}</h3>
+            <span>{tool.proof}</span>
+          </article>
+        ))}
       </section>
 
       <section className="project-grid full">

@@ -38,6 +38,11 @@ function ProjectDetail() {
             <Link className="button secondary" to="/projects">
               Back to work
             </Link>
+            {project.liveUrl ? (
+              <a className="button primary" href={project.liveUrl}>
+                Live demo
+              </a>
+            ) : null}
             {linksToPublicRepo ? (
               <a className="button ghost" href={project.repository} target="_blank" rel="noreferrer">
                 {project.repositoryNote}
@@ -47,7 +52,11 @@ function ProjectDetail() {
             )}
           </div>
         </div>
-        <img src={heroImage} alt={`${project.name} screenshot`} />
+        <img
+          className={project.mediaFit === "contain" ? "contain-image" : undefined}
+          src={heroImage}
+          alt={`${project.name} screenshot`}
+        />
       </section>
 
       <section className="case-body">
@@ -61,6 +70,22 @@ function ProjectDetail() {
           ))}
         </ul>
       </section>
+
+      {project.proofPoints?.length ? (
+        <section className="case-proof">
+          <div>
+            <p className="eyebrow">Proof points</p>
+            <h2>What a reviewer can verify quickly.</h2>
+          </div>
+          <div className="proof-card-grid">
+            {project.proofPoints.map((point) => (
+              <article key={point} className="proof-card">
+                <span>{point}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

@@ -1,9 +1,16 @@
 import ProjectCard from "../components/ProjectCard";
 import { projects } from "../data/portfolio";
 
-const gameProjects = projects.filter((project) =>
-  ["ocean-supremacy", "organism-evolution", "brainsim-md-trainer"].includes(project.id),
-);
+const gameProjectIds = [
+  "ocean-supremacy",
+  "tacops",
+  "linear-drive",
+  "procedural-ocean",
+  "ant-colony",
+  "organism-evolution",
+  "brainsim-md-trainer",
+];
+const gameProjects = gameProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 
 function Games() {
   return (

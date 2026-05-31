@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { capabilityGroups, experiences, profile, projects } from "../data/portfolio";
+import { capabilityGroups, experiences, featuredProjectIds, profile, projects } from "../data/portfolio";
 
-const featuredProjects = projects.slice(0, 4);
+const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
+const destimmerHeroUrl =
+  "destimmer/index.html?trip=fractalCathedral&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden";
+const destimmerStudioUrl =
+  "destimmer/index.html?trip=fastTrance&view3d=polytopeSwarm&pattern=plasma&images=false";
 
 function Home() {
   return (
     <main>
       <section className="hero">
-        <img
-          className="hero-image"
-          src="images/ocean-drift-lobby.png"
-          alt="Ocean Drift game lobby screenshot"
+        <iframe
+          className="hero-experience"
+          src={destimmerHeroUrl}
+          title="Destimmer animated WebGL background"
+          aria-hidden="true"
+          tabIndex="-1"
         />
         <div className="hero-scrim" />
         <div className="hero-content">
@@ -45,6 +51,33 @@ function Home() {
         ))}
       </section>
 
+      <section className="destimmer-spotlight" aria-label="Playable Destimmer generative artwork">
+        <div className="destimmer-copy">
+          <p className="eyebrow">Creative coding proof</p>
+          <h2>Play with Destimmer directly on this page.</h2>
+          <p>
+            WebGL geometry, canvas fallback, trip presets, studio controls, and a local
+            generative music engine built into one self-contained artwork.
+          </p>
+          <div className="hero-actions">
+            <a className="button secondary" href={destimmerStudioUrl}>
+              Open full Destimmer
+            </a>
+            <Link className="button ghost" to="/projects/destimmer">
+              View case study
+            </Link>
+          </div>
+        </div>
+        <div className="destimmer-frame-shell">
+          <iframe
+            src={destimmerStudioUrl}
+            title="Playable Destimmer WebGL artwork"
+            loading="lazy"
+            allow="autoplay; fullscreen"
+          />
+        </div>
+      </section>
+
       <section className="section intro-grid">
         <div>
           <p className="eyebrow">Employer signal</p>
@@ -61,6 +94,20 @@ function Home() {
               <span key={area}>{area}</span>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section evidence-section">
+        <div>
+          <p className="eyebrow">Evidence trail</p>
+          <h2>Proof is part of the portfolio, not an afterthought.</h2>
+        </div>
+        <div className="evidence-grid">
+          {profile.evidence.map((item) => (
+            <article key={item}>
+              <span>{item}</span>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -6,7 +6,11 @@ function ProjectCard({ project, featured = false }) {
   return (
     <article className={featured ? "project-card featured" : "project-card"}>
       <Link to={`/projects/${project.id}`} className="project-image-link">
-        <img src={project.image} alt={`${project.name} project screenshot`} />
+        <img
+          className={project.mediaFit === "contain" ? "contain-image" : undefined}
+          src={project.image}
+          alt={`${project.name} project screenshot`}
+        />
       </Link>
 
       <div className="project-card-body">
@@ -20,11 +24,23 @@ function ProjectCard({ project, featured = false }) {
           ))}
         </div>
 
+        {project.proofPoints?.length ? (
+          <div className="proof-points" aria-label={`${project.name} proof points`}>
+            {project.proofPoints.slice(0, featured ? 3 : 2).map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        ) : null}
+
         <div className="project-actions">
           <Link className="text-link" to={`/projects/${project.id}`}>
             Case study
           </Link>
-          {linksToPublicRepo ? (
+          {project.liveUrl ? (
+            <a className="text-link muted" href={project.liveUrl}>
+              Live demo
+            </a>
+          ) : linksToPublicRepo ? (
             <a className="text-link muted" href={project.repository} target="_blank" rel="noreferrer">
               {project.repositoryNote}
             </a>

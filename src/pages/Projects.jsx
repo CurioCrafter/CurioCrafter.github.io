@@ -1,5 +1,5 @@
 import ProjectCard from "../components/ProjectCard";
-import { projects } from "../data/portfolio";
+import { inspectedProjects, projects } from "../data/portfolio";
 
 function Projects() {
   return (
@@ -17,6 +17,22 @@ function Projects() {
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} featured={index < 2} />
         ))}
+      </section>
+
+      <section className="inventory-section" aria-label="Broader project inventory checked">
+        <div>
+          <p className="eyebrow">Broader inventory checked</p>
+          <h2>Additional project folders reviewed for resume evidence.</h2>
+        </div>
+        <div className="inventory-grid">
+          {inspectedProjects.map((project) => (
+            <article key={project.name}>
+              <p>{project.type}</p>
+              <h3>{project.name}</h3>
+              <span>{project.evidence}</span>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   );
