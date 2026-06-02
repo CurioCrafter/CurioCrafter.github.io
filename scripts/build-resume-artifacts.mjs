@@ -4,6 +4,7 @@ import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
+  applicationPackets,
   experiences,
   profile,
   projects,
@@ -198,6 +199,7 @@ const html = `<!doctype html>
 
       .project-list,
       .proof-list,
+      .packet-list,
       .experience-list {
         display: grid;
         gap: 0.11in;
@@ -255,6 +257,33 @@ const html = `<!doctype html>
       .proof strong {
         display: block;
         margin-bottom: 0.035in;
+      }
+
+      .packet-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.08in;
+      }
+
+      .packet {
+        break-inside: avoid;
+        border: 1px solid #d8e2df;
+        border-left: 3px solid #0c6265;
+        padding: 0.075in;
+      }
+
+      .packet p {
+        margin-bottom: 0.045in;
+        color: #303b39;
+      }
+
+      .packet ul {
+        margin: 0.04in 0 0;
+        padding-left: 0.15in;
+      }
+
+      .packet li {
+        margin-bottom: 0.02in;
       }
 
       .skills {
@@ -347,6 +376,24 @@ const html = `<!doctype html>
             </article>`,
           )
           .join("")}
+      </section>
+
+      <section>
+        <h2>Role-Specific Application Packets</h2>
+        <div class="packet-grid">
+          ${applicationPackets
+            .slice(0, 4)
+            .map(
+              (packet) => `<article class="packet">
+                <span class="project-kicker">${escapeHtml(packet.role)}</span>
+                <h3>${escapeHtml(packet.headline)}</h3>
+                <p>${escapeHtml(packet.fit)}</p>
+                <ul>${renderList(packet.bullets.slice(0, 2))}</ul>
+                <div class="tags">${renderTags(packet.inspect.map((item) => item.label))}</div>
+              </article>`,
+            )
+            .join("")}
+        </div>
       </section>
 
       <section class="two-col">

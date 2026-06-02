@@ -579,6 +579,73 @@ export const roleFit = [
   },
 ];
 
+export const applicationPackets = [
+  {
+    role: "Junior Gameplay Developer",
+    headline: "Lead with playable systems and readable behavior.",
+    fit: "Best for teams that need someone who can prototype controls, HUDs, simulation rules, and small public game loops.",
+    inspect: [
+      { label: "Creature Behavior Lab", to: "/projects/creature-behavior-lab" },
+      { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
+      { label: "TacOps", to: "/projects/tacops" },
+    ],
+    bullets: [
+      "Built public browser demos with live input, debug state, and reviewer-visible behavior rules.",
+      "Prototype movement, lobbies, HUDs, abilities, bot modes, and survival loops across browser and native game projects.",
+      "Use screenshots, smoke checks, and public pages to prove the work instead of only describing it.",
+    ],
+    ask: "Ask me to walk through one playable loop from input, to state, to rendered feedback.",
+  },
+  {
+    role: "Python / Blender Tools Developer",
+    headline: "Lead with artist-facing tooling and validation artifacts.",
+    fit: "Best for pipeline, technical art support, or tools teams that need Blender add-ons with practical controls and QA proof.",
+    inspect: [
+      { label: "Blender Pipeline", to: "/projects/blender-tools-pipeline" },
+      { label: "TerrainForge", to: "/projects/terrainforge" },
+      { label: "CurioMesh", to: "/projects/curiomesh" },
+    ],
+    bullets: [
+      "Build Blender Python tools for terrain generation, mesh cutting, remeshing, rig/export workflows, and visual QA.",
+      "Frame add-ons around artist outcomes: before/action/after, export paths, metrics, and repeatable validation.",
+      "Keep the next proof target concrete: a 60-90 second add-on reel plus one visual proof sheet.",
+    ],
+    ask: "Ask me to explain how I would turn one repeated Blender task into a safe add-on workflow.",
+  },
+  {
+    role: "Technical Artist Assistant",
+    headline: "Lead with the bridge between visuals and engineering constraints.",
+    fit: "Best for teams that need scene tools, 3D UI, procedural assets, and someone comfortable moving between art goals and code.",
+    inspect: [
+      { label: "Codex 3D Studio", to: "/projects/codex-3d-studio" },
+      { label: "Procedural Ocean", to: "/projects/procedural-ocean" },
+      { label: "Blender Tools", to: "/software" },
+    ],
+    bullets: [
+      "Translate visual goals into working editors, asset catalogs, procedural scenes, and exportable data.",
+      "Work across Three.js, Blender API, native rendering experiments, and practical validation screenshots.",
+      "Use constraints as design inputs: browser delivery, asset ownership, performance, and reviewer clarity.",
+    ],
+    ask: "Ask me how I would prototype a tool that lets artists inspect, place, and export game assets.",
+  },
+  {
+    role: "Creative Technologist",
+    headline: "Lead with interactive WebGL, automation, and sensory systems.",
+    fit: "Best for teams or projects that want unusual browser experiences, generative visuals, workflow automation, and practical product polish.",
+    inspect: [
+      { label: "Destimmer", to: "/projects/destimmer" },
+      { label: "CodexForWorkflow", to: "/projects/codexforworkflow" },
+      { label: "SongDeconstructor", to: "/projects/song-deconstructor" },
+    ],
+    bullets: [
+      "Ship interactive WebGL, canvas, audio-analysis, and AI workflow surfaces with usable controls.",
+      "Turn experimental ideas into public demos, screenshots, case-study copy, and concrete next steps.",
+      "Balance visual experimentation with practical delivery: static hosting, local-first tools, and proof links.",
+    ],
+    ask: "Ask me to turn a creative tool idea into a small public demo with verification evidence.",
+  },
+];
+
 export const nextBuilds = [
   {
     name: "Creature Behavior Lab",

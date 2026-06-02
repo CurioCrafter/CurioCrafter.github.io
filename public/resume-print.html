@@ -141,6 +141,7 @@
 
       .project-list,
       .proof-list,
+      .packet-list,
       .experience-list {
         display: grid;
         gap: 0.11in;
@@ -198,6 +199,33 @@
       .proof strong {
         display: block;
         margin-bottom: 0.035in;
+      }
+
+      .packet-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.08in;
+      }
+
+      .packet {
+        break-inside: avoid;
+        border: 1px solid #d8e2df;
+        border-left: 3px solid #0c6265;
+        padding: 0.075in;
+      }
+
+      .packet p {
+        margin-bottom: 0.045in;
+        color: #303b39;
+      }
+
+      .packet ul {
+        margin: 0.04in 0 0;
+        padding-left: 0.15in;
+      }
+
+      .packet li {
+        margin-bottom: 0.02in;
       }
 
       .skills {
@@ -295,6 +323,37 @@
               <span>Next polish</span>
               <strong>Turn two private/local projects into public demo reels with short postmortems</strong>
             </article>
+      </section>
+
+      <section>
+        <h2>Role-Specific Application Packets</h2>
+        <div class="packet-grid">
+          <article class="packet">
+                <span class="project-kicker">Junior Gameplay Developer</span>
+                <h3>Lead with playable systems and readable behavior.</h3>
+                <p>Best for teams that need someone who can prototype controls, HUDs, simulation rules, and small public game loops.</p>
+                <ul><li>Built public browser demos with live input, debug state, and reviewer-visible behavior rules.</li><li>Prototype movement, lobbies, HUDs, abilities, bot modes, and survival loops across browser and native game projects.</li></ul>
+                <div class="tags"><span>Creature Behavior Lab</span><span>Ocean Drift</span><span>TacOps</span></div>
+              </article><article class="packet">
+                <span class="project-kicker">Python / Blender Tools Developer</span>
+                <h3>Lead with artist-facing tooling and validation artifacts.</h3>
+                <p>Best for pipeline, technical art support, or tools teams that need Blender add-ons with practical controls and QA proof.</p>
+                <ul><li>Build Blender Python tools for terrain generation, mesh cutting, remeshing, rig/export workflows, and visual QA.</li><li>Frame add-ons around artist outcomes: before/action/after, export paths, metrics, and repeatable validation.</li></ul>
+                <div class="tags"><span>Blender Pipeline</span><span>TerrainForge</span><span>CurioMesh</span></div>
+              </article><article class="packet">
+                <span class="project-kicker">Technical Artist Assistant</span>
+                <h3>Lead with the bridge between visuals and engineering constraints.</h3>
+                <p>Best for teams that need scene tools, 3D UI, procedural assets, and someone comfortable moving between art goals and code.</p>
+                <ul><li>Translate visual goals into working editors, asset catalogs, procedural scenes, and exportable data.</li><li>Work across Three.js, Blender API, native rendering experiments, and practical validation screenshots.</li></ul>
+                <div class="tags"><span>Codex 3D Studio</span><span>Procedural Ocean</span><span>Blender Tools</span></div>
+              </article><article class="packet">
+                <span class="project-kicker">Creative Technologist</span>
+                <h3>Lead with interactive WebGL, automation, and sensory systems.</h3>
+                <p>Best for teams or projects that want unusual browser experiences, generative visuals, workflow automation, and practical product polish.</p>
+                <ul><li>Ship interactive WebGL, canvas, audio-analysis, and AI workflow surfaces with usable controls.</li><li>Turn experimental ideas into public demos, screenshots, case-study copy, and concrete next steps.</li></ul>
+                <div class="tags"><span>Destimmer</span><span>CodexForWorkflow</span><span>SongDeconstructor</span></div>
+              </article>
+        </div>
       </section>
 
       <section class="two-col">

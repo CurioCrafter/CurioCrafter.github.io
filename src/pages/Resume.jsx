@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import {
+  applicationPackets,
   buildSprints,
   nextBuilds,
   profile,
@@ -43,6 +44,46 @@ function Resume() {
             </article>
           ))}
         </aside>
+      </section>
+
+      <section className="application-packet-section" aria-label="Application packets by role">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Application packets</p>
+            <h2>Use the right proof order for each role.</h2>
+          </div>
+          <Link className="text-link" to="/contact">
+            Contact path
+          </Link>
+        </div>
+        <div className="application-packet-list">
+          {applicationPackets.map((packet, index) => (
+            <article key={packet.role} className="application-packet-row">
+              <span className="application-packet-index">{String(index + 1).padStart(2, "0")}</span>
+              <div className="application-packet-main">
+                <p>{packet.role}</p>
+                <h3>{packet.headline}</h3>
+                <span>{packet.fit}</span>
+                <div className="proof-stack-links">
+                  {packet.inspect.map((link) => (
+                    <Link key={link.to} to={link.to}>
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="application-packet-proof">
+                <strong>Resume bullets</strong>
+                <ul>
+                  {packet.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+                <p>{packet.ask}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="proof-stack-section" aria-label="Resume proof stack">
