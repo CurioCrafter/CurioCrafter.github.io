@@ -106,6 +106,9 @@ function Resume() {
             <p className="eyebrow">Next builds</p>
             <h2>Project goals that would raise the portfolio fastest.</h2>
           </div>
+          <Link className="text-link" to="/goals">
+            Goals board
+          </Link>
         </div>
         <div className="next-builds-grid">
           {nextBuilds.map((build, index) => (

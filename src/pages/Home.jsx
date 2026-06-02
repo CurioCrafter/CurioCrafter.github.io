@@ -13,7 +13,7 @@ import {
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 const previewBuilds = nextBuilds.slice(0, 3);
 const destimmerHeroUrl =
-  "destimmer/index.html?trip=fractalCathedral&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden";
+  "destimmer/index.html?trip=quartzArchive&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden&pointer=1&interaction=1.25&reactive=true";
 const destimmerStudioUrl =
   "destimmer/index.html?trip=fastTrance&view3d=polytopeSwarm&pattern=plasma&images=false";
 const creatureLabUrl = "creature-lab/index.html";
@@ -23,11 +23,10 @@ function Home() {
     <main>
       <section className="hero">
         <iframe
-          className="hero-experience"
+          className="hero-experience hero-experience-playable"
           src={destimmerHeroUrl}
-          title="Destimmer animated WebGL background"
-          aria-hidden="true"
-          tabIndex="-1"
+          title="Playable Destimmer WebGL artwork"
+          allow="autoplay; fullscreen"
         />
         <div className="hero-scrim" />
         <div className="hero-content">
@@ -50,6 +49,13 @@ function Home() {
             </a>
           </div>
         </div>
+        <aside className="hero-play-panel" aria-label="Playable homepage artwork">
+          <span>Live Destimmer playground</span>
+          <div>
+            <a href={destimmerStudioUrl}>Open studio</a>
+            <Link to="/projects/destimmer">Case study</Link>
+          </div>
+        </aside>
       </section>
 
       <section className="proof-strip" aria-label="Public proof">
@@ -168,7 +174,7 @@ function Home() {
             <p className="eyebrow">Next project goals</p>
             <h2>Where I would push the portfolio next.</h2>
           </div>
-          <Link className="text-link" to="/resume">
+          <Link className="text-link" to="/goals">
             Full roadmap
           </Link>
         </div>

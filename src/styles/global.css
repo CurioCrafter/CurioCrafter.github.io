@@ -147,6 +147,7 @@ textarea {
   min-height: 86svh;
   overflow: hidden;
   align-items: end;
+  isolation: isolate;
   padding: 9rem 1.5rem 5rem;
 }
 
@@ -166,15 +167,22 @@ textarea {
 }
 
 .hero-experience {
+  z-index: 0;
   background: #03050b;
   pointer-events: none;
+}
+
+.hero-experience-playable {
+  cursor: crosshair;
+  filter: saturate(1.2) brightness(1.18);
+  pointer-events: auto;
 }
 
 .hero-scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(9, 16, 20, 0.98), rgba(9, 16, 20, 0.78) 42%, rgba(9, 16, 20, 0.18)),
+    linear-gradient(90deg, rgba(9, 16, 20, 0.98), rgba(9, 16, 20, 0.72) 36%, rgba(9, 16, 20, 0.1) 68%),
     linear-gradient(0deg, var(--bg), rgba(9, 16, 20, 0.08) 38%);
   pointer-events: none;
 }
@@ -184,6 +192,58 @@ textarea {
   z-index: 2;
   width: min(48rem, 100%);
   padding-left: max(0rem, calc((100vw - 1180px) / 2));
+}
+
+.hero-play-panel {
+  position: absolute;
+  right: max(1.5rem, calc((100vw - 1180px) / 2));
+  bottom: 2rem;
+  z-index: 3;
+  display: flex;
+  max-width: min(33rem, calc(100% - 3rem));
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid rgba(61, 219, 217, 0.38);
+  background: rgba(9, 16, 20, 0.72);
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.42);
+  padding: 0.72rem;
+  backdrop-filter: blur(16px);
+}
+
+.hero-play-panel span {
+  color: rgba(244, 240, 232, 0.86);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hero-play-panel div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.hero-play-panel a {
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+  border: 1px solid rgba(244, 240, 232, 0.18);
+  background: rgba(244, 240, 232, 0.08);
+  padding: 0.5rem 0.62rem;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 900;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.hero-play-panel a:hover {
+  border-color: rgba(244, 185, 77, 0.58);
+  background: rgba(244, 185, 77, 0.14);
+  transform: translateY(-1px);
 }
 
 .eyebrow {
@@ -1403,6 +1463,273 @@ h3 {
   color: var(--text);
 }
 
+.goals-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+  gap: 3rem;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  padding: 3rem 0 4rem;
+}
+
+.goals-hero-copy {
+  min-width: 0;
+}
+
+.goals-hero-copy p:not(.eyebrow) {
+  max-width: 43rem;
+  color: rgba(244, 240, 232, 0.84);
+  font-size: 1.08rem;
+}
+
+.goals-priority {
+  display: grid;
+  min-width: 0;
+  gap: 0.75rem;
+  border: 1px solid rgba(244, 185, 77, 0.32);
+  background:
+    linear-gradient(135deg, rgba(244, 185, 77, 0.16), rgba(61, 219, 217, 0.06)),
+    rgba(244, 240, 232, 0.06);
+  padding: 1.25rem;
+}
+
+.goals-priority span,
+.goals-metric-strip span,
+.goal-build-body > p,
+.goals-sprint-list article > span {
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.goals-priority h2 {
+  margin-bottom: 0;
+  color: var(--amber);
+}
+
+.goals-priority p {
+  margin-bottom: 0;
+  color: rgba(244, 240, 232, 0.82);
+}
+
+.goals-priority strong {
+  display: block;
+  border-left: 3px solid var(--amber);
+  background: rgba(244, 185, 77, 0.1);
+  padding: 0.8rem 0.9rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.goals-metric-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 3rem;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.14);
+}
+
+.goals-metric-strip article {
+  display: grid;
+  min-height: 10.5rem;
+  align-content: start;
+  background: var(--bg-soft);
+  padding: 1rem;
+}
+
+.goals-metric-strip strong {
+  display: block;
+  margin: 0.25rem 0 0.65rem;
+  color: var(--text);
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.goals-metric-strip p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.goals-preview-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4rem;
+}
+
+.goals-preview-strip a {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(61, 219, 217, 0.22);
+  background: #071012;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.goals-preview-strip a:hover {
+  border-color: rgba(244, 185, 77, 0.48);
+  transform: translateY(-2px);
+}
+
+.goals-preview-strip img {
+  width: 100%;
+  min-height: 13rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.goals-preview-strip img.contain-image {
+  object-fit: contain;
+}
+
+.goals-preview-strip span {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: rgba(9, 16, 20, 0.82);
+  padding: 0.55rem 0.65rem;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.goals-board-section {
+  padding: 4rem 0;
+}
+
+.goals-board {
+  display: grid;
+  gap: 1rem;
+}
+
+.goal-build-card {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.58fr) minmax(0, 1fr);
+  gap: 1rem;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.055);
+  padding: 1rem;
+}
+
+.goal-build-media {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: #071012;
+}
+
+.goal-build-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 18rem;
+  object-fit: cover;
+}
+
+.goal-build-media span {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border: 1px solid rgba(244, 185, 77, 0.5);
+  background: rgba(9, 16, 20, 0.82);
+  color: var(--amber);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.goal-build-body {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.goal-build-body h3 {
+  margin-bottom: 0;
+}
+
+.goal-build-body > strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.goal-build-body > span {
+  color: var(--muted);
+}
+
+.roadmap-meta.compact {
+  margin: 0;
+}
+
+.goal-steps {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(244, 240, 232, 0.84);
+}
+
+.goal-steps li {
+  padding-left: 0.2rem;
+}
+
+.goals-sprint-section,
+.goals-assist-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.goals-sprint-section p:not(.eyebrow),
+.goals-assist-grid p {
+  color: var(--muted);
+}
+
+.goals-sprint-list,
+.goals-assist-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.goals-sprint-list article,
+.goals-assist-grid article {
+  display: grid;
+  gap: 0.72rem;
+  border: 1px solid rgba(61, 219, 217, 0.18);
+  background: rgba(61, 219, 217, 0.055);
+  padding: 1rem;
+}
+
+.goals-sprint-list h3,
+.goals-assist-grid h3,
+.goals-sprint-list p,
+.goals-assist-grid p {
+  margin-bottom: 0;
+}
+
+.goals-sprint-list strong {
+  display: block;
+  border-left: 3px solid var(--amber);
+  background: rgba(244, 185, 77, 0.09);
+  padding: 0.72rem 0.82rem;
+  color: var(--text);
+  line-height: 1.35;
+}
+
 .lane-hero {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(24rem, 1.22fr);
@@ -2243,6 +2570,10 @@ h3 {
   .lane-next-step,
   .blender-feature,
   .build-sprint-section,
+  .goal-build-card,
+  .goals-hero,
+  .goals-sprint-section,
+  .goals-assist-section,
   .destimmer-spotlight,
   .inventory-section,
   .project-lens-section,
@@ -2267,6 +2598,8 @@ h3 {
 
   .case-snapshot,
   .lane-proof-strip,
+  .goals-metric-strip,
+  .goals-preview-strip,
   .case-next-links {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2361,7 +2694,7 @@ h3 {
   .hero {
     min-height: 80svh;
     padding-right: 1rem;
-    padding-bottom: 3rem;
+    padding-bottom: 6.5rem;
     padding-left: 1rem;
   }
 
@@ -2369,6 +2702,10 @@ h3 {
     background:
       linear-gradient(90deg, rgba(9, 16, 20, 0.92), rgba(9, 16, 20, 0.62)),
       linear-gradient(0deg, var(--bg), rgba(9, 16, 20, 0.06) 42%);
+  }
+
+  .hero-experience-playable {
+    filter: saturate(1.1) brightness(1.05);
   }
 
   h1 {
@@ -2402,6 +2739,28 @@ h3 {
     max-width: 20rem;
   }
 
+  .hero-play-panel {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    max-width: none;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.58rem;
+  }
+
+  .hero-play-panel span {
+    max-width: 20rem;
+    overflow-wrap: anywhere;
+  }
+
+  .goals-hero-copy,
+  .goals-hero h1,
+  .goals-hero-copy p:not(.eyebrow),
+  .goals-hero .hero-actions {
+    max-width: 20rem;
+  }
+
   .page-hero,
   .page-hero p,
   .resume-hero h1,
@@ -2425,6 +2784,14 @@ h3 {
   .proof-stack-section,
   .role-fit-section,
   .build-sprint-section,
+  .goals-hero,
+  .goals-priority,
+  .goals-metric-strip,
+  .goals-preview-strip,
+  .goals-board-section,
+  .goal-build-card,
+  .goals-sprint-section,
+  .goals-assist-section,
   .next-builds-section,
   .assist-section,
   .resume-close {
@@ -2436,6 +2803,10 @@ h3 {
   .proof-stack-row,
   .role-fit-grid article,
   .build-sprint-grid article,
+  .goals-metric-strip article,
+  .goal-build-card,
+  .goals-sprint-list article,
+  .goals-assist-grid article,
   .next-build,
   .assist-grid article {
     overflow: hidden;
@@ -2451,6 +2822,23 @@ h3 {
   .build-sprint-grid h3,
   .build-sprint-grid span,
   .build-sprint-grid strong,
+  .goals-priority h2,
+  .goals-priority p,
+  .goals-priority strong,
+  .goals-metric-strip span,
+  .goals-metric-strip strong,
+  .goals-metric-strip p,
+  .goal-build-body p,
+  .goal-build-body h3,
+  .goal-build-body strong,
+  .goal-build-body span,
+  .goal-build-body li,
+  .goals-sprint-list span,
+  .goals-sprint-list h3,
+  .goals-sprint-list p,
+  .goals-sprint-list strong,
+  .goals-assist-grid h3,
+  .goals-assist-grid p,
   .next-build strong,
   .next-build span,
   .next-build li,
@@ -2514,6 +2902,8 @@ h3 {
   .proof-card-grid,
   .assist-grid,
   .build-sprint-grid,
+  .goals-metric-strip,
+  .goals-preview-strip,
   .inventory-grid,
   .notes-grid,
   .role-ladder-grid,
@@ -2524,6 +2914,24 @@ h3 {
 
   .next-build {
     grid-template-columns: 1fr;
+  }
+
+  .goals-preview-strip {
+    padding-bottom: 3rem;
+  }
+
+  .goal-build-card {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-build-media img {
+    min-height: 13rem;
+  }
+
+  .goals-board-section,
+  .goals-sprint-section,
+  .goals-assist-section {
+    padding: 3rem 0;
   }
 
   .about-proof-strip {
