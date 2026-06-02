@@ -22,7 +22,10 @@ function Resume() {
           </p>
           <div className="hero-actions">
             <a className="button primary" href={profile.resume}>
-              Download PDF
+              Download updated PDF
+            </a>
+            <a className="button secondary" href={profile.resumePrint}>
+              Print view
             </a>
             <a className="button secondary" href={`mailto:${profile.email}`}>
               Email Andrew

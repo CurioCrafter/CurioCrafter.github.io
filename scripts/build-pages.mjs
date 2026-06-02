@@ -10,6 +10,16 @@ const distDir = join(root, "dist");
 const rootAssets = join(root, "assets");
 const viteBin = join(root, "node_modules", "vite", "bin", "vite.js");
 
+const resume = spawnSync(process.execPath, [join(root, "scripts", "build-resume-artifacts.mjs")], {
+  cwd: root,
+  shell: false,
+  stdio: "inherit",
+});
+
+if (resume.status !== 0) {
+  process.exit(resume.status ?? 1);
+}
+
 await writeFile(rootIndex, await readFile(sourceIndex, "utf8"));
 
 const build = spawnSync(process.execPath, [viteBin, "build"], {

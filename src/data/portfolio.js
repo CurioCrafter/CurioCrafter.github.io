@@ -8,6 +8,7 @@ export const profile = {
   youtube: "https://youtube.com/@CurioCrafter-r1w",
   linkedin: "https://linkedin.com/in/andrew-rainsberger-2b9b721b1",
   resume: "Andrew_Rainsberger_Game_Developer_Resume.pdf",
+  resumePrint: "resume-print.html",
   summary:
     "I build game prototypes, Blender add-ons, browser 3D experiences, native C++ experiments, desktop utilities, and AI-assisted creative workflows with a practical focus on tools, simulation, and player-facing polish.",
   focusAreas: [

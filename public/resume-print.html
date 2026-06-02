@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Andrew Rainsberger Resume</title>
+    <style>
+      @page {
+        size: letter;
+        margin: 0.42in;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: #151817;
+        font-family: Inter, Arial, sans-serif;
+        font-size: 9.6pt;
+        line-height: 1.35;
+      }
+
+      a {
+        color: #0c6265;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 0.04in;
+        color: #101413;
+        font-size: 26pt;
+        line-height: 0.96;
+      }
+
+      h2 {
+        margin-bottom: 0.08in;
+        border-bottom: 1px solid #cdd6d3;
+        padding-bottom: 0.04in;
+        color: #0c6265;
+        font-size: 10pt;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        margin-bottom: 0.03in;
+        font-size: 10.8pt;
+        line-height: 1.1;
+      }
+
+      p {
+        margin-bottom: 0.08in;
+      }
+
+      .page {
+        display: grid;
+        gap: 0.16in;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.25in;
+        align-items: start;
+        border-bottom: 2px solid #101413;
+        padding-bottom: 0.13in;
+      }
+
+      .title {
+        margin-bottom: 0.05in;
+        color: #9a650e;
+        font-size: 11pt;
+        font-weight: 800;
+      }
+
+      .summary {
+        max-width: 6.35in;
+        margin-bottom: 0;
+        font-size: 10.2pt;
+      }
+
+      .contact {
+        display: grid;
+        gap: 0.035in;
+        min-width: 1.95in;
+        color: #3d4544;
+        font-size: 8.7pt;
+        text-align: right;
+      }
+
+      .contact strong {
+        color: #101413;
+      }
+
+      .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.08in;
+      }
+
+      .signal {
+        border-left: 3px solid #0c6265;
+        background: #f2f6f5;
+        padding: 0.08in;
+      }
+
+      .signal span,
+      .stat span,
+      .project-kicker {
+        display: block;
+        color: #0c6265;
+        font-size: 7.6pt;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .signal strong,
+      .stat strong {
+        display: block;
+        margin-top: 0.03in;
+        color: #151817;
+        font-size: 9.2pt;
+        line-height: 1.2;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 0.2in;
+        align-items: start;
+      }
+
+      .project-list,
+      .proof-list,
+      .experience-list {
+        display: grid;
+        gap: 0.11in;
+      }
+
+      .project {
+        break-inside: avoid;
+        border-bottom: 1px solid #dde5e2;
+        padding-bottom: 0.09in;
+      }
+
+      .project:last-child {
+        border-bottom: 0;
+      }
+
+      .project p,
+      .proof p,
+      .experience p {
+        color: #303b39;
+      }
+
+      .project ul,
+      .experience ul {
+        margin: 0.04in 0 0;
+        padding-left: 0.16in;
+      }
+
+      .project li,
+      .experience li {
+        margin-bottom: 0.025in;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.035in;
+        margin-top: 0.055in;
+      }
+
+      .tags span {
+        border: 1px solid #cbd8d5;
+        padding: 0.025in 0.045in;
+        color: #303b39;
+        font-size: 7.6pt;
+        font-weight: 700;
+      }
+
+      .proof {
+        break-inside: avoid;
+        border-left: 3px solid #c48622;
+        background: #fff8ec;
+        padding: 0.075in 0.09in;
+      }
+
+      .proof strong {
+        display: block;
+        margin-bottom: 0.035in;
+      }
+
+      .skills {
+        display: grid;
+        gap: 0.11in;
+      }
+
+      .skill-group h3 {
+        margin-bottom: 0.05in;
+        color: #101413;
+        font-size: 9.4pt;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.06in;
+      }
+
+      .stat {
+        border: 1px solid #dde5e2;
+        padding: 0.07in;
+      }
+
+      .experience span {
+        display: block;
+        margin-bottom: 0.025in;
+        color: #596664;
+        font-size: 8.2pt;
+        font-weight: 700;
+      }
+
+      .footer-note {
+        border-top: 1px solid #cdd6d3;
+        padding-top: 0.08in;
+        color: #596664;
+        font-size: 8.2pt;
+      }
+
+      @media screen {
+        body {
+          background: #f4f7f6;
+        }
+
+        .page {
+          max-width: 8.5in;
+          min-height: 11in;
+          margin: 0 auto;
+          background: #ffffff;
+          padding: 0.25in;
+          box-shadow: 0 18px 60px rgba(16, 20, 19, 0.16);
+        }
+      }
+
+      @media print {
+        .page {
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="header">
+        <div>
+          <h1>Andrew Rainsberger</h1>
+          <p class="title">Game Developer + Python/Blender Tools Developer</p>
+          <p class="summary">
+            Game and tools developer building playable browser demos, Blender Python add-ons,
+            WebGL creative systems, native gameplay experiments, desktop utilities, and
+            AI-assisted creative workflows with a practical focus on visible proof.
+          </p>
+        </div>
+        <div class="contact" aria-label="Contact">
+          <strong>Dixon, Missouri</strong>
+          <a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a>
+          <a href="https://curiocrafter.github.io">curiocrafter.github.io</a>
+          <a href="https://github.com/CurioCrafter">github.com/CurioCrafter</a>
+          <a href="https://youtube.com/@CurioCrafter-r1w">youtube.com/@CurioCrafter-r1w</a>
+          <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn profile</a>
+        </div>
+      </section>
+
+      <section class="signal-grid" aria-label="Positioning">
+        <article class="signal">
+              <span>Best fit</span>
+              <strong>Junior game developer, Python/Blender tools, technical art support</strong>
+            </article><article class="signal">
+              <span>Lead proof</span>
+              <strong>Ocean Drift, Destimmer, TacOps, Blender Tools Pipeline</strong>
+            </article><article class="signal">
+              <span>Strongest angle</span>
+              <strong>Playable prototypes plus practical tools that remove production friction</strong>
+            </article><article class="signal">
+              <span>Next polish</span>
+              <strong>Turn two private/local projects into public demo reels with short postmortems</strong>
+            </article>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>Selected Project Proof</h2>
+          <div class="project-list">
+            <article class="project">
+                  <span class="project-kicker">Playable AI behavior demo</span>
+                  <h3><a href="https://curiocrafter.github.io/creature-lab/index.html">Creature Behavior Lab</a></h3>
+                  <p>A compact browser simulation that makes creature steering, hunger, fear, target choice, flock spacing, and threat response readable in one public demo.</p>
+                  <ul><li>Separated simulation state from rendering so agents own behavior while Canvas handles only playfield drawing.</li><li>Added food placement, threat placement, calm/reset controls, speed tuning, trails, and a DOM debug HUD.</li></ul>
+                  <div class="tags"><span>JavaScript</span><span>Canvas</span><span>steering behaviors</span><span>debug HUD</span><span>GitHub Pages</span></div>
+                </article><article class="project">
+                  <span class="project-kicker">WebGL generative sensory artwork</span>
+                  <h3><a href="https://curiocrafter.github.io/destimmer/index.html?trip=fastTrance&amp;view3d=polytopeSwarm&amp;pattern=plasma&amp;images=false">Destimmer</a></h3>
+                  <p>A self-contained browser artwork for kinetic sacred geometry, psychedelic 3D trance scenes, interactive polytope/ribbon swarms, generative harmonic music, and low-friction sensory stimming.</p>
+                  <ul><li>Built a full-screen WebGL-first experience with animated cathedral ribs, glass shards, caustic veils, light shafts, point sprites, reactive lighting, and tunnel camera motion.</li><li>Created a studio control surface for visuals, motion, image sources, music generation, instrument mapping, 3D parameters, trips, presets, and chrome-free focus mode.</li></ul>
+                  <div class="tags"><span>JavaScript</span><span>WebGL</span><span>Canvas</span><span>Three.js CDN</span><span>generative audio</span></div>
+                </article><article class="project">
+                  <span class="project-kicker">Browser 3D survival game</span>
+                  <h3><a href="https://curiocrafter.github.io/#/projects/ocean-supremacy">Ocean Supremacy Web / Ocean Drift</a></h3>
+                  <p>A multiplayer-ready underwater survival prototype with third-person fish controls, lobby flow, HUD, growth systems, and water rendering quality tiers.</p>
+                  <ul><li>Built player movement, feeding, sprint, ability, HUD, lobby, and match-selection flows.</li><li>Iterated on underwater rendering concepts including clarity, caustics, scattering, refraction shimmer, light shafts, and particulate haze.</li></ul>
+                  <div class="tags"><span>TypeScript</span><span>Three.js</span><span>WebGL2</span><span>Vite</span><span>WebSocket architecture</span></div>
+                </article><article class="project">
+                  <span class="project-kicker">Browser tactical FPS vertical slice</span>
+                  <h3><a href="https://curiocrafter.github.io/#/projects/tacops">TacOps</a></h3>
+                  <p>An original browser tactical FPS prototype with bot matches, friend lobbies, invite links, campaign/objective modes, loadouts, gadgets, and authoritative multiplayer architecture.</p>
+                  <ul><li>Built a Three.js/Vite client paired with a Colyseus server for room state, projectiles, tactical modes, bots, and lobby flow.</li><li>Created multiple playable modes including campaign, tactical bots, tactical friends, deathmatch vs bots, and deathmatch with friends.</li></ul>
+                  <div class="tags"><span>TypeScript</span><span>Three.js</span><span>Colyseus</span><span>Vite</span><span>authoritative server</span></div>
+                </article><article class="project">
+                  <span class="project-kicker">Add-on suite and validation workflow</span>
+                  <h3><a href="https://curiocrafter.github.io/#/projects/blender-tools-pipeline">Blender Tools Pipeline</a></h3>
+                  <p>A broader Blender tooling suite covering terrain generation, mesh cutting, remeshing, character generation, rig setup, hard-surface cutters, and an in-Blender AI command surface.</p>
+                  <ul><li>Inspected TerrainForge, Laser Saw, CurioMesh, Armaturizer, Extractionator, GenerateHuman, and Codex Blender Agent project folders and READMEs.</li><li>GenerateHuman includes deterministic character generation, visual QA galleries, engine export presets, and GLB/reimport checks.</li></ul>
+                  <div class="tags"><span>Python</span><span>Blender API</span><span>visual QA</span><span>rigging</span><span>boolean tooling</span></div>
+                </article><article class="project">
+                  <span class="project-kicker">Blender procedural terrain add-on</span>
+                  <h3><a href="https://curiocrafter.github.io/#/projects/terrainforge">TerrainForge</a></h3>
+                  <p>A Blender terrain-generation add-on for preview meshes, segmented worlds, tiled heightmap export, texture layers, cave volumes, LOD/detail bake, and professional selected-tile baking.</p>
+                  <ul><li>Built a terrain workflow around preview generation, export validation, tiled worlds, segmented region editing, local tile overrides, stamps, masks, and recipe scripts.</li><li>Added professional bake output for dense selected-tile meshes with height, normal, cavity, curvature, albedo, UVs, materials, metrics, and manifests.</li></ul>
+                  <div class="tags"><span>Python</span><span>Blender API</span><span>NumPy</span><span>heightmaps</span><span>QA campaign tooling</span></div>
+                </article>
+          </div>
+        </div>
+
+        <aside>
+          <h2>Resume Proof Lines</h2>
+          <div class="proof-list">
+            <article class="proof">
+                  <strong>Playable first: Lead with demos a reviewer can touch.</strong>
+                  <p>Game/tools developer building playable browser demos, simulation systems, WebGL experiences, and verified portfolio artifacts.</p>
+                </article><article class="proof">
+                  <strong>Game systems: Use private game depth as case-study proof.</strong>
+                  <p>Prototype movement, HUDs, lobbies, bot modes, survival pressure, and simulation loops across browser and native game projects.</p>
+                </article><article class="proof">
+                  <strong>Blender tools: Turn the add-on suite into a production-tools story.</strong>
+                  <p>Build Blender Python add-ons for terrain generation, mesh cutting, remeshing, rig/export workflows, and validation artifacts.</p>
+                </article><article class="proof">
+                  <strong>Utility products: Show product judgment through practical tools.</strong>
+                  <p>Ship local-first utilities and automation tools with safety-conscious UX, screenshots, and delivery checks.</p>
+                </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>Experience</h2>
+          <div class="experience-list">
+            <article class="experience">
+                  <h3>Independent Creative Technology Developer</h3>
+                  <span>CurioCrafter / Independent Projects | 2023 - Present</span>
+                  <ul><li>Build game prototypes, Blender add-ons, desktop apps, AI workflow tools, and creative production systems.</li><li>Prototype procedural environments, player controls, HUD/UI, camera systems, real-time rendering, and simulation behavior.</li><li>Operate a high-volume AI creative channel with measurable audience growth and viral video performance.</li></ul>
+                </article><article class="experience">
+                  <h3>Apprentice Electrician</h3>
+                  <span>Productive Electric LLC / Malm Electrical Contractors | 2021 - 2023</span>
+                  <ul><li>Supported commercial electrical installation, jobsite preparation, safety procedures, materials handling, and field troubleshooting.</li></ul>
+                </article>
+          </div>
+        </div>
+
+        <div class="skills">
+          <section>
+            <h2>Role Fit</h2>
+            <article class="skill-group">
+                  <h3>Junior Gameplay Developer</h3>
+                  <p>Prototype loops, HUDs, camera feel, simulation rules, and browser-playable vertical slices.</p>
+                </article><article class="skill-group">
+                  <h3>Python / Blender Tools Developer</h3>
+                  <p>Build artist-facing add-ons, validation scripts, export flows, and visual QA artifacts.</p>
+                </article><article class="skill-group">
+                  <h3>Technical Artist Assistant</h3>
+                  <p>Bridge visual goals and engineering constraints across meshes, terrain, materials, and 3D UI.</p>
+                </article>
+          </section>
+
+          <section>
+            <h2>Technical Stack</h2>
+            <div class="tags"><span>Python</span><span>Blender API</span><span>TypeScript</span><span>Three.js</span><span>WebGL2</span><span>C++</span><span>DirectX 12</span><span>Electron</span><span>React</span><span>Colyseus</span><span>raylib</span><span>SQLite</span><span>GitHub</span><span>AI tools</span></div>
+          </section>
+
+          <section>
+            <h2>Creative Audience</h2>
+            <div class="stats">
+              <article class="stat">
+                    <span>YouTube subscribers</span>
+                    <strong>79.9K</strong>
+                  </article><article class="stat">
+                    <span>total views</span>
+                    <strong>100M+</strong>
+                  </article><article class="stat">
+                    <span>published videos</span>
+                    <strong>568</strong>
+                  </article><article class="stat">
+                    <span>top short views</span>
+                    <strong>18.5M</strong>
+                  </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <p class="footer-note">
+        Updated June 2026. Portfolio case studies and public demos are available at
+        <a href="https://curiocrafter.github.io">https://curiocrafter.github.io</a>.
+      </p>
+    </main>
+  </body>
+</html>

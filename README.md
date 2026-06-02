@@ -17,6 +17,14 @@ npm run check
 
 This runs ESLint and a production Vite build.
 
+## Resume Artifacts
+
+```powershell
+npm run resume:build
+```
+
+This regenerates `resume-print.html` and `Andrew_Rainsberger_Game_Developer_Resume.pdf` from the portfolio data. `npm run build` also refreshes these artifacts before copying the GitHub Pages files to the repository root.
+
 ## Publishing On GitHub Pages
 
 This repository is intended to be named `CurioCrafter.github.io` on GitHub. The source app lives in `src/`, while `npm run build` compiles the Vite output and copies the static files to the repository root for GitHub Pages branch publishing.
