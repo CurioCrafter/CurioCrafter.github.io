@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { buildSprints, nextBuilds, projects, supportOffers } from "../data/portfolio";
+import { buildSprints, nextBuilds, projectBriefs, projects, supportOffers } from "../data/portfolio";
 
 const buildProjectLinks = {
   "Creature Behavior Lab": "/projects/creature-behavior-lab",
@@ -92,6 +92,61 @@ function Goals() {
             <span>{project.name}</span>
           </Link>
         ))}
+      </section>
+
+      <section className="project-brief-section" aria-label="Concrete next project briefs">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Build briefs</p>
+            <h2>Concrete project slices I would start next.</h2>
+          </div>
+        </div>
+        <div className="project-brief-list">
+          {projectBriefs.map((brief, index) => (
+            <article key={brief.title} className="project-brief-row">
+              <div className="project-brief-rank">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{brief.lane}</strong>
+              </div>
+              <div className="project-brief-main">
+                <p>{brief.recommendation}</p>
+                <h3>{brief.title}</h3>
+                <strong>{brief.pitch}</strong>
+                <span>{brief.why}</span>
+                <div className="proof-stack-links">
+                  {brief.links.map((link) => (
+                    <Link key={link.to} to={link.to}>
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="project-brief-detail">
+                <div>
+                  <span>Deliverable</span>
+                  <strong>{brief.deliverable}</strong>
+                </div>
+                <div>
+                  <span>Starter scope</span>
+                  <ul>
+                    {brief.scope.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <span>Acceptance proof</span>
+                  <ul>
+                    {brief.acceptance.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <p>{brief.codexHelp}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="goals-board-section" aria-label="Recommended next builds">

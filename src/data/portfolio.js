@@ -709,6 +709,113 @@ export const nextBuilds = [
   },
 ];
 
+export const projectBriefs = [
+  {
+    title: "Creature Memory Expansion",
+    lane: "Game AI",
+    recommendation: "Build first",
+    pitch:
+      "Add one behavior layer to Creature Behavior Lab so agents remember danger, favor recent food zones, and make the debug HUD more impressive.",
+    why:
+      "It is the fastest way to turn an already-public demo into stronger gameplay AI proof without needing a backend or large art pass.",
+    deliverable: "Playable update, behavior postmortem, 20-second capture",
+    scope: [
+      "Memory heat around recent food and threat locations",
+      "One scenario preset that shows memory changing agent choices",
+      "HUD rows for remembered food, remembered danger, and current steering reason",
+    ],
+    acceptance: [
+      "Reviewer can place food/threats and see agents react differently after memory changes",
+      "Case study includes one before/after screenshot and one short behavior explanation",
+      "Static GitHub Pages build still runs with no backend",
+    ],
+    codexHelp:
+      "I can implement the behavior layer, add debug labels, run browser screenshots, and update the case study copy.",
+    links: [
+      { label: "Live demo", to: "/projects/creature-behavior-lab" },
+      { label: "Games lane", to: "/games" },
+    ],
+  },
+  {
+    title: "Ocean Drift Solo Arena",
+    lane: "Game slice",
+    recommendation: "Best game-role lift",
+    pitch:
+      "Cut Ocean Drift down to one public solo loop: spawn, swim, feed, avoid one threat, use one ability, and finish one objective.",
+    why:
+      "A small finished loop is more useful for junior game applications than a larger private prototype that a reviewer cannot play.",
+    deliverable: "Public solo build, mobile smoke proof, one-minute gameplay capture",
+    scope: [
+      "One arena with a clear start and finish condition",
+      "One creature, one threat, one ability, and one HUD objective",
+      "Performance budget notes and desktop/mobile screenshots",
+    ],
+    acceptance: [
+      "Reviewer can finish the loop in under three minutes",
+      "Controls work on desktop and mobile",
+      "Portfolio links directly to the public slice and its proof notes",
+    ],
+    codexHelp:
+      "I can scope the public build, wire the solo flow, run smoke captures, and write the role-focused case-study update.",
+    links: [
+      { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
+      { label: "Games lane", to: "/games" },
+    ],
+  },
+  {
+    title: "Blender Add-on Proof Reel",
+    lane: "Tools proof",
+    recommendation: "Best tools-role lift",
+    pitch:
+      "Record a short reel that shows one before/action/after win each for TerrainForge, Laser Saw, CurioMesh, and GenerateHuman.",
+    why:
+      "The Blender tooling is deep, but hiring reviewers need to understand the value in under a minute.",
+    deliverable: "60-90 second reel, proof sheet, tighter resume bullets",
+    scope: [
+      "One visible win per add-on",
+      "A four-panel proof sheet for the portfolio",
+      "Resume bullets rewritten around artist-facing outcomes",
+    ],
+    acceptance: [
+      "Each clip shows before, action, after, and result",
+      "Tools page exposes the reel/proof sheet near the top",
+      "Resume packet points directly at the Blender proof",
+    ],
+    codexHelp:
+      "I can script the capture plan, update portfolio sections, write proof captions, and keep the resume/web/PDF story aligned.",
+    links: [
+      { label: "Tools lane", to: "/software" },
+      { label: "Blender proof", to: "/projects/blender-tools-pipeline" },
+    ],
+  },
+  {
+    title: "SongDeconstructor Visual Lab",
+    lane: "Creative tool",
+    recommendation: "New project idea",
+    pitch:
+      "Turn SongDeconstructor outputs into a small browser visualizer that shows beats, chroma, peaks, and segments as an interactive proof surface.",
+    why:
+      "It creates a fresh public project from an existing technical tool and strengthens the creative-technologist lane.",
+    deliverable: "Static visualizer demo, sample analysis bundle, tool case-study update",
+    scope: [
+      "Load one sample manifest/features export",
+      "Timeline view for beats, segments, chroma, and spectral peaks",
+      "Short explanation of how the data could feed DAW or generation workflows",
+    ],
+    acceptance: [
+      "Reviewer can scrub or inspect at least three audio feature layers",
+      "Demo runs as static GitHub Pages content",
+      "Case study includes the output contract and next integration direction",
+    ],
+    codexHelp:
+      "I can design the visualizer, create the static demo shell, wire sample data, and update the case study with screenshots.",
+    links: [
+      { label: "SongDeconstructor", to: "/projects/song-deconstructor" },
+      { label: "Tools lane", to: "/software" },
+    ],
+  },
+];
+
 export const buildSprints = [
   {
     title: "Application proof pack",

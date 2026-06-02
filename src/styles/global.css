@@ -1678,6 +1678,105 @@ h3 {
   font-weight: 900;
 }
 
+.project-brief-section {
+  border-bottom: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.project-brief-list {
+  display: grid;
+  border-top: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.project-brief-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 0.88fr) minmax(24rem, 1.12fr);
+  gap: 1.5rem;
+  align-items: start;
+  border-bottom: 1px solid rgba(244, 240, 232, 0.14);
+  padding: 1.45rem 0;
+}
+
+.project-brief-rank {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.project-brief-rank span {
+  color: rgba(244, 185, 77, 0.68);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.project-brief-rank strong,
+.project-brief-main > p,
+.project-brief-detail span {
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.project-brief-main,
+.project-brief-detail {
+  min-width: 0;
+}
+
+.project-brief-main h3 {
+  margin-bottom: 0.5rem;
+}
+
+.project-brief-main > strong {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.project-brief-main > span {
+  display: block;
+  color: var(--muted);
+}
+
+.project-brief-detail {
+  display: grid;
+  gap: 0.85rem;
+  border-left: 3px solid rgba(244, 185, 77, 0.72);
+  background: rgba(244, 185, 77, 0.055);
+  padding: 1rem;
+}
+
+.project-brief-detail div {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.project-brief-detail strong {
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.project-brief-detail ul {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: rgba(244, 240, 232, 0.84);
+}
+
+.project-brief-detail li {
+  padding-left: 0.2rem;
+}
+
+.project-brief-detail p {
+  margin: 0;
+  color: var(--amber);
+  font-weight: 800;
+  line-height: 1.38;
+}
+
 .goals-board-section {
   padding: 4rem 0;
 }
@@ -2652,6 +2751,7 @@ h3 {
   .goals-hero,
   .goals-sprint-section,
   .goals-assist-section,
+  .project-brief-row,
   .destimmer-spotlight,
   .inventory-section,
   .project-lens-section,
@@ -2868,6 +2968,7 @@ h3 {
   .goals-priority,
   .goals-metric-strip,
   .goals-preview-strip,
+  .project-brief-section,
   .goals-board-section,
   .goal-build-card,
   .goals-sprint-section,
@@ -2885,6 +2986,7 @@ h3 {
   .role-fit-grid article,
   .build-sprint-grid article,
   .goals-metric-strip article,
+  .project-brief-row,
   .goal-build-card,
   .goals-sprint-list article,
   .goals-assist-grid article,
@@ -2928,6 +3030,16 @@ h3 {
   .goals-sprint-list strong,
   .goals-assist-grid h3,
   .goals-assist-grid p,
+  .project-brief-section h2,
+  .project-brief-rank strong,
+  .project-brief-main p,
+  .project-brief-main h3,
+  .project-brief-main strong,
+  .project-brief-main span,
+  .project-brief-detail span,
+  .project-brief-detail strong,
+  .project-brief-detail li,
+  .project-brief-detail p,
   .next-build strong,
   .next-build span,
   .next-build li,
@@ -3011,6 +3123,17 @@ h3 {
 
   .goal-build-card {
     grid-template-columns: 1fr;
+  }
+
+  .project-brief-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-brief-rank {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .goal-build-media img {
