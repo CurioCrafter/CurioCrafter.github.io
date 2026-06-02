@@ -497,31 +497,86 @@ export const roleFit = [
 export const nextBuilds = [
   {
     name: "Creature Behavior Lab",
+    priority: "Highest leverage",
+    timeframe: "3-5 focused sessions",
+    deliverable: "GitHub Pages demo, behavior debug overlay, short GIF loop",
     goal: "Package one small public browser demo where fish, ants, or organisms show readable AI behavior.",
     why: "It turns several simulation ideas into one recruiter-friendly proof of gameplay systems thinking.",
     stack: "TypeScript, Canvas/WebGL, deterministic simulation",
+    firstSteps: [
+      "Choose one behavior loop instead of a large ecosystem.",
+      "Expose steering, hunger, threat, and target state in a debug panel.",
+      "Record a 20-second before/after clip for the case study.",
+    ],
     milestones: ["One-page live demo", "Debug overlay", "Short postmortem with GIFs"],
   },
   {
     name: "Blender Add-on Demo Reel",
+    priority: "Best resume signal",
+    timeframe: "1 capture day",
+    deliverable: "60-90 second reel plus portfolio proof sheet",
     goal: "Record a 60-90 second reel showing TerrainForge, Laser Saw, CurioMesh, and GenerateHuman workflows.",
     why: "The Blender work is strong, but employers need to understand the value in under a minute.",
     stack: "Blender 4.5, Python add-ons, OBS/capture workflow",
+    firstSteps: [
+      "Pick one visible win per add-on.",
+      "Capture before, action, after, and export/result screens.",
+      "Cut the reel around outcomes instead of feature lists.",
+    ],
     milestones: ["Before/after clips", "Packaged add-on links", "Proof sheet on the portfolio"],
   },
   {
     name: "Ocean Drift Public Slice",
+    priority: "Best game demo",
+    timeframe: "1 tight vertical slice",
+    deliverable: "Playable solo loop with performance notes",
     goal: "Ship a public solo-play loop with one creature, one ability, one arena, and one clear win condition.",
     why: "A finished loop beats a large private prototype when applying for junior game roles.",
     stack: "Three.js, Vite, WebGL2, lightweight save/state",
+    firstSteps: [
+      "Freeze scope to movement, feeding, one threat, and one ability.",
+      "Add a start-to-win flow that a reviewer can finish quickly.",
+      "Capture desktop and mobile smoke evidence before linking it.",
+    ],
     milestones: ["Playable GitHub Pages build", "Mobile controls pass", "Performance budget notes"],
   },
   {
     name: "Tooling Case Study Pack",
+    priority: "Presentation polish",
+    timeframe: "One afternoon per tool",
+    deliverable: "Three case studies with problem/scope/result framing",
     goal: "Turn three utilities into concise case studies with screenshots, problem statements, and outcomes.",
     why: "This makes the resume read as product-minded engineering instead of a raw project inventory.",
     stack: "React, Electron, Python/FastAPI, desktop utilities",
+    firstSteps: [
+      "Select the three tools with the clearest before/after value.",
+      "Write each case as problem, constraints, implementation, proof.",
+      "Update resume bullets to point at shipped artifacts.",
+    ],
     milestones: ["Problem/scope/result copy", "One screenshot per tool", "Resume bullet rewrite"],
+  },
+];
+
+export const supportOffers = [
+  {
+    title: "Turn local projects into public proof",
+    summary: "Pick the smallest impressive slice, remove private-only dependencies, build it, and publish it with screenshots.",
+    outputs: ["Public demo URL", "Case-study copy", "Browser QA evidence"],
+  },
+  {
+    title: "Sharpen resume bullets",
+    summary: "Rewrite project bullets around action, system, result, and verification instead of broad project descriptions.",
+    outputs: ["Role-targeted bullets", "PDF/web copy alignment", "Proof links"],
+  },
+  {
+    title: "Capture Blender and game evidence",
+    summary: "Run projects locally, take screenshots or short clips, and make the portfolio prove the work visually.",
+    outputs: ["Proof sheets", "Demo reel plan", "Before/after captures"],
+  },
+  {
+    title: "Build the next showcase project",
+    summary: "Choose one roadmap item, implement a contained vertical slice, verify it, then wire it into the site.",
+    outputs: ["Working project", "Tests/build checks", "Portfolio integration"],
   },
 ];
 

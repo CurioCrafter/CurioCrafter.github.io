@@ -151,7 +151,9 @@ function Home() {
             <article key={build.name}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{build.name}</h3>
+              <strong>{build.priority}</strong>
               <p>{build.goal}</p>
+              <small>{build.deliverable}</small>
             </article>
           ))}
         </div>

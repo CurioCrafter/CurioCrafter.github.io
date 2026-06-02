@@ -610,7 +610,9 @@ h3 {
 
 .role-ladder-grid p,
 .role-fit-grid p,
-.next-preview-grid p {
+.next-preview-grid p,
+.assist-grid p,
+.assist-section p:not(.eyebrow) {
   color: var(--muted);
 }
 
@@ -634,6 +636,25 @@ h3 {
 .next-preview-grid article {
   position: relative;
   min-height: 13rem;
+}
+
+.next-preview-grid strong,
+.next-preview-grid small {
+  display: block;
+}
+
+.next-preview-grid strong {
+  margin-bottom: 0.55rem;
+  color: var(--amber);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.next-preview-grid small {
+  margin-top: 1.1rem;
+  color: rgba(244, 240, 232, 0.7);
+  font-weight: 800;
+  line-height: 1.35;
 }
 
 .next-preview-grid article > span {
@@ -807,7 +828,8 @@ h3 {
 }
 
 .role-fit-section,
-.next-builds-section {
+.next-builds-section,
+.assist-section {
   border-top: 1px solid var(--line);
   padding: 4rem 0;
 }
@@ -846,8 +868,40 @@ h3 {
   font-size: 1.05rem;
 }
 
+.roadmap-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0.35rem 0 1rem;
+  background: rgba(244, 240, 232, 0.14);
+}
+
+.roadmap-meta span {
+  display: flex;
+  min-height: 3.7rem;
+  align-items: center;
+  background: rgba(9, 16, 20, 0.68);
+  color: rgba(244, 240, 232, 0.82);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.25;
+  padding: 0.75rem;
+}
+
 .next-build span {
   color: var(--muted);
+}
+
+.first-steps {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  padding-left: 1.15rem;
+  color: rgba(244, 240, 232, 0.84);
+}
+
+.first-steps li {
+  padding-left: 0.25rem;
 }
 
 .next-build ul {
@@ -880,6 +934,28 @@ h3 {
 .resume-close p:not(.eyebrow) {
   max-width: 42rem;
   color: var(--muted);
+}
+
+.assist-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+}
+
+.assist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.assist-grid article {
+  border: 1px solid rgba(244, 185, 77, 0.22);
+  background: rgba(244, 185, 77, 0.055);
+  padding: 1rem;
+}
+
+.assist-grid h3 {
+  color: var(--text);
 }
 
 .blender-feature {
@@ -1144,6 +1220,7 @@ h3 {
   .role-fit-section,
   .role-ladder-section,
   .resume-hero,
+  .assist-section,
   .intro-grid,
   .experience-section,
   .case-hero,
@@ -1181,11 +1258,12 @@ h3 {
   }
 
   .nav-links a {
-    padding: 0.42rem 0.48rem;
-    font-size: 0.82rem;
+    padding: 0.38rem 0.42rem;
+    font-size: 0.78rem;
   }
 
   .nav-links {
+    max-width: min(20rem, calc(100vw - 1.5rem));
     flex-wrap: wrap;
     gap: 0.25rem;
     overflow: visible;
@@ -1249,7 +1327,9 @@ h3 {
   }
 
   .page-hero,
-  .page-hero p {
+  .page-hero p,
+  .resume-hero h1,
+  .resume-hero p {
     max-width: 20rem;
   }
 
@@ -1261,6 +1341,38 @@ h3 {
     max-width: none;
     margin-right: 0.75rem;
     margin-left: 0.75rem;
+  }
+
+  .resume-hero,
+  .resume-hero > div,
+  .resume-snapshot,
+  .role-fit-section,
+  .next-builds-section,
+  .assist-section,
+  .resume-close {
+    width: 100%;
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  .resume-snapshot article,
+  .role-fit-grid article,
+  .next-build,
+  .assist-grid article {
+    overflow: hidden;
+  }
+
+  .resume-snapshot strong,
+  .resume-snapshot span,
+  .role-fit-grid p,
+  .role-fit-grid h3,
+  .next-build strong,
+  .next-build span,
+  .next-build li,
+  .assist-grid p,
+  .assist-grid h3,
+  .proof-points span {
+    max-width: 20rem;
+    overflow-wrap: anywhere;
   }
 
   .destimmer-spotlight,
@@ -1296,8 +1408,10 @@ h3 {
 
   .evidence-grid,
   .proof-card-grid,
+  .assist-grid,
   .inventory-grid,
   .role-ladder-grid,
+  .roadmap-meta,
   .toolchain-strip {
     grid-template-columns: 1fr;
   }

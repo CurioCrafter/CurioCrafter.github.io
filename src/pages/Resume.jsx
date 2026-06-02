@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { nextBuilds, profile, resumeSignals, roleFit } from "../data/portfolio";
+import { nextBuilds, profile, resumeSignals, roleFit, supportOffers } from "../data/portfolio";
 
 function Resume() {
   return (
@@ -68,13 +68,47 @@ function Resume() {
               <div>
                 <p>{build.stack}</p>
                 <h3>{build.name}</h3>
+                <div className="roadmap-meta">
+                  <span>{build.priority}</span>
+                  <span>{build.timeframe}</span>
+                  <span>{build.deliverable}</span>
+                </div>
                 <strong>{build.goal}</strong>
                 <span>{build.why}</span>
+                <ol className="first-steps">
+                  {build.firstSteps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
                 <ul>
                   {build.milestones.map((milestone) => (
                     <li key={milestone}>{milestone}</li>
                   ))}
                 </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="assist-section" aria-label="How Codex can help">
+        <div>
+          <p className="eyebrow">How I can help next</p>
+          <h2>Use me as a build partner, not just a copy editor.</h2>
+          <p>
+            The best next work is practical: publish proof, tighten bullets, capture visuals,
+            and ship one contained showcase at a time.
+          </p>
+        </div>
+        <div className="assist-grid">
+          {supportOffers.map((offer) => (
+            <article key={offer.title}>
+              <h3>{offer.title}</h3>
+              <p>{offer.summary}</p>
+              <div className="proof-points">
+                {offer.outputs.map((output) => (
+                  <span key={output}>{output}</span>
+                ))}
               </div>
             </article>
           ))}
