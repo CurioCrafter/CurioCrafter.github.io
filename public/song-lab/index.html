@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SongDeconstructor Visual Lab | CurioCrafter</title>
+    <meta
+      name="description"
+      content="Interactive static audio-analysis demo for SongDeconstructor, showing beats, segments, chroma, RMS, and spectral features."
+    />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260602-visual-lab" />
+  </head>
+  <body>
+    <main class="lab-shell">
+      <section class="stage" aria-label="SongDeconstructor feature timeline">
+        <canvas id="analysisCanvas"></canvas>
+        <div class="stage-topline">
+          <a class="site-link" href="../">CurioCrafter</a>
+          <span>SongDeconstructor Visual Lab</span>
+        </div>
+        <div class="stage-meter" aria-hidden="true">
+          <span class="meter-fill" id="meterFill"></span>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Audio analysis controls">
+        <p class="eyebrow">Static analysis demo</p>
+        <h1>Audio features in motion.</h1>
+        <p class="summary">
+          A portfolio-safe slice of SongDeconstructor: feature lanes, beat grids,
+          segment structure, and chroma movement rendered from sample analysis data.
+        </p>
+
+        <div class="transport" aria-label="Playback controls">
+          <button class="primary" id="playButton" type="button">Play scan</button>
+          <button id="introButton" type="button">Intro</button>
+          <button id="hookButton" type="button">Hook</button>
+          <button id="bridgeButton" type="button">Bridge</button>
+        </div>
+
+        <dl class="stats">
+          <div>
+            <dt>Tempo</dt>
+            <dd id="tempoValue">128 BPM</dd>
+          </div>
+          <div>
+            <dt>Key</dt>
+            <dd id="keyValue">D Dorian</dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd id="timeValue">00:00.0</dd>
+          </div>
+          <div>
+            <dt>Segment</dt>
+            <dd id="segmentValue">Intro</dd>
+          </div>
+        </dl>
+
+        <section class="readout" aria-label="Current feature readout">
+          <div class="readout-row">
+            <span>Energy</span>
+            <strong id="energyValue">0.00</strong>
+          </div>
+          <div class="bar-track" aria-hidden="true">
+            <span class="bar-fill energy" id="energyBar"></span>
+          </div>
+          <div class="readout-row">
+            <span>Top chroma</span>
+            <strong id="chromaValue">D</strong>
+          </div>
+          <div class="readout-row">
+            <span>Spectral peak</span>
+            <strong id="peakValue">440 Hz</strong>
+          </div>
+        </section>
+
+        <section class="layers" aria-label="Visible feature layers">
+          <label>
+            <input type="checkbox" data-layer="beats" checked />
+            <span>Beats</span>
+          </label>
+          <label>
+            <input type="checkbox" data-layer="chroma" checked />
+            <span>Chroma</span>
+          </label>
+          <label>
+            <input type="checkbox" data-layer="peaks" checked />
+            <span>Peaks</span>
+          </label>
+          <label>
+            <input type="checkbox" data-layer="segments" checked />
+            <span>Segments</span>
+          </label>
+        </section>
+
+        <footer class="panel-footer">
+          <a href="../resume.html">Resume</a>
+          <a href="../software.html">Projects</a>
+          <a href="../goals.html">Goals</a>
+        </footer>
+      </aside>
+    </main>
+
+    <script type="module" src="./app.js?v=20260602-visual-lab"></script>
+  </body>
+</html>

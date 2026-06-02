@@ -14,6 +14,8 @@ export default [
       'node_modules',
       'public/creature-lab',
       'public/destimmer',
+      'public/song-lab',
+      'song-lab',
       'test-results',
     ],
   },

@@ -293,15 +293,22 @@ export const projects = [
     name: "SongDeconstructor",
     eyebrow: "Audio ML feature extraction tool",
     image: "images/song-deconstructor-web-ui.png",
+    liveUrl: "song-lab/index.html",
     repository: "",
-    repositoryNote: "Local/private project",
-    stack: ["Python", "FastAPI", "NumPy", "audio analysis", "CLI/Web UI"],
-    proofPoints: ["Live local web UI captured", "manifest.json + features.npz output", "FL Studio handoff direction"],
+    repositoryNote: "Hosted static demo + local/private source",
+    stack: ["Python", "FastAPI", "NumPy", "Canvas", "audio analysis", "CLI/Web UI"],
+    proofPoints: [
+      "Public static visual lab",
+      "Live local web UI captured",
+      "manifest.json + features.npz output",
+      "FL Studio handoff direction",
+    ],
     outcome:
-      "A Python tool that converts songs into dense machine-learning feature bundles for downstream music analysis, generation, or DAW-adjacent workflows.",
+      "A Python tool that converts songs into dense machine-learning feature bundles, now paired with a public browser visualizer for downstream music analysis, generation, or DAW-adjacent workflows.",
     bullets: [
       "Extracts STFT magnitude, spectral peaks, chroma, MFCCs, RMS, onsets, beats, tempo, F0, segments, and feature-array metadata.",
       "Provides a CLI, Python API, and FastAPI web UI with drag-and-drop uploads, analyzer settings, recent runs, and download links.",
+      "Ships a static Canvas visual lab so reviewers can scrub beats, energy, chroma, peaks, and song segments directly on GitHub Pages.",
       "Defines a stable output contract around manifest JSON and compressed NumPy features so another model or FL Studio add-on can consume the results.",
     ],
   },
@@ -791,15 +798,15 @@ export const projectBriefs = [
   {
     title: "SongDeconstructor Visual Lab",
     lane: "Creative tool",
-    recommendation: "New project idea",
+    recommendation: "Started",
     pitch:
-      "Turn SongDeconstructor outputs into a small browser visualizer that shows beats, chroma, peaks, and segments as an interactive proof surface.",
+      "Extend the new public browser visualizer from sample analysis data into a fuller SongDeconstructor proof surface.",
     why:
       "It creates a fresh public project from an existing technical tool and strengthens the creative-technologist lane.",
-    deliverable: "Static visualizer demo, sample analysis bundle, tool case-study update",
+    deliverable: "Expanded visualizer demo, sample analysis bundle, tool case-study update",
     scope: [
-      "Load one sample manifest/features export",
-      "Timeline view for beats, segments, chroma, and spectral peaks",
+      "Load one real sample manifest/features export",
+      "Add richer timeline overlays for MFCCs, onsets, and pitch confidence",
       "Short explanation of how the data could feed DAW or generation workflows",
     ],
     acceptance: [
@@ -808,9 +815,10 @@ export const projectBriefs = [
       "Case study includes the output contract and next integration direction",
     ],
     codexHelp:
-      "I can design the visualizer, create the static demo shell, wire sample data, and update the case study with screenshots.",
+      "I can convert real output into browser-safe sample data, add the remaining layers, capture proof screenshots, and update the case study.",
     links: [
       { label: "SongDeconstructor", to: "/projects/song-deconstructor" },
+      { label: "Live visual lab", href: "song-lab/index.html" },
       { label: "Tools lane", to: "/software" },
     ],
   },

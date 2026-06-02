@@ -13,7 +13,7 @@ import {
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 const previewBuilds = nextBuilds.slice(0, 3);
 const destimmerHeroUrl =
-  "destimmer/index.html?trip=quartzArchive&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden&pointer=1&interaction=1.25&reactive=true";
+  "destimmer/index.html?trip=fastTrance&view3d=polytopeSwarm&pattern=plasma&images=false&ui=hidden&pointer=1&interaction=1.35&reactive=true";
 const destimmerStudioUrl =
   "destimmer/index.html?trip=fastTrance&view3d=polytopeSwarm&pattern=plasma&images=false";
 const creatureLabUrl = "creature-lab/index.html";
@@ -29,6 +29,28 @@ function Home() {
           allow="autoplay; fullscreen"
         />
         <div className="hero-scrim" />
+        <div className="hero-kinetic-field" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="hero-interaction-cue" aria-hidden="true">
+          <span className="cue-ring cue-ring-one" />
+          <span className="cue-ring cue-ring-two" />
+          <span className="cue-core" />
+        </div>
+        <div className="hero-signal-stack" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <div className="hero-content">
           <p className="eyebrow">{profile.handle} portfolio</p>
           <h1>{profile.name}</h1>
@@ -51,6 +73,7 @@ function Home() {
         </div>
         <aside className="hero-play-panel" aria-label="Playable homepage artwork">
           <span>Live Destimmer playground</span>
+          <p>Drag the artwork or open full controls.</p>
           <div>
             <a href={destimmerStudioUrl}>Open studio</a>
             <Link to="/projects/destimmer">Case study</Link>
