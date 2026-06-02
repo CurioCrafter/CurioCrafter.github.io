@@ -504,6 +504,57 @@ export const resumeSignals = [
   },
 ];
 
+export const resumeProofStack = [
+  {
+    lane: "Playable first",
+    title: "Lead with demos a reviewer can touch.",
+    summary:
+      "Creature Behavior Lab and Destimmer prove interactive systems immediately: Canvas behavior, WebGL visuals, controls, presets, and live GitHub Pages delivery.",
+    resumeLine:
+      "Game/tools developer building playable browser demos, simulation systems, WebGL experiences, and verified portfolio artifacts.",
+    links: [
+      { label: "Creature Lab", to: "/projects/creature-behavior-lab" },
+      { label: "Destimmer", to: "/projects/destimmer" },
+    ],
+  },
+  {
+    lane: "Game systems",
+    title: "Use private game depth as case-study proof.",
+    summary:
+      "Ocean Drift, TacOps, Linear Drive, and Ant Colony show HUD work, camera feel, AI/simulation rules, multiplayer planning, and gameplay loops.",
+    resumeLine:
+      "Prototype movement, HUDs, lobbies, bot modes, survival pressure, and simulation loops across browser and native game projects.",
+    links: [
+      { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
+      { label: "TacOps", to: "/projects/tacops" },
+    ],
+  },
+  {
+    lane: "Blender tools",
+    title: "Turn the add-on suite into a production-tools story.",
+    summary:
+      "TerrainForge, Laser Saw, CurioMesh, GenerateHuman, and related tools are strongest when framed as artist-facing pipeline improvements with visual QA.",
+    resumeLine:
+      "Build Blender Python add-ons for terrain generation, mesh cutting, remeshing, rig/export workflows, and validation artifacts.",
+    links: [
+      { label: "Blender pipeline", to: "/projects/blender-tools-pipeline" },
+      { label: "TerrainForge", to: "/projects/terrainforge" },
+    ],
+  },
+  {
+    lane: "Utility products",
+    title: "Show product judgment through practical tools.",
+    summary:
+      "Desktop utilities, audio tooling, and automation surfaces make the portfolio broader without diluting the game/tools focus when each case has a clear user problem.",
+    resumeLine:
+      "Ship local-first utilities and automation tools with safety-conscious UX, screenshots, and delivery checks.",
+    links: [
+      { label: "SongDeconstructor", to: "/projects/song-deconstructor" },
+      { label: "Disk Space Inspector", to: "/projects/disk-space-inspector" },
+    ],
+  },
+];
+
 export const roleFit = [
   {
     role: "Junior Gameplay Developer",
@@ -530,18 +581,18 @@ export const roleFit = [
 export const nextBuilds = [
   {
     name: "Creature Behavior Lab",
-    priority: "Baseline shipped",
-    timeframe: "Next: polish pass",
-    deliverable: "Public demo, behavior debug overlay, portfolio case study",
-    goal: "Extend the new public demo with clearer behavior scenarios, capture clips, and a short postmortem.",
-    why: "It turns several simulation ideas into one recruiter-friendly proof of gameplay systems thinking, and now has a live artifact to improve.",
+    priority: "Shipped / keep polishing",
+    timeframe: "Next: capture and postmortem",
+    deliverable: "Scenario clip, behavior write-up, one new behavior layer",
+    goal: "Turn the live preset-based demo into a tighter case study with short clips, a postmortem, and one extra readable behavior mechanic.",
+    why: "It is now the fastest public proof of gameplay systems thinking, so the next value is making its design decisions easy to inspect.",
     stack: "JavaScript, Canvas, deterministic simulation",
     firstSteps: [
-      "Add two scenario presets for foraging and threat response.",
-      "Capture a 20-second before/after clip for the case study.",
-      "Write a short implementation note about simulation/render separation.",
+      "Record a 20-second clip cycling Forage, Threat, and Cohesion presets.",
+      "Add a postmortem block explaining how the scenarios expose the same agent rules.",
+      "Prototype one new behavior layer such as curiosity, memory, or pack leadership.",
     ],
-    milestones: ["Live demo linked", "Debug overlay", "Short postmortem with GIFs"],
+    milestones: ["Scenario clip", "Short postmortem", "One new readable behavior"],
   },
   {
     name: "Blender Add-on Demo Reel",
@@ -587,6 +638,37 @@ export const nextBuilds = [
       "Update resume bullets to point at shipped artifacts.",
     ],
     milestones: ["Problem/scope/result copy", "One screenshot per tool", "Resume bullet rewrite"],
+  },
+];
+
+export const buildSprints = [
+  {
+    title: "Application proof pack",
+    cadence: "1 focused pass",
+    focus: "Convert the resume page into a job-application packet with role-specific bullets, proof links, and a concise project order.",
+    outputs: ["Resume bullet rewrite", "Proof-link checklist", "Application-ready project order"],
+    nextAction: "Pick one target role family and align the top five bullets to that role.",
+  },
+  {
+    title: "Blender demo reel sprint",
+    cadence: "1 capture day",
+    focus: "Record one before/action/after clip per add-on so the Blender tooling work becomes obvious in under a minute.",
+    outputs: ["60-90 second reel", "Tool proof sheet", "Portfolio reel section"],
+    nextAction: "Capture TerrainForge, Laser Saw, CurioMesh, and GenerateHuman with one visible win each.",
+  },
+  {
+    title: "Public game slice sprint",
+    cadence: "3-5 build days",
+    focus: "Ship one small Ocean Drift or TacOps public loop that a reviewer can complete without needing a private server.",
+    outputs: ["Playable public URL", "Desktop/mobile smoke proof", "One-minute gameplay capture"],
+    nextAction: "Freeze scope to one arena, one objective, one ability, and one finish condition.",
+  },
+  {
+    title: "Case-study refresh sprint",
+    cadence: "One afternoon per project",
+    focus: "Upgrade the best existing projects from inventory entries into proof-led case studies with screenshots, constraints, and outcomes.",
+    outputs: ["Problem/scope/result copy", "Updated screenshots", "Verification notes"],
+    nextAction: "Start with Creature Lab, Blender Tools Pipeline, and Ocean Drift.",
   },
 ];
 

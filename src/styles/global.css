@@ -812,6 +812,92 @@ h3 {
   line-height: 1.28;
 }
 
+.proof-stack-section {
+  border-top: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.proof-stack-list {
+  display: grid;
+  border-top: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.proof-stack-row {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+  gap: 1.5rem;
+  align-items: start;
+  border-bottom: 1px solid rgba(244, 240, 232, 0.14);
+  padding: 1.35rem 0;
+}
+
+.proof-stack-index {
+  color: rgba(244, 185, 77, 0.66);
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.proof-stack-row p,
+.build-sprint-grid p {
+  margin-bottom: 0.35rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.proof-stack-row > div > span,
+.build-sprint-grid article > span {
+  display: block;
+  color: var(--muted);
+}
+
+.resume-line {
+  border-left: 3px solid rgba(244, 185, 77, 0.72);
+  background: rgba(244, 185, 77, 0.06);
+  padding: 0.95rem 1rem;
+}
+
+.resume-line strong,
+.build-sprint-grid strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--text);
+}
+
+.resume-line > span {
+  display: block;
+  color: rgba(244, 240, 232, 0.86);
+  line-height: 1.4;
+}
+
+.proof-stack-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+}
+
+.proof-stack-links a {
+  border: 1px solid rgba(61, 219, 217, 0.32);
+  background: rgba(61, 219, 217, 0.08);
+  padding: 0.38rem 0.55rem;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 900;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.proof-stack-links a:hover {
+  border-color: rgba(61, 219, 217, 0.62);
+  background: rgba(61, 219, 217, 0.14);
+  transform: translateY(-1px);
+}
+
 .case-hero > div,
 .page-hero {
   min-width: 0;
@@ -880,9 +966,47 @@ h3 {
 
 .role-fit-section,
 .next-builds-section,
-.assist-section {
+.assist-section,
+.build-sprint-section {
   border-top: 1px solid var(--line);
   padding: 4rem 0;
+}
+
+.build-sprint-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+}
+
+.build-sprint-section p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.build-sprint-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(244, 240, 232, 0.14);
+  border: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.build-sprint-grid article {
+  display: flex;
+  min-height: 20rem;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: var(--bg-soft);
+  padding: 1.1rem;
+}
+
+.build-sprint-grid .proof-points {
+  margin-top: auto;
+}
+
+.build-sprint-grid strong {
+  margin-top: 0.1rem;
+  color: var(--amber);
+  line-height: 1.35;
 }
 
 .role-fit-grid article {
@@ -1267,8 +1391,10 @@ h3 {
   .case-proof,
   .case-notes,
   .blender-feature,
+  .build-sprint-section,
   .destimmer-spotlight,
   .inventory-section,
+  .proof-stack-row,
   .role-fit-section,
   .role-ladder-section,
   .resume-hero,
@@ -1398,7 +1524,9 @@ h3 {
   .resume-hero,
   .resume-hero > div,
   .resume-snapshot,
+  .proof-stack-section,
   .role-fit-section,
+  .build-sprint-section,
   .next-builds-section,
   .assist-section,
   .resume-close {
@@ -1407,7 +1535,9 @@ h3 {
   }
 
   .resume-snapshot article,
+  .proof-stack-row,
   .role-fit-grid article,
+  .build-sprint-grid article,
   .next-build,
   .assist-grid article {
     overflow: hidden;
@@ -1415,8 +1545,14 @@ h3 {
 
   .resume-snapshot strong,
   .resume-snapshot span,
+  .proof-stack-row h3,
+  .proof-stack-row span,
+  .proof-stack-links a,
   .role-fit-grid p,
   .role-fit-grid h3,
+  .build-sprint-grid h3,
+  .build-sprint-grid span,
+  .build-sprint-grid strong,
   .next-build strong,
   .next-build span,
   .next-build li,
@@ -1474,6 +1610,7 @@ h3 {
   .evidence-grid,
   .proof-card-grid,
   .assist-grid,
+  .build-sprint-grid,
   .inventory-grid,
   .notes-grid,
   .role-ladder-grid,
@@ -1484,6 +1621,10 @@ h3 {
 
   .next-build {
     grid-template-columns: 1fr;
+  }
+
+  .proof-stack-row {
+    gap: 0.85rem;
   }
 
   .build-index {

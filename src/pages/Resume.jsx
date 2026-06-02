@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { nextBuilds, profile, resumeSignals, roleFit, supportOffers } from "../data/portfolio";
+import {
+  buildSprints,
+  nextBuilds,
+  profile,
+  resumeProofStack,
+  resumeSignals,
+  roleFit,
+  supportOffers,
+} from "../data/portfolio";
 
 function Resume() {
   return (
@@ -32,6 +40,41 @@ function Resume() {
             </article>
           ))}
         </aside>
+      </section>
+
+      <section className="proof-stack-section" aria-label="Resume proof stack">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Proof stack</p>
+            <h2>The resume should point to this evidence first.</h2>
+          </div>
+          <Link className="text-link" to="/projects">
+            Project evidence
+          </Link>
+        </div>
+        <div className="proof-stack-list">
+          {resumeProofStack.map((item, index) => (
+            <article key={item.lane} className="proof-stack-row">
+              <span className="proof-stack-index">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <p>{item.lane}</p>
+                <h3>{item.title}</h3>
+                <span>{item.summary}</span>
+              </div>
+              <div className="resume-line">
+                <strong>Resume line</strong>
+                <span>{item.resumeLine}</span>
+                <div className="proof-stack-links">
+                  {item.links.map((link) => (
+                    <Link key={link.to} to={link.to}>
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="role-fit-section" aria-label="Role fit">
@@ -86,6 +129,32 @@ function Resume() {
                   ))}
                 </ul>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="build-sprint-section" aria-label="Build sprints Codex can help run">
+        <div>
+          <p className="eyebrow">Build sprints</p>
+          <h2>Concrete goals I can help execute next.</h2>
+          <p>
+            These are scoped as portfolio upgrades, not vague ideas: each one ends with a
+            proof artifact that can improve applications.
+          </p>
+        </div>
+        <div className="build-sprint-grid">
+          {buildSprints.map((sprint) => (
+            <article key={sprint.title}>
+              <p>{sprint.cadence}</p>
+              <h3>{sprint.title}</h3>
+              <span>{sprint.focus}</span>
+              <div className="proof-points">
+                {sprint.outputs.map((output) => (
+                  <span key={output}>{output}</span>
+                ))}
+              </div>
+              <strong>{sprint.nextAction}</strong>
             </article>
           ))}
         </div>
