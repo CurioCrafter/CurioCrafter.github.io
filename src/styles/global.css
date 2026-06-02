@@ -1403,6 +1403,225 @@ h3 {
   color: var(--text);
 }
 
+.lane-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(24rem, 1.22fr);
+  gap: 3rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 3rem 0 4rem;
+}
+
+.lane-hero-copy {
+  min-width: 0;
+}
+
+.lane-hero-copy p:not(.eyebrow) {
+  max-width: 40rem;
+  color: rgba(244, 240, 232, 0.84);
+  font-size: 1.08rem;
+}
+
+.lane-hero-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(12rem, 0.72fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.lane-media-tile {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 13rem;
+  overflow: hidden;
+  border: 1px solid rgba(61, 219, 217, 0.22);
+  background: #071012;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.lane-media-tile:hover {
+  border-color: rgba(244, 185, 77, 0.46);
+  transform: translateY(-2px);
+}
+
+.lane-media-tile.is-main {
+  grid-row: span 2;
+  min-height: 28rem;
+}
+
+.lane-media-tile img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  transition: transform 260ms ease;
+}
+
+.lane-media-tile img.contain-image {
+  object-fit: contain;
+}
+
+.lane-media-tile:hover img {
+  transform: scale(1.035);
+}
+
+.lane-media-tile span {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  left: 0.7rem;
+  display: block;
+  background: rgba(9, 16, 20, 0.82);
+  padding: 0.5rem 0.6rem;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.lane-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 4rem;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.14);
+}
+
+.lane-proof-strip article {
+  display: grid;
+  min-width: 0;
+  min-height: 10rem;
+  align-content: start;
+  background: var(--bg-soft);
+  padding: 1rem;
+}
+
+.lane-proof-strip span,
+.lane-proof-strip strong,
+.lane-proof-strip p {
+  display: block;
+}
+
+.lane-proof-strip span {
+  margin-bottom: 0.5rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.lane-proof-strip strong {
+  margin-bottom: 0.65rem;
+  color: var(--amber);
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.lane-proof-strip p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+.lane-story-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.lane-story-section p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.lane-story-list {
+  display: grid;
+  gap: 1px;
+  border: 1px solid rgba(61, 219, 217, 0.18);
+  background: rgba(61, 219, 217, 0.18);
+}
+
+.lane-story-list article {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 0.82fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  min-width: 0;
+  background: var(--bg-soft);
+  padding: 1rem;
+}
+
+.lane-story-list article > span {
+  color: var(--amber);
+  font-weight: 900;
+}
+
+.lane-story-list h3 {
+  margin-bottom: 0;
+}
+
+.lane-story-list p {
+  margin-bottom: 0.8rem;
+  color: var(--muted);
+}
+
+.lane-story-list .proof-points {
+  grid-column: 2 / -1;
+  justify-content: flex-start;
+}
+
+.lane-next-step {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.lane-next-step p:not(.eyebrow),
+.lane-next-meta p {
+  color: var(--muted);
+}
+
+.lane-next-meta {
+  min-width: 0;
+  border-left: 3px solid var(--amber);
+  background: rgba(244, 185, 77, 0.07);
+  padding: 1rem;
+}
+
+.lane-next-meta span,
+.lane-next-meta strong {
+  display: block;
+}
+
+.lane-next-meta span {
+  margin-bottom: 0.45rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.lane-next-meta strong {
+  margin-bottom: 0.7rem;
+  color: var(--text);
+  font-size: 1.18rem;
+  line-height: 1.22;
+}
+
+.lane-project-heading {
+  margin-top: 4rem;
+}
+
 .blender-feature {
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(24rem, 1.28fr);
@@ -2019,6 +2238,9 @@ h3 {
   .case-notes,
   .case-resume-section,
   .case-next-section,
+  .lane-hero,
+  .lane-story-section,
+  .lane-next-step,
   .blender-feature,
   .build-sprint-section,
   .destimmer-spotlight,
@@ -2044,8 +2266,26 @@ h3 {
   }
 
   .case-snapshot,
+  .lane-proof-strip,
   .case-next-links {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lane-hero-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lane-media-tile.is-main {
+    grid-row: auto;
+  }
+
+  .lane-story-list article {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .lane-story-list article p,
+  .lane-story-list article .proof-points {
+    grid-column: 2;
   }
 
   .case-resume-lines article {
@@ -2268,6 +2508,8 @@ h3 {
   .evidence-grid,
   .about-lane-grid,
   .case-snapshot,
+  .lane-proof-strip,
+  .lane-hero-media,
   .case-next-links,
   .proof-card-grid,
   .assist-grid,
@@ -2338,6 +2580,10 @@ h3 {
   .project-lens-section,
   .project-lens-controls,
   .case-hero,
+  .lane-hero,
+  .lane-proof-strip,
+  .lane-story-section,
+  .lane-next-step,
   .case-snapshot,
   .case-proof,
   .case-notes,
@@ -2381,9 +2627,22 @@ h3 {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .lane-hero,
+  .lane-hero-media,
+  .lane-proof-strip,
+  .lane-story-section,
+  .lane-next-step {
+    width: 100%;
+    max-width: 20rem;
+  }
+
   .case-snapshot article,
   .case-next-links a,
-  .case-resume-lines article {
+  .case-resume-lines article,
+  .lane-media-tile,
+  .lane-proof-strip article,
+  .lane-story-list article,
+  .lane-next-meta {
     max-width: none;
   }
 
@@ -2399,6 +2658,19 @@ h3 {
 
   .project-lens-section h2,
   .project-lens-section p,
+  .lane-hero-copy,
+  .lane-hero h1,
+  .lane-hero p,
+  .lane-hero .hero-actions,
+  .lane-media-tile,
+  .lane-proof-strip article,
+  .lane-story-section h2,
+  .lane-story-section p,
+  .lane-story-list article,
+  .lane-next-step h2,
+  .lane-next-step p,
+  .lane-next-meta,
+  .lane-project-heading h2,
   .case-hero-copy,
   .case-hero h1,
   .case-hero p,
@@ -2443,7 +2715,11 @@ h3 {
 
   .case-snapshot article,
   .case-next-links a,
-  .case-resume-lines article {
+  .case-resume-lines article,
+  .lane-media-tile,
+  .lane-proof-strip article,
+  .lane-story-list article,
+  .lane-next-meta {
     max-width: none;
   }
 
