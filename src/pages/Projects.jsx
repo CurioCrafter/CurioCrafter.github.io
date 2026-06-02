@@ -1,7 +1,98 @@
+import { useMemo, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 import { inspectedProjects, projects } from "../data/portfolio";
 
+const priorityProjectIds = new Set([
+  "creature-behavior-lab",
+  "ocean-supremacy",
+  "destimmer",
+  "tacops",
+  "blender-tools-pipeline",
+  "terrainforge",
+]);
+
+const gameProjectIds = new Set([
+  "creature-behavior-lab",
+  "ocean-supremacy",
+  "tacops",
+  "linear-drive",
+  "procedural-ocean",
+  "organism-evolution",
+  "ant-colony",
+  "brainsim-md-trainer",
+]);
+
+const toolProjectIds = new Set([
+  "destimmer",
+  "codex-3d-studio",
+  "rts-builder",
+  "ocean-drift-level-builder",
+  "curiomesh",
+  "blender-tools-pipeline",
+  "terrainforge",
+  "song-deconstructor",
+  "blender-alignment-suite",
+  "codexforworkflow",
+  "disk-space-inspector",
+]);
+
+const publicEvidence = (project) =>
+  Boolean(project.liveUrl || (project.repository && !/private/i.test(project.repositoryNote)));
+
+const projectLenses = [
+  {
+    id: "best",
+    label: "Best first",
+    summary: "The shortest reviewer path: playable demos, strong game systems, and Blender pipeline proof.",
+    matches: (project) => priorityProjectIds.has(project.id),
+  },
+  {
+    id: "playable",
+    label: "Playable",
+    summary: "Projects with live demos, runtime captures, or interaction-first proof.",
+    matches: (project) => project.liveUrl || project.proofPoints?.some((point) => /live|playable|runtime/i.test(point)),
+  },
+  {
+    id: "games",
+    label: "Game systems",
+    summary: "Gameplay, simulation, rendering, lobbies, AI behavior, HUDs, and interactive prototypes.",
+    matches: (project) => gameProjectIds.has(project.id),
+  },
+  {
+    id: "tools",
+    label: "Tools",
+    summary: "Blender add-ons, editors, utilities, automation surfaces, and production workflow projects.",
+    matches: (project) => toolProjectIds.has(project.id),
+  },
+  {
+    id: "public",
+    label: "Public links",
+    summary: "Work with a live demo URL or public repository link a reviewer can open immediately.",
+    matches: publicEvidence,
+  },
+  {
+    id: "all",
+    label: "All",
+    summary: "The full current portfolio inventory, including private/local case studies with screenshots.",
+    matches: () => true,
+  },
+];
+
 function Projects() {
+  const [activeLensId, setActiveLensId] = useState(projectLenses[0].id);
+  const activeLens = projectLenses.find((lens) => lens.id === activeLensId) || projectLenses[0];
+
+  const visibleProjects = useMemo(() => projects.filter((project) => activeLens.matches(project)), [activeLens]);
+  const projectMetrics = useMemo(
+    () => [
+      { value: projects.length, label: "case studies" },
+      { value: projects.filter((project) => project.liveUrl).length, label: "live demos" },
+      { value: projects.filter(publicEvidence).length, label: "public links" },
+      { value: inspectedProjects.length, label: "extra folders checked" },
+    ],
+    [],
+  );
+
   return (
     <main className="page-shell">
       <section className="page-hero">
@@ -13,8 +104,52 @@ function Projects() {
         </p>
       </section>
 
+      <section className="project-lens-section" aria-label="Project evidence filters">
+        <div>
+          <p className="eyebrow">Evidence lens</p>
+          <h2>Choose the proof path that matches the role.</h2>
+          <p>
+            Start narrow for hiring review, then expand to the broader project inventory when
+            you want depth.
+          </p>
+        </div>
+        <div className="project-lens-controls">
+          <div className="project-lens-metrics" aria-label="Portfolio evidence counts">
+            {projectMetrics.map((metric) => (
+              <article key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </article>
+            ))}
+          </div>
+          <div className="project-lens-buttons" role="group" aria-label="Filter project evidence">
+            {projectLenses.map((lens) => {
+              const count = projects.filter((project) => lens.matches(project)).length;
+              return (
+                <button
+                  key={lens.id}
+                  className={lens.id === activeLens.id ? "project-lens-button is-active" : "project-lens-button"}
+                  type="button"
+                  aria-pressed={lens.id === activeLens.id}
+                  onClick={() => setActiveLensId(lens.id)}
+                >
+                  <span>{lens.label}</span>
+                  <strong>{count}</strong>
+                </button>
+              );
+            })}
+          </div>
+          <div className="project-lens-result" aria-live="polite">
+            <strong>
+              Showing {visibleProjects.length} of {projects.length}
+            </strong>
+            <span>{activeLens.summary}</span>
+          </div>
+        </div>
+      </section>
+
       <section className="project-grid full">
-        {projects.map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} featured={index < 2} />
         ))}
       </section>
