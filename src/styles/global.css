@@ -561,6 +561,89 @@ h3 {
   line-height: 1.25;
 }
 
+.role-ladder-section,
+.role-fit-section,
+.resume-hero {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.role-ladder-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.role-ladder-grid,
+.role-fit-grid,
+.resume-snapshot {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.role-ladder-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.role-ladder-grid article,
+.role-fit-grid article,
+.resume-snapshot article,
+.next-preview-grid article,
+.next-build {
+  border: 1px solid rgba(61, 219, 217, 0.18);
+  background: rgba(244, 240, 232, 0.045);
+}
+
+.role-ladder-grid article,
+.role-fit-grid article,
+.resume-snapshot article,
+.next-preview-grid article {
+  padding: 1rem;
+}
+
+.role-ladder-grid h3,
+.role-fit-grid h3,
+.next-preview-grid h3,
+.next-build h3 {
+  margin-bottom: 0.45rem;
+}
+
+.role-ladder-grid p,
+.role-fit-grid p,
+.next-preview-grid p {
+  color: var(--muted);
+}
+
+.role-ladder-grid span {
+  display: block;
+  color: var(--amber);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.next-preview-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.next-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.next-preview-grid article {
+  position: relative;
+  min-height: 13rem;
+}
+
+.next-preview-grid article > span {
+  display: block;
+  margin-bottom: 1.7rem;
+  color: rgba(61, 219, 217, 0.72);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
 .capability-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -650,6 +733,41 @@ h3 {
   padding: 3rem 0 4rem;
 }
 
+.resume-hero {
+  padding: 3rem 0 4.5rem;
+}
+
+.resume-hero p {
+  max-width: 42rem;
+  color: rgba(244, 240, 232, 0.84);
+  font-size: 1.08rem;
+}
+
+.resume-snapshot {
+  align-self: stretch;
+}
+
+.resume-snapshot article {
+  display: grid;
+  align-content: center;
+  min-height: 7rem;
+}
+
+.resume-snapshot span,
+.next-build p {
+  margin-bottom: 0.35rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.resume-snapshot strong {
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.28;
+}
+
 .case-hero > div,
 .page-hero {
   min-width: 0;
@@ -686,6 +804,82 @@ h3 {
   gap: 3rem;
   border-top: 1px solid var(--line);
   padding: 4rem 0 6rem;
+}
+
+.role-fit-section,
+.next-builds-section {
+  border-top: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.role-fit-grid article {
+  min-height: 11rem;
+}
+
+.next-builds-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.next-build {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.2rem;
+}
+
+.build-index {
+  color: rgba(244, 185, 77, 0.62);
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.next-build strong,
+.next-build span {
+  display: block;
+}
+
+.next-build strong {
+  margin-bottom: 0.55rem;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.next-build span {
+  color: var(--muted);
+}
+
+.next-build ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.next-build li {
+  border-left: 3px solid var(--cyan);
+  background: rgba(61, 219, 217, 0.08);
+  padding: 0.35rem 0.55rem;
+  color: rgba(244, 240, 232, 0.86);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.resume-close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--line);
+  padding: 4rem 0 6rem;
+}
+
+.resume-close p:not(.eyebrow) {
+  max-width: 42rem;
+  color: var(--muted);
 }
 
 .blender-feature {
@@ -947,6 +1141,9 @@ h3 {
   .blender-feature,
   .destimmer-spotlight,
   .inventory-section,
+  .role-fit-section,
+  .role-ladder-section,
+  .resume-hero,
   .intro-grid,
   .experience-section,
   .case-hero,
@@ -966,6 +1163,15 @@ h3 {
   .closing-cta {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .resume-close {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .next-preview-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1091,8 +1297,17 @@ h3 {
   .evidence-grid,
   .proof-card-grid,
   .inventory-grid,
+  .role-ladder-grid,
   .toolchain-strip {
     grid-template-columns: 1fr;
+  }
+
+  .next-build {
+    grid-template-columns: 1fr;
+  }
+
+  .build-index {
+    font-size: 1.4rem;
   }
 
   .proof-strip div {

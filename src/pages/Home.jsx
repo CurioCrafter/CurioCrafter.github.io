@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { capabilityGroups, experiences, featuredProjectIds, profile, projects } from "../data/portfolio";
+import {
+  capabilityGroups,
+  experiences,
+  featuredProjectIds,
+  nextBuilds,
+  profile,
+  projects,
+  roleFit,
+} from "../data/portfolio";
 
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
+const previewBuilds = nextBuilds.slice(0, 3);
 const destimmerHeroUrl =
   "destimmer/index.html?trip=fractalCathedral&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden";
 const destimmerStudioUrl =
@@ -106,6 +115,43 @@ function Home() {
           {profile.evidence.map((item) => (
             <article key={item}>
               <span>{item}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section role-ladder-section">
+        <div>
+          <p className="eyebrow">Hiring map</p>
+          <h2>Four role lanes, each tied to visible work.</h2>
+        </div>
+        <div className="role-ladder-grid">
+          {roleFit.map((fit) => (
+            <article key={fit.role}>
+              <h3>{fit.role}</h3>
+              <p>{fit.pitch}</p>
+              <span>{fit.proof.join(" / ")}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section next-preview-section">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Next project goals</p>
+            <h2>Where I would push the portfolio next.</h2>
+          </div>
+          <Link className="text-link" to="/resume">
+            Full roadmap
+          </Link>
+        </div>
+        <div className="next-preview-grid">
+          {previewBuilds.map((build, index) => (
+            <article key={build.name}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{build.name}</h3>
+              <p>{build.goal}</p>
             </article>
           ))}
         </div>

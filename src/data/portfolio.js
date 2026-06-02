@@ -452,6 +452,79 @@ export const inspectedProjects = [
   },
 ];
 
+export const resumeSignals = [
+  {
+    label: "Best fit",
+    value: "Junior game developer, Python/Blender tools, technical art support",
+  },
+  {
+    label: "Lead proof",
+    value: "Ocean Drift, Destimmer, TacOps, Blender Tools Pipeline",
+  },
+  {
+    label: "Strongest angle",
+    value: "Playable prototypes plus practical tools that remove production friction",
+  },
+  {
+    label: "Next polish",
+    value: "Turn two private/local projects into public demo reels with short postmortems",
+  },
+];
+
+export const roleFit = [
+  {
+    role: "Junior Gameplay Developer",
+    pitch: "Prototype loops, HUDs, camera feel, simulation rules, and browser-playable vertical slices.",
+    proof: ["Ocean Drift", "TacOps", "Linear Drive", "Ant Colony Simulator"],
+  },
+  {
+    role: "Python / Blender Tools Developer",
+    pitch: "Build artist-facing add-ons, validation scripts, export flows, and visual QA artifacts.",
+    proof: ["TerrainForge", "CurioMesh", "Laser Saw", "GenerateHuman"],
+  },
+  {
+    role: "Technical Artist Assistant",
+    pitch: "Bridge visual goals and engineering constraints across meshes, terrain, materials, and 3D UI.",
+    proof: ["Blender Tools Pipeline", "Codex 3D Studio", "Procedural Ocean"],
+  },
+  {
+    role: "Creative Technologist",
+    pitch: "Ship interactive WebGL, generative audio/visual systems, and AI-assisted workflows.",
+    proof: ["Destimmer", "CodexForWorkflow", "SongDeconstructor"],
+  },
+];
+
+export const nextBuilds = [
+  {
+    name: "Creature Behavior Lab",
+    goal: "Package one small public browser demo where fish, ants, or organisms show readable AI behavior.",
+    why: "It turns several simulation ideas into one recruiter-friendly proof of gameplay systems thinking.",
+    stack: "TypeScript, Canvas/WebGL, deterministic simulation",
+    milestones: ["One-page live demo", "Debug overlay", "Short postmortem with GIFs"],
+  },
+  {
+    name: "Blender Add-on Demo Reel",
+    goal: "Record a 60-90 second reel showing TerrainForge, Laser Saw, CurioMesh, and GenerateHuman workflows.",
+    why: "The Blender work is strong, but employers need to understand the value in under a minute.",
+    stack: "Blender 4.5, Python add-ons, OBS/capture workflow",
+    milestones: ["Before/after clips", "Packaged add-on links", "Proof sheet on the portfolio"],
+  },
+  {
+    name: "Ocean Drift Public Slice",
+    goal: "Ship a public solo-play loop with one creature, one ability, one arena, and one clear win condition.",
+    why: "A finished loop beats a large private prototype when applying for junior game roles.",
+    stack: "Three.js, Vite, WebGL2, lightweight save/state",
+    milestones: ["Playable GitHub Pages build", "Mobile controls pass", "Performance budget notes"],
+  },
+  {
+    name: "Tooling Case Study Pack",
+    goal: "Turn three utilities into concise case studies with screenshots, problem statements, and outcomes.",
+    why: "This makes the resume read as product-minded engineering instead of a raw project inventory.",
+    stack: "React, Electron, Python/FastAPI, desktop utilities",
+    milestones: ["Problem/scope/result copy", "One screenshot per tool", "Resume bullet rewrite"],
+  },
+];
+
 export const experiences = [
   {
     role: "Independent Creative Technology Developer",
