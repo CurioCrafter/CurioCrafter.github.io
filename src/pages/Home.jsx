@@ -16,6 +16,7 @@ const destimmerHeroUrl =
   "destimmer/index.html?trip=fractalCathedral&view3d=fractalCathedral&pattern=plasma&images=false&ui=hidden";
 const destimmerStudioUrl =
   "destimmer/index.html?trip=fastTrance&view3d=polytopeSwarm&pattern=plasma&images=false";
+const creatureLabUrl = "creature-lab/index.html";
 
 function Home() {
   return (
@@ -83,6 +84,31 @@ function Home() {
             title="Playable Destimmer WebGL artwork"
             loading="lazy"
             allow="autoplay; fullscreen"
+          />
+        </div>
+      </section>
+
+      <section className="playable-lab-section" aria-label="Playable Creature Behavior Lab">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Playable systems demo</p>
+            <h2>Try the Creature Behavior Lab without leaving the homepage.</h2>
+          </div>
+          <div className="hero-actions">
+            <a className="button secondary" href={creatureLabUrl}>
+              Open full lab
+            </a>
+            <Link className="button ghost" to="/projects/creature-behavior-lab">
+              View case study
+            </Link>
+          </div>
+        </div>
+        <div className="playable-lab-frame-shell">
+          <iframe
+            src={creatureLabUrl}
+            title="Playable Creature Behavior Lab simulation"
+            loading="lazy"
+            allow="fullscreen"
           />
         </div>
       </section>

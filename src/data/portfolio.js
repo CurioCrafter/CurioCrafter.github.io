@@ -77,6 +77,20 @@ export const projects = [
       "Added food placement, threat placement, calm/reset controls, speed tuning, trails, and a DOM debug HUD.",
       "Built the first roadmap project as a GitHub Pages-compatible artifact that can be linked directly from the portfolio and resume page.",
     ],
+    implementationNotes: [
+      {
+        title: "Simulation/render split",
+        body: "Agent hunger, fear, energy, steering, target choice, and scenario setup live in serializable state while Canvas handles only drawing and input coordinates.",
+      },
+      {
+        title: "Inspectable behaviors",
+        body: "Forage, threat, and cohesion presets make the same agent rules readable without requiring a reviewer to manually set up the field.",
+      },
+      {
+        title: "Static deploy path",
+        body: "The demo ships as plain HTML, CSS, and JavaScript so it can run directly from GitHub Pages without a backend or build-time game server.",
+      },
+    ],
   },
   {
     id: "ocean-supremacy",

@@ -10,6 +10,8 @@ const ui = {
   threatButton: document.getElementById("threatButton"),
   calmButton: document.getElementById("calmButton"),
   resetButton: document.getElementById("resetButton"),
+  scenarioLabel: document.getElementById("scenarioLabel"),
+  scenarioButtons: [...document.querySelectorAll("[data-scenario]")],
   speedSlider: document.getElementById("speedSlider"),
   debugToggle: document.getElementById("debugToggle"),
   trailToggle: document.getElementById("trailToggle"),
@@ -31,9 +33,25 @@ const world = {
   speed: 1,
   debug: true,
   trails: true,
+  scenario: "forage",
   time: 0,
   frame: 0,
   fps: 60,
+};
+
+const scenarios = {
+  forage: {
+    label: "Agents start hungry near a cluster of food with one distant threat.",
+    debug: "Food-seeking",
+  },
+  threat: {
+    label: "A strong threat enters the feeding lane so avoidance should dominate quickly.",
+    debug: "Threat response",
+  },
+  cohesion: {
+    label: "Food and threats are removed so spacing and group cohesion become easiest to see.",
+    debug: "Cohesion",
+  },
 };
 
 const config = {
@@ -63,7 +81,8 @@ function resize() {
   ctx.setTransform(world.dpr, 0, 0, world.dpr, 0, 0);
 }
 
-function reset() {
+function reset(scenario = world.scenario) {
+  world.scenario = scenario;
   world.agents = [];
   world.food = [];
   world.threats = [];
@@ -75,11 +94,8 @@ function reset() {
     world.agents.push(createAgent(index));
   }
 
-  for (let index = 0; index < 9; index += 1) {
-    addFood(randomBetween(90, world.width - 90), randomBetween(90, world.height - 90), 48 + Math.random() * 28);
-  }
-
-  addThreat(world.width * 0.74, world.height * 0.42, 88);
+  seedScenario(world.scenario);
+  syncScenarioControls();
 }
 
 function createAgent(index) {
@@ -123,6 +139,57 @@ function addThreat(x, y, power = 95) {
 
 function addRipple(x, y, color) {
   world.ripples.push({ x, y, color, age: 0, life: 0.82 });
+}
+
+function seedScenario(scenario) {
+  if (scenario === "threat") {
+    positionAgentsInCluster(world.width * 0.48, world.height * 0.52, 145, 0.58);
+    addFood(world.width * 0.32, world.height * 0.42, 74);
+    addFood(world.width * 0.4, world.height * 0.6, 72);
+    addFood(world.width * 0.54, world.height * 0.34, 66);
+    addThreat(world.width * 0.6, world.height * 0.5, 118);
+    addThreat(world.width * 0.68, world.height * 0.58, 94);
+    return;
+  }
+
+  if (scenario === "cohesion") {
+    positionAgentsInCluster(world.width * 0.5, world.height * 0.52, 118, 0.12);
+    return;
+  }
+
+  positionAgentsInCluster(world.width * 0.28, world.height * 0.58, 130, 0.7);
+  const foodCenters = [
+    [0.54, 0.35],
+    [0.62, 0.5],
+    [0.5, 0.66],
+  ];
+  for (const [x, y] of foodCenters) {
+    for (let index = 0; index < 3; index += 1) {
+      addFood(
+        world.width * x + randomBetween(-40, 40),
+        world.height * y + randomBetween(-36, 36),
+        52 + Math.random() * 30,
+      );
+    }
+  }
+  addThreat(world.width * 0.78, world.height * 0.34, 80);
+}
+
+function positionAgentsInCluster(cx, cy, spread, hunger) {
+  const radius = Math.max(60, spread);
+  world.agents.forEach((agent, index) => {
+    const ring = 0.35 + (index % 8) / 8;
+    const angle = (index / world.agents.length) * Math.PI * 2 * 2.2;
+    agent.x = clamp(cx + Math.cos(angle) * radius * ring + randomBetween(-16, 16), 26, world.width - 26);
+    agent.y = clamp(cy + Math.sin(angle) * radius * ring + randomBetween(-16, 16), 26, world.height - 26);
+    agent.vx = Math.cos(angle + Math.PI * 0.45) * randomBetween(18, 44);
+    agent.vy = Math.sin(angle + Math.PI * 0.45) * randomBetween(18, 44);
+    agent.hunger = clamp(hunger + randomBetween(-0.08, 0.08), 0, 1);
+    agent.energy = randomBetween(0.78, 1);
+    agent.fear = 0;
+    agent.state = "scan";
+    agent.target = null;
+  });
 }
 
 function step(dt) {
@@ -419,6 +486,7 @@ function updateHud() {
   const dominant = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || "forage";
 
   ui.modeLabel.textContent = `${labelForState(dominant)} mode`;
+  ui.scenarioLabel.textContent = scenarios[world.scenario]?.label || scenarios.forage.label;
   ui.fpsLabel.textContent = `${Math.round(world.fps)} fps`;
   ui.populationLabel.textContent = `${world.agents.length} agents`;
   ui.forageMetric.textContent = counts.forage || 0;
@@ -428,13 +496,38 @@ function updateHud() {
   ui.debugPanel.hidden = !world.debug;
 
   ui.debugPanel.innerHTML = [
+    ["Scenario", scenarios[world.scenario]?.debug || "Food-seeking"],
     ["Targeting", `${world.food.length} food nodes`],
     ["Threat field", `${world.threats.length} active`],
     ["Dominant state", labelForState(dominant)],
-    ["Input", "Click food / Shift threat"],
   ]
     .map(([label, value]) => `<article class="debug-card"><span>${label}</span><strong>${value}</strong></article>`)
     .join("");
+
+  publishDiagnostics(counts, avgEnergy, dominant);
+}
+
+function publishDiagnostics(counts = countStates(), avgEnergy, dominant) {
+  const resolvedEnergy =
+    typeof avgEnergy === "number"
+      ? avgEnergy
+      : world.agents.reduce((sum, agent) => sum + agent.energy, 0) / Math.max(1, world.agents.length);
+  const resolvedDominant =
+    dominant || Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || "forage";
+
+  window.__CREATURE_LAB_DIAGNOSTICS = {
+    ready: true,
+    frame: world.frame,
+    time: Number(world.time.toFixed(2)),
+    scenario: world.scenario,
+    fps: Math.round(world.fps),
+    agents: world.agents.length,
+    food: world.food.length,
+    threats: world.threats.length,
+    states: counts,
+    averageEnergy: Number(resolvedEnergy.toFixed(3)),
+    dominant: resolvedDominant,
+  };
 }
 
 function countStates() {
@@ -487,7 +580,15 @@ function bindInput() {
     addRipple(world.width * 0.5, world.height * 0.5, "#51f2e8");
   });
 
-  ui.resetButton.addEventListener("click", reset);
+  ui.resetButton.addEventListener("click", () => reset(world.scenario));
+
+  ui.scenarioButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      reset(button.dataset.scenario || "forage");
+      drawBackground();
+      updateHud();
+    });
+  });
 
   ui.speedSlider.addEventListener("input", () => {
     world.speed = Number(ui.speedSlider.value);
@@ -501,6 +602,15 @@ function bindInput() {
     world.trails = ui.trailToggle.checked;
     if (!world.trails) drawBackground();
   });
+}
+
+function syncScenarioControls() {
+  ui.scenarioButtons.forEach((button) => {
+    const active = button.dataset.scenario === world.scenario;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  ui.scenarioLabel.textContent = scenarios[world.scenario]?.label || scenarios.forage.label;
 }
 
 function canvasPoint(event) {
@@ -548,6 +658,7 @@ function tick(now) {
   render();
   if (world.frame % 12 === 0) updateHud();
   world.frame += 1;
+  publishDiagnostics();
   requestAnimationFrame(tick);
 }
 

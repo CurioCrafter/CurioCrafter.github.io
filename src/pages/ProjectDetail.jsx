@@ -86,6 +86,23 @@ function ProjectDetail() {
           </div>
         </section>
       ) : null}
+
+      {project.implementationNotes?.length ? (
+        <section className="case-notes">
+          <div>
+            <p className="eyebrow">Implementation notes</p>
+            <h2>How the work is structured.</h2>
+          </div>
+          <div className="notes-grid">
+            {project.implementationNotes.map((note) => (
+              <article key={note.title}>
+                <h3>{note.title}</h3>
+                <p>{note.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

@@ -176,6 +176,34 @@ h1 {
   gap: 0.65rem;
 }
 
+.scenario-panel {
+  border: 1px solid rgba(244, 195, 91, 0.22);
+  background: rgba(244, 195, 91, 0.055);
+  padding: 0.8rem;
+}
+
+.scenario-panel p {
+  margin: 0 0 0.65rem;
+  color: var(--amber);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.scenario-panel span {
+  display: block;
+  margin-top: 0.7rem;
+  color: rgba(244, 240, 232, 0.76);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.scenario-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
 button {
   min-height: 2.8rem;
   border: 1px solid rgba(81, 242, 232, 0.28);
@@ -193,6 +221,12 @@ button:hover {
   border-color: rgba(81, 242, 232, 0.64);
   background: rgba(81, 242, 232, 0.16);
   transform: translateY(-1px);
+}
+
+.scenario-button.is-active {
+  border-color: rgba(244, 195, 91, 0.84);
+  background: rgba(244, 195, 91, 0.18);
+  color: var(--amber);
 }
 
 #threatButton {
@@ -314,6 +348,7 @@ button:hover {
   }
 
   .button-row,
+  .scenario-row,
   .metrics-grid,
   .debug-panel {
     grid-template-columns: 1fr;
