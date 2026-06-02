@@ -56,9 +56,28 @@ export const profile = {
   ],
 };
 
-export const featuredProjectIds = ["ocean-supremacy", "destimmer", "tacops", "codex-3d-studio"];
+export const featuredProjectIds = ["creature-behavior-lab", "ocean-supremacy", "destimmer", "tacops"];
 
 export const projects = [
+  {
+    id: "creature-behavior-lab",
+    name: "Creature Behavior Lab",
+    eyebrow: "Playable AI behavior demo",
+    image: "images/creature-behavior-lab-live.png",
+    detailImage: "images/creature-behavior-lab-live.png",
+    liveUrl: "creature-lab/index.html",
+    repository: "",
+    repositoryNote: "Hosted static demo",
+    stack: ["JavaScript", "Canvas", "steering behaviors", "debug HUD", "GitHub Pages"],
+    proofPoints: ["Public playable demo", "Hunger/fear/target debug overlay", "Food and threat input controls"],
+    outcome:
+      "A compact browser simulation that makes creature steering, hunger, fear, target choice, flock spacing, and threat response readable in one public demo.",
+    bullets: [
+      "Separated simulation state from rendering so agents own behavior while Canvas handles only playfield drawing.",
+      "Added food placement, threat placement, calm/reset controls, speed tuning, trails, and a DOM debug HUD.",
+      "Built the first roadmap project as a GitHub Pages-compatible artifact that can be linked directly from the portfolio and resume page.",
+    ],
+  },
   {
     id: "ocean-supremacy",
     name: "Ocean Supremacy Web / Ocean Drift",
@@ -497,18 +516,18 @@ export const roleFit = [
 export const nextBuilds = [
   {
     name: "Creature Behavior Lab",
-    priority: "Highest leverage",
-    timeframe: "3-5 focused sessions",
-    deliverable: "GitHub Pages demo, behavior debug overlay, short GIF loop",
-    goal: "Package one small public browser demo where fish, ants, or organisms show readable AI behavior.",
-    why: "It turns several simulation ideas into one recruiter-friendly proof of gameplay systems thinking.",
-    stack: "TypeScript, Canvas/WebGL, deterministic simulation",
+    priority: "Baseline shipped",
+    timeframe: "Next: polish pass",
+    deliverable: "Public demo, behavior debug overlay, portfolio case study",
+    goal: "Extend the new public demo with clearer behavior scenarios, capture clips, and a short postmortem.",
+    why: "It turns several simulation ideas into one recruiter-friendly proof of gameplay systems thinking, and now has a live artifact to improve.",
+    stack: "JavaScript, Canvas, deterministic simulation",
     firstSteps: [
-      "Choose one behavior loop instead of a large ecosystem.",
-      "Expose steering, hunger, threat, and target state in a debug panel.",
-      "Record a 20-second before/after clip for the case study.",
+      "Add two scenario presets for foraging and threat response.",
+      "Capture a 20-second before/after clip for the case study.",
+      "Write a short implementation note about simulation/render separation.",
     ],
-    milestones: ["One-page live demo", "Debug overlay", "Short postmortem with GIFs"],
+    milestones: ["Live demo linked", "Debug overlay", "Short postmortem with GIFs"],
   },
   {
     name: "Blender Add-on Demo Reel",

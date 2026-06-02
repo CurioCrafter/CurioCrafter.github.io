@@ -2,6 +2,7 @@ import ProjectCard from "../components/ProjectCard";
 import { projects } from "../data/portfolio";
 
 const gameProjectIds = [
+  "creature-behavior-lab",
   "ocean-supremacy",
   "tacops",
   "linear-drive",

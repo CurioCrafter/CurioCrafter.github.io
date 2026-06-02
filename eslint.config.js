@@ -4,7 +4,19 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['assets', 'destimmer', 'dist', 'evidence', 'node_modules', 'public/destimmer', 'test-results'] },
+  {
+    ignores: [
+      'assets',
+      'creature-lab',
+      'destimmer',
+      'dist',
+      'evidence',
+      'node_modules',
+      'public/creature-lab',
+      'public/destimmer',
+      'test-results',
+    ],
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
