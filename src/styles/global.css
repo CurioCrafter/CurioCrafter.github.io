@@ -1364,6 +1364,111 @@ h3 {
   margin-bottom: 5rem;
 }
 
+.contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.62fr);
+  gap: 3rem;
+  align-items: end;
+  padding: 3rem 0 4rem;
+}
+
+.contact-hero p {
+  max-width: 42rem;
+  color: rgba(244, 240, 232, 0.84);
+  font-size: 1.08rem;
+}
+
+.contact-availability {
+  border-left: 3px solid var(--amber);
+  background: rgba(244, 185, 77, 0.07);
+  padding: 1.2rem;
+}
+
+.contact-availability span,
+.contact-focus-section .eyebrow,
+.contact-assist-section .eyebrow,
+.contact-heading .eyebrow {
+  color: var(--cyan);
+}
+
+.contact-availability span,
+.contact-availability strong {
+  display: block;
+}
+
+.contact-availability span {
+  margin-bottom: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.contact-availability strong {
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.contact-availability p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.contact-focus-section,
+.contact-assist-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.contact-focus-grid {
+  display: grid;
+  gap: 1px;
+  background: rgba(244, 240, 232, 0.14);
+  border: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.contact-focus-grid article {
+  background: var(--bg-soft);
+  padding: 1.1rem;
+}
+
+.contact-focus-grid p,
+.contact-assist-list p {
+  color: var(--muted);
+}
+
+.contact-assist-list {
+  display: grid;
+  border-top: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.contact-assist-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
+  gap: 1.2rem;
+  align-items: start;
+  border-bottom: 1px solid rgba(244, 240, 232, 0.14);
+  padding: 1.05rem 0;
+}
+
+.contact-assist-list .proof-points {
+  justify-content: flex-start;
+}
+
+.contact-heading {
+  border-top: 1px solid var(--line);
+  padding: 4rem 0 1rem;
+}
+
+.contact-heading h2 {
+  max-width: 52rem;
+}
+
 .contact-list {
   display: grid;
   gap: 0.8rem;
@@ -1519,6 +1624,9 @@ h3 {
   .inventory-section,
   .project-lens-section,
   .proof-stack-row,
+  .contact-hero,
+  .contact-focus-section,
+  .contact-assist-section,
   .role-fit-section,
   .role-ladder-section,
   .resume-hero,
@@ -1774,6 +1882,10 @@ h3 {
     flex-direction: column;
   }
 
+  .contact-assist-list article {
+    grid-template-columns: 1fr;
+  }
+
   .project-card img {
     width: 100%;
     max-width: 100%;
@@ -1783,6 +1895,10 @@ h3 {
   .project-grid,
   .project-lens-section,
   .project-lens-controls,
+  .contact-hero,
+  .contact-focus-section,
+  .contact-assist-section,
+  .contact-assist-list article,
   .project-card,
   .project-card.featured,
   .project-card-body,
@@ -1806,6 +1922,13 @@ h3 {
 
   .project-lens-section h2,
   .project-lens-section p,
+  .contact-hero h1,
+  .contact-hero p,
+  .contact-focus-section h2,
+  .contact-focus-section p,
+  .contact-assist-section h2,
+  .contact-assist-section p,
+  .contact-heading h2,
   .project-lens-result,
   .project-lens-button,
   .project-lens-metrics article {
