@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
-import { inspectedProjects, projects } from "../data/portfolio";
+import { projects } from "../data/portfolio";
+
+const recruiterProjects = projects.filter((project) => !project.isArchived);
 
 const priorityProjectIds = new Set([
   "creature-behavior-lab",
@@ -73,7 +75,7 @@ const projectLenses = [
   {
     id: "all",
     label: "All",
-    summary: "The full current portfolio inventory, including private/local case studies with screenshots.",
+    summary: "The curated recruiter-facing portfolio set, limited to projects with useful visual evidence.",
     matches: () => true,
   },
 ];
@@ -82,13 +84,16 @@ function Projects() {
   const [activeLensId, setActiveLensId] = useState(projectLenses[0].id);
   const activeLens = projectLenses.find((lens) => lens.id === activeLensId) || projectLenses[0];
 
-  const visibleProjects = useMemo(() => projects.filter((project) => activeLens.matches(project)), [activeLens]);
+  const visibleProjects = useMemo(
+    () => recruiterProjects.filter((project) => activeLens.matches(project)),
+    [activeLens],
+  );
   const projectMetrics = useMemo(
     () => [
-      { value: projects.length, label: "case studies" },
-      { value: projects.filter((project) => project.liveUrl).length, label: "live demos" },
-      { value: projects.filter(publicEvidence).length, label: "public links" },
-      { value: inspectedProjects.length, label: "extra folders checked" },
+      { value: recruiterProjects.length, label: "case studies" },
+      { value: recruiterProjects.filter((project) => project.liveUrl).length, label: "live demos" },
+      { value: recruiterProjects.filter(publicEvidence).length, label: "public links" },
+      { value: priorityProjectIds.size, label: "best first" },
     ],
     [],
   );
@@ -124,7 +129,7 @@ function Projects() {
           </div>
           <div className="project-lens-buttons" role="group" aria-label="Filter project evidence">
             {projectLenses.map((lens) => {
-              const count = projects.filter((project) => lens.matches(project)).length;
+              const count = recruiterProjects.filter((project) => lens.matches(project)).length;
               return (
                 <button
                   key={lens.id}
@@ -141,7 +146,7 @@ function Projects() {
           </div>
           <div className="project-lens-result" aria-live="polite">
             <strong>
-              Showing {visibleProjects.length} of {projects.length}
+              Showing {visibleProjects.length} of {recruiterProjects.length}
             </strong>
             <span>{activeLens.summary}</span>
           </div>
@@ -154,21 +159,6 @@ function Projects() {
         ))}
       </section>
 
-      <section className="inventory-section" aria-label="Broader project inventory checked">
-        <div>
-          <p className="eyebrow">Broader inventory checked</p>
-          <h2>Additional project folders reviewed for resume evidence.</h2>
-        </div>
-        <div className="inventory-grid">
-          {inspectedProjects.map((project) => (
-            <article key={project.name}>
-              <p>{project.type}</p>
-              <h3>{project.name}</h3>
-              <span>{project.evidence}</span>
-            </article>
-          ))}
-        </div>
-      </section>
     </main>
   );
 }

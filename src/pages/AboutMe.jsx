@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { capabilityGroups, experiences, nextBuilds, profile, projects, resumeProofStack } from "../data/portfolio";
+import { capabilityGroups, experiences, profile, projects, resumeProofStack } from "../data/portfolio";
 
 const workingPrinciples = [
   {
@@ -27,19 +27,19 @@ const aboutProof = [
     detail: "Audience-scale creative production with a real feedback loop.",
   },
   {
-    value: `${projects.length}`,
+    value: `${projects.filter((project) => !project.isArchived).length}`,
     label: "project profiles",
     detail: "Games, WebGL art, Blender add-ons, desktop tools, and AI workflow systems.",
   },
   {
-    value: "2",
-    label: "playable homepage demos",
-    detail: "Destimmer and Creature Behavior Lab run directly inside the portfolio.",
+    value: `${projects.filter((project) => project.liveUrl).length}`,
+    label: "public live demos",
+    detail: "Browser-delivered work that opens without a private server.",
   },
   {
-    value: `${nextBuilds.length}`,
-    label: "active build goals",
-    detail: "Clear next steps for public demos, Blender proof, and role-focused case studies.",
+    value: "4",
+    label: "target role lanes",
+    detail: "Gameplay, Blender tools, technical art support, and creative technology.",
   },
 ];
 
@@ -156,31 +156,6 @@ function AboutMe() {
                   </Link>
                 ))}
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section about-growth-section no-pad-top">
-        <div>
-          <p className="eyebrow">Current build goals</p>
-          <h2>Next improvements are scoped as portfolio-ready outputs.</h2>
-          <p>
-            These goals keep the public presentation moving toward the strongest hiring
-            signal: more playable proof, clearer Blender footage, and tighter project case
-            studies.
-          </p>
-        </div>
-        <div className="about-growth-list">
-          {nextBuilds.map((build, index) => (
-            <article key={build.name} className="about-growth-item">
-              <header>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{build.priority}</strong>
-              </header>
-              <h3>{build.name}</h3>
-              <p>{build.goal}</p>
-              <small>{build.deliverable}</small>
             </article>
           ))}
         </div>

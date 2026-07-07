@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { nextBuilds, projects } from "../data/portfolio";
+import { projects } from "../data/portfolio";
 
 const gameProjectIds = [
   "creature-behavior-lab",
@@ -9,13 +9,10 @@ const gameProjectIds = [
   "linear-drive",
   "procedural-ocean",
   "ant-colony",
-  "organism-evolution",
-  "brainsim-md-trainer",
 ];
 const gameProjects = gameProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 const featuredGames = gameProjects.slice(0, 3);
 const publicGameProjects = gameProjects.filter((project) => project.liveUrl);
-const publicGameSlice = nextBuilds.find((build) => build.name === "Ocean Drift Public Slice");
 
 const gameSignals = [
   {
@@ -34,9 +31,9 @@ const gameSignals = [
     detail: "A small readable AI behavior demo tied directly to the portfolio and resume.",
   },
   {
-    label: "Next goal",
-    value: "Ocean slice",
-    detail: "Ship one public solo loop with an arena, threat, ability, and win condition.",
+    label: "Core lane",
+    value: "Gameplay systems",
+    detail: "Readable behavior, 3D interfaces, survival loops, and prototype architecture.",
   },
 ];
 
@@ -44,7 +41,7 @@ const gameLanes = [
   {
     title: "Playable browser systems",
     summary: "Lead with demos that make controls, simulation rules, and debug state visible immediately.",
-    proof: ["Creature Behavior Lab", "Ant Colony Simulator", "BrainSim MD Trainer"],
+    proof: ["Creature Behavior Lab", "Ant Colony Simulator"],
   },
   {
     title: "3D multiplayer-ready prototypes",
@@ -54,7 +51,7 @@ const gameLanes = [
   {
     title: "Native and simulation depth",
     summary: "Use lower-level projects to show game-loop, survival, physics, and systems-programming thinking.",
-    proof: ["Linear Drive", "OrganismEvolution", "Procedural Ocean"],
+    proof: ["Linear Drive", "Procedural Ocean", "Ant Colony Simulator"],
   },
 ];
 
@@ -130,21 +127,6 @@ function Games() {
           ))}
         </div>
       </section>
-
-      {publicGameSlice ? (
-        <section className="lane-next-step" aria-label="Recommended public game slice">
-          <div>
-            <p className="eyebrow">Best next game build</p>
-            <h2>{publicGameSlice.name}</h2>
-            <p>{publicGameSlice.goal}</p>
-          </div>
-          <div className="lane-next-meta">
-            <span>{publicGameSlice.priority}</span>
-            <strong>{publicGameSlice.deliverable}</strong>
-            <p>{publicGameSlice.why}</p>
-          </div>
-        </section>
-      ) : null}
 
       <section className="section-heading lane-project-heading">
         <div>

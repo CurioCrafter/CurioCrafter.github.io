@@ -76,7 +76,7 @@ export const projects = [
     bullets: [
       "Separated simulation state from rendering so agents own behavior while Canvas handles only playfield drawing.",
       "Added food placement, threat placement, calm/reset controls, speed tuning, trails, and a DOM debug HUD.",
-      "Built the first roadmap project as a GitHub Pages-compatible artifact that can be linked directly from the portfolio and resume page.",
+      "Built a GitHub Pages-compatible artifact that can be linked directly from the portfolio and resume page.",
     ],
     implementationNotes: [
       {
@@ -100,7 +100,8 @@ export const projects = [
     image: "images/ocean-drift-lobby.png",
     detailImage: "images/ocean-water-lab-blue-glass-shaft.png",
     repository: "https://github.com/CurioCrafter/oceansupremacyweb",
-    repositoryNote: "Private repo",
+    isPrivate: true,
+    repositoryNote: "Case-study source",
     stack: ["TypeScript", "Three.js", "WebGL2", "Vite", "WebSocket architecture"],
     proofPoints: ["Live lobby capture", "Water rendering lab", "Server browser flow"],
     outcome:
@@ -118,7 +119,7 @@ export const projects = [
     image: "images/tacops-maple-court-objective.png",
     detailImage: "images/tacops-loadout-builder.png",
     repository: "",
-    repositoryNote: "Local/private project",
+    repositoryNote: "Captured case study",
     stack: ["TypeScript", "Three.js", "Colyseus", "Vite", "authoritative server"],
     proofPoints: ["Live gameplay screenshot", "Friend lobby and loadout UI", "Netlify + Render deployment plan"],
     outcome:
@@ -135,7 +136,7 @@ export const projects = [
     eyebrow: "AI-assisted 3D scene editor",
     image: "images/codex-3d-studio-cloudgrove.png",
     repository: "",
-    repositoryNote: "Local/private project",
+    repositoryNote: "Captured case study",
     stack: ["Electron", "React Three Fiber", "Three.js", "Express", "OpenAI/Codex SDK"],
     proofPoints: ["Desktop editor screenshot", "Export JSON/GLB workflow", "Scene validation panel"],
     outcome:
@@ -171,7 +172,7 @@ export const projects = [
     eyebrow: "Browser RTS map editor",
     image: "images/rts-builder-map-editor.png",
     repository: "",
-    repositoryNote: "Local/private project",
+    repositoryNote: "Captured case study",
     stack: ["React", "TypeScript", "Canvas", "Vite", "generated asset pipeline"],
     proofPoints: ["Map editor screenshot", "73 generated PNG assets", "JSON import/export and playtest mode"],
     outcome:
@@ -188,7 +189,7 @@ export const projects = [
     eyebrow: "Native C++ horror driving game",
     image: "images/linear-drive-cockpit.png",
     repository: "",
-    repositoryNote: "Local/private project",
+    repositoryNote: "Captured case study",
     stack: ["C++", "raylib", "CMake", "Ninja", "game systems"],
     proofPoints: ["Runtime cockpit capture", "Physical car-control interactions", "Installer/release workflow"],
     outcome:
@@ -205,7 +206,8 @@ export const projects = [
     eyebrow: "3D editor and asset workflow",
     image: "images/ocean-drift-level-builder-live.png",
     repository: "https://github.com/CurioCrafter/oceandriftleveldesigner",
-    repositoryNote: "Private repo",
+    isPrivate: true,
+    repositoryNote: "Case-study source",
     stack: ["TypeScript", "Vite", "3D asset tooling", "JSON import/export"],
     proofPoints: ["65 asset cards loaded", "3D viewport capture", "Export workflow"],
     outcome:
@@ -241,7 +243,7 @@ export const projects = [
     image: "images/blender-tools-suite.png",
     mediaFit: "contain",
     repository: "",
-    repositoryNote: "Local suite / private prototypes",
+    repositoryNote: "Pipeline proof sheet",
     stack: ["Python", "Blender API", "visual QA", "rigging", "boolean tooling"],
     proofPoints: ["TerrainForge + Laser Saw inspected", "5 Blender add-on workstreams", "Visual QA artifacts"],
     outcome:
@@ -277,7 +279,7 @@ export const projects = [
     image: "images/procedural-ocean-dive-computer.png",
     mediaFit: "contain",
     repository: "",
-    repositoryNote: "Local/private project",
+    repositoryNote: "Captured case study",
     stack: ["C++", "DirectX 11", "CMake", "procedural generation", "survival systems"],
     proofPoints: ["Dive-computer UI asset", "Procedural terrain and fauna scope", "Apache-2.0 release notes"],
     outcome:
@@ -317,10 +319,11 @@ export const projects = [
     name: "OrganismEvolution",
     eyebrow: "Artificial life simulation",
     image: "images/anothergame.png",
+    isArchived: true,
     repository: "https://github.com/CurioCrafter/OrganismEvolution",
     repositoryNote: "Public repo",
     stack: ["C++20", "DirectX 12", "HLSL", "CMake", "simulation systems"],
-    proofPoints: ["Codebase located", "Needs current media", "Systems programming focus"],
+    proofPoints: ["Public C++ prototype repo", "Simulation architecture", "Systems programming focus"],
     outcome:
       "A real-time artificial-life simulation prototype with procedural terrain, creature systems, rendering, camera controls, save/load, replay, and profiling direction.",
     bullets: [
@@ -335,7 +338,7 @@ export const projects = [
     eyebrow: "Browser simulation game",
     image: "images/ant-colony-live-simulation.png",
     repository: "",
-    repositoryNote: "Local prototype",
+    repositoryNote: "Case-study evidence",
     stack: ["TypeScript", "Vite", "Canvas/WebGL", "simulation systems", "Playwright"],
     proofPoints: ["Live canvas capture", "1x-16x speed controls", "Tool-driven colony UI"],
     outcome:
@@ -351,10 +354,11 @@ export const projects = [
     name: "Blender Alignment Suite",
     eyebrow: "Blender workflow add-on",
     image: "images/ocean-drift-level-builder.png",
+    isArchived: true,
     repository: "https://github.com/CurioCrafter/blender-alignment-suite",
     repositoryNote: "Public repo",
     stack: ["Python", "Blender API", "tool development"],
-    proofPoints: ["Public tool concept", "Blender N-panel workflow", "Modeling productivity focus"],
+    proofPoints: ["Public add-on repo", "Blender N-panel workflow", "Modeling productivity focus"],
     outcome:
       "A Blender 4.5 add-on for alignment, distribution, mirroring, cursor/origin tools, and edit-mode vertex alignment.",
     bullets: [
@@ -368,10 +372,11 @@ export const projects = [
     name: "BrainSim MD Trainer",
     eyebrow: "React Three Fiber educational simulator",
     image: "images/brainsim-hero.png",
+    isArchived: true,
     repository: "",
-    repositoryNote: "Local prototype",
+    repositoryNote: "Archived case study",
     stack: ["React", "React Three Fiber", "Three.js", "Vitest", "Playwright"],
-    proofPoints: ["Local prototype", "3D educational UI", "Acceptance checks"],
+    proofPoints: ["3D training UI capture", "Authored content model", "Acceptance checks"],
     outcome:
       "An educational simulator with authored content, 3D brain rendering, UI overlays, minigames, generated visual assets, and acceptance scripts.",
     bullets: [
@@ -507,8 +512,8 @@ export const resumeSignals = [
     value: "Playable prototypes plus practical tools that remove production friction",
   },
   {
-    label: "Next polish",
-    value: "Turn two private/local projects into public demo reels with short postmortems",
+    label: "Portfolio surface",
+    value: "Curated live demos, case-study screenshots, and role-specific proof paths",
   },
 ];
 
@@ -527,7 +532,7 @@ export const resumeProofStack = [
   },
   {
     lane: "Game systems",
-    title: "Use private game depth as case-study proof.",
+    title: "Use deeper game systems as case-study proof.",
     summary:
       "Ocean Drift, TacOps, Linear Drive, and Ant Colony show HUD work, camera feel, AI/simulation rules, multiplayer planning, and gameplay loops.",
     resumeLine:

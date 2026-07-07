@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { blenderToolchain, nextBuilds, projects } from "../data/portfolio";
+import { blenderToolchain, projects } from "../data/portfolio";
 
 const toolProjectIds = [
   "destimmer",
@@ -11,13 +11,11 @@ const toolProjectIds = [
   "blender-tools-pipeline",
   "ocean-drift-level-builder",
   "curiomesh",
-  "blender-alignment-suite",
   "codexforworkflow",
   "disk-space-inspector",
 ];
 const toolProjects = toolProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 const featuredTools = toolProjects.slice(0, 3);
-const blenderReel = nextBuilds.find((build) => build.name === "Blender Add-on Demo Reel");
 const liveToolProjects = toolProjects.filter((project) => project.liveUrl);
 
 const toolSignals = [
@@ -37,9 +35,9 @@ const toolSignals = [
     detail: "Destimmer and Creature Lab prove browser-delivered interactive systems.",
   },
   {
-    label: "Best next proof",
-    value: "Demo reel",
-    detail: "Record one visible before/action/after win per Blender add-on.",
+    label: "Core lane",
+    value: "Blender tools",
+    detail: "Python add-ons, artist workflows, validation artifacts, and export-minded tooling.",
   },
 ];
 
@@ -157,21 +155,6 @@ function Software() {
           </article>
         ))}
       </section>
-
-      {blenderReel ? (
-        <section className="lane-next-step" aria-label="Recommended Blender demo reel">
-          <div>
-            <p className="eyebrow">Best next tools proof</p>
-            <h2>{blenderReel.name}</h2>
-            <p>{blenderReel.goal}</p>
-          </div>
-          <div className="lane-next-meta">
-            <span>{blenderReel.priority}</span>
-            <strong>{blenderReel.deliverable}</strong>
-            <p>{blenderReel.why}</p>
-          </div>
-        </section>
-      ) : null}
 
       <section className="section-heading lane-project-heading">
         <div>

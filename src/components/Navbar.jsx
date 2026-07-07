@@ -8,20 +8,19 @@ const navItems = [
   { to: "/software", label: "Tools" },
   { to: "/about", label: "About" },
   { to: "/resume", label: "Resume" },
-  { to: "/goals", label: "Goals" },
   { to: "/contact", label: "Contact" },
 ];
 
 function Navbar() {
   return (
     <header className="site-header">
-      <a className="brand-mark" href="#/">
+      <NavLink className="brand-mark" to="/" aria-label="Andrew Rainsberger home">
         <span className="brand-initials">AR</span>
         <span>
           <strong>{profile.name}</strong>
           <small>{profile.title}</small>
         </span>
-      </a>
+      </NavLink>
 
       <nav className="nav-links" aria-label="Primary navigation">
         {navItems.map((item) => (

@@ -7,7 +7,6 @@ import Contact from "./pages/Contact";
 import AboutMe from "./pages/AboutMe";
 import Games from "./pages/Games";
 import Software from "./pages/Software";
-import Goals from "./pages/Goals";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./styles/global.css";
@@ -25,7 +24,6 @@ function App() {
         <Route path="/about" element={<AboutMe />} />
         <Route path="/games" element={<Games />} />
         <Route path="/software" element={<Software />} />
-        <Route path="/goals" element={<Goals />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />

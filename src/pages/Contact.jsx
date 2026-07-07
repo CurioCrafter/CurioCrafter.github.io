@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { profile, supportOffers } from "../data/portfolio";
+import { profile } from "../data/portfolio";
 
 const contactLinks = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -16,9 +16,9 @@ const contactFocus = [
     proof: ["Creature Lab", "Ocean Drift", "Blender Tools Pipeline"],
   },
   {
-    title: "Portfolio proof sprints",
-    fit: "Turn local projects into public slices with screenshots, checks, and case-study copy.",
-    proof: ["Project filters", "Resume proof stack", "Build sprint plan"],
+    title: "Technical art and tooling",
+    fit: "Blender add-ons, visual QA artifacts, asset workflows, Python scripting, and editor surfaces.",
+    proof: ["TerrainForge", "CurioMesh", "Blender Tools Pipeline"],
   },
   {
     title: "Creative technology work",
@@ -70,28 +70,6 @@ function Contact() {
               <div className="proof-points">
                 {item.proof.map((proof) => (
                   <span key={proof}>{proof}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="contact-assist-section" aria-label="How Codex can assist next">
-        <div>
-          <p className="eyebrow">Build support</p>
-          <h2>What I can help turn into application proof next.</h2>
-        </div>
-        <div className="contact-assist-list">
-          {supportOffers.map((offer) => (
-            <article key={offer.title}>
-              <div>
-                <h3>{offer.title}</h3>
-                <p>{offer.summary}</p>
-              </div>
-              <div className="proof-points">
-                {offer.outputs.map((output) => (
-                  <span key={output}>{output}</span>
                 ))}
               </div>
             </article>

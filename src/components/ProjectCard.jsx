@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 function ProjectCard({ project, featured = false }) {
-  const linksToPublicRepo = project.repository && !/private/i.test(project.repositoryNote);
+  const linksToPublicRepo = project.repository && !project.isPrivate;
+  const evidenceLabel = project.liveUrl ? "Live demo" : linksToPublicRepo ? project.repositoryNote : "Case-study proof";
 
   return (
     <article className={featured ? "project-card featured" : "project-card"}>
@@ -38,14 +39,14 @@ function ProjectCard({ project, featured = false }) {
           </Link>
           {project.liveUrl ? (
             <a className="text-link muted" href={project.liveUrl}>
-              Live demo
+              {evidenceLabel}
             </a>
           ) : linksToPublicRepo ? (
             <a className="text-link muted" href={project.repository} target="_blank" rel="noreferrer">
-              {project.repositoryNote}
+              {evidenceLabel}
             </a>
           ) : (
-            <span className="project-note">{project.repositoryNote}</span>
+            <span className="project-note">{evidenceLabel}</span>
           )}
         </div>
       </div>

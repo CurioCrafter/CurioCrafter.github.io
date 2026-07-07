@@ -59,7 +59,7 @@ function getCaseSignal(project) {
 
 function getRelatedProjects(project) {
   const scored = projects
-    .filter((candidate) => candidate.id !== project.id)
+    .filter((candidate) => candidate.id !== project.id && !candidate.isArchived)
     .map((candidate) => {
       const sharedStack = candidate.stack.filter((item) => project.stack.includes(item)).length;
       const sharedProof = candidate.proofPoints?.some((point) =>
@@ -93,19 +93,19 @@ function ProjectDetail() {
   }
 
   const heroImage = project.detailImage || project.image;
-  const linksToPublicRepo = project.repository && !/private/i.test(project.repositoryNote);
+  const linksToPublicRepo = project.repository && !project.isPrivate;
   const signal = getCaseSignal(project);
   const relatedProjects = getRelatedProjects(project);
   const publicProofLabel = project.liveUrl
     ? "Live demo available"
     : linksToPublicRepo
       ? "Public repo available"
-      : "Captured case-study proof";
+      : "Case-study evidence";
   const reviewerPath = project.liveUrl
     ? "Open the demo first, then scan the proof points."
     : linksToPublicRepo
       ? "Open the repo, then compare the screenshot and project bullets."
-      : "Review the screenshot, proof points, and implementation notes.";
+      : "Scan the screenshot, proof points, and implementation notes.";
   const caseSnapshot = [
     { label: "Role signal", value: signal.label, detail: signal.detail },
     { label: "Proof status", value: publicProofLabel, detail: reviewerPath },
@@ -147,7 +147,7 @@ function ProjectDetail() {
                 {project.repositoryNote}
               </a>
             ) : (
-              <span className="button ghost static">{project.repositoryNote}</span>
+              <span className="case-status">{publicProofLabel}</span>
             )}
           </div>
         </div>
@@ -236,7 +236,7 @@ function ProjectDetail() {
 
       <section className="case-next-section" aria-label="Related project paths">
         <div>
-          <p className="eyebrow">Next path</p>
+          <p className="eyebrow">Related work</p>
           <h2>Compare this with related work.</h2>
         </div>
         <div className="case-next-links">
