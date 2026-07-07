@@ -693,6 +693,84 @@ h3 {
   font-weight: 700;
 }
 
+.screenshot-proof-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.screenshot-proof-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.14);
+}
+
+.screenshot-proof-tile {
+  position: relative;
+  display: grid;
+  min-height: 17rem;
+  align-content: end;
+  overflow: hidden;
+  background: #061014;
+  padding: 1rem;
+  color: var(--text);
+  isolation: isolate;
+}
+
+.screenshot-proof-tile:first-child {
+  grid-row: span 2;
+  min-height: 26rem;
+}
+
+.screenshot-proof-tile::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(3, 5, 11, 0.02) 10%, rgba(3, 5, 11, 0.86) 100%),
+    linear-gradient(90deg, rgba(3, 5, 11, 0.56), rgba(3, 5, 11, 0.1));
+  content: "";
+}
+
+.screenshot-proof-tile img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.screenshot-proof-tile:hover img {
+  filter: saturate(1.08) brightness(1.06);
+  transform: scale(1.025);
+}
+
+.screenshot-proof-tile span,
+.screenshot-proof-tile strong {
+  display: block;
+  position: relative;
+  max-width: 18rem;
+}
+
+.screenshot-proof-tile span {
+  margin-bottom: 0.35rem;
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.screenshot-proof-tile strong {
+  color: var(--text);
+  font-size: 1.12rem;
+  line-height: 1.18;
+}
+
 .destimmer-spotlight {
   position: relative;
   display: grid;
@@ -1597,6 +1675,63 @@ h3 {
 
 .case-snapshot p {
   margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+  padding: 4rem 0;
+}
+
+.case-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-gallery-item {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.045);
+}
+
+.case-gallery-item:first-child {
+  grid-column: 1 / -1;
+}
+
+.case-gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #071012;
+  object-fit: cover;
+}
+
+.case-gallery-item figcaption {
+  display: grid;
+  gap: 0.3rem;
+  border-top: 1px solid rgba(244, 240, 232, 0.12);
+  padding: 0.85rem 1rem 1rem;
+}
+
+.case-gallery-item strong,
+.case-gallery-item span {
+  display: block;
+}
+
+.case-gallery-item strong {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.case-gallery-item span {
   color: var(--muted);
   font-size: 0.92rem;
 }
@@ -3226,6 +3361,7 @@ h3 {
   .project-card.featured,
   .capability-grid,
   .evidence-section,
+  .case-gallery,
   .case-proof,
   .case-notes,
   .case-resume-section,
@@ -3263,7 +3399,9 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .screenshot-proof-grid,
   .case-snapshot,
+  .case-gallery-grid,
   .lane-proof-strip,
   .goals-metric-strip,
   .goals-preview-strip,
@@ -3303,6 +3441,11 @@ h3 {
 
   .project-card.featured {
     grid-column: auto;
+  }
+
+  .screenshot-proof-tile:first-child {
+    grid-row: auto;
+    min-height: 17rem;
   }
 
   .project-lens-buttons {
@@ -3637,8 +3780,10 @@ h3 {
   }
 
   .evidence-grid,
+  .screenshot-proof-grid,
   .about-lane-grid,
   .case-snapshot,
+  .case-gallery-grid,
   .lane-proof-strip,
   .lane-hero-media,
   .case-next-links,
@@ -3745,7 +3890,9 @@ h3 {
   .project-grid,
   .project-lens-section,
   .project-lens-controls,
+  .screenshot-proof-grid,
   .case-hero,
+  .case-gallery,
   .lane-hero,
   .lane-proof-strip,
   .lane-story-section,
@@ -3777,6 +3924,7 @@ h3 {
 
   .case-hero,
   .case-snapshot,
+  .case-gallery,
   .case-proof,
   .case-notes,
   .case-resume-section,
@@ -3788,7 +3936,9 @@ h3 {
     overflow: hidden;
   }
 
+  .screenshot-proof-grid,
   .case-snapshot,
+  .case-gallery-grid,
   .case-next-links {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -3846,6 +3996,10 @@ h3 {
   .case-media,
   .case-media figcaption,
   .case-snapshot article,
+  .case-gallery h2,
+  .case-gallery-item,
+  .case-gallery-item figcaption,
+  .screenshot-proof-tile,
   .case-body h2,
   .case-body li,
   .case-resume-section h2,

@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { capabilityGroups, experiences, featuredProjectIds, profile, projects } from "../data/portfolio";
+import {
+  capabilityGroups,
+  evidenceScreenshots,
+  experiences,
+  featuredProjectIds,
+  profile,
+  projects,
+} from "../data/portfolio";
 
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
 const heroVisualProjects = ["tidefront-terrain-studio", "tidefront-blender-workflow", "claude-citizen"]
@@ -71,6 +78,27 @@ function Home() {
             <span>{stat.label}</span>
           </div>
         ))}
+      </section>
+
+      <section className="section screenshot-proof-section">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Screenshot proof</p>
+            <h2>Recent captures from the tools and game work.</h2>
+          </div>
+          <Link className="text-link" to="/projects/tidefront-terrain-studio">
+            Lead case study
+          </Link>
+        </div>
+        <div className="screenshot-proof-grid">
+          {evidenceScreenshots.map((shot) => (
+            <Link key={`${shot.title}-${shot.image}`} className="screenshot-proof-tile" to={shot.to}>
+              <img src={shot.image} alt={shot.alt} />
+              <span>{shot.label}</span>
+              <strong>{shot.title}</strong>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="section selected-work-section">

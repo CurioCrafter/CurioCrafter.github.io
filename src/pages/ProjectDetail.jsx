@@ -94,6 +94,7 @@ function ProjectDetail() {
   }
 
   const heroImage = project.detailImage || project.image;
+  const gallery = project.gallery || [];
   const linksToPublicRepo = project.repository && !project.isPrivate;
   const signal = getCaseSignal(project);
   const relatedProjects = getRelatedProjects(project);
@@ -174,6 +175,26 @@ function ProjectDetail() {
           </article>
         ))}
       </section>
+
+      {gallery.length ? (
+        <section className="case-gallery" aria-label={`${project.name} screenshot gallery`}>
+          <div>
+            <p className="eyebrow">Screenshot proof</p>
+            <h2>Actual captures used for this case study.</h2>
+          </div>
+          <div className="case-gallery-grid">
+            {gallery.map((shot) => (
+              <figure key={`${project.id}-${shot.image}`} className="case-gallery-item">
+                <img src={shot.image} alt={shot.alt || `${project.name} ${shot.title} screenshot`} />
+                <figcaption>
+                  <strong>{shot.title}</strong>
+                  <span>{shot.caption}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="case-body">
         <div>

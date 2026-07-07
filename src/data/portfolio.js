@@ -64,6 +64,37 @@ export const featuredProjectIds = [
   "ocean-supremacy",
 ];
 
+export const evidenceScreenshots = [
+  {
+    title: "Tidefront Terrain Studio",
+    label: "Map authoring",
+    image: "images/tidefront-terrain-studio-architecture.png",
+    to: "/projects/tidefront-terrain-studio",
+    alt: "Tidefront Terrain Studio architecture stamp controls and ocean map preview",
+  },
+  {
+    title: "Blender bridge controls",
+    label: "Python tools",
+    image: "images/tidefront-blender-live.png",
+    to: "/projects/tidefront-blender-workflow",
+    alt: "Blender bridge panel for Tidefront terrain and asset workflow controls",
+  },
+  {
+    title: "Shared asset catalog",
+    label: "Pipeline proof",
+    image: "images/tidefront-asset-catalog.png",
+    to: "/projects/tidefront-blender-workflow",
+    alt: "Tidefront asset catalog screenshot showing runtime and Studio asset lists",
+  },
+  {
+    title: "Claude Citizen Solar Atlas",
+    label: "External contribution",
+    image: "images/claude-citizen-solar-atlas.png",
+    to: "/projects/claude-citizen",
+    alt: "Claude Citizen Solar Atlas browser game navigation screenshot",
+  },
+];
+
 export const projects = [
   {
     id: "tidefront-terrain-studio",
@@ -71,6 +102,26 @@ export const projects = [
     eyebrow: "Ocean map authoring workbench",
     image: "images/tidefront-terrain-studio-architecture.png",
     detailImage: "images/tidefront-terrain-studio-desktop.png",
+    gallery: [
+      {
+        title: "Architecture stamp controls",
+        caption: "Terrain Studio capture showing map-scale architecture handles and ocean bounds.",
+        image: "images/tidefront-terrain-studio-architecture.png",
+        alt: "Tidefront Terrain Studio architecture stamp controls and ocean map bounds",
+      },
+      {
+        title: "Terrain workbench",
+        caption: "Desktop capture of the sculpting and QA workspace used to frame the case study.",
+        image: "images/tidefront-terrain-studio-desktop.png",
+        alt: "Tidefront terrain workbench desktop screenshot with editor controls",
+      },
+      {
+        title: "Shared asset catalog",
+        caption: "Asset data surface tying runtime creatures, props, textures, and Studio review together.",
+        image: "images/tidefront-asset-catalog.png",
+        alt: "Tidefront shared asset catalog screenshot",
+      },
+    ],
     repository: "https://github.com/TideFrontStudio/tidefrontstudio",
     repositoryNote: "Public repo + local evidence",
     stack: ["TypeScript", "Three.js", "Terrain Studio", "Playwright", "Blender bridge"],
@@ -103,6 +154,26 @@ export const projects = [
     eyebrow: "Blender bridge and asset catalog tooling",
     image: "images/tidefront-blender-live.png",
     detailImage: "images/tidefront-asset-catalog.png",
+    gallery: [
+      {
+        title: "Blender bridge controls",
+        caption: "Live Blender-facing controls for bridge checks, terrain sync, markers, and scene reads.",
+        image: "images/tidefront-blender-live.png",
+        alt: "Tidefront Blender bridge workflow screenshot with Python tool controls",
+      },
+      {
+        title: "Runtime asset catalog",
+        caption: "Shared catalog capture used to explain how Studio and runtime asset lists stay reviewable.",
+        image: "images/tidefront-asset-catalog.png",
+        alt: "Tidefront runtime asset catalog screenshot",
+      },
+      {
+        title: "Studio handoff",
+        caption: "Terrain Studio capture showing the game-editor side of the Blender and asset pipeline.",
+        image: "images/tidefront-terrain-studio-desktop.png",
+        alt: "Tidefront Studio terrain handoff screenshot",
+      },
+    ],
     repository: "https://github.com/TideFrontStudio/tidefrontstudio",
     repositoryNote: "Public repo + local evidence",
     stack: ["Python", "Blender API", "TypeScript", "asset catalogs", "JSON export"],
@@ -135,6 +206,20 @@ export const projects = [
     eyebrow: "External game project contribution",
     image: "images/claude-citizen-solar-atlas.png",
     detailImage: "images/claude-citizen-solar-atlas-detail.png",
+    gallery: [
+      {
+        title: "Solar Atlas surface",
+        caption: "Local browser capture of the polished navigation surface tied to the upstream work.",
+        image: "images/claude-citizen-solar-atlas.png",
+        alt: "Claude Citizen Solar Atlas game UI screenshot",
+      },
+      {
+        title: "Navigation detail",
+        caption: "Detail capture focused on route clarity, UI treatment, and screenshot-ready presentation.",
+        image: "images/claude-citizen-solar-atlas-detail.png",
+        alt: "Claude Citizen Solar Atlas navigation detail screenshot",
+      },
+    ],
     repository: "https://github.com/huiung/claude-citizen",
     repositoryNote: "Upstream repo",
     stack: ["TypeScript", "Vite", "Three.js", "game UI", "Git collaboration"],
