@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 import { buildSprints, nextBuilds, projectBriefs, projects, supportOffers } from "../data/portfolio";
 
 const buildProjectLinks = {
-  "Creature Behavior Lab": "/projects/creature-behavior-lab",
-  "Blender Add-on Demo Reel": "/projects/blender-tools-pipeline",
+  "Tidefront Studio Case Study": "/projects/tidefront-terrain-studio",
+  "Blender Bridge Proof Reel": "/projects/tidefront-blender-workflow",
   "Ocean Drift Public Slice": "/projects/ocean-supremacy",
   "Tooling Case Study Pack": "/projects",
 };
 
 const buildImages = {
-  "Creature Behavior Lab": "images/creature-behavior-lab-live.png",
-  "Blender Add-on Demo Reel": "images/blender-tools-suite.png",
+  "Tidefront Studio Case Study": "images/tidefront-terrain-studio-architecture.png",
+  "Blender Bridge Proof Reel": "images/tidefront-blender-live.png",
   "Ocean Drift Public Slice": "images/ocean-drift-lobby.png",
   "Tooling Case Study Pack": "images/codexforworkflow-command-center.png",
 };
 
 const priorityBuild = nextBuilds[0];
-const relatedPreviewProjects = ["creature-behavior-lab", "blender-tools-pipeline", "ocean-supremacy"]
+const relatedPreviewProjects = ["tidefront-terrain-studio", "tidefront-blender-workflow", "claude-citizen"]
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
 

@@ -3,7 +3,7 @@ import ProjectCard from "../components/ProjectCard";
 import { capabilityGroups, experiences, featuredProjectIds, profile, projects } from "../data/portfolio";
 
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
-const heroVisualProjects = ["blender-tools-pipeline", "creature-behavior-lab", "destimmer"]
+const heroVisualProjects = ["tidefront-terrain-studio", "tidefront-blender-workflow", "claude-citizen"]
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
 const [primaryVisual, ...supportingVisuals] = heroVisualProjects;

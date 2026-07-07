@@ -57,39 +57,107 @@ export const profile = {
   ],
 };
 
-export const featuredProjectIds = ["creature-behavior-lab", "ocean-supremacy", "destimmer", "tacops"];
+export const featuredProjectIds = [
+  "tidefront-terrain-studio",
+  "tidefront-blender-workflow",
+  "claude-citizen",
+  "ocean-supremacy",
+];
 
 export const projects = [
   {
-    id: "creature-behavior-lab",
-    name: "Creature Behavior Lab",
-    eyebrow: "Playable AI behavior demo",
-    image: "images/creature-behavior-lab-live.png",
-    detailImage: "images/creature-behavior-lab-live.png",
-    liveUrl: "creature-lab/index.html",
-    repository: "",
-    repositoryNote: "Hosted static demo",
-    stack: ["JavaScript", "Canvas", "steering behaviors", "debug HUD", "GitHub Pages"],
-    proofPoints: ["Public playable demo", "Hunger/fear/target debug overlay", "Food and threat input controls"],
+    id: "tidefront-terrain-studio",
+    name: "Tidefront Terrain Studio",
+    eyebrow: "Ocean map authoring workbench",
+    image: "images/tidefront-terrain-studio-architecture.png",
+    detailImage: "images/tidefront-terrain-studio-desktop.png",
+    repository: "https://github.com/TideFrontStudio/tidefrontstudio",
+    repositoryNote: "Public repo + local evidence",
+    stack: ["TypeScript", "Three.js", "Terrain Studio", "Playwright", "Blender bridge"],
+    proofPoints: ["Terrain Studio authoring capture", "Architecture handles and map bounds", "QA/evidence workspace"],
     outcome:
-      "A compact browser simulation that makes creature steering, hunger, fear, target choice, flock spacing, and threat response readable in one public demo.",
+      "A dark technical map-authoring workbench for Ocean Drift/Tidefront terrain, with sculpting lanes, architecture stamps, terrain bounds, playtest handoff, and visible QA evidence.",
     bullets: [
-      "Separated simulation state from rendering so agents own behavior while Canvas handles only playfield drawing.",
-      "Added food placement, threat placement, calm/reset controls, speed tuning, trails, and a DOM debug HUD.",
-      "Built a GitHub Pages-compatible artifact that can be linked directly from the portfolio and resume page.",
+      "Built a Studio surface that lets terrain work stay visual: generate, sculpt, stamp architecture, frame bounds, export heightmaps/JSON, and jump into playtest preview.",
+      "Connected authoring controls to real terrain concepts such as reef canyons, lagoon shelves, kelp banks, reef crests, map bounds, surface detail, masks, and material states.",
+      "Captured QA and smoke evidence from the local Studio workflow so the case study shows working tools, not just concept screenshots.",
     ],
     implementationNotes: [
       {
-        title: "Simulation/render split",
-        body: "Agent hunger, fear, energy, steering, target choice, and scenario setup live in serializable state while Canvas handles only drawing and input coordinates.",
+        title: "Authoring lanes",
+        body: "The UI separates terrain, layout, assets, gameplay zones, export, QA, and playtest so map-building tasks are discoverable without burying the viewport.",
       },
       {
-        title: "Inspectable behaviors",
-        body: "Forage, threat, and cohesion presets make the same agent rules readable without requiring a reviewer to manually set up the field.",
+        title: "Map proof",
+        body: "Screenshots come from the local Tidefront/Ocean Drift Studio artifacts and show terrain architecture controls, generated maps, and QA surfaces.",
       },
       {
-        title: "Static deploy path",
-        body: "The demo ships as plain HTML, CSS, and JavaScript so it can run directly from GitHub Pages without a backend or build-time game server.",
+        title: "Recruiter signal",
+        body: "This is the strongest game-tools evidence because it combines 3D viewport work, editor UX, map data, and validation screenshots in one project.",
+      },
+    ],
+  },
+  {
+    id: "tidefront-blender-workflow",
+    name: "Tidefront Blender + Asset Workflow",
+    eyebrow: "Blender bridge and asset catalog tooling",
+    image: "images/tidefront-blender-live.png",
+    detailImage: "images/tidefront-asset-catalog.png",
+    repository: "https://github.com/TideFrontStudio/tidefrontstudio",
+    repositoryNote: "Public repo + local evidence",
+    stack: ["Python", "Blender API", "TypeScript", "asset catalogs", "JSON export"],
+    proofPoints: ["Blender bridge panel", "Shared asset catalog", "Studio asset QA captures"],
+    outcome:
+      "A production-tools slice around moving Tidefront terrain and asset data between Studio, runtime catalogs, Blender bridge workflows, and reviewable QA surfaces.",
+    bullets: [
+      "Worked on the toolchain around terrain sync, Blender scene reads, local bridge checks, project JSON, heightmap export, and runtime asset catalog handoff.",
+      "Built recruiter-readable proof around actual workflow surfaces: shared asset catalog, Studio QA lane, terrain workspace, and Blender bridge controls.",
+      "Framed Blender work as production support for a game pipeline instead of a loose set of unfinished add-on experiments.",
+    ],
+    implementationNotes: [
+      {
+        title: "Asset workflow",
+        body: "The shared catalog screenshot shows runtime and Studio reading the same creature, prop, texture, ability, and food asset lists.",
+      },
+      {
+        title: "Blender bridge",
+        body: "The bridge panel keeps Blender-facing actions explicit: check the local bridge, sync terrain, add markers, and read scene state.",
+      },
+      {
+        title: "Scope boundary",
+        body: "The case study focuses on verified local workflow evidence rather than claiming a fully packaged public Blender add-on release.",
+      },
+    ],
+  },
+  {
+    id: "claude-citizen",
+    name: "Claude Citizen Solar Atlas Contribution",
+    eyebrow: "External game project contribution",
+    image: "images/claude-citizen-solar-atlas.png",
+    detailImage: "images/claude-citizen-solar-atlas-detail.png",
+    repository: "https://github.com/huiung/claude-citizen",
+    repositoryNote: "Upstream repo",
+    stack: ["TypeScript", "Vite", "Three.js", "game UI", "Git collaboration"],
+    proofPoints: ["Upstream PR #10 merge", "Solar Atlas navigation polish", "Local browser capture"],
+    outcome:
+      "A contribution to another developer's browser space game focused on Solar Atlas navigation polish, pointer-lock safety, orbit selection clarity, and screenshot-ready visual presentation.",
+    bullets: [
+      "Verified the upstream history contains a merge from CurioCrafter's solar-atlas navigation polish branch, with authored commits present on the remote history.",
+      "Worked inside an existing codebase instead of a solo repo, keeping interaction changes aligned with the project's flight, atlas, and navigation surfaces.",
+      "Captured polished Solar Atlas screenshots from the local checkout so the contribution reads as external collaboration plus concrete visual proof.",
+    ],
+    implementationNotes: [
+      {
+        title: "Collaboration proof",
+        body: "The public upstream repo contains a merged pull request from the CurioCrafter branch; the local checkout also includes branch and artifact history.",
+      },
+      {
+        title: "Interaction focus",
+        body: "The contribution centers on navigation feel and pointer-lock safety, which are small but important details in a browser game.",
+      },
+      {
+        title: "Visual proof",
+        body: "The selected screenshot avoids unfinished branch UI and shows the polished Solar Atlas surface tied to the pushed contribution.",
       },
     ],
   },
@@ -219,39 +287,21 @@ export const projects = [
     ],
   },
   {
-    id: "curiomesh",
-    name: "CurioMesh",
-    eyebrow: "Blender quad remeshing add-on",
-    image: "images/curiomesh-remesh-output.png",
-    detailImage: "images/blender-tools-suite.png",
-    repository: "https://github.com/CurioCrafter/CurioMesh",
-    repositoryNote: "Public repo",
-    stack: ["Python", "Blender API", "mesh processing", "technical art tools"],
-    proofPoints: ["Blender matrix artifacts", "Before/after renders", "QuadriFlow + TRIAD-Q Lite"],
-    outcome:
-      "A Blender add-on for automatic quad remeshing and retopology workflows with practical artist-facing controls.",
-    bullets: [
-      "Built tooling around mesh cleanup, UV/material preservation, projection, quality presets, and remeshing metrics.",
-      "Designed controls for artists instead of only exposing raw implementation knobs.",
-      "Demonstrates Python tool development, Blender scripting, and technical art pipeline thinking.",
-    ],
-  },
-  {
     id: "blender-tools-pipeline",
     name: "Blender Tools Pipeline",
-    eyebrow: "Add-on suite and validation workflow",
-    image: "images/blender-tools-suite.png",
-    mediaFit: "contain",
+    eyebrow: "Production-tools case study",
+    image: "images/tidefront-asset-catalog.png",
+    detailImage: "images/tidefront-blender-live.png",
     repository: "",
-    repositoryNote: "Pipeline proof sheet",
-    stack: ["Python", "Blender API", "visual QA", "rigging", "boolean tooling"],
-    proofPoints: ["TerrainForge + Laser Saw inspected", "5 Blender add-on workstreams", "Visual QA artifacts"],
+    repositoryNote: "Pipeline case study",
+    stack: ["Python", "Blender API", "asset catalogs", "visual QA", "export tooling"],
+    proofPoints: ["Tidefront bridge workflow", "TerrainForge + Laser Saw workstreams", "Asset catalog QA"],
     outcome:
-      "A broader Blender tooling suite covering terrain generation, mesh cutting, remeshing, character generation, rig setup, hard-surface cutters, and an in-Blender AI command surface.",
+      "A focused tools-pipeline story around Blender-facing workflows, terrain/asset handoff, mesh operations, export validation, and reviewer-readable QA artifacts.",
     bullets: [
-      "Inspected TerrainForge, Laser Saw, CurioMesh, Armaturizer, Extractionator, GenerateHuman, and Codex Blender Agent project folders and READMEs.",
-      "GenerateHuman includes deterministic character generation, visual QA galleries, engine export presets, and GLB/reimport checks.",
-      "TerrainForge, Laser Saw, Extractionator, and Armaturizer add production-minded workflows for tiled terrain, through-view cuts, hard-surface boolean sets, guided rigs, weights, and export.",
+      "Pulled the Blender/tooling story toward finished production evidence: Tidefront bridge controls, shared asset catalogs, QA lanes, terrain export, and map-authoring screenshots.",
+      "Kept the strongest add-on workstreams visible while removing underdeveloped character/remesh proof from the recruiter path.",
+      "Framed the tools as a pipeline: build or inspect assets, validate them visually, export useful data, and keep the game/editor workflow connected.",
     ],
   },
   {
@@ -423,6 +473,21 @@ export const projects = [
 
 export const blenderToolchain = [
   {
+    name: "Tidefront Studio",
+    role: "Terrain and map authoring",
+    proof: "Architecture stamps, terrain bounds, exported project data, QA lane, and playtest handoff captures.",
+  },
+  {
+    name: "Blender Bridge",
+    role: "Studio-to-Blender workflow",
+    proof: "Local bridge checks, terrain sync controls, scene-read actions, and screenshot evidence from the workbench.",
+  },
+  {
+    name: "Shared Asset Catalog",
+    role: "Runtime and Studio asset source",
+    proof: "One catalog path for creatures, props, textures, abilities, food, thumbnails, and manual placement data.",
+  },
+  {
     name: "TerrainForge",
     role: "Tiled terrain generation and baking",
     proof: "Preview meshes, segmented worlds, export seam checks, professional bake, and campaign artifacts.",
@@ -431,16 +496,6 @@ export const blenderToolchain = [
     name: "Laser Saw",
     role: "Through-view mesh cutting",
     proof: "Mesh Edit and Sculpt Mode support, separate-object splits, open bisect, kerf width, and Blender smoke tests.",
-  },
-  {
-    name: "CurioMesh",
-    role: "Quad remeshing and retopology",
-    proof: "Matrix runner captures before/after PNGs, metrics, and summary reports.",
-  },
-  {
-    name: "GenerateHuman",
-    role: "Deterministic character generator",
-    proof: "Visual QA gallery, LOD checks, GLB/FBX export presets, and custom metadata export.",
   },
   {
     name: "Armaturizer",
@@ -505,11 +560,11 @@ export const resumeSignals = [
   },
   {
     label: "Lead proof",
-    value: "Ocean Drift, Destimmer, TacOps, Blender Tools Pipeline",
+    value: "Tidefront Terrain Studio, Blender workflow, Claude Citizen, Ocean Drift",
   },
   {
     label: "Strongest angle",
-    value: "Playable prototypes plus practical tools that remove production friction",
+    value: "Game tools, Blender bridge workflows, and external contribution proof",
   },
   {
     label: "Portfolio surface",
@@ -519,38 +574,38 @@ export const resumeSignals = [
 
 export const resumeProofStack = [
   {
-    lane: "Playable first",
-    title: "Lead with demos a reviewer can touch.",
+    lane: "Studio first",
+    title: "Lead with the most complete tool surface.",
     summary:
-      "Creature Behavior Lab and Destimmer prove interactive systems immediately: Canvas behavior, WebGL visuals, controls, presets, and live GitHub Pages delivery.",
+      "Tidefront Terrain Studio and Ocean Drift show map authoring, terrain controls, playtest handoff, runtime captures, and QA evidence in one coherent game-tools story.",
     resumeLine:
-      "Game/tools developer building playable browser demos, simulation systems, WebGL experiences, and verified portfolio artifacts.",
+      "Game/tools developer building terrain authoring workbenches, 3D runtime prototypes, QA evidence surfaces, and playable browser systems.",
     links: [
-      { label: "Creature Lab", to: "/projects/creature-behavior-lab" },
-      { label: "Destimmer", to: "/projects/destimmer" },
+      { label: "Tidefront Studio", to: "/projects/tidefront-terrain-studio" },
+      { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
     ],
   },
   {
     lane: "Game systems",
     title: "Use deeper game systems as case-study proof.",
     summary:
-      "Ocean Drift, TacOps, Linear Drive, and Ant Colony show HUD work, camera feel, AI/simulation rules, multiplayer planning, and gameplay loops.",
+      "Ocean Drift, TacOps, Claude Citizen, Linear Drive, and Ant Colony show HUD work, camera feel, interaction polish, multiplayer planning, and gameplay loops.",
     resumeLine:
-      "Prototype movement, HUDs, lobbies, bot modes, survival pressure, and simulation loops across browser and native game projects.",
+      "Prototype movement, HUDs, lobbies, bot modes, navigation polish, survival pressure, and simulation loops across browser and native game projects.",
     links: [
-      { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
+      { label: "Claude Citizen", to: "/projects/claude-citizen" },
       { label: "TacOps", to: "/projects/tacops" },
     ],
   },
   {
     lane: "Blender tools",
-    title: "Turn the add-on suite into a production-tools story.",
+    title: "Turn Blender work into a production-tools story.",
     summary:
-      "TerrainForge, Laser Saw, CurioMesh, GenerateHuman, and related tools are strongest when framed as artist-facing pipeline improvements with visual QA.",
+      "Tidefront Blender workflow, TerrainForge, Laser Saw, and the shared asset catalog are strongest when framed as artist-facing pipeline improvements with visual QA.",
     resumeLine:
-      "Build Blender Python add-ons for terrain generation, mesh cutting, remeshing, rig/export workflows, and validation artifacts.",
+      "Build Blender Python and game-editor workflows for terrain generation, mesh operations, asset catalogs, export handoff, and validation artifacts.",
     links: [
-      { label: "Blender pipeline", to: "/projects/blender-tools-pipeline" },
+      { label: "Blender workflow", to: "/projects/tidefront-blender-workflow" },
       { label: "TerrainForge", to: "/projects/terrainforge" },
     ],
   },
@@ -572,17 +627,17 @@ export const roleFit = [
   {
     role: "Junior Gameplay Developer",
     pitch: "Prototype loops, HUDs, camera feel, simulation rules, and browser-playable vertical slices.",
-    proof: ["Ocean Drift", "TacOps", "Linear Drive", "Ant Colony Simulator"],
+    proof: ["Tidefront Terrain Studio", "Ocean Drift", "TacOps", "Claude Citizen"],
   },
   {
     role: "Python / Blender Tools Developer",
     pitch: "Build artist-facing add-ons, validation scripts, export flows, and visual QA artifacts.",
-    proof: ["TerrainForge", "CurioMesh", "Laser Saw", "GenerateHuman"],
+    proof: ["Tidefront Blender Workflow", "TerrainForge", "Laser Saw", "Asset Catalog"],
   },
   {
     role: "Technical Artist Assistant",
     pitch: "Bridge visual goals and engineering constraints across meshes, terrain, materials, and 3D UI.",
-    proof: ["Blender Tools Pipeline", "Codex 3D Studio", "Procedural Ocean"],
+    proof: ["Tidefront Blender Workflow", "Blender Tools Pipeline", "Codex 3D Studio"],
   },
   {
     role: "Creative Technologist",
@@ -594,33 +649,33 @@ export const roleFit = [
 export const applicationPackets = [
   {
     role: "Junior Gameplay Developer",
-    headline: "Lead with playable systems and readable behavior.",
-    fit: "Best for teams that need someone who can prototype controls, HUDs, simulation rules, and small public game loops.",
+    headline: "Lead with game systems and authoring tools.",
+    fit: "Best for teams that need someone who can prototype controls, HUDs, map tools, interaction polish, and small public game loops.",
     inspect: [
-      { label: "Creature Behavior Lab", to: "/projects/creature-behavior-lab" },
+      { label: "Tidefront Studio", to: "/projects/tidefront-terrain-studio" },
       { label: "Ocean Drift", to: "/projects/ocean-supremacy" },
-      { label: "TacOps", to: "/projects/tacops" },
+      { label: "Claude Citizen", to: "/projects/claude-citizen" },
     ],
     bullets: [
-      "Built public browser demos with live input, debug state, and reviewer-visible behavior rules.",
-      "Prototype movement, lobbies, HUDs, abilities, bot modes, and survival loops across browser and native game projects.",
-      "Use screenshots, smoke checks, and public pages to prove the work instead of only describing it.",
+      "Built terrain authoring, runtime, HUD, and playtest surfaces with screenshots and QA evidence a reviewer can inspect.",
+      "Prototype movement, lobbies, HUDs, abilities, bot modes, navigation polish, and survival loops across browser and native game projects.",
+      "Use screenshots, smoke checks, public repos, and public pages to prove the work instead of only describing it.",
     ],
-    ask: "Ask me to walk through one playable loop from input, to state, to rendered feedback.",
+    ask: "Ask me to walk through one terrain or gameplay loop from input, to state, to rendered feedback.",
   },
   {
     role: "Python / Blender Tools Developer",
     headline: "Lead with artist-facing tooling and validation artifacts.",
     fit: "Best for pipeline, technical art support, or tools teams that need Blender add-ons with practical controls and QA proof.",
     inspect: [
+      { label: "Blender Workflow", to: "/projects/tidefront-blender-workflow" },
       { label: "Blender Pipeline", to: "/projects/blender-tools-pipeline" },
       { label: "TerrainForge", to: "/projects/terrainforge" },
-      { label: "CurioMesh", to: "/projects/curiomesh" },
     ],
     bullets: [
-      "Build Blender Python tools for terrain generation, mesh cutting, remeshing, rig/export workflows, and visual QA.",
-      "Frame add-ons around artist outcomes: before/action/after, export paths, metrics, and repeatable validation.",
-      "Keep the next proof target concrete: a 60-90 second add-on reel plus one visual proof sheet.",
+      "Build Blender Python and game-editor tools for terrain generation, mesh cutting, asset catalogs, bridge checks, export paths, and visual QA.",
+      "Frame tools around artist outcomes: before/action/after, useful data handoff, screenshots, and repeatable validation.",
+      "Keep proof concrete: a focused bridge/catalog workflow, TerrainForge evidence, and one visual capture per tool.",
     ],
     ask: "Ask me to explain how I would turn one repeated Blender task into a safe add-on workflow.",
   },
@@ -660,34 +715,34 @@ export const applicationPackets = [
 
 export const nextBuilds = [
   {
-    name: "Creature Behavior Lab",
-    priority: "Shipped / keep polishing",
-    timeframe: "Next: capture and postmortem",
-    deliverable: "Scenario clip, behavior write-up, one new behavior layer",
-    goal: "Turn the live preset-based demo into a tighter case study with short clips, a postmortem, and one extra readable behavior mechanic.",
-    why: "It is now the fastest public proof of gameplay systems thinking, so the next value is making its design decisions easy to inspect.",
-    stack: "JavaScript, Canvas, deterministic simulation",
+    name: "Tidefront Studio Case Study",
+    priority: "Best current proof",
+    timeframe: "Next: tighten captures",
+    deliverable: "Terrain Studio case study, QA screenshot set, short walkthrough",
+    goal: "Turn the Tidefront map-authoring workbench into the first proof path for recruiters.",
+    why: "It combines game development, editor UX, Blender-adjacent tooling, terrain systems, and verification evidence in one polished lane.",
+    stack: "TypeScript, Three.js, Terrain Studio, Playwright",
     firstSteps: [
-      "Record a 20-second clip cycling Forage, Threat, and Cohesion presets.",
-      "Add a postmortem block explaining how the scenarios expose the same agent rules.",
-      "Prototype one new behavior layer such as curiosity, memory, or pack leadership.",
+      "Capture the terrain, QA, assets, and playtest workspaces at consistent sizes.",
+      "Write the case study around problem, workflow, implementation, and verification.",
+      "Add one short clip showing terrain authoring into playtest handoff.",
     ],
-    milestones: ["Scenario clip", "Short postmortem", "One new readable behavior"],
+    milestones: ["Screenshot set", "Case study copy", "Short walkthrough"],
   },
   {
-    name: "Blender Add-on Demo Reel",
+    name: "Blender Bridge Proof Reel",
     priority: "Best resume signal",
     timeframe: "1 capture day",
-    deliverable: "60-90 second reel plus portfolio proof sheet",
-    goal: "Record a 60-90 second reel showing TerrainForge, Laser Saw, CurioMesh, and GenerateHuman workflows.",
-    why: "The Blender work is strong, but employers need to understand the value in under a minute.",
-    stack: "Blender 4.5, Python add-ons, OBS/capture workflow",
+    deliverable: "60-90 second bridge/catalog reel plus proof sheet",
+    goal: "Record a concise reel around the Tidefront Blender bridge, shared asset catalog, TerrainForge, and Laser Saw workflows.",
+    why: "The Blender work is strongest when it is presented as production support for a game pipeline.",
+    stack: "Blender 4.5, Python, TypeScript, asset catalogs",
     firstSteps: [
-      "Pick one visible win per add-on.",
+      "Pick one visible win for Blender bridge, asset catalog, TerrainForge, and Laser Saw.",
       "Capture before, action, after, and export/result screens.",
       "Cut the reel around outcomes instead of feature lists.",
     ],
-    milestones: ["Before/after clips", "Packaged add-on links", "Proof sheet on the portfolio"],
+    milestones: ["Bridge clip", "Catalog proof", "Proof sheet on the portfolio"],
   },
   {
     name: "Ocean Drift Public Slice",
@@ -723,29 +778,29 @@ export const nextBuilds = [
 
 export const projectBriefs = [
   {
-    title: "Creature Memory Expansion",
-    lane: "Game AI",
+    title: "Tidefront Terrain Studio Walkthrough",
+    lane: "Game tools",
     recommendation: "Build first",
     pitch:
-      "Add one behavior layer to Creature Behavior Lab so agents remember danger, favor recent food zones, and make the debug HUD more impressive.",
+      "Turn the current Terrain Studio screenshots into a short walkthrough that shows generate, stamp, bounds, QA, export, and playtest handoff.",
     why:
-      "It is the fastest way to turn an already-public demo into stronger gameplay AI proof without needing a backend or large art pass.",
-    deliverable: "Playable update, behavior postmortem, 20-second capture",
+      "It is the most recruiter-ready proof because it connects game development, editor UX, terrain systems, and validation.",
+    deliverable: "Short walkthrough, screenshot set, role-focused case study",
     scope: [
-      "Memory heat around recent food and threat locations",
-      "One scenario preset that shows memory changing agent choices",
-      "HUD rows for remembered food, remembered danger, and current steering reason",
+      "One clean authoring path from terrain preset to generated map",
+      "One export/QA path with evidence screenshots",
+      "One playtest handoff capture that shows the authored terrain in context",
     ],
     acceptance: [
-      "Reviewer can place food/threats and see agents react differently after memory changes",
-      "Case study includes one before/after screenshot and one short behavior explanation",
-      "Static GitHub Pages build still runs with no backend",
+      "Reviewer can understand the tool without knowing the codebase",
+      "Case study explains what changed, why it matters, and how it was verified",
+      "Portfolio links directly to the Terrain Studio and Blender workflow pages",
     ],
     codexHelp:
-      "I can implement the behavior layer, add debug labels, run browser screenshots, and update the case study copy.",
+      "I can run the local Studio, capture fresh proof, write the case study, and keep the resume/web/PDF story aligned.",
     links: [
-      { label: "Live demo", to: "/projects/creature-behavior-lab" },
-      { label: "Games lane", to: "/games" },
+      { label: "Tidefront Studio", to: "/projects/tidefront-terrain-studio" },
+      { label: "Tools lane", to: "/software" },
     ],
   },
   {
@@ -775,16 +830,16 @@ export const projectBriefs = [
     ],
   },
   {
-    title: "Blender Add-on Proof Reel",
+    title: "Blender Bridge Proof Reel",
     lane: "Tools proof",
     recommendation: "Best tools-role lift",
     pitch:
-      "Record a short reel that shows one before/action/after win each for TerrainForge, Laser Saw, CurioMesh, and GenerateHuman.",
+      "Record a short reel that shows one before/action/after win each for Blender bridge, asset catalog, TerrainForge, and Laser Saw.",
     why:
       "The Blender tooling is deep, but hiring reviewers need to understand the value in under a minute.",
     deliverable: "60-90 second reel, proof sheet, tighter resume bullets",
     scope: [
-      "One visible win per add-on",
+      "One visible win per bridge/catalog/tool workflow",
       "A four-panel proof sheet for the portfolio",
       "Resume bullets rewritten around artist-facing outcomes",
     ],
@@ -842,7 +897,7 @@ export const buildSprints = [
     cadence: "1 capture day",
     focus: "Record one before/action/after clip per add-on so the Blender tooling work becomes obvious in under a minute.",
     outputs: ["60-90 second reel", "Tool proof sheet", "Portfolio reel section"],
-    nextAction: "Capture TerrainForge, Laser Saw, CurioMesh, and GenerateHuman with one visible win each.",
+    nextAction: "Capture Blender bridge, asset catalog, TerrainForge, and Laser Saw with one visible win each.",
   },
   {
     title: "Public game slice sprint",
@@ -856,7 +911,7 @@ export const buildSprints = [
     cadence: "One afternoon per project",
     focus: "Upgrade the best existing projects from inventory entries into proof-led case studies with screenshots, constraints, and outcomes.",
     outputs: ["Problem/scope/result copy", "Updated screenshots", "Verification notes"],
-    nextAction: "Start with Creature Lab, Blender Tools Pipeline, and Ocean Drift.",
+    nextAction: "Start with Tidefront Studio, Blender Workflow, Claude Citizen, and Ocean Drift.",
   },
 ];
 

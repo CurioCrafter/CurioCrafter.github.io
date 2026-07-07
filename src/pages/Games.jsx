@@ -3,8 +3,9 @@ import ProjectCard from "../components/ProjectCard";
 import { projects } from "../data/portfolio";
 
 const gameProjectIds = [
-  "creature-behavior-lab",
+  "tidefront-terrain-studio",
   "ocean-supremacy",
+  "claude-citizen",
   "tacops",
   "linear-drive",
   "procedural-ocean",
@@ -18,7 +19,7 @@ const gameSignals = [
   {
     label: "Playable proof",
     value: `${publicGameProjects.length} live demos`,
-    detail: "Public browser demos reviewers can open without a private server.",
+    detail: "Live demos plus captured runtime/workbench evidence reviewers can inspect quickly.",
   },
   {
     label: "Systems range",
@@ -27,8 +28,8 @@ const gameSignals = [
   },
   {
     label: "Best public start",
-    value: "Creature Lab",
-    detail: "A small readable AI behavior demo tied directly to the portfolio and resume.",
+    value: "Tidefront Studio",
+    detail: "The strongest finished surface for game tools, terrain authoring, QA, and playtest handoff.",
   },
   {
     label: "Core lane",
@@ -39,14 +40,14 @@ const gameSignals = [
 
 const gameLanes = [
   {
-    title: "Playable browser systems",
-    summary: "Lead with demos that make controls, simulation rules, and debug state visible immediately.",
-    proof: ["Creature Behavior Lab", "Ant Colony Simulator"],
+    title: "Game tools and authoring systems",
+    summary: "Lead with tools that make terrain, runtime state, QA evidence, and playtest handoff visible immediately.",
+    proof: ["Tidefront Terrain Studio", "Ocean Drift"],
   },
   {
     title: "3D multiplayer-ready prototypes",
     summary: "Show rendering awareness, camera/HUD work, room flow, and authoritative-server planning.",
-    proof: ["Ocean Drift", "TacOps", "Procedural Ocean"],
+    proof: ["Ocean Drift", "TacOps", "Claude Citizen"],
   },
   {
     title: "Native and simulation depth",
@@ -67,8 +68,8 @@ function Games() {
             controls, HUDs, AI/simulation rules, rendering, multiplayer flow, and native game loops.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/creature-behavior-lab">
-              Start with live demo
+            <Link className="button primary" to="/projects/tidefront-terrain-studio">
+              Start with Terrain Studio
             </Link>
             <Link className="button secondary" to="/resume">
               Resume proof

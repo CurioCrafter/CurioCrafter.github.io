@@ -5,17 +5,18 @@ import { projects } from "../data/portfolio";
 const recruiterProjects = projects.filter((project) => !project.isArchived);
 
 const priorityProjectIds = new Set([
-  "creature-behavior-lab",
+  "tidefront-terrain-studio",
+  "tidefront-blender-workflow",
+  "claude-citizen",
   "ocean-supremacy",
-  "destimmer",
-  "tacops",
   "blender-tools-pipeline",
-  "terrainforge",
+  "tacops",
 ]);
 
 const gameProjectIds = new Set([
-  "creature-behavior-lab",
+  "tidefront-terrain-studio",
   "ocean-supremacy",
+  "claude-citizen",
   "tacops",
   "linear-drive",
   "procedural-ocean",
@@ -25,11 +26,12 @@ const gameProjectIds = new Set([
 ]);
 
 const toolProjectIds = new Set([
+  "tidefront-blender-workflow",
+  "tidefront-terrain-studio",
   "destimmer",
   "codex-3d-studio",
   "rts-builder",
   "ocean-drift-level-builder",
-  "curiomesh",
   "blender-tools-pipeline",
   "terrainforge",
   "song-deconstructor",

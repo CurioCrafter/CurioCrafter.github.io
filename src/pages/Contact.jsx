@@ -13,12 +13,12 @@ const contactFocus = [
   {
     title: "Junior game and tools roles",
     fit: "Gameplay prototypes, browser demos, HUD/UI, Python/Blender tooling, technical art support.",
-    proof: ["Creature Lab", "Ocean Drift", "Blender Tools Pipeline"],
+    proof: ["Tidefront Studio", "Ocean Drift", "Claude Citizen"],
   },
   {
     title: "Technical art and tooling",
     fit: "Blender add-ons, visual QA artifacts, asset workflows, Python scripting, and editor surfaces.",
-    proof: ["TerrainForge", "CurioMesh", "Blender Tools Pipeline"],
+    proof: ["Blender Workflow", "TerrainForge", "Asset Catalog"],
   },
   {
     title: "Creative technology work",

@@ -2,8 +2,9 @@ import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/portfolio";
 
 const gameProjectIds = new Set([
-  "creature-behavior-lab",
+  "tidefront-terrain-studio",
   "ocean-supremacy",
+  "claude-citizen",
   "tacops",
   "linear-drive",
   "procedural-ocean",
@@ -13,7 +14,7 @@ const gameProjectIds = new Set([
 ]);
 
 const blenderProjectIds = new Set([
-  "curiomesh",
+  "tidefront-blender-workflow",
   "blender-tools-pipeline",
   "terrainforge",
   "blender-alignment-suite",

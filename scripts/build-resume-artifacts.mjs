@@ -22,8 +22,9 @@ const publicResumePdfPath = join(publicDir, profile.resume);
 const portfolioUrl = "https://curiocrafter.github.io";
 
 const featuredIds = [
-  "creature-behavior-lab",
-  "destimmer",
+  "tidefront-terrain-studio",
+  "tidefront-blender-workflow",
+  "claude-citizen",
   "ocean-supremacy",
   "tacops",
   "blender-tools-pipeline",

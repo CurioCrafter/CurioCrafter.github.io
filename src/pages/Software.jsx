@@ -3,14 +3,15 @@ import ProjectCard from "../components/ProjectCard";
 import { blenderToolchain, projects } from "../data/portfolio";
 
 const toolProjectIds = [
-  "destimmer",
+  "tidefront-blender-workflow",
+  "tidefront-terrain-studio",
+  "blender-tools-pipeline",
+  "terrainforge",
   "codex-3d-studio",
   "rts-builder",
-  "song-deconstructor",
-  "terrainforge",
-  "blender-tools-pipeline",
   "ocean-drift-level-builder",
-  "curiomesh",
+  "song-deconstructor",
+  "destimmer",
   "codexforworkflow",
   "disk-space-inspector",
 ];
@@ -32,7 +33,7 @@ const toolSignals = [
   {
     label: "Public demos",
     value: `${liveToolProjects.length}`,
-    detail: "Destimmer and Creature Lab prove browser-delivered interactive systems.",
+    detail: "Destimmer and SongDeconstructor prove browser-delivered interactive tools.",
   },
   {
     label: "Core lane",
@@ -45,7 +46,7 @@ const workflowLanes = [
   {
     title: "Artist-facing Blender tools",
     summary: "Turn repetitive content-production steps into add-ons with controls, QA artifacts, and export paths.",
-    proof: ["TerrainForge", "CurioMesh", "Blender Tools Pipeline"],
+    proof: ["Tidefront Blender Workflow", "TerrainForge", "Blender Tools Pipeline"],
   },
   {
     title: "Editors and production utilities",
@@ -71,8 +72,8 @@ function Software() {
             local-first utilities, creative coding, and safety-conscious automation roles.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/blender-tools-pipeline">
-              Blender pipeline proof
+            <Link className="button primary" to="/projects/tidefront-blender-workflow">
+              Blender workflow proof
             </Link>
             <Link className="button secondary" to="/resume">
               Resume proof
@@ -137,13 +138,12 @@ function Software() {
           <p className="eyebrow">Blender add-on workbench</p>
           <h2>More than one add-on: a small pipeline of artist tools.</h2>
           <p>
-            I inspected the Blender project folders and pulled the strongest evidence into the
-            portfolio: TerrainForge terrain export workflows, Laser Saw mesh cutting, remesh
-            matrix artifacts, character-generation QA, rigging workflows, hard-surface boolean
-            systems, and an in-Blender AI command surface.
+            The strongest tools story is now the Tidefront production workflow: Blender bridge
+            controls, terrain sync, shared asset catalogs, QA evidence, TerrainForge terrain
+            exports, Laser Saw mesh operations, and reusable game/editor handoff data.
           </p>
         </div>
-        <img src="images/blender-tools-suite.png" alt="Blender tools pipeline proof sheet" />
+        <img src="images/tidefront-asset-catalog.png" alt="Tidefront shared asset catalog proof" />
       </section>
 
       <section className="toolchain-strip" aria-label="Blender toolchain projects">
