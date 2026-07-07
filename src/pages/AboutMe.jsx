@@ -16,7 +16,7 @@ const workingPrinciples = [
   },
   {
     title: "Keep learning visible",
-    body: "Skill gaps turn into scoped sprints, demo captures, short postmortems, and resume-ready proof instead of vague plans.",
+    body: "Skill gaps turn into scoped prototypes, demo captures, short postmortems, and visible proof instead of vague plans.",
   },
 ];
 
@@ -52,16 +52,16 @@ function AboutMe() {
           <h1>I build playable systems and practical creative tools.</h1>
           <p>
             {profile.summary} The through-line is visible proof: playable browser demos,
-            Blender workflow tools, captured project evidence, and a resume page that points
-            back to real work.
+            Blender workflow tools, captured project evidence, and a downloadable resume
+            grounded in real work.
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/projects">
               View projects
             </Link>
-            <Link className="button secondary" to="/resume">
-              Resume proof
-            </Link>
+            <a className="button secondary" href={profile.resume}>
+              Download resume
+            </a>
             <Link className="button ghost" to="/contact">
               Contact
             </Link>
@@ -139,9 +139,9 @@ function AboutMe() {
             <p className="eyebrow">Proof lanes</p>
             <h2>The portfolio is organized around role signals.</h2>
           </div>
-          <Link className="text-link" to="/resume">
-            Full resume page
-          </Link>
+          <a className="text-link" href={profile.resume}>
+            Download resume
+          </a>
         </div>
         <div className="about-lane-grid">
           {resumeProofStack.map((lane) => (

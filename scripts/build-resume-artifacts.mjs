@@ -416,7 +416,7 @@ const html = `<!doctype html>
         </div>
 
         <aside>
-          <h2>Resume Proof Lines</h2>
+          <h2>Project Evidence Lines</h2>
           <div class="proof-list">
             ${resumeProofStack
               .map(

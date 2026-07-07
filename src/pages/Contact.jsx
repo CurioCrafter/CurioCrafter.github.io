@@ -45,9 +45,9 @@ function Contact() {
             <Link className="button secondary" to="/projects">
               Review proof
             </Link>
-            <Link className="button ghost" to="/resume">
-              Resume path
-            </Link>
+            <a className="button ghost" href={profile.resume}>
+              Download resume
+            </a>
           </div>
         </div>
         <aside className="contact-availability" aria-label="Availability summary">

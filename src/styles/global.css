@@ -723,6 +723,10 @@ h3 {
   min-height: 26rem;
 }
 
+.screenshot-proof-tile:nth-child(4) {
+  grid-column: span 2;
+}
+
 .screenshot-proof-tile::after {
   position: absolute;
   inset: 0;
@@ -3446,6 +3450,10 @@ h3 {
   .screenshot-proof-tile:first-child {
     grid-row: auto;
     min-height: 17rem;
+  }
+
+  .screenshot-proof-tile:nth-child(4) {
+    grid-column: auto;
   }
 
   .project-lens-buttons {

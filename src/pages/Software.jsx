@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { blenderToolchain, projects } from "../data/portfolio";
+import { blenderToolchain, profile, projects } from "../data/portfolio";
 
 const toolProjectIds = [
   "tidefront-blender-workflow",
@@ -75,9 +75,9 @@ function Software() {
             <Link className="button primary" to="/projects/tidefront-blender-workflow">
               Blender workflow proof
             </Link>
-            <Link className="button secondary" to="/resume">
-              Resume proof
-            </Link>
+            <a className="button secondary" href={profile.resume}>
+              Download resume
+            </a>
           </div>
         </div>
         <div className="lane-hero-media" aria-label="Featured tool project screenshots">

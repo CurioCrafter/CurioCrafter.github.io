@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
-import { projects } from "../data/portfolio";
+import { profile, projects } from "../data/portfolio";
 
 const gameProjectIds = [
   "tidefront-terrain-studio",
@@ -71,9 +71,9 @@ function Games() {
             <Link className="button primary" to="/projects/tidefront-terrain-studio">
               Start with Terrain Studio
             </Link>
-            <Link className="button secondary" to="/resume">
-              Resume proof
-            </Link>
+            <a className="button secondary" href={profile.resume}>
+              Download resume
+            </a>
           </div>
         </div>
         <div className="lane-hero-media" aria-label="Featured game project screenshots">
@@ -132,7 +132,7 @@ function Games() {
       <section className="section-heading lane-project-heading">
         <div>
           <p className="eyebrow">Game case studies</p>
-          <h2>Project pages with screenshots, proof points, and resume angles.</h2>
+          <h2>Project pages with screenshots, proof points, and role signals.</h2>
         </div>
       </section>
 

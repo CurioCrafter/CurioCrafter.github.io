@@ -103,21 +103,21 @@ function ProjectDetail() {
     : linksToPublicRepo
       ? "Public repo available"
       : "Case-study evidence";
-  const reviewerPath = project.liveUrl
-    ? "Open the demo first, then scan the proof points."
+  const proofDetail = project.liveUrl
+    ? "Browser demo, screenshots, and implementation notes are available."
     : linksToPublicRepo
-      ? "Open the repo, then compare the screenshot and project bullets."
-      : "Scan the screenshot, proof points, and implementation notes.";
+      ? "Public source, screenshots, and implementation notes are available."
+      : "Screenshots and implementation notes document the work.";
   const caseSnapshot = [
     { label: "Role signal", value: signal.label, detail: signal.detail },
-    { label: "Proof status", value: publicProofLabel, detail: reviewerPath },
+    { label: "Proof status", value: publicProofLabel, detail: proofDetail },
     {
       label: "Stack depth",
       value: `${project.stack.length} tools`,
       detail: project.stack.slice(0, 4).join(" / "),
     },
     {
-      label: "Resume angle",
+      label: "Key evidence",
       value: project.proofPoints?.[0] || project.eyebrow,
       detail: project.bullets[0],
     },
@@ -208,26 +208,11 @@ function ProjectDetail() {
         </ul>
       </section>
 
-      <section className="case-resume-section">
-        <div>
-          <p className="eyebrow">Resume translation</p>
-          <h2>How this project supports an application.</h2>
-        </div>
-        <div className="case-resume-lines">
-          {project.bullets.map((bullet, index) => (
-            <article key={bullet}>
-              <span>Resume proof {String(index + 1).padStart(2, "0")}</span>
-              <p>{bullet}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {project.proofPoints?.length ? (
         <section className="case-proof">
           <div>
             <p className="eyebrow">Proof points</p>
-            <h2>What a reviewer can verify quickly.</h2>
+            <h2>Verification signals.</h2>
           </div>
           <div className="proof-card-grid">
             {project.proofPoints.map((point) => (
@@ -268,9 +253,9 @@ function ProjectDetail() {
               <strong>{related.name}</strong>
             </Link>
           ))}
-          <Link to="/resume">
-            <span>Application proof</span>
-            <strong>Resume stack</strong>
+          <Link to="/contact">
+            <span>Contact</span>
+            <strong>Discuss this work</strong>
           </Link>
         </div>
       </section>

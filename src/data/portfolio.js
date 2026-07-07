@@ -73,18 +73,18 @@ export const evidenceScreenshots = [
     alt: "Tidefront Terrain Studio architecture stamp controls and ocean map preview",
   },
   {
-    title: "Blender bridge controls",
-    label: "Python tools",
-    image: "images/tidefront-blender-live.png",
-    to: "/projects/tidefront-blender-workflow",
-    alt: "Blender bridge panel for Tidefront terrain and asset workflow controls",
+    title: "EasyTexture PBR add-on",
+    label: "Blender add-on",
+    image: "images/easytexture-addon-pbr-proof.png",
+    to: "/projects/blender-tools-pipeline",
+    alt: "Blender render created after EasyTexture applied PBR texture channels",
   },
   {
-    title: "Shared asset catalog",
-    label: "Pipeline proof",
-    image: "images/tidefront-asset-catalog.png",
-    to: "/projects/tidefront-blender-workflow",
-    alt: "Tidefront asset catalog screenshot showing runtime and Studio asset lists",
+    title: "AI Retopo Assist",
+    label: "Blender add-on",
+    image: "images/ai-retopo-assist-proof.png",
+    to: "/projects/blender-tools-pipeline",
+    alt: "Blender render of AI Retopo Assist source mesh and generated retopo guides",
   },
   {
     title: "Claude Citizen Solar Atlas",
@@ -122,8 +122,8 @@ export const projects = [
         alt: "Tidefront shared asset catalog screenshot",
       },
     ],
-    repository: "https://github.com/TideFrontStudio/tidefrontstudio",
-    repositoryNote: "Public repo + local evidence",
+    repository: "",
+    repositoryNote: "Local case-study evidence",
     stack: ["TypeScript", "Three.js", "Terrain Studio", "Playwright", "Blender bridge"],
     proofPoints: ["Terrain Studio authoring capture", "Architecture handles and map bounds", "QA/evidence workspace"],
     outcome:
@@ -173,9 +173,15 @@ export const projects = [
         image: "images/tidefront-terrain-studio-desktop.png",
         alt: "Tidefront Studio terrain handoff screenshot",
       },
+      {
+        title: "Asset Shelf smoke export",
+        caption: "Fresh Blender 4.5.11 capture after the Tidefront Asset Shelf add-on exported GLB, source blend, and catalog metadata.",
+        image: "images/tidefront-asset-shelf-addon-proof.png",
+        alt: "Tidefront Asset Shelf Blender add-on export proof render",
+      },
     ],
-    repository: "https://github.com/TideFrontStudio/tidefrontstudio",
-    repositoryNote: "Public repo + local evidence",
+    repository: "",
+    repositoryNote: "Local case-study evidence",
     stack: ["Python", "Blender API", "TypeScript", "asset catalogs", "JSON export"],
     proofPoints: ["Blender bridge panel", "Shared asset catalog", "Studio asset QA captures"],
     outcome:
@@ -375,18 +381,44 @@ export const projects = [
     id: "blender-tools-pipeline",
     name: "Blender Tools Pipeline",
     eyebrow: "Production-tools case study",
-    image: "images/tidefront-asset-catalog.png",
-    detailImage: "images/tidefront-blender-live.png",
+    image: "images/easytexture-addon-pbr-proof.png",
+    detailImage: "images/ai-retopo-assist-proof.png",
+    gallery: [
+      {
+        title: "EasyTexture PBR smoke",
+        caption: "Fresh Blender 4.5.11 capture after EasyTexture applied Base Color, Normal, Roughness, and Packed ORM through its public operator.",
+        image: "images/easytexture-addon-pbr-proof.png",
+        alt: "EasyTexture Blender add-on PBR proof render",
+      },
+      {
+        title: "AI Retopo Assist smoke",
+        caption: "Fresh Blender 5.1.2 capture after AI Retopo Assist generated preview guides and applied a 100% quad target.",
+        image: "images/ai-retopo-assist-proof.png",
+        alt: "AI Retopo Assist Blender add-on proof render",
+      },
+      {
+        title: "Tidefront Asset Shelf export",
+        caption: "Fresh Blender 4.5.11 capture from the asset-shelf add-on after exporting a GLB, source blend, and catalog entry.",
+        image: "images/tidefront-asset-shelf-addon-proof.png",
+        alt: "Tidefront Asset Shelf Blender add-on proof render",
+      },
+      {
+        title: "Shared asset catalog",
+        caption: "Runtime and Studio asset lists tied into the Blender-facing production workflow.",
+        image: "images/tidefront-asset-catalog.png",
+        alt: "Tidefront shared asset catalog screenshot",
+      },
+    ],
     repository: "",
     repositoryNote: "Pipeline case study",
-    stack: ["Python", "Blender API", "asset catalogs", "visual QA", "export tooling"],
-    proofPoints: ["Tidefront bridge workflow", "TerrainForge + Laser Saw workstreams", "Asset catalog QA"],
+    stack: ["Python", "Blender API", "PBR materials", "retopo planning", "export tooling"],
+    proofPoints: ["EasyTexture PBR smoke", "AI Retopo quad target smoke", "Tidefront Asset Shelf GLB/catalog export"],
     outcome:
-      "A focused tools-pipeline story around Blender-facing workflows, terrain/asset handoff, mesh operations, export validation, and reviewer-readable QA artifacts.",
+      "A focused tools-pipeline story around real Blender add-ons: PBR texture assignment, preview-first retopo planning, asset-shelf export, catalog metadata, and visual QA artifacts.",
     bullets: [
-      "Pulled the Blender/tooling story toward finished production evidence: Tidefront bridge controls, shared asset catalogs, QA lanes, terrain export, and map-authoring screenshots.",
-      "Kept the strongest add-on workstreams visible while removing underdeveloped character/remesh proof from the recruiter path.",
-      "Framed the tools as a pipeline: build or inspect assets, validate them visually, export useful data, and keep the game/editor workflow connected.",
+      "Ran EasyTexture through Blender 4.5.11 to apply Base Color, Normal, Roughness, and Packed ORM channels, then captured the resulting PBR material output.",
+      "Ran AI Retopo Assist through Blender 5.1.2 to preview guide geometry and apply a mostly quad retopo target from a stroke-driven plan.",
+      "Ran Tidefront Asset Shelf through Blender 4.5.11 to export a runtime GLB, source blend, and catalog metadata from an authored module.",
     ],
   },
   {
@@ -462,7 +494,7 @@ export const projects = [
     outcome:
       "A real-time artificial-life simulation prototype with procedural terrain, creature systems, rendering, camera controls, save/load, replay, and profiling direction.",
     bullets: [
-      "Developed early creature behavior systems around movement, energy, predator/prey interactions, and genetic/neural scaffolding.",
+      "Developed early artificial-life systems around movement, energy, predator/prey interactions, and genetic/neural scaffolding.",
       "Explored systems-level game programming with simulation architecture and rendering constraints.",
       "Focused on performance-oriented thinking through profiling and explicit systems boundaries.",
     ],
@@ -816,7 +848,7 @@ export const nextBuilds = [
   },
   {
     name: "Blender Bridge Proof Reel",
-    priority: "Best resume signal",
+    priority: "Best tooling signal",
     timeframe: "1 capture day",
     deliverable: "60-90 second bridge/catalog reel plus proof sheet",
     goal: "Record a concise reel around the Tidefront Blender bridge, shared asset catalog, TerrainForge, and Laser Saw workflows.",
@@ -850,14 +882,14 @@ export const nextBuilds = [
     timeframe: "One afternoon per tool",
     deliverable: "Three case studies with problem/scope/result framing",
     goal: "Turn three utilities into concise case studies with screenshots, problem statements, and outcomes.",
-    why: "This makes the resume read as product-minded engineering instead of a raw project inventory.",
+    why: "This frames the tools as product-minded engineering instead of a raw project inventory.",
     stack: "React, Electron, Python/FastAPI, desktop utilities",
     firstSteps: [
       "Select the three tools with the clearest before/after value.",
       "Write each case as problem, constraints, implementation, proof.",
-      "Update resume bullets to point at shipped artifacts.",
+      "Update public project copy to point at shipped artifacts.",
     ],
-    milestones: ["Problem/scope/result copy", "One screenshot per tool", "Resume bullet rewrite"],
+    milestones: ["Problem/scope/result copy", "One screenshot per tool", "Project-copy refresh"],
   },
 ];
 
@@ -882,7 +914,7 @@ export const projectBriefs = [
       "Portfolio links directly to the Terrain Studio and Blender workflow pages",
     ],
     codexHelp:
-      "I can run the local Studio, capture fresh proof, write the case study, and keep the resume/web/PDF story aligned.",
+      "I can run the local Studio, capture fresh proof, write the case study, and keep the public project story aligned.",
     links: [
       { label: "Tidefront Studio", to: "/projects/tidefront-terrain-studio" },
       { label: "Tools lane", to: "/software" },
@@ -922,19 +954,19 @@ export const projectBriefs = [
       "Record a short reel that shows one before/action/after win each for Blender bridge, asset catalog, TerrainForge, and Laser Saw.",
     why:
       "The Blender tooling is deep, but hiring reviewers need to understand the value in under a minute.",
-    deliverable: "60-90 second reel, proof sheet, tighter resume bullets",
+    deliverable: "60-90 second reel, proof sheet, tighter project copy",
     scope: [
       "One visible win per bridge/catalog/tool workflow",
       "A four-panel proof sheet for the portfolio",
-      "Resume bullets rewritten around artist-facing outcomes",
+      "Project copy rewritten around artist-facing outcomes",
     ],
     acceptance: [
       "Each clip shows before, action, after, and result",
       "Tools page exposes the reel/proof sheet near the top",
-      "Resume packet points directly at the Blender proof",
+      "The public portfolio points directly at the Blender proof",
     ],
     codexHelp:
-      "I can script the capture plan, update portfolio sections, write proof captions, and keep the resume/web/PDF story aligned.",
+      "I can script the capture plan, update portfolio sections, write proof captions, and keep the public story aligned.",
     links: [
       { label: "Tools lane", to: "/software" },
       { label: "Blender proof", to: "/projects/blender-tools-pipeline" },
@@ -971,11 +1003,11 @@ export const projectBriefs = [
 
 export const buildSprints = [
   {
-    title: "Application proof pack",
+    title: "Role evidence pack",
     cadence: "1 focused pass",
-    focus: "Convert the resume page into a job-application packet with role-specific bullets, proof links, and a concise project order.",
-    outputs: ["Resume bullet rewrite", "Proof-link checklist", "Application-ready project order"],
-    nextAction: "Pick one target role family and align the top five bullets to that role.",
+    focus: "Keep the public portfolio ordered around role-specific proof links, screenshots, and concise project outcomes.",
+    outputs: ["Proof-link checklist", "Case-study order", "Role-ready project sequence"],
+    nextAction: "Keep the strongest public screenshots and case studies at the top of each role lane.",
   },
   {
     title: "Blender demo reel sprint",
@@ -1007,9 +1039,9 @@ export const supportOffers = [
     outputs: ["Public demo URL", "Case-study copy", "Browser QA evidence"],
   },
   {
-    title: "Sharpen resume bullets",
-    summary: "Rewrite project bullets around action, system, result, and verification instead of broad project descriptions.",
-    outputs: ["Role-targeted bullets", "PDF/web copy alignment", "Proof links"],
+    title: "Sharpen project copy",
+    summary: "Rewrite project entries around action, system, result, and verification instead of broad project descriptions.",
+    outputs: ["Role-targeted copy", "Portfolio alignment", "Proof links"],
   },
   {
     title: "Capture Blender and game evidence",
