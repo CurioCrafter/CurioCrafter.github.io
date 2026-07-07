@@ -59,7 +59,9 @@ export const profile = {
 
 export const featuredProjectIds = [
   "tidefront-terrain-studio",
-  "tidefront-blender-workflow",
+  "terrainforge",
+  "laser-saw",
+  "blender-tools-pipeline",
   "claude-citizen",
   "ocean-supremacy",
 ];
@@ -73,18 +75,18 @@ export const evidenceScreenshots = [
     alt: "Tidefront Terrain Studio architecture stamp controls and ocean map preview",
   },
   {
-    title: "EasyTexture PBR add-on",
+    title: "TerrainForge Professional Bake",
     label: "Blender add-on",
-    image: "images/easytexture-addon-pbr-proof.png",
-    to: "/projects/blender-tools-pipeline",
-    alt: "Blender render created after EasyTexture applied PBR texture channels",
+    image: "images/terrainforge-professional-bake-proof.png",
+    to: "/projects/terrainforge",
+    alt: "Blender render from TerrainForge professional terrain bake",
   },
   {
-    title: "AI Retopo Assist",
+    title: "Laser Saw Capped Split",
     label: "Blender add-on",
-    image: "images/ai-retopo-assist-proof.png",
-    to: "/projects/blender-tools-pipeline",
-    alt: "Blender render of AI Retopo Assist source mesh and generated retopo guides",
+    image: "images/laser-saw-capped-split-proof.png",
+    to: "/projects/laser-saw",
+    alt: "Blender render of Laser Saw capped split mesh proof",
   },
   {
     title: "Claude Citizen Solar Atlas",
@@ -381,26 +383,38 @@ export const projects = [
     id: "blender-tools-pipeline",
     name: "Blender Tools Pipeline",
     eyebrow: "Production-tools case study",
-    image: "images/easytexture-addon-pbr-proof.png",
-    detailImage: "images/ai-retopo-assist-proof.png",
+    image: "images/terrainforge-professional-bake-proof.png",
+    detailImage: "images/laser-saw-capped-split-proof.png",
     gallery: [
       {
-        title: "EasyTexture PBR smoke",
-        caption: "Fresh Blender 4.5.11 capture after EasyTexture applied Base Color, Normal, Roughness, and Packed ORM through its public operator.",
-        image: "images/easytexture-addon-pbr-proof.png",
-        alt: "EasyTexture Blender add-on PBR proof render",
+        title: "TerrainForge professional bake",
+        caption: "Fresh Blender 4.5.11 capture from installed TerrainForge v0.6.2 after a 1025 selected-tile professional bake generated a dense terrain mesh.",
+        image: "images/terrainforge-professional-bake-proof.png",
+        alt: "TerrainForge professional terrain bake proof render",
       },
       {
-        title: "AI Retopo Assist smoke",
-        caption: "Fresh Blender 5.1.2 capture after AI Retopo Assist generated preview guides and applied a 100% quad target.",
-        image: "images/ai-retopo-assist-proof.png",
-        alt: "AI Retopo Assist Blender add-on proof render",
+        title: "Laser Saw capped split",
+        caption: "Fresh Blender 4.5.11 capture after the Laser Saw v0.4.0 add-on split a beveled block into two capped mesh objects.",
+        image: "images/laser-saw-capped-split-proof.png",
+        alt: "Laser Saw Blender add-on capped split proof render",
       },
       {
         title: "Tidefront Asset Shelf export",
         caption: "Fresh Blender 4.5.11 capture from the asset-shelf add-on after exporting a GLB, source blend, and catalog entry.",
         image: "images/tidefront-asset-shelf-addon-proof.png",
         alt: "Tidefront Asset Shelf Blender add-on proof render",
+      },
+      {
+        title: "EasyTexture PBR smoke",
+        caption: "Blender 4.5.11 capture after EasyTexture applied Base Color, Normal, Roughness, and Packed ORM through its public operator.",
+        image: "images/easytexture-addon-pbr-proof.png",
+        alt: "EasyTexture Blender add-on PBR proof render",
+      },
+      {
+        title: "AI Retopo Assist smoke",
+        caption: "Blender 5.1.2 capture after AI Retopo Assist generated preview guides and applied a quad-target retopo result.",
+        image: "images/ai-retopo-assist-proof.png",
+        alt: "AI Retopo Assist Blender add-on proof render",
       },
       {
         title: "Shared asset catalog",
@@ -411,13 +425,13 @@ export const projects = [
     ],
     repository: "",
     repositoryNote: "Pipeline case study",
-    stack: ["Python", "Blender API", "PBR materials", "retopo planning", "export tooling"],
-    proofPoints: ["EasyTexture PBR smoke", "AI Retopo quad target smoke", "Tidefront Asset Shelf GLB/catalog export"],
+    stack: ["Python", "Blender API", "terrain baking", "mesh operations", "export tooling"],
+    proofPoints: ["TerrainForge v0.6.2 bake proof", "Laser Saw capped split", "Tidefront Asset Shelf export"],
     outcome:
-      "A focused tools-pipeline story around real Blender add-ons: PBR texture assignment, preview-first retopo planning, asset-shelf export, catalog metadata, and visual QA artifacts.",
+      "A focused tools-pipeline story around real Blender add-ons: terrain baking, through-view mesh cutting, asset-shelf export, PBR texture assignment, retopo planning, catalog metadata, and visual QA artifacts.",
     bullets: [
-      "Ran EasyTexture through Blender 4.5.11 to apply Base Color, Normal, Roughness, and Packed ORM channels, then captured the resulting PBR material output.",
-      "Ran AI Retopo Assist through Blender 5.1.2 to preview guide geometry and apply a mostly quad retopo target from a stroke-driven plan.",
+      "Ran installed TerrainForge v0.6.2 through Blender 4.5.11 to bake a dense selected tile, then captured the resulting terrain mesh as the lead tools proof.",
+      "Ran installed Laser Saw v0.4.0 through Blender 4.5.11 to create a separate-object capped split, proving mesh-operator work rather than only material or UI panels.",
       "Ran Tidefront Asset Shelf through Blender 4.5.11 to export a runtime GLB, source blend, and catalog metadata from an authored module.",
     ],
   },
@@ -425,18 +439,98 @@ export const projects = [
     id: "terrainforge",
     name: "TerrainForge",
     eyebrow: "Blender procedural terrain add-on",
-    image: "images/terrainforge-surface-atlas.png",
-    mediaFit: "contain",
+    image: "images/terrainforge-professional-bake-proof.png",
+    detailImage: "images/terrainforge-professional-bake-proof.png",
+    gallery: [
+      {
+        title: "Professional bake mesh",
+        caption: "Fresh Blender 4.5.11 capture from installed TerrainForge v0.6.2 after a 1025 professional tile bake produced 1,054,721 verts and 1,052,672 faces.",
+        image: "images/terrainforge-professional-bake-proof.png",
+        alt: "TerrainForge dense professional terrain bake proof render",
+      },
+      {
+        title: "Surface-layer atlas",
+        caption: "Generated material-layer atlas used to present TerrainForge's terrain texture and surface workflow evidence.",
+        image: "images/terrainforge-surface-atlas.png",
+        alt: "TerrainForge terrain surface and material atlas",
+      },
+      {
+        title: "Terrain Studio handoff",
+        caption: "Tidefront terrain workbench showing where generated terrain work can land in the game-editor flow.",
+        image: "images/tidefront-terrain-studio-desktop.png",
+        alt: "Tidefront Terrain Studio terrain workbench screenshot",
+      },
+    ],
     repository: "",
     repositoryNote: "Installed Blender add-on",
     stack: ["Python", "Blender API", "NumPy", "heightmaps", "QA campaign tooling"],
-    proofPoints: ["Blender 4.5 add-on path inspected", "Professional bake workflow", "Headless campaign runner"],
+    proofPoints: ["v0.6.2 professional bake smoke", "57 layer types / 20 modules / 10 rock types", "Texture-layer and region smokes"],
     outcome:
-      "A Blender terrain-generation add-on for preview meshes, segmented worlds, tiled heightmap export, texture layers, cave volumes, LOD/detail bake, and professional selected-tile baking.",
+      "A Blender terrain-generation add-on for preview meshes, segmented worlds, tiled heightmap export, texture layers, cave volumes, LOD/detail bake, and dense professional selected-tile baking.",
     bullets: [
-      "Built a terrain workflow around preview generation, export validation, tiled worlds, segmented region editing, local tile overrides, stamps, masks, and recipe scripts.",
-      "Added professional bake output for dense selected-tile meshes with height, normal, cavity, curvature, albedo, UVs, materials, metrics, and manifests.",
-      "Maintained automated campaign tooling that can run Blender headlessly and emit case configs, logs, thumbnails, manifests, metrics, and classified defects.",
+      "Ran the installed TerrainForge v0.6.2 add-on in Blender 4.5.11 and captured a 1025 professional tile bake with over one million vertices.",
+      "Verified texture-layer, terrain-variety, professional-bake, region, and UI/export smoke paths instead of presenting the add-on as an untested idea.",
+      "Documented the workflow around preview generation, export validation, tiled worlds, segmented region editing, local tile overrides, stamps, masks, recipe scripts, metrics, and manifests.",
+    ],
+    implementationNotes: [
+      {
+        title: "Dense bake path",
+        body: "The lead image comes from the installed add-on's professional bake operator, not a generic render. The capture script checks TerrainForge v0.6.2 or newer before rendering.",
+      },
+      {
+        title: "Validation breadth",
+        body: "Smoke coverage exercised UI tooltip/export flow, terrain variety, texture layers, professional bake, and region workflows in Blender 4.5.11.",
+      },
+      {
+        title: "Portfolio framing",
+        body: "The case study presents TerrainForge as terrain tooling for Blender and game-map workflows, with Tidefront shown as a natural editor handoff rather than a placeholder.",
+      },
+    ],
+  },
+  {
+    id: "laser-saw",
+    name: "Laser Saw",
+    eyebrow: "Blender capped mesh-split add-on",
+    image: "images/laser-saw-capped-split-proof.png",
+    detailImage: "images/laser-saw-capped-split-proof.png",
+    gallery: [
+      {
+        title: "Capped separate-object split",
+        caption: "Fresh Blender 4.5.11 capture after installed Laser Saw v0.4.0 split a beveled block into two capped mesh objects.",
+        image: "images/laser-saw-capped-split-proof.png",
+        alt: "Laser Saw capped split proof render from Blender",
+      },
+      {
+        title: "Tidefront Asset Shelf export",
+        caption: "A neighboring Blender workflow proof showing asset export and catalog metadata rather than an isolated modeling demo.",
+        image: "images/tidefront-asset-shelf-addon-proof.png",
+        alt: "Tidefront Asset Shelf export proof render",
+      },
+    ],
+    repository: "",
+    repositoryNote: "Installed Blender add-on",
+    stack: ["Python", "Blender API", "bmesh", "modal viewport tool", "mesh operations"],
+    proofPoints: ["Laser Saw v0.4.0 split capture", "Two capped mesh objects generated", "Mesh Edit and Sculpt workflows"],
+    outcome:
+      "A Blender mesh-cutting add-on that turns a drawn viewport cut line into separate capped objects or open bisect cuts for hard-surface modeling workflows.",
+    bullets: [
+      "Ran the installed Laser Saw v0.4.0 implementation in Blender 4.5.11 and captured a capped split that generated two separate mesh objects.",
+      "Uses Blender mesh data and bmesh operations around cut planes, kerf width, cap generation, cut-edge selection, and object separation.",
+      "Fits the portfolio as practical artist-facing tooling: a fast modeling operation with visible geometry output, not another unfinished concept panel.",
+    ],
+    implementationNotes: [
+      {
+        title: "Operator proof",
+        body: "The capture script imports the installed add-on, calls its split implementation, validates that two objects were created, and renders the result for the site.",
+      },
+      {
+        title: "Artist workflow",
+        body: "Laser Saw is framed as a modeling productivity add-on: draw a cut, choose capped split or open bisect behavior, and keep the resulting mesh pieces readable.",
+      },
+      {
+        title: "Evidence boundary",
+        body: "The portfolio shows a generated proof render from the real add-on. It does not claim a public packaged release because this evidence came from the local installed add-on.",
+      },
     ],
   },
   {
@@ -607,12 +701,12 @@ export const blenderToolchain = [
   {
     name: "TerrainForge",
     role: "Tiled terrain generation and baking",
-    proof: "Preview meshes, segmented worlds, export seam checks, professional bake, and campaign artifacts.",
+    proof: "Installed v0.6.2 add-on captured after professional bake, terrain variety, texture layer, region, and UI/export smokes.",
   },
   {
     name: "Laser Saw",
     role: "Through-view mesh cutting",
-    proof: "Mesh Edit and Sculpt Mode support, separate-object splits, open bisect, kerf width, and Blender smoke tests.",
+    proof: "Installed v0.4.0 add-on captured after a capped split generated two separate mesh objects in Blender 4.5.11.",
   },
   {
     name: "Armaturizer",
@@ -676,8 +770,8 @@ export const resumeSignals = [
     value: "Junior game developer, Python/Blender tools, technical art support",
   },
   {
-    label: "Lead proof",
-    value: "Tidefront Terrain Studio, Blender workflow, Claude Citizen, Ocean Drift",
+    label: "Featured proof",
+    value: "Tidefront Terrain Studio, TerrainForge, Laser Saw, Claude Citizen",
   },
   {
     label: "Strongest angle",
@@ -692,7 +786,7 @@ export const resumeSignals = [
 export const resumeProofStack = [
   {
     lane: "Studio first",
-    title: "Lead with the most complete tool surface.",
+    title: "Terrain authoring and runtime tools.",
     summary:
       "Tidefront Terrain Studio and Ocean Drift show map authoring, terrain controls, playtest handoff, runtime captures, and QA evidence in one coherent game-tools story.",
     resumeLine:
@@ -704,7 +798,7 @@ export const resumeProofStack = [
   },
   {
     lane: "Game systems",
-    title: "Use deeper game systems as case-study proof.",
+    title: "Gameplay systems and interaction polish.",
     summary:
       "Ocean Drift, TacOps, Claude Citizen, Linear Drive, and Ant Colony show HUD work, camera feel, interaction polish, multiplayer planning, and gameplay loops.",
     resumeLine:
@@ -716,7 +810,7 @@ export const resumeProofStack = [
   },
   {
     lane: "Blender tools",
-    title: "Turn Blender work into a production-tools story.",
+    title: "Blender production tools and validation artifacts.",
     summary:
       "Tidefront Blender workflow, TerrainForge, Laser Saw, and the shared asset catalog are strongest when framed as artist-facing pipeline improvements with visual QA.",
     resumeLine:
@@ -724,11 +818,12 @@ export const resumeProofStack = [
     links: [
       { label: "Blender workflow", to: "/projects/tidefront-blender-workflow" },
       { label: "TerrainForge", to: "/projects/terrainforge" },
+      { label: "Laser Saw", to: "/projects/laser-saw" },
     ],
   },
   {
     lane: "Utility products",
-    title: "Show product judgment through practical tools.",
+    title: "Practical tools with visible user value.",
     summary:
       "Desktop utilities, audio tooling, and automation surfaces make the portfolio broader without diluting the game/tools focus when each case has a clear user problem.",
     resumeLine:
@@ -766,7 +861,7 @@ export const roleFit = [
 export const applicationPackets = [
   {
     role: "Junior Gameplay Developer",
-    headline: "Lead with game systems and authoring tools.",
+    headline: "Game systems and authoring tools.",
     fit: "Best for teams that need someone who can prototype controls, HUDs, map tools, interaction polish, and small public game loops.",
     inspect: [
       { label: "Tidefront Studio", to: "/projects/tidefront-terrain-studio" },
@@ -782,12 +877,13 @@ export const applicationPackets = [
   },
   {
     role: "Python / Blender Tools Developer",
-    headline: "Lead with artist-facing tooling and validation artifacts.",
+    headline: "Artist-facing tooling and validation artifacts.",
     fit: "Best for pipeline, technical art support, or tools teams that need Blender add-ons with practical controls and QA proof.",
     inspect: [
       { label: "Blender Workflow", to: "/projects/tidefront-blender-workflow" },
       { label: "Blender Pipeline", to: "/projects/blender-tools-pipeline" },
       { label: "TerrainForge", to: "/projects/terrainforge" },
+      { label: "Laser Saw", to: "/projects/laser-saw" },
     ],
     bullets: [
       "Build Blender Python and game-editor tools for terrain generation, mesh cutting, asset catalogs, bridge checks, export paths, and visual QA.",
@@ -798,7 +894,7 @@ export const applicationPackets = [
   },
   {
     role: "Technical Artist Assistant",
-    headline: "Lead with the bridge between visuals and engineering constraints.",
+    headline: "Visual engineering and 3D tool support.",
     fit: "Best for teams that need scene tools, 3D UI, procedural assets, and someone comfortable moving between art goals and code.",
     inspect: [
       { label: "Codex 3D Studio", to: "/projects/codex-3d-studio" },
@@ -814,7 +910,7 @@ export const applicationPackets = [
   },
   {
     role: "Creative Technologist",
-    headline: "Lead with interactive WebGL, automation, and sensory systems.",
+    headline: "Interactive WebGL, automation, and sensory systems.",
     fit: "Best for teams or projects that want unusual browser experiences, generative visuals, workflow automation, and practical product polish.",
     inspect: [
       { label: "Destimmer", to: "/projects/destimmer" },
@@ -897,7 +993,7 @@ export const projectBriefs = [
   {
     title: "Tidefront Terrain Studio Walkthrough",
     lane: "Game tools",
-    recommendation: "Build first",
+    recommendation: "Current strongest proof",
     pitch:
       "Turn the current Terrain Studio screenshots into a short walkthrough that shows generate, stamp, bounds, QA, export, and playtest handoff.",
     why:
@@ -923,7 +1019,7 @@ export const projectBriefs = [
   {
     title: "Ocean Drift Solo Arena",
     lane: "Game slice",
-    recommendation: "Best game-role lift",
+    recommendation: "High-value game slice",
     pitch:
       "Cut Ocean Drift down to one public solo loop: spawn, swim, feed, avoid one threat, use one ability, and finish one objective.",
     why:
@@ -949,7 +1045,7 @@ export const projectBriefs = [
   {
     title: "Blender Bridge Proof Reel",
     lane: "Tools proof",
-    recommendation: "Best tools-role lift",
+    recommendation: "High-value tools proof",
     pitch:
       "Record a short reel that shows one before/action/after win each for Blender bridge, asset catalog, TerrainForge, and Laser Saw.",
     why:

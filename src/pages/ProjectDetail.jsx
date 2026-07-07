@@ -17,6 +17,7 @@ const blenderProjectIds = new Set([
   "tidefront-blender-workflow",
   "blender-tools-pipeline",
   "terrainforge",
+  "laser-saw",
   "blender-alignment-suite",
 ]);
 

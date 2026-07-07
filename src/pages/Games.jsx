@@ -41,7 +41,7 @@ const gameSignals = [
 const gameLanes = [
   {
     title: "Game tools and authoring systems",
-    summary: "Lead with tools that make terrain, runtime state, QA evidence, and playtest handoff visible immediately.",
+    summary: "Terrain, runtime state, QA evidence, and playtest handoff stay visible from the first project view.",
     proof: ["Tidefront Terrain Studio", "Ocean Drift"],
   },
   {

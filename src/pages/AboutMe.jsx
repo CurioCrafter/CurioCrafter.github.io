@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { capabilityGroups, experiences, profile, projects, resumeProofStack } from "../data/portfolio";
+import { capabilityGroups, experiences, profile, projects } from "../data/portfolio";
 
 const workingPrinciples = [
   {
@@ -128,34 +128,6 @@ function AboutMe() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{principle.title}</strong>
               <p>{principle.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section about-proof-lanes-section no-pad-top">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Proof lanes</p>
-            <h2>The portfolio is organized around role signals.</h2>
-          </div>
-          <a className="text-link" href={profile.resume}>
-            Download resume
-          </a>
-        </div>
-        <div className="about-lane-grid">
-          {resumeProofStack.map((lane) => (
-            <article key={lane.lane} className="about-lane-card">
-              <span>{lane.lane}</span>
-              <h3>{lane.title}</h3>
-              <p>{lane.summary}</p>
-              <div className="about-link-row">
-                {lane.links.map((link) => (
-                  <Link key={link.to} to={link.to}>
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
             </article>
           ))}
         </div>

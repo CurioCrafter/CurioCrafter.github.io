@@ -6,6 +6,8 @@ const recruiterProjects = projects.filter((project) => !project.isArchived);
 
 const priorityProjectIds = new Set([
   "tidefront-terrain-studio",
+  "terrainforge",
+  "laser-saw",
   "tidefront-blender-workflow",
   "claude-citizen",
   "ocean-supremacy",
@@ -34,6 +36,7 @@ const toolProjectIds = new Set([
   "ocean-drift-level-builder",
   "blender-tools-pipeline",
   "terrainforge",
+  "laser-saw",
   "song-deconstructor",
   "blender-alignment-suite",
   "codexforworkflow",

@@ -10,7 +10,7 @@ import {
 } from "../data/portfolio";
 
 const featuredProjects = featuredProjectIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
-const heroVisualProjects = ["tidefront-terrain-studio", "tidefront-blender-workflow", "claude-citizen"]
+const heroVisualProjects = ["tidefront-terrain-studio", "terrainforge", "laser-saw"]
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
 const [primaryVisual, ...supportingVisuals] = heroVisualProjects;

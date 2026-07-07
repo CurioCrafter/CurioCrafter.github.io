@@ -3,10 +3,11 @@ import ProjectCard from "../components/ProjectCard";
 import { blenderToolchain, profile, projects } from "../data/portfolio";
 
 const toolProjectIds = [
+  "terrainforge",
+  "laser-saw",
+  "blender-tools-pipeline",
   "tidefront-blender-workflow",
   "tidefront-terrain-studio",
-  "blender-tools-pipeline",
-  "terrainforge",
   "codex-3d-studio",
   "rts-builder",
   "ocean-drift-level-builder",
@@ -46,7 +47,7 @@ const workflowLanes = [
   {
     title: "Artist-facing Blender tools",
     summary: "Turn repetitive content-production steps into add-ons with controls, QA artifacts, and export paths.",
-    proof: ["Tidefront Blender Workflow", "TerrainForge", "Blender Tools Pipeline"],
+    proof: ["TerrainForge", "Laser Saw", "Blender Tools Pipeline"],
   },
   {
     title: "Editors and production utilities",
@@ -72,8 +73,8 @@ function Software() {
             local-first utilities, creative coding, and safety-conscious automation roles.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/tidefront-blender-workflow">
-              Blender workflow proof
+            <Link className="button primary" to="/projects/blender-tools-pipeline">
+              Blender tools proof
             </Link>
             <a className="button secondary" href={profile.resume}>
               Download resume
