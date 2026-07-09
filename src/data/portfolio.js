@@ -10,20 +10,19 @@ export const profile = {
   resume: "Andrew_Rainsberger_Game_Developer_Resume.pdf",
   resumePrint: "resume-print.html",
   summary:
-    "I build game prototypes, Blender add-ons, browser 3D experiences, native C++ experiments, desktop utilities, and AI-assisted creative workflows with a practical focus on tools, simulation, and player-facing polish.",
+    "I build playable 3D systems, terrain-authoring workflows, and Blender Python tools, then turn them into focused vertical slices with clear UI, reusable data, and visible QA.",
   focusAreas: [
-    "Gameplay prototyping",
+    "Gameplay systems and prototyping",
     "Python and Blender API tools",
-    "Three.js/WebGL game interfaces",
-    "WebGL creative coding",
-    "Native C++ gameplay experiments",
-    "Creative AI production workflows",
+    "Three.js and WebGL",
+    "Terrain and level-authoring workflows",
+    "Editor UI and technical art support",
   ],
   proof: [
-    { value: "79.9K", label: "YouTube subscribers" },
-    { value: "100M+", label: "total views" },
-    { value: "568", label: "published videos" },
-    { value: "18.5M", label: "top short views" },
+    { value: "10", label: "commits in merged upstream PR" },
+    { value: "2", label: "verified Blender add-ons" },
+    { value: "2", label: "public browser demos" },
+    { value: "81K+", label: "creative audience" },
   ],
   evidence: [
     "Live GitHub Pages portfolio",
@@ -59,11 +58,39 @@ export const profile = {
 
 export const featuredProjectIds = [
   "tidefront-terrain-studio",
+  "claude-citizen",
   "terrainforge",
   "laser-saw",
+  "ocean-supremacy",
+];
+
+export const curatedProjectIds = [
+  "tidefront-terrain-studio",
+  "claude-citizen",
+  "terrainforge",
+  "laser-saw",
+  "ocean-supremacy",
+  "tidefront-blender-workflow",
   "blender-tools-pipeline",
+  "rts-builder",
+  "destimmer",
+];
+
+export const gamePortfolioIds = [
+  "tidefront-terrain-studio",
   "claude-citizen",
   "ocean-supremacy",
+  "tacops",
+  "linear-drive",
+];
+
+export const toolsPortfolioIds = [
+  "terrainforge",
+  "laser-saw",
+  "tidefront-blender-workflow",
+  "blender-tools-pipeline",
+  "rts-builder",
+  "destimmer",
 ];
 
 export const evidenceScreenshots = [
@@ -228,10 +255,11 @@ export const projects = [
         alt: "Claude Citizen Solar Atlas navigation detail screenshot",
       },
     ],
-    repository: "https://github.com/huiung/claude-citizen",
-    repositoryNote: "Upstream repo",
+    liveUrl: "https://claudecitizen.com",
+    repository: "https://github.com/huiung/claude-citizen/pull/10",
+    repositoryNote: "Merged PR #10",
     stack: ["TypeScript", "Vite", "Three.js", "game UI", "Git collaboration"],
-    proofPoints: ["Upstream PR #10 merge", "Solar Atlas navigation polish", "Local browser capture"],
+    proofPoints: ["Merged upstream PR #10", "10 authored commits", "Live in the shipped game"],
     outcome:
       "A contribution to another developer's browser space game focused on Solar Atlas navigation polish, pointer-lock safety, orbit selection clarity, and screenshot-ready visual presentation.",
     bullets: [
@@ -242,7 +270,7 @@ export const projects = [
     implementationNotes: [
       {
         title: "Collaboration proof",
-        body: "The public upstream repo contains a merged pull request from the CurioCrafter branch; the local checkout also includes branch and artifact history.",
+        body: "The public upstream pull request contains ten authored commits and was merged after maintainer review. The feature is live in the shipped game.",
       },
       {
         title: "Interaction focus",
@@ -774,18 +802,18 @@ export const resumeSignals = [
     value: "Tidefront Terrain Studio, TerrainForge, Laser Saw, Claude Citizen",
   },
   {
-    label: "Strongest angle",
-    value: "Game tools, Blender bridge workflows, and external contribution proof",
+    label: "Core strengths",
+    value: "Game tools, Blender bridge workflows, and external collaboration",
   },
   {
-    label: "Portfolio surface",
-    value: "Curated live demos, case-study screenshots, and role-specific proof paths",
+    label: "Public evidence",
+    value: "Live demos, captured case studies, and a merged upstream contribution",
   },
 ];
 
 export const resumeProofStack = [
   {
-    lane: "Studio first",
+    lane: "Game tools",
     title: "Terrain authoring and runtime tools.",
     summary:
       "Tidefront Terrain Studio and Ocean Drift show map authoring, terrain controls, playtest handoff, runtime captures, and QA evidence in one coherent game-tools story.",

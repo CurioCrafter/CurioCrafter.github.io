@@ -1,45 +1,18 @@
 import { Link } from "react-router-dom";
-import { capabilityGroups, experiences, profile, projects } from "../data/portfolio";
+import { capabilityGroups, experiences, profile } from "../data/portfolio";
 
 const workingPrinciples = [
   {
-    title: "Ship proof, not claims",
-    body: "Every major portfolio point should connect to a working demo, screenshot, capture, repo, or verification trail.",
-  },
-  {
-    title: "Build useful vertical slices",
-    body: "I reduce broad game and tools ideas into one playable loop, one visible workflow, or one reviewable artifact first.",
+    title: "Make it playable or inspectable",
+    body: "I learn by building a working slice, then capturing the behavior, output, and tradeoffs clearly.",
   },
   {
     title: "Bridge art and engineering",
-    body: "The strongest work combines Blender, WebGL, Python, UI, and simulation so creative output becomes easier to produce.",
+    body: "I enjoy the point where meshes, terrain, UI, data, rendering, and gameplay rules have to work together.",
   },
   {
-    title: "Keep learning visible",
-    body: "Skill gaps turn into scoped prototypes, demo captures, short postmortems, and visible proof instead of vague plans.",
-  },
-];
-
-const aboutProof = [
-  {
-    value: profile.proof[0].value,
-    label: profile.proof[0].label,
-    detail: "Audience-scale creative production with a real feedback loop.",
-  },
-  {
-    value: `${projects.filter((project) => !project.isArchived).length}`,
-    label: "project profiles",
-    detail: "Games, WebGL art, Blender add-ons, desktop tools, and AI workflow systems.",
-  },
-  {
-    value: `${projects.filter((project) => project.liveUrl).length}`,
-    label: "public live demos",
-    detail: "Browser-delivered work that opens without a private server.",
-  },
-  {
-    value: "4",
-    label: "target role lanes",
-    detail: "Gameplay, Blender tools, technical art support, and creative technology.",
+    title: "Respond well to review",
+    body: "I am comfortable iterating in an existing codebase, keeping scope contained, and improving work from concrete feedback.",
   },
 ];
 
@@ -49,83 +22,47 @@ function AboutMe() {
       <section className="about-hero">
         <div>
           <p className="eyebrow">About Andrew</p>
-          <h1>I build playable systems and practical creative tools.</h1>
+          <h1>A curious builder focused on games, 3D tools, and useful systems.</h1>
           <p>
-            {profile.summary} The through-line is visible proof: playable browser demos,
-            Blender workflow tools, captured project evidence, and a downloadable resume
-            grounded in real work.
+            I am an independent developer in Dixon, Missouri, building toward a junior game or
+            tools role. My strongest work combines gameplay prototyping with Python/Blender
+            tooling, editor UI, terrain systems, and browser-delivered 3D.
+          </p>
+          <p>
+            I bring a practical production background, a large creative audience feedback loop,
+            and the persistence to turn unfamiliar technical problems into working artifacts.
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/projects">
-              View projects
+              View selected work
             </Link>
             <a className="button secondary" href={profile.resume}>
               Download resume
             </a>
-            <Link className="button ghost" to="/contact">
-              Contact
-            </Link>
           </div>
         </div>
-        <aside className="about-operator-card" aria-label="Current positioning">
-          <span>Current positioning</span>
-          <strong>{profile.title}</strong>
-          <p>
-            Best fit: junior game development, Python/Blender tools, technical art support,
-            gameplay prototyping, and creative technology roles.
-          </p>
-          <div className="about-role-list">
-            {profile.roles.slice(0, 4).map((role) => (
-              <small key={role}>{role}</small>
-            ))}
-          </div>
-        </aside>
+        <figure className="about-visual">
+          <img src="images/tidefront-blender-live.png" alt="Tidefront terrain and Blender bridge workflow" />
+          <figcaption>
+            <span>Current focus</span>
+            <strong>Terrain authoring and Blender-to-game workflows</strong>
+          </figcaption>
+        </figure>
       </section>
 
-      <section className="about-proof-strip" aria-label="About proof snapshot">
-        {aboutProof.map((item) => (
-          <article key={item.label}>
-            <strong>{item.value}</strong>
-            <span>{item.label}</span>
-            <p>{item.detail}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="about-layout">
-        <div className="about-panel">
-          <h2>Target roles</h2>
-          <div className="tag-row large">
-            {profile.roles.map((role) => (
-              <span key={role}>{role}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="about-panel">
-          <h2>Primary stack</h2>
-          <div className="tag-row large">
-            {profile.stack.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section about-principles-section no-pad-top">
-        <div>
+      <section className="section about-principles-section">
+        <div className="about-principles-intro">
           <p className="eyebrow">Working style</p>
-          <h2>Broad ideas get turned into proof someone can inspect.</h2>
+          <h2>Direct, visual, and comfortable with iteration.</h2>
           <p>
-            I am strongest when a project needs both taste and implementation: a playable
-            loop, a working tool, a clean browser page, or a visual artifact that makes the
-            system understandable quickly.
+            I care about the small implementation details that make a prototype readable:
+            controls, state, feedback, edge cases, and the handoff to the next person.
           </p>
         </div>
         <div className="about-principle-list">
           {workingPrinciples.map((principle, index) => (
             <article key={principle.title} className="about-principle-row">
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>0{index + 1}</span>
               <strong>{principle.title}</strong>
               <p>{principle.body}</p>
             </article>
@@ -133,16 +70,17 @@ function AboutMe() {
         </div>
       </section>
 
-      <section className="section no-pad-top">
+      <section className="section capability-section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Capabilities</p>
-            <h2>Skills are framed around what the projects actually use.</h2>
+            <p className="eyebrow">Technical range</p>
+            <h2>The skills behind the project work.</h2>
           </div>
         </div>
         <div className="capability-grid">
-          {capabilityGroups.map((group) => (
+          {capabilityGroups.map((group, index) => (
             <article key={group.title} className="capability-panel">
+              <span>0{index + 1}</span>
               <h3>{group.title}</h3>
               <ul>
                 {group.items.map((item) => (
@@ -154,10 +92,10 @@ function AboutMe() {
         </div>
       </section>
 
-      <section className="section experience-section no-pad-top">
+      <section className="section experience-section">
         <div>
           <p className="eyebrow">Experience</p>
-          <h2>Hands-on technical work with public creative proof.</h2>
+          <h2>Creative development backed by real-world responsibility.</h2>
         </div>
         <div className="timeline">
           {experiences.map((item) => (

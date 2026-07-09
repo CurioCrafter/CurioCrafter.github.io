@@ -1,4 +1,5 @@
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { HashRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -10,9 +11,20 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./styles/global.css";
 
+function RouteEffects() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <RouteEffects />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
