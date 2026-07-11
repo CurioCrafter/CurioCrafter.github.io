@@ -24,9 +24,9 @@ const portfolioUrl = "https://curiocrafter.github.io";
 const featuredIds = [
   "tidefront-terrain-studio",
   "tidefront-blender-workflow",
+  "dronesim",
   "claude-citizen",
   "ocean-supremacy",
-  "tacops",
   "blender-tools-pipeline",
   "terrainforge",
 ];
@@ -43,6 +43,7 @@ function escapeHtml(value) {
 
 function linkForProject(project) {
   if (project.liveUrl) {
+    if (/^https?:\/\//i.test(project.liveUrl)) return project.liveUrl;
     return `${portfolioUrl}/${project.liveUrl}`;
   }
 

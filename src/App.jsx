@@ -9,6 +9,7 @@ import Games from "./pages/Games";
 import Software from "./pages/Software";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollProgress from "./components/ScrollProgress";
 import "./styles/global.css";
 
 function RouteEffects() {
@@ -25,6 +26,7 @@ function App() {
   return (
     <Router>
       <RouteEffects />
+      <ScrollProgress />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

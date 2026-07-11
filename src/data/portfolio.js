@@ -19,9 +19,9 @@ export const profile = {
     "Editor UI and technical art support",
   ],
   proof: [
+    { value: "6", label: "active gameplay browser checks" },
     { value: "10", label: "commits in merged upstream PR" },
     { value: "2", label: "verified Blender add-ons" },
-    { value: "2", label: "public browser demos" },
     { value: "81K+", label: "creative audience" },
   ],
   evidence: [
@@ -57,19 +57,20 @@ export const profile = {
 };
 
 export const featuredProjectIds = [
-  "tidefront-terrain-studio",
+  "ocean-supremacy",
+  "dronesim",
   "claude-citizen",
   "terrainforge",
-  "laser-saw",
-  "ocean-supremacy",
+  "tidefront-terrain-studio",
 ];
 
 export const curatedProjectIds = [
-  "tidefront-terrain-studio",
+  "ocean-supremacy",
+  "dronesim",
   "claude-citizen",
   "terrainforge",
   "laser-saw",
-  "ocean-supremacy",
+  "tidefront-terrain-studio",
   "tidefront-blender-workflow",
   "blender-tools-pipeline",
   "rts-builder",
@@ -77,9 +78,10 @@ export const curatedProjectIds = [
 ];
 
 export const gamePortfolioIds = [
-  "tidefront-terrain-studio",
-  "claude-citizen",
   "ocean-supremacy",
+  "dronesim",
+  "claude-citizen",
+  "tidefront-terrain-studio",
   "tacops",
   "linear-drive",
 ];
@@ -95,11 +97,18 @@ export const toolsPortfolioIds = [
 
 export const evidenceScreenshots = [
   {
-    title: "Tidefront Terrain Studio",
-    label: "Map authoring",
-    image: "images/tidefront-terrain-studio-architecture.png",
-    to: "/projects/tidefront-terrain-studio",
-    alt: "Tidefront Terrain Studio architecture stamp controls and ocean map preview",
+    title: "Tidefront reef runtime",
+    label: "Current gameplay",
+    image: "images/tidefront-gameplay-reef.webp",
+    to: "/projects/ocean-supremacy",
+    alt: "Tidefront fish gameplay in the authored underwater reef world",
+  },
+  {
+    title: "Frontline FPV",
+    label: "Browser simulation",
+    image: "images/dronesim-air-defense.webp",
+    to: "/projects/dronesim",
+    alt: "Frontline FPV missile warning during a browser combat sortie",
   },
   {
     title: "TerrainForge Professional Bake",
@@ -179,28 +188,34 @@ export const projects = [
   },
   {
     id: "tidefront-blender-workflow",
-    name: "Tidefront Blender + Asset Workflow",
-    eyebrow: "Blender bridge and asset catalog tooling",
-    image: "images/tidefront-blender-live.png",
-    detailImage: "images/tidefront-asset-catalog.png",
+    name: "Tidefront Blender Environment Workflow",
+    eyebrow: "Underwater worldbuilding and asset handoff",
+    image: "images/tidefront-blender-showcase.webp",
+    detailImage: "images/tidefront-blender-gameplay.webp",
     gallery: [
+      {
+        title: "Underwater environment showcase",
+        caption: "Direct Blender 4.5 render from the current Tidefront scene, showing the complete terraced reef layout and prop distribution.",
+        image: "images/tidefront-blender-showcase.webp",
+        alt: "Wide Blender render of the Tidefront underwater terrain and coral environment",
+      },
+      {
+        title: "Gameplay-height environment view",
+        caption: "A second camera inside the same scene, focused on terrain transitions, landmarks, and player-scale readability.",
+        image: "images/tidefront-blender-gameplay.webp",
+        alt: "Player-height Blender render across Tidefront terrain and coral props",
+      },
+      {
+        title: "Basalt trench biome",
+        caption: "Dedicated biome camera showing the darker rock language and enclosed trench silhouette.",
+        image: "images/tidefront-blender-basalt.webp",
+        alt: "Blender render of the Tidefront basalt trench biome",
+      },
       {
         title: "Blender bridge controls",
         caption: "Live Blender-facing controls for bridge checks, terrain sync, markers, and scene reads.",
         image: "images/tidefront-blender-live.png",
         alt: "Tidefront Blender bridge workflow screenshot with Python tool controls",
-      },
-      {
-        title: "Runtime asset catalog",
-        caption: "Shared catalog capture used to explain how Studio and runtime asset lists stay reviewable.",
-        image: "images/tidefront-asset-catalog.png",
-        alt: "Tidefront runtime asset catalog screenshot",
-      },
-      {
-        title: "Studio handoff",
-        caption: "Terrain Studio capture showing the game-editor side of the Blender and asset pipeline.",
-        image: "images/tidefront-terrain-studio-desktop.png",
-        alt: "Tidefront Studio terrain handoff screenshot",
       },
       {
         title: "Asset Shelf smoke export",
@@ -212,26 +227,26 @@ export const projects = [
     repository: "",
     repositoryNote: "Local case-study evidence",
     stack: ["Python", "Blender API", "TypeScript", "asset catalogs", "JSON export"],
-    proofPoints: ["Blender bridge panel", "Shared asset catalog", "Studio asset QA captures"],
+    proofPoints: ["3 direct Blender scene renders", "718-object underwater scene", "Bridge and Asset Shelf workflow"],
     outcome:
-      "A production-tools slice around moving Tidefront terrain and asset data between Studio, runtime catalogs, Blender bridge workflows, and reviewable QA surfaces.",
+      "A production worldbuilding slice that combines an authored underwater Blender scene, terrain and prop staging, dedicated showcase cameras, bridge controls, and runtime asset handoff.",
     bullets: [
+      "Built and rendered the current underwater scene directly from the working .blend: 718 objects, 701 meshes, dedicated gameplay/showcase/biome cameras, terrain shelves, coral, rocks, landmarks, and lighting.",
       "Worked on the toolchain around terrain sync, Blender scene reads, local bridge checks, project JSON, heightmap export, and runtime asset catalog handoff.",
-      "Built recruiter-readable proof around actual workflow surfaces: shared asset catalog, Studio QA lane, terrain workspace, and Blender bridge controls.",
-      "Framed Blender work as production support for a game pipeline instead of a loose set of unfinished add-on experiments.",
+      "Validated the portfolio captures headlessly in Blender 4.5.10 at 1800px, then connected the scene evidence to the in-game reef and authoring workflow.",
     ],
     implementationNotes: [
       {
-        title: "Asset workflow",
-        body: "The shared catalog screenshot shows runtime and Studio reading the same creature, prop, texture, ability, and food asset lists.",
+        title: "Scene evidence",
+        body: "Every environment image on this case study is a direct render from the current Tidefront .blend, using named showcase, gameplay, and basalt-trench cameras.",
       },
       {
         title: "Blender bridge",
         body: "The bridge panel keeps Blender-facing actions explicit: check the local bridge, sync terrain, add markers, and read scene state.",
       },
       {
-        title: "Scope boundary",
-        body: "The case study focuses on verified local workflow evidence rather than claiming a fully packaged public Blender add-on release.",
+        title: "Runtime handoff",
+        body: "The environment work is shown beside the live Tidefront runtime so the Blender scene reads as game-production support, not an isolated art exercise.",
       },
     ],
   },
@@ -283,22 +298,116 @@ export const projects = [
     ],
   },
   {
+    id: "dronesim",
+    name: "Frontline FPV",
+    eyebrow: "Three.js combined-arms drone simulator",
+    image: "images/dronesim-air-defense.webp",
+    detailImage: "images/dronesim-acro-ingress.webp",
+    gallery: [
+      {
+        title: "Air-defense strike",
+        caption: "Live browser capture during a 7-inch ACRO sortie with a missile warning, link telemetry, finite objective count, and physical air-defense target below.",
+        image: "images/dronesim-air-defense.webp",
+        alt: "Frontline FPV combat sortie with a missile warning over an air-defense launcher",
+      },
+      {
+        title: "Manual ACRO ingress",
+        caption: "Banked low-level approach across trenches, armor, and the generated frontline using the simulator's manual rate and collective flight model.",
+        image: "images/dronesim-acro-ingress.webp",
+        alt: "Frontline FPV banked manual flight above trenches and armored vehicles",
+      },
+      {
+        title: "Combined-arms frontline",
+        caption: "Aerial view of infantry, armor, trench systems, and terrain scale captured from the current playable build.",
+        image: "images/dronesim-frontline.webp",
+        alt: "Frontline FPV aerial view of infantry armor and connected trenches",
+      },
+    ],
+    liveUrl: "https://dronewarfare-fpv.netlify.app",
+    repository: "https://github.com/CurioCrafter/DroneWarfare",
+    isPrivate: true,
+    repositoryNote: "Private source",
+    stack: ["TypeScript", "Three.js", "Vite", "Playwright", "fixed-step simulation"],
+    proofPoints: ["Live browser build", "6 active desktop/mobile checks", "120 Hz quaternion flight integration"],
+    outcome:
+      "A playable manual-ACRO FPV and air-defense simulator with role-specific airframes, combined-arms ground AI, generated battlefields, weather, link pressure, destructible strike targets, and replayable sorties.",
+    bullets: [
+      "Built fixed-step manual rate and collective flight around quaternion integration, motor spool, gravity, drag, gusting wind, terrain impact, voltage sag, payload cameras, and finite airframes.",
+      "Created a live battlefield with infantry, tanks, APCs, trench networks, settlements, target sites, hostile UAV pressure, air-defense radar locks, jamming, interceptors, weather, and multiple generated layouts.",
+      "Shipped a public Three.js build and a repeatable Playwright suite; the current verification passed six active desktop/mobile gameplay checks with the two non-applicable platform cases skipped.",
+    ],
+    implementationNotes: [
+      {
+        title: "Flight and input",
+        body: "Desktop and mobile use the same manual ACRO flight law. Mobile keeps dual sticks and role-aware payload, camera, and pause controls instead of switching to a simplified guided mode.",
+      },
+      {
+        title: "Simulation scope",
+        body: "Terrain, weather, signal pressure, destructible air-defense sites, friendly and hostile units, payload jobs, and objectives all feed the same sortie loop.",
+      },
+      {
+        title: "Verification",
+        body: "The portfolio captures come from the current local build. The browser game is public; the source remains private, with production build commands and Playwright gameplay coverage verified locally.",
+      },
+    ],
+  },
+  {
     id: "ocean-supremacy",
-    name: "Ocean Supremacy Web / Ocean Drift",
-    eyebrow: "Browser 3D survival game",
-    image: "images/ocean-drift-lobby.png",
-    detailImage: "images/ocean-water-lab-blue-glass-shaft.png",
+    name: "Tidefront / Ocean Drift",
+    eyebrow: "Browser 3D reef survival game",
+    image: "images/tidefront-gameplay-reef.webp",
+    detailImage: "images/tidefront-gameplay-reef.webp",
+    gallery: [
+      {
+        title: "Current reef gameplay",
+        caption: "Current runtime capture with third-person fish control, survival HUD, abilities, food state, leaderboard, minimap, and the authored reef world visible together.",
+        image: "images/tidefront-gameplay-reef.webp",
+        alt: "Tidefront third-person fish gameplay inside a wide tropical reef arena",
+      },
+      {
+        title: "Authored terrain kit",
+        caption: "Runtime terrain review showing reef towers, shelf transitions, coral landmarks, traversal lanes, and long-distance world composition.",
+        image: "images/tidefront-authored-reef.webp",
+        alt: "Tidefront authored tropical reef terrain running in the browser",
+      },
+      {
+        title: "Lobby and server browser",
+        caption: "Finished lobby surface for player identity, region selection, mode review, active rooms, join flow, audio, graphics, inventory, and account state.",
+        image: "images/tidefront-lobby.webp",
+        alt: "Tidefront lobby and multiplayer server browser",
+      },
+      {
+        title: "Blender environment source",
+        caption: "Direct render from the current underwater Blender scene used to stage terrain shelves, coral, rock language, landmarks, and biome cameras.",
+        image: "images/tidefront-blender-showcase.webp",
+        alt: "Tidefront underwater environment rendered directly in Blender",
+      },
+    ],
     repository: "https://github.com/CurioCrafter/oceansupremacyweb",
     isPrivate: true,
     repositoryNote: "Case-study source",
-    stack: ["TypeScript", "Three.js", "WebGL2", "Vite", "WebSocket architecture"],
-    proofPoints: ["Live lobby capture", "Water rendering lab", "Server browser flow"],
+    stack: ["TypeScript", "Three.js", "WebGL2", "Blender", "WebSocket architecture"],
+    proofPoints: ["Current playable reef capture", "Authored terrain and Blender scene", "Lobby and server-browser flow"],
     outcome:
-      "A multiplayer-ready underwater survival prototype with third-person fish controls, lobby flow, HUD, growth systems, and water rendering quality tiers.",
+      "A browser-based underwater survival game with third-person fish controls, growth and ability systems, authored reef biomes, a complete HUD, lobby and room flow, and a Blender-to-runtime worldbuilding pipeline.",
     bullets: [
-      "Built player movement, feeding, sprint, ability, HUD, lobby, and match-selection flows.",
-      "Iterated on underwater rendering concepts including clarity, caustics, scattering, refraction shimmer, light shafts, and particulate haze.",
-      "Separated shared world rules from client rendering and server simulation so gameplay logic can move toward authoritative multiplayer.",
+      "Built player movement, feeding, sprint, abilities, camera states, HUD, growth, mutation, minimap, leaderboard, lobby, region, and match-selection flows.",
+      "Authored and reviewed terrain across browser and Blender workflows, including reef shelves, towers, trenches, traversal lanes, biome landmarks, coral placement, rock language, water clarity, and scene cameras.",
+      "Separated shared world rules from client rendering and server simulation while adding browser QA captures for runtime terrain, gameplay state, and the multiplayer entry flow.",
+    ],
+    implementationNotes: [
+      {
+        title: "Playable loop",
+        body: "The current capture shows the actual survival loop in one frame: player state, movement, food, abilities, threats, growth, position, and the world being traversed.",
+      },
+      {
+        title: "Worldbuilding pipeline",
+        body: "Dedicated Blender cameras and browser terrain captures make it possible to compare the authored environment, the runtime kit, and the player-height result.",
+      },
+      {
+        title: "Multiplayer surface",
+        body: "The lobby handles player identity, region choice, room discovery, mode review, join/create flows, sound and graphics state, inventory, login, and legal status before the dive.",
+      },
     ],
   },
   {
@@ -411,8 +520,8 @@ export const projects = [
     id: "blender-tools-pipeline",
     name: "Blender Tools Pipeline",
     eyebrow: "Production-tools case study",
-    image: "images/terrainforge-professional-bake-proof.png",
-    detailImage: "images/laser-saw-capped-split-proof.png",
+    image: "images/easytexture-addon-pbr-proof.png",
+    detailImage: "images/terrainforge-professional-bake-proof.png",
     gallery: [
       {
         title: "TerrainForge professional bake",

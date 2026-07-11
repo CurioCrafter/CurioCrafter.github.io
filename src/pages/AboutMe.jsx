@@ -42,10 +42,13 @@ function AboutMe() {
           </div>
         </div>
         <figure className="about-visual">
-          <img src="images/tidefront-blender-live.png" alt="Tidefront terrain and Blender bridge workflow" />
+          <img
+            src="images/tidefront-blender-showcase.webp"
+            alt="Tidefront underwater environment rendered from Andrew's Blender scene"
+          />
           <figcaption>
             <span>Current focus</span>
-            <strong>Terrain authoring and Blender-to-game workflows</strong>
+            <strong>Gameplay systems and Blender-to-game worldbuilding</strong>
           </figcaption>
         </figure>
       </section>

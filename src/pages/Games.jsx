@@ -28,14 +28,14 @@ function Games() {
       <section className="lane-hero game-lane-hero">
         <div className="lane-hero-copy">
           <p className="eyebrow">Game development</p>
-          <h1>Playable 3D systems with clear feedback and practical scope.</h1>
+          <h1>Playable 3D systems, simulated worlds, and readable feedback.</h1>
           <p>
-            I prototype movement, HUDs, world rules, level-authoring tools, and multiplayer-ready
-            flows, then reduce the work to a slice someone can understand quickly.
+            I build movement, HUDs, simulation rules, generated battlefields, authored terrain,
+            and multiplayer-ready flows, then verify the slice in the browser.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/tidefront-terrain-studio">
-              View lead game-tools case
+            <Link className="button primary" to="/projects/ocean-supremacy">
+              View Tidefront case study
             </Link>
             <a className="button secondary" href={profile.resume}>
               Download resume
@@ -44,8 +44,8 @@ function Games() {
         </div>
         {leadGame ? (
           <Link className="lane-hero-image" to={`/projects/${leadGame.id}`}>
-            <img src={leadGame.image} alt="Ocean Drift game lobby and match browser" />
-            <span>Game UI / lobby flow / world presentation</span>
+            <img src={leadGame.image} alt="Tidefront fish gameplay in the authored reef world" />
+            <span>Gameplay / authored terrain / multiplayer flow</span>
             <strong>{leadGame.name}</strong>
           </Link>
         ) : null}
@@ -64,7 +64,7 @@ function Games() {
       <section className="section-heading lane-project-heading">
         <div>
           <p className="eyebrow">Game case studies</p>
-          <h2>From terrain authoring to live upstream collaboration.</h2>
+          <h2>From playable worlds to live upstream collaboration.</h2>
         </div>
       </section>
 
