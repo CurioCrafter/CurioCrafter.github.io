@@ -10,26 +10,26 @@ const leadTool = projects.find((project) => project.id === "terrainforge");
 const addonProofs = [
   {
     name: "Laser Saw",
-    label: "Capped mesh split",
-    image: "images/laser-saw-capped-split-proof.png",
+    label: "Verified capped split",
+    image: "images/laser-saw-production-cut-proof.webp",
     to: "/projects/laser-saw",
   },
   {
     name: "EasyTexture",
-    label: "Material workflow proof",
-    image: "images/easytexture-addon-pbr-proof.png",
+    label: "Base / Normal / ORM",
+    image: "images/easytexture-game-prop-proof.webp",
     to: "/projects/blender-tools-pipeline",
   },
   {
     name: "AI Retopo Assist",
-    label: "Topology guide output",
-    image: "images/ai-retopo-assist-proof.png",
+    label: "Authored alien / quad patch",
+    image: "images/ai-retopo-authored-alien-proof.webp",
     to: "/projects/blender-tools-pipeline",
   },
   {
     name: "Tidefront Asset Shelf",
-    label: "Reusable scene assets",
-    image: "images/tidefront-asset-shelf-addon-proof.png",
+    label: "Catalog + GLB export",
+    image: "images/tidefront-asset-shelf-coral-garden-proof.webp",
     to: "/projects/tidefront-blender-workflow",
   },
 ];
@@ -55,10 +55,10 @@ function Software() {
       <section className="lane-hero tool-lane-hero">
         <div className="lane-hero-copy">
           <p className="eyebrow">Python / Blender tools</p>
-          <h1>Tools that turn repetitive 3D work into a clear workflow.</h1>
+          <h1>Artist-facing tools with output you can inspect.</h1>
           <p>
-            I build Blender add-ons, terrain and asset pipelines, editor surfaces, and local
-            utilities with an emphasis on visible results and safe iteration.
+            I build Blender add-ons, terrain and asset pipelines, and editor surfaces, then run
+            them on production scenes and authored assets to verify the handoff.
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/projects/terrainforge">
@@ -71,8 +71,8 @@ function Software() {
         </div>
         {leadTool ? (
           <Link className="lane-hero-image tool-hero-image" to={`/projects/${leadTool.id}`}>
-            <img src={leadTool.image} alt="TerrainForge generated cliff terrain in Blender" />
-            <span>Procedural terrain / Blender Python / validation</span>
+            <img src={leadTool.image} alt="TerrainForge tropical archipelago generated across four Blender terrain tiles" />
+            <span>Four terrain tiles / Blender Python / export validation</span>
             <strong>{leadTool.name}</strong>
           </Link>
         ) : null}
@@ -81,7 +81,7 @@ function Software() {
       <section className="section workflow-section">
         <div className="workflow-copy">
           <p className="eyebrow">Workflow mindset</p>
-          <h2>From repeated task to tested tool.</h2>
+          <h2>From artist friction to tested output.</h2>
           <div className="workflow-step-list">
             {workflowSteps.map((step, index) => (
               <article key={step.title}>
@@ -121,7 +121,7 @@ function Software() {
       <section className="lane-closing">
         <div>
           <p className="eyebrow">Tools role fit</p>
-          <h2>Best suited to Blender tooling, technical art support, and editor workflow work.</h2>
+          <h2>Ready to support gameplay, tools, and technical art workflows on a game team.</h2>
         </div>
         <a className="button secondary" href={`mailto:${profile.email}`}>
           Discuss a tools role

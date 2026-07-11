@@ -19,9 +19,10 @@ function StrandField() {
     if (!canvas || !context) return undefined;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (window.matchMedia("(max-width: 650px)").matches) return undefined;
     const random = createRandom(41983);
-    const filamentCount = window.innerWidth < 720 ? 12 : 22;
-    const particleCount = window.innerWidth < 720 ? 18 : 34;
+    const filamentCount = window.innerWidth < 900 ? 11 : 17;
+    const particleCount = window.innerWidth < 900 ? 15 : 25;
     const filaments = Array.from({ length: filamentCount }, (_, index) => ({
       start: random() * 1.2 - 0.1,
       slope: random() * 1.35 - 0.68,
@@ -32,7 +33,7 @@ function StrandField() {
       depth: 0.2 + random() * 0.8,
       width: index % 7 === 0 ? 1.15 : 0.55 + random() * 0.5,
       opacity: index % 7 === 0 ? 0.72 : 0.22 + random() * 0.28,
-      isRed: index % 3 !== 0,
+      isCyan: index % 3 !== 0,
     }));
     const particles = Array.from({ length: particleCount }, () => ({
       x: 0.42 + random() * 0.65,
@@ -40,7 +41,7 @@ function StrandField() {
       radius: 0.35 + random() * 1.1,
       phase: random() * Math.PI * 2,
       speed: 0.04 + random() * 0.08,
-      isRed: random() > 0.42,
+      isCyan: random() > 0.42,
     }));
 
     let width = 0;
@@ -77,7 +78,7 @@ function StrandField() {
           );
           const crossing = filament.slope * (progress - 0.5);
           const x =
-            width * (0.34 + progress * 0.83) +
+            width * (0.41 + progress * 0.76) +
             Math.sin(progress * 5.2 + filament.phase) * width * 0.012 +
             pointer.x * filament.depth * 18;
           const y =
@@ -88,12 +89,12 @@ function StrandField() {
           else context.lineTo(x, y);
         }
 
-        const red = filament.isRed;
-        context.strokeStyle = red
-          ? `rgba(255, 47, 66, ${filament.opacity})`
-          : `rgba(247, 245, 240, ${filament.opacity * 0.82})`;
-        context.shadowColor = red ? "rgba(255, 35, 55, 0.7)" : "rgba(255, 255, 255, 0.4)";
-        context.shadowBlur = red ? 7 : 4;
+        const cyan = filament.isCyan;
+        context.strokeStyle = cyan
+          ? `rgba(56, 215, 231, ${filament.opacity})`
+          : `rgba(215, 168, 74, ${filament.opacity * 0.82})`;
+        context.shadowColor = cyan ? "rgba(56, 215, 231, 0.62)" : "rgba(215, 168, 74, 0.38)";
+        context.shadowBlur = cyan ? 6 : 4;
         context.lineWidth = filament.width;
         context.stroke();
       });
@@ -105,9 +106,9 @@ function StrandField() {
         const y = height * particle.y + pointer.y * 6 + drift * 3;
         context.beginPath();
         context.arc(x, y, particle.radius, 0, Math.PI * 2);
-        context.fillStyle = particle.isRed
-          ? "rgba(255, 55, 72, 0.52)"
-          : "rgba(247, 245, 240, 0.46)";
+        context.fillStyle = particle.isCyan
+          ? "rgba(56, 215, 231, 0.48)"
+          : "rgba(215, 168, 74, 0.42)";
         context.fill();
       });
 

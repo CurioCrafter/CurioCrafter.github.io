@@ -118,8 +118,8 @@ function Home() {
       <section className="section capability-section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Capabilities</p>
-            <h2>One developer across runtime, editor, and asset workflow.</h2>
+            <p className="eyebrow">How I contribute</p>
+            <h2>Useful across gameplay, tools, and the art-to-runtime handoff.</h2>
           </div>
         </div>
         <div className="capability-grid">
@@ -140,7 +140,7 @@ function Home() {
       <section className="section experience-section">
         <div>
           <p className="eyebrow">Experience</p>
-          <h2>Independent production, collaboration, and hands-on problem solving.</h2>
+          <h2>Independent production with real review, playtest, and audience feedback.</h2>
         </div>
         <div className="timeline">
           {experiences.map((item) => (
