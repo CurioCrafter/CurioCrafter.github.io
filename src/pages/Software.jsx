@@ -22,14 +22,14 @@ const addonProofs = [
   },
   {
     name: "AI Retopo Assist",
-    label: "Authored alien / quad patch",
-    image: "images/ai-retopo-authored-alien-proof.webp",
+    label: "144 quads / clean report",
+    image: "images/ai-retopo-authored-alien-surface-proof.webp",
     to: "/projects/blender-tools-pipeline",
   },
   {
     name: "Tidefront Asset Shelf",
-    label: "Catalog + GLB export",
-    image: "images/tidefront-asset-shelf-coral-garden-proof.webp",
+    label: "Live panel + export record",
+    image: "images/tidefront-asset-shelf-panel-proof.png",
     to: "/projects/tidefront-blender-workflow",
   },
 ];

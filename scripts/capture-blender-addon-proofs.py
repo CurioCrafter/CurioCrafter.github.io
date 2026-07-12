@@ -23,12 +23,6 @@ AI_RETOPO_SOURCE_BLEND = Path(
     )
 )
 TIDEFRONT_ROOT = Path(os.environ.get("TIDEFRONT_ROOT", r"F:\Organized Desktop\oceansupremacyweb"))
-TIDEFRONT_ASSET_LIBRARY_BLEND = Path(
-    os.environ.get(
-        "TIDEFRONT_ASSET_LIBRARY_BLEND",
-        r"F:\Organized Desktop\03 Creative Assets and References\Ocean Drift\Blender\OceanDrift-Blender-Export\exports\OceanDrift_Asset_Library.blend",
-    )
-)
 BLENDER_45_ADDONS = Path(
     os.environ.get(
         "BLENDER_45_ADDONS",
@@ -415,14 +409,14 @@ def capture_ai_retopo() -> None:
     ai_retopo_assist.register()
     setup_render(background=(0.003, 0.004, 0.007, 1.0))
 
-    source_material = make_material("Authored alien sculpt", (0.085, 0.115, 0.14, 1.0), roughness=0.4, metallic=0.2)
+    source_material = make_material("Authored alien sculpt", (0.038, 0.045, 0.055, 1.0), roughness=0.38, metallic=0.16)
     cage_material = make_material(
         "Retopo signal cage",
-        (0.015, 0.58, 0.82, 1.0),
+        (0.92, 0.012, 0.045, 1.0),
         roughness=0.22,
         metallic=0.18,
-        emission=(0.01, 0.5, 1.0, 1.0),
-        emission_strength=1.55,
+        emission=(1.0, 0.008, 0.025, 1.0),
+        emission_strength=2.2,
     )
     floor_material = make_material("Retopo plinth", (0.014, 0.017, 0.023, 1.0), roughness=0.72)
 
@@ -474,16 +468,24 @@ def capture_ai_retopo() -> None:
     min_corner, max_corner, center = object_bounds([source])
     width = max_corner.x - min_corner.x
     height = max_corner.z - min_corner.z
-    center_x = center.x + width * 0.1
+    center_x = center.x
     center_z = min_corner.z + height * 0.68
-    for index in range(16):
-        angle = (index / 16.0) * math.tau
-        x = center_x + math.cos(angle) * width * 0.17
-        z = center_z + math.sin(angle) * height * 0.105
-        hit, location, normal, _face_index = source.closest_point_on_mesh(
-            Vector((x, min_corner.y - width * 0.08, z)),
-            distance=width * 3.0,
-        )
+    for index in range(24):
+        angle = (index / 24.0) * math.tau
+        z = center_z + math.sin(angle) * height * 0.1
+        hit = False
+        location = Vector()
+        normal = Vector((0.0, -1.0, 0.0))
+        for radius_scale in (1.0, 0.86, 0.72, 0.58):
+            x = center_x + math.cos(angle) * width * 0.17 * radius_scale
+            hit, location, normal, _face_index = source.ray_cast(
+                Vector((x, min_corner.y - width * 1.5, z)),
+                Vector((0.0, 1.0, 0.0)),
+                distance=width * 4.0,
+                depsgraph=depsgraph,
+            )
+            if hit:
+                break
         if not hit:
             raise RuntimeError(f"Could not project authored retopo contour point {index} onto the alien torso")
         stroke_points.append(list(location))
@@ -499,9 +501,9 @@ def capture_ai_retopo() -> None:
     }
     bpy.context.scene.ai_retopo_strokes_json = json.dumps([stroke])
     settings = bpy.context.scene.ai_retopo_settings
-    settings.patch_resolution = 12
-    settings.contour_count = 8
-    settings.relax_iterations = 5
+    settings.patch_resolution = 13
+    settings.contour_count = 10
+    settings.relax_iterations = 3
     bpy.ops.object.select_all(action="DESELECT")
     source.select_set(True)
     bpy.context.view_layer.objects.active = source
@@ -519,15 +521,21 @@ def capture_ai_retopo() -> None:
     report = json.loads(bpy.context.scene.ai_retopo_quality_json)
     if float(report.get("quad_ratio", 0.0)) < 0.95:
         raise RuntimeError(f"AI Retopo target is not mostly quads: {report}")
+    if int(report.get("pole_count", -1)) != 0:
+        raise RuntimeError(f"AI Retopo regular patch reported pole warnings: {report}")
+    if int(report.get("flipped_face_count", -1)) != 0:
+        raise RuntimeError(f"AI Retopo patch contains flipped faces: {report}")
+    if int(report.get("nonmanifold_edge_count", -1)) != 0:
+        raise RuntimeError(f"AI Retopo patch contains nonmanifold edges: {report}")
     snap = bridge.snapper_from_source(bpy.context, source)
     for vertex in target.data.vertices:
         snapped, _error, normal = snap(tuple(vertex.co))
-        vertex.co = Vector(snapped) + Vector(normal) * 0.035
+        vertex.co = Vector(snapped) + Vector(normal) * 0.018
     target.data.update()
     target.data.materials.clear()
     target.data.materials.append(cage_material)
     wireframe = target.modifiers.new("Visible retopo cage", "WIREFRAME")
-    wireframe.thickness = 0.01
+    wireframe.thickness = 0.012
     wireframe.use_replace = True
     wireframe.use_boundary = True
     target.show_in_front = True
@@ -538,12 +546,13 @@ def capture_ai_retopo() -> None:
 
     add_beveled_cube("Alien sculpt plinth", (0.0, 0.0, 0.13), (1.55, 1.25, 0.24), floor_material, bevel=0.1)
     add_floor(24.0, floor_material, z=0.0)
-    focus = (0.0, -0.04, min_corner.z + height * 0.64)
+    focus = (0.0, -0.04, min_corner.z + height * 0.66)
     add_area_light("Retopo white key", (-4.6, -5.8, 6.2), focus, energy=1500, size=4.4, color=(0.86, 0.94, 1.0))
     add_area_light("Retopo red rim", (4.2, 1.4, 4.6), focus, energy=1200, size=3.0, color=(1.0, 0.012, 0.025))
-    add_area_light("Retopo cyan fill", (-3.0, 2.2, 3.0), focus, energy=650, size=2.8, color=(0.08, 0.5, 1.0))
-    add_camera((3.8, -7.2, 3.4), focus, lens=62.0)
-    render_still("ai-retopo-authored-alien-proof.webp")
+    add_area_light("Retopo neutral fill", (-3.0, 2.2, 3.0), focus, energy=650, size=2.8, color=(0.72, 0.78, 0.9))
+    camera_distance = max(width * 1.8, height * 0.62)
+    add_camera((width * 0.46, min_corner.y - camera_distance, focus[2] + height * 0.09), focus, lens=50.0)
+    render_still("ai-retopo-authored-alien-surface-proof.webp")
     print(
         "AI_RETOPO_CAPTURE_OK",
         f"version={ai_retopo_assist.bl_info['version']}",
@@ -552,6 +561,8 @@ def capture_ai_retopo() -> None:
         f"preview_guides={preview_count}",
         f"faces={len(target.data.polygons)}",
         f"quad_ratio={float(report['quad_ratio']):.3f}",
+        f"poles={int(report['pole_count'])}",
+        f"flipped={int(report['flipped_face_count'])}",
     )
 
 
@@ -567,54 +578,83 @@ def capture_tidefront_asset_shelf() -> None:
         pass
     if bpy.ops.preferences.addon_enable(module="tidefront_asset_shelf") != {"FINISHED"}:
         raise RuntimeError("Could not enable Tidefront Asset Shelf")
-    setup_render(background=(0.003, 0.018, 0.03, 1.0), samples=80)
-    bpy.context.scene.view_settings.exposure = 0.4
+    setup_render(background=(0.002, 0.003, 0.005, 1.0), samples=80)
+    bpy.context.scene.view_settings.exposure = 0.25
 
-    basalt = make_material("Tidefront basalt", (0.025, 0.075, 0.09, 1.0), roughness=0.78, metallic=0.08)
-    coral_red = make_material("Signal coral", (0.74, 0.025, 0.065, 1.0), roughness=0.52)
-    coral_gold = make_material("Gold coral", (0.9, 0.3, 0.055, 1.0), roughness=0.55)
-    coral_pale = make_material("Pale coral", (0.62, 0.78, 0.75, 1.0), roughness=0.62)
-    coral_violet = make_material("Violet coral", (0.28, 0.075, 0.42, 1.0), roughness=0.58)
-    kelp = make_material("Deep kelp", (0.025, 0.24, 0.12, 1.0), roughness=0.74)
-    sand = make_material("Reef sand", (0.3, 0.235, 0.14, 1.0), roughness=0.9)
+    dark_metal = make_material("Beacon dark metal", (0.018, 0.022, 0.03, 1.0), roughness=0.28, metallic=0.78)
+    white_shell = make_material("Beacon white shell", (0.72, 0.74, 0.77, 1.0), roughness=0.34, metallic=0.32)
+    signal_red = make_material(
+        "Beacon signal red",
+        (0.82, 0.008, 0.035, 1.0),
+        roughness=0.22,
+        metallic=0.2,
+        emission=(1.0, 0.005, 0.02, 1.0),
+        emission_strength=2.4,
+    )
+    floor_material = make_material("Beacon proof floor", (0.018, 0.019, 0.022, 1.0), roughness=0.72)
 
-    if not TIDEFRONT_ASSET_LIBRARY_BLEND.exists():
-        raise RuntimeError(f"Tidefront source asset library is missing: {TIDEFRONT_ASSET_LIBRARY_BLEND}")
-    asset_specs = [
-        ("OceanDrift_Rock_Rock_003", (-1.65, 0.45, 0.62), (1.5, 1.35, 0.9), 0.2, basalt),
-        ("OceanDrift_Rock_Rock_005", (1.55, 0.55, 0.58), (1.45, 1.3, 0.86), -0.35, basalt),
-        ("OceanDrift_Rock_Rock_008", (0.0, -0.38, 0.34), (1.75, 1.48, 0.58), 0.12, basalt),
-        ("OceanDrift_Coral_Coralls_001", (-1.5, -0.25, 1.62), (1.05, 1.05, 1.05), -0.12, coral_red),
-        ("OceanDrift_Coral_Coralls_003", (0.15, -0.62, 1.44), (1.08, 1.08, 1.08), 0.24, coral_gold),
-        ("OceanDrift_Coral_CoralCA", (1.55, -0.2, 1.62), (1.0, 1.0, 1.0), -0.18, coral_pale),
-        ("OceanDrift_Coral_CoralE", (0.9, 0.65, 1.5), (0.86, 0.86, 0.86), 0.42, coral_violet),
-        ("OceanDrift_Seaweed_Seaweed_004", (-2.42, 1.0, 1.25), (1.45, 1.45, 1.45), 0.12, kelp),
-        ("OceanDrift_Seaweed_Seaweed_007", (2.4, 1.1, 1.2), (1.32, 1.32, 1.32), -0.2, kelp),
-    ]
-    with bpy.data.libraries.load(str(TIDEFRONT_ASSET_LIBRARY_BLEND), link=False) as (data_from, data_to):
-        wanted = [name for name, *_rest in asset_specs]
-        missing = [name for name in wanted if name not in data_from.objects]
-        if missing:
-            raise RuntimeError(f"Tidefront source library is missing assets: {missing}")
-        data_to.objects = wanted
-    loaded_by_name = {obj.name: obj for obj in data_to.objects if obj is not None}
-
-    root = bpy.data.objects.new("Tidefront_Coral_Garden_Kit", None)
+    root = bpy.data.objects.new("Portfolio_Signal_Beacon_Root", None)
     bpy.context.collection.objects.link(root)
-    asset_objects = []
-    for name, location, scale, rotation_z, material in asset_specs:
-        obj = loaded_by_name[name]
-        bpy.context.collection.objects.link(obj)
-        obj.name = name.replace("OceanDrift_", "")
-        obj.location = location
-        obj.scale = scale
-        obj.rotation_euler = (0.0, 0.0, rotation_z)
-        obj.data.materials.clear()
-        obj.data.materials.append(material)
+    asset_objects: list[bpy.types.Object] = []
+
+    def add_asset_object(obj: bpy.types.Object) -> bpy.types.Object:
+        obj.parent = root
         for polygon in obj.data.polygons:
             polygon.use_smooth = True
-        obj.parent = root
         asset_objects.append(obj)
+        return obj
+
+    bpy.ops.mesh.primitive_cylinder_add(vertices=64, radius=1.48, depth=0.28, location=(0.0, 0.0, 0.14))
+    add_asset_object(bpy.context.object).name = "Beacon_Base"
+    bpy.context.object.data.materials.append(dark_metal)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=64, radius=1.08, depth=0.42, location=(0.0, 0.0, 0.42))
+    add_asset_object(bpy.context.object).name = "Beacon_Base_Shell"
+    bpy.context.object.data.materials.append(white_shell)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=48, radius=0.31, depth=2.55, location=(0.0, 0.0, 1.78))
+    add_asset_object(bpy.context.object).name = "Beacon_Mast"
+    bpy.context.object.data.materials.append(dark_metal)
+
+    for index in range(3):
+        angle = index / 3.0 * math.tau
+        radius = 0.72
+        fin = add_beveled_cube(
+            f"Beacon_Fin_{index + 1:02d}",
+            (math.cos(angle) * radius, math.sin(angle) * radius, 1.45),
+            (0.2, 0.82, 1.62),
+            white_shell,
+            bevel=0.07,
+            rotation=(0.0, 0.0, angle),
+        )
+        add_asset_object(fin)
+
+    for index, z in enumerate((0.72, 2.62, 3.02), start=1):
+        bpy.ops.mesh.primitive_torus_add(
+            major_radius=0.78 if index == 1 else 0.62,
+            minor_radius=0.075,
+            major_segments=64,
+            minor_segments=12,
+            location=(0.0, 0.0, z),
+        )
+        ring = add_asset_object(bpy.context.object)
+        ring.name = f"Beacon_Signal_Ring_{index:02d}"
+        ring.data.materials.append(signal_red)
+
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=0.42, location=(0.0, 0.0, 3.18))
+    core = add_asset_object(bpy.context.object)
+    core.name = "Beacon_Signal_Core"
+    core.data.materials.append(signal_red)
+
+    for index in range(6):
+        angle = index / 6.0 * math.tau
+        lamp = add_beveled_cube(
+            f"Beacon_Base_Light_{index + 1:02d}",
+            (math.cos(angle) * 1.15, math.sin(angle) * 1.15, 0.38),
+            (0.2, 0.09, 0.12),
+            signal_red,
+            bevel=0.025,
+            rotation=(0.0, 0.0, angle),
+        )
+        add_asset_object(lamp)
 
     with tempfile.TemporaryDirectory(prefix="portfolio_tfas_") as tmp:
         repo_root = Path(tmp) / "game"
@@ -631,11 +671,11 @@ def capture_tidefront_asset_shelf() -> None:
         root.select_set(True)
         bpy.context.view_layer.objects.active = root
         settings = bpy.context.scene.tidefront_asset_shelf
-        settings.asset_name = "Tidefront Coral Garden Kit"
+        settings.asset_name = "Portfolio Signal Beacon"
         settings.asset_category = "landmarks"
-        settings.asset_version = 3
-        settings.tags = "reef, coral, kelp, landmark, modular, ocean-drift"
-        settings.description = "Reusable Tidefront coral garden assembled from the authored Ocean Drift asset library"
+        settings.asset_version = 1
+        settings.tags = "portfolio-proof, beacon, modular, original-fixture"
+        settings.description = "Original primitive-built proof fixture for validating Tidefront Asset Shelf output"
         settings.save_source_blend = True
         settings.export_glb = True
         if bpy.ops.tidefront_asset_shelf.save_selected() != {"FINISHED"}:
@@ -652,57 +692,30 @@ def capture_tidefront_asset_shelf() -> None:
             raise RuntimeError(f"Asset Shelf source blend missing: {source_path}")
         if int(entry["meshObjects"]) < len(asset_objects):
             raise RuntimeError(f"Asset Shelf did not catalog the hierarchy: {entry}")
+        last_export = json.loads(settings.last_export_json)
+        if last_export.get("id") != entry["id"] or int(last_export.get("triangles", 0)) != int(entry["triangles"]):
+            raise RuntimeError(f"Asset Shelf panel status does not match the catalog entry: {last_export}")
 
-        sand_nodes = sand.node_tree.nodes
-        sand_links = sand.node_tree.links
-        sand_coordinates = sand_nodes.new("ShaderNodeTexCoord")
-        sand_noise = sand_nodes.new("ShaderNodeTexNoise")
-        sand_noise.inputs["Scale"].default_value = 7.0
-        sand_noise.inputs["Detail"].default_value = 3.0
-        sand_bump = sand_nodes.new("ShaderNodeBump")
-        sand_bump.inputs["Strength"].default_value = 0.2
-        sand_bump.inputs["Distance"].default_value = 0.12
-        sand_links.new(sand_coordinates.outputs["Generated"], sand_noise.inputs["Vector"])
-        sand_links.new(sand_noise.outputs["Fac"], sand_bump.inputs["Height"])
-        sand_links.new(sand_bump.outputs["Normal"], sand_nodes["Principled BSDF"].inputs["Normal"])
-        add_floor(28.0, sand, z=-0.04)
+        add_floor(22.0, floor_material, z=0.0)
+        add_area_light("Beacon white key", (-4.8, -5.2, 6.5), (0.0, 0.0, 1.7), energy=1750, size=5.0, color=(0.9, 0.93, 1.0))
+        add_area_light("Beacon red rim", (4.2, 0.8, 4.8), (0.0, 0.0, 1.8), energy=1250, size=3.0, color=(1.0, 0.008, 0.025))
+        add_area_light("Beacon neutral fill", (-2.0, 3.4, 2.8), (0.0, 0.0, 1.5), energy=650, size=2.6, color=(0.55, 0.62, 0.74))
+        add_camera((6.8, -9.6, 5.6), (0.0, 0.0, 1.62), lens=58.0)
+        render_still("tidefront-asset-shelf-beacon-output.webp")
 
-        particle_material = make_material(
-            "Underwater particles",
-            (0.25, 0.72, 0.84, 1.0),
-            roughness=0.2,
-            emission=(0.08, 0.52, 0.72, 1.0),
-            emission_strength=0.8,
-        )
-        particle_rng = np.random.default_rng(4403)
-        for index in range(36):
-            location = (
-                float(particle_rng.uniform(-4.6, 4.6)),
-                float(particle_rng.uniform(-0.8, 4.8)),
-                float(particle_rng.uniform(0.25, 4.2)),
-            )
-            bpy.ops.mesh.primitive_ico_sphere_add(
-                subdivisions=1,
-                radius=float(particle_rng.uniform(0.012, 0.035)),
-                location=location,
-            )
-            bpy.context.object.name = f"Underwater mote {index + 1:02d}"
-            bpy.context.object.data.materials.append(particle_material)
-
-        add_area_light("Underwater key", (-4.8, -5.2, 7.4), (0.0, 0.0, 1.35), energy=1650, size=5.5, color=(0.3, 0.78, 1.0))
-        add_area_light("Coral rim", (4.5, 0.8, 4.8), (0.0, 0.0, 1.35), energy=1100, size=3.2, color=(1.0, 0.035, 0.08))
-        add_area_light("Warm reef fill", (-2.5, 3.2, 2.4), (0.0, 0.0, 1.15), energy=760, size=2.8, color=(1.0, 0.42, 0.12))
-        add_camera((6.9, -9.6, 4.7), (0.0, 0.0, 1.38), lens=60.0)
-        render_still("tidefront-asset-shelf-coral-garden-proof.webp")
+        ui_blend = ROOT / "tmp" / "tidefront-asset-shelf-ui.blend"
+        ui_blend.parent.mkdir(parents=True, exist_ok=True)
+        bpy.ops.wm.save_as_mainfile(filepath=str(ui_blend), copy=True)
 
         print(
             "TIDEFRONT_ASSET_SHELF_CAPTURE_OK",
             f"asset_id={entry['id']}",
-            f"source={TIDEFRONT_ASSET_LIBRARY_BLEND.name}",
+            "source=original-primitive-proof-fixture",
             f"objects={len(entry['objects'])}",
             f"triangles={entry['triangles']}",
             f"materials={len(entry['materials'])}",
             f"glb_bytes={runtime_path.stat().st_size}",
+            f"ui_blend={ui_blend}",
         )
 
 

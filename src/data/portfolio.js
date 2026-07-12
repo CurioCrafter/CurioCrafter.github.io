@@ -218,10 +218,10 @@ export const projects = [
         alt: "Tidefront Blender bridge workflow screenshot with Python tool controls",
       },
       {
-        title: "Asset Shelf coral garden",
-        caption: "Tidefront Asset Shelf packaged a 10-object coral garden assembled from the authored Ocean Drift asset library into a GLB, source blend, and catalog entry.",
-        image: "images/tidefront-asset-shelf-coral-garden-proof.webp",
-        alt: "Authored Ocean Drift coral garden exported through the Tidefront Asset Shelf add-on",
+        title: "Asset Shelf export panel",
+        caption: "The live Asset Shelf panel records a verified export of an original primitive-built beacon: 17 objects, 8,320 triangles, three materials, a GLB, source blend, and catalog entry.",
+        image: "images/tidefront-asset-shelf-panel-proof.png",
+        alt: "Tidefront Asset Shelf panel beside an original red and white beacon export fixture in Blender",
       },
     ],
     repository: "",
@@ -536,10 +536,16 @@ export const projects = [
         alt: "Laser Saw split hard-surface housing with highlighted cap surfaces",
       },
       {
-        title: "Tidefront coral-garden export",
-        caption: "Asset Shelf packaged 10 authored Ocean Drift objects, 16,506 triangles, and six materials into a runtime GLB, source blend, and catalog entry.",
-        image: "images/tidefront-asset-shelf-coral-garden-proof.webp",
-        alt: "Ocean Drift coral garden packaged by the Tidefront Asset Shelf add-on",
+        title: "Asset Shelf live export proof",
+        caption: "The real add-on panel shows the selected export root and its completed output record: 17 objects, 8,320 triangles, three materials, a 193,212-byte GLB, source blend, and catalog metadata.",
+        image: "images/tidefront-asset-shelf-panel-proof.png",
+        alt: "Live Tidefront Asset Shelf export panel and original signal beacon fixture in Blender",
+      },
+      {
+        title: "Controlled export fixture",
+        caption: "An original primitive-built beacon from the same proof scene provides a controlled hierarchy and material set for validating GLB, source blend, and catalog output without external asset dependencies.",
+        image: "images/tidefront-asset-shelf-beacon-output.webp",
+        alt: "Original red and white signal beacon built as a Tidefront Asset Shelf export fixture",
       },
       {
         title: "EasyTexture game-prop material",
@@ -549,9 +555,9 @@ export const projects = [
       },
       {
         title: "AI Retopo on an authored alien",
-        caption: "AI Retopo Assist v0.1.0 ran on the posed aliencreature_001.blend mesh, generated 11 guides, and applied a 76-face all-quad torso patch.",
-        image: "images/ai-retopo-authored-alien-proof.webp",
-        alt: "All-quad AI Retopo Assist patch on an authored alien character",
+        caption: "AI Retopo Assist v0.2.0 generated a surface-conforming 144-face torso cage on aliencreature_001.blend with 100% quads, zero pole warnings, and zero flipped faces.",
+        image: "images/ai-retopo-authored-alien-surface-proof.webp",
+        alt: "Red all-quad AI Retopo Assist cage conforming to the torso of an authored alien character",
       },
       {
         title: "Shared asset catalog",
@@ -563,13 +569,13 @@ export const projects = [
     repository: "",
     repositoryNote: "Pipeline case study",
     stack: ["Python", "Blender API", "terrain baking", "mesh operations", "export tooling"],
-    proofPoints: ["5 add-ons run in Blender 4.5.11", "Authored scene and character inputs", "Geometry and export assertions"],
+    proofPoints: ["5 add-ons run in Blender 4.5.11", "Real operators and authored character input", "Geometry and export assertions"],
     outcome:
       "A tested Blender tools pipeline spanning procedural terrain, hard-surface mesh cutting, reusable asset packaging, PBR material setup, retopo planning, and visual QA on authored project files.",
     bullets: [
       "Built deterministic Blender capture scenes that call the real public operators and fail when expected meshes, materials, manifests, or export files are missing.",
-      "Used authored Ocean Drift and alien-character blend files for the Asset Shelf and retopo proofs instead of relying only on synthetic smoke-test geometry.",
-      "Kept the evidence honest: the retopo report records pole warnings, while the TerrainForge, Laser Saw, EasyTexture, and Asset Shelf checks assert their concrete outputs.",
+      "Ran the retopo tool on an authored alien-character blend and used a clearly identified original primitive fixture to prove the Asset Shelf export path.",
+      "Kept the evidence inspectable: the retopo report asserts quad ratio, poles, and winding, while TerrainForge, Laser Saw, EasyTexture, and Asset Shelf checks assert their concrete outputs.",
     ],
   },
   {
@@ -639,9 +645,9 @@ export const projects = [
       },
       {
         title: "Tidefront Asset Shelf export",
-        caption: "A neighboring production-tool proof showing an authored coral kit moving from Blender hierarchy to GLB, source blend, and catalog metadata.",
-        image: "images/tidefront-asset-shelf-coral-garden-proof.webp",
-        alt: "Tidefront coral garden exported through the Asset Shelf add-on",
+        caption: "A neighboring production-tool proof showing the actual Asset Shelf panel, selected root, export settings, and completed GLB/source/catalog record.",
+        image: "images/tidefront-asset-shelf-panel-proof.png",
+        alt: "Tidefront Asset Shelf panel showing a completed signal beacon export",
       },
     ],
     repository: "",
@@ -1306,6 +1312,15 @@ export const experiences = [
     timeframe: "2021 - 2023",
     bullets: [
       "Supported commercial electrical installation, jobsite preparation, safety procedures, materials handling, and field troubleshooting.",
+    ],
+  },
+  {
+    role: "Wildland Firefighter / Electrical Pre-Apprentice",
+    organization: "Job Corps",
+    timeframe: "One fire season",
+    bullets: [
+      "Served one season on a wildland firefighting crew, working within strict safety, fitness, communication, and field-tool procedures.",
+      "Completed electrical pre-apprenticeship training and earned a high school diploma through Job Corps.",
     ],
   },
 ];

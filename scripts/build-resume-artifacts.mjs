@@ -3,15 +3,7 @@ import { existsSync } from "node:fs";
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import {
-  applicationPackets,
-  experiences,
-  profile,
-  projects,
-  resumeProofStack,
-  resumeSignals,
-  roleFit,
-} from "../src/data/portfolio.js";
+import { experiences, profile, projects } from "../src/data/portfolio.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = join(root, "public");
@@ -21,18 +13,6 @@ const resumePdfPath = join(root, profile.resume);
 const publicResumePdfPath = join(publicDir, profile.resume);
 const portfolioUrl = "https://curiocrafter.github.io";
 
-const featuredIds = [
-  "tidefront-terrain-studio",
-  "tidefront-blender-workflow",
-  "dronesim",
-  "claude-citizen",
-  "ocean-supremacy",
-  "blender-tools-pipeline",
-  "terrainforge",
-];
-
-const featuredProjects = featuredIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
-
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -41,22 +21,67 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
-function linkForProject(project) {
-  if (project.liveUrl) {
-    if (/^https?:\/\//i.test(project.liveUrl)) return project.liveUrl;
-    return `${portfolioUrl}/${project.liveUrl}`;
-  }
+function projectUrl(id) {
+  return `${portfolioUrl}/#/projects/${id}`;
+}
 
-  return `${portfolioUrl}/#/projects/${project.id}`;
+function projectName(id) {
+  return projects.find((project) => project.id === id)?.name ?? id;
+}
+
+function renderList(items) {
+  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 }
 
 function renderTags(items) {
   return items.map((item) => `<span>${escapeHtml(item)}</span>`).join("");
 }
 
-function renderList(items) {
-  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-}
+const selectedWork = [
+  {
+    id: "ocean-supremacy",
+    label: "Browser 3D game + authored world pipeline",
+    bullets: [
+      "Built player movement, feeding, abilities, camera states, HUD, lobby flow, survival pressure, and simulation systems.",
+      "Connected authored Blender terrain, coral, landmarks, and export data to a Three.js/WebGL runtime.",
+    ],
+    stack: ["TypeScript", "Three.js", "WebGL2", "Blender", "WebSockets"],
+  },
+  {
+    id: "terrainforge",
+    label: "Blender Python terrain and modeling tools",
+    displayName: "TerrainForge + Blender Tools",
+    bullets: [
+      "Verified a four-tile tropical terrain build, export manifest, and a separate 1,054,721-vertex professional bake in Blender 4.5.11.",
+      "Built repeatable add-on proof scenes for terrain generation, capped mesh cutting, and PBR material assignment.",
+    ],
+    stack: ["Python", "Blender API", "NumPy", "Mesh tooling", "Visual QA"],
+  },
+  {
+    id: "claude-citizen",
+    label: "Merged external game contribution",
+    bullets: [
+      "Contributed 10 commits to a merged upstream PR for Solar Atlas navigation, pointer-lock safety, orbit selection, and visual polish.",
+      "Worked within an existing TypeScript/Three.js codebase and iterated from review evidence rather than a solo greenfield repo.",
+    ],
+    stack: ["TypeScript", "Three.js", "Vite", "Git", "Pull requests"],
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Gameplay + 3D",
+    items: ["TypeScript", "Three.js / WebGL", "C++", "DirectX 12 / HLSL", "Gameplay systems", "Simulation", "HUD + cameras"],
+  },
+  {
+    title: "Tools + Technical Art",
+    items: ["Python", "Blender API", "Procedural terrain", "Mesh operations", "Asset/export pipelines", "React", "Electron"],
+  },
+  {
+    title: "Delivery",
+    items: ["Git + GitHub", "PR collaboration", "Playwright", "Visual QA", "Vite", "Node.js", "SQLite"],
+  },
+];
 
 const html = `<!doctype html>
 <html lang="en">
@@ -67,276 +92,233 @@ const html = `<!doctype html>
     <style>
       @page {
         size: letter;
-        margin: 0.42in;
+        margin: 0.38in;
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html,
       body {
         margin: 0;
         background: #ffffff;
-        color: #151817;
-        font-family: Inter, Arial, sans-serif;
-        font-size: 9.6pt;
-        line-height: 1.35;
+        color: #171819;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 8.65pt;
+        line-height: 1.24;
       }
 
       a {
-        color: #0c6265;
+        color: inherit;
         text-decoration: none;
       }
 
       h1,
       h2,
       h3,
-      p {
+      p,
+      ul {
         margin-top: 0;
       }
 
-      h1 {
-        margin-bottom: 0.04in;
-        color: #101413;
-        font-size: 26pt;
-        line-height: 0.96;
-      }
-
-      h2 {
-        margin-bottom: 0.08in;
-        border-bottom: 1px solid #cdd6d3;
-        padding-bottom: 0.04in;
-        color: #0c6265;
-        font-size: 10pt;
-        text-transform: uppercase;
-      }
-
-      h3 {
-        margin-bottom: 0.03in;
-        font-size: 10.8pt;
-        line-height: 1.1;
-      }
-
-      p {
-        margin-bottom: 0.08in;
-      }
-
       .page {
-        display: grid;
-        gap: 0.16in;
+        width: 100%;
       }
 
       .header {
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: minmax(0, 1fr) 2.18in;
         gap: 0.25in;
-        align-items: start;
-        border-bottom: 2px solid #101413;
-        padding-bottom: 0.13in;
+        align-items: end;
+        border-bottom: 3px solid #d51f3c;
+        padding-bottom: 0.1in;
+      }
+
+      h1 {
+        margin-bottom: 0.025in;
+        font-size: 25pt;
+        line-height: 0.95;
       }
 
       .title {
-        margin-bottom: 0.05in;
-        color: #9a650e;
-        font-size: 11pt;
-        font-weight: 800;
-      }
-
-      .summary {
-        max-width: 6.35in;
         margin-bottom: 0;
-        font-size: 10.2pt;
+        color: #c21835;
+        font-size: 10.8pt;
+        font-weight: 800;
       }
 
       .contact {
         display: grid;
-        gap: 0.035in;
-        min-width: 1.95in;
-        color: #3d4544;
-        font-size: 8.7pt;
+        gap: 0.018in;
+        color: #404346;
+        font-size: 8pt;
         text-align: right;
       }
 
       .contact strong {
-        color: #101413;
+        color: #171819;
       }
 
-      .signal-grid {
+      .summary {
+        margin: 0;
+        border-bottom: 1px solid #d8d9db;
+        padding: 0.095in 0 0.105in;
+        color: #323538;
+        font-size: 9.15pt;
+      }
+
+      .columns {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.08in;
+        grid-template-columns: minmax(0, 1.68fr) minmax(0, 0.82fr);
+        gap: 0.23in;
+        margin-top: 0.13in;
       }
 
-      .signal {
-        border-left: 3px solid #0c6265;
-        background: #f2f6f5;
-        padding: 0.08in;
+      .rail {
+        border-left: 1px solid #d8d9db;
+        padding-left: 0.18in;
       }
 
-      .signal span,
-      .stat span,
-      .project-kicker {
-        display: block;
-        color: #0c6265;
-        font-size: 7.6pt;
-        font-weight: 800;
+      section + section {
+        margin-top: 0.14in;
+      }
+
+      h2 {
+        margin-bottom: 0.06in;
+        color: #bf1934;
+        font-size: 9.2pt;
+        line-height: 1;
         text-transform: uppercase;
       }
 
-      .signal strong,
-      .stat strong {
-        display: block;
-        margin-top: 0.03in;
-        color: #151817;
-        font-size: 9.2pt;
-        line-height: 1.2;
+      h3 {
+        margin-bottom: 0.015in;
+        font-size: 10pt;
+        line-height: 1.08;
       }
 
-      .two-col {
-        display: grid;
-        grid-template-columns: 1.08fr 0.92fr;
-        gap: 0.2in;
-        align-items: start;
-      }
-
-      .project-list,
-      .proof-list,
-      .packet-list,
-      .experience-list {
-        display: grid;
-        gap: 0.11in;
-      }
-
-      .project {
+      .item {
         break-inside: avoid;
-        border-bottom: 1px solid #dde5e2;
-        padding-bottom: 0.09in;
+        border-top: 1px solid #e2e3e4;
+        padding: 0.062in 0 0.052in;
       }
 
-      .project:last-child {
-        border-bottom: 0;
+      .item:first-child {
+        border-top: 0;
+        padding-top: 0;
       }
 
-      .project p,
-      .proof p,
-      .experience p {
-        color: #303b39;
+      .kicker,
+      .meta {
+        display: block;
+        margin-bottom: 0.022in;
+        color: #5a5d60;
+        font-size: 7.75pt;
+        font-weight: 700;
       }
 
-      .project ul,
-      .experience ul {
-        margin: 0.04in 0 0;
-        padding-left: 0.16in;
+      .kicker {
+        color: #a3152d;
+        text-transform: uppercase;
       }
 
-      .project li,
-      .experience li {
-        margin-bottom: 0.025in;
+      ul {
+        margin-bottom: 0;
+        padding-left: 0.155in;
+      }
+
+      li {
+        margin-bottom: 0.018in;
       }
 
       .tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.035in;
-        margin-top: 0.055in;
+        gap: 0.026in 0.04in;
+        margin-top: 0.036in;
       }
 
       .tags span {
-        border: 1px solid #cbd8d5;
-        padding: 0.025in 0.045in;
-        color: #303b39;
-        font-size: 7.6pt;
+        border: 1px solid #d7d8da;
+        padding: 0.015in 0.035in;
+        color: #3f4245;
+        font-size: 7pt;
         font-weight: 700;
       }
 
+      .skill-group + .skill-group {
+        margin-top: 0.09in;
+      }
+
+      .skill-group h3 {
+        margin-bottom: 0.035in;
+        font-size: 8.7pt;
+      }
+
+      .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.035in;
+      }
+
+      .skill-list span {
+        border-bottom: 1px solid #c7c9cb;
+        padding-bottom: 0.01in;
+        color: #333638;
+        font-size: 7.65pt;
+      }
+
       .proof {
-        break-inside: avoid;
-        border-left: 3px solid #c48622;
-        background: #fff8ec;
-        padding: 0.075in 0.09in;
+        border-left: 3px solid #d51f3c;
+        padding-left: 0.07in;
+      }
+
+      .proof + .proof {
+        margin-top: 0.075in;
       }
 
       .proof strong {
         display: block;
-        margin-bottom: 0.035in;
+        margin-bottom: 0.018in;
+        font-size: 8.35pt;
       }
 
-      .packet-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.08in;
+      .proof p,
+      .education p {
+        margin-bottom: 0;
+        color: #434649;
+        font-size: 7.8pt;
       }
 
-      .packet {
-        break-inside: avoid;
-        border: 1px solid #d8e2df;
-        border-left: 3px solid #0c6265;
-        padding: 0.075in;
+      .education + .education {
+        margin-top: 0.07in;
       }
 
-      .packet p {
-        margin-bottom: 0.045in;
-        color: #303b39;
-      }
-
-      .packet ul {
-        margin: 0.04in 0 0;
-        padding-left: 0.15in;
-      }
-
-      .packet li {
-        margin-bottom: 0.02in;
-      }
-
-      .skills {
-        display: grid;
-        gap: 0.11in;
-      }
-
-      .skill-group h3 {
-        margin-bottom: 0.05in;
-        color: #101413;
-        font-size: 9.4pt;
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.06in;
-      }
-
-      .stat {
-        border: 1px solid #dde5e2;
-        padding: 0.07in;
-      }
-
-      .experience span {
-        display: block;
-        margin-bottom: 0.025in;
-        color: #596664;
-        font-size: 8.2pt;
-        font-weight: 700;
-      }
-
-      .footer-note {
-        border-top: 1px solid #cdd6d3;
-        padding-top: 0.08in;
-        color: #596664;
-        font-size: 8.2pt;
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.2in;
+        margin-top: 0.11in;
+        border-top: 1px solid #cfd1d3;
+        padding-top: 0.055in;
+        color: #55585b;
+        font-size: 7.25pt;
       }
 
       @media screen {
         body {
-          background: #f4f7f6;
+          background: #eceeef;
+          padding: 0.25in;
         }
 
         .page {
-          max-width: 8.5in;
+          width: 8.5in;
           min-height: 11in;
           margin: 0 auto;
           background: #ffffff;
-          padding: 0.25in;
-          box-shadow: 0 18px 60px rgba(16, 20, 19, 0.16);
+          padding: 0.38in;
+          box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
         }
       }
 
@@ -349,143 +331,118 @@ const html = `<!doctype html>
   </head>
   <body>
     <main class="page">
-      <section class="header">
+      <header class="header">
         <div>
           <h1>${escapeHtml(profile.name)}</h1>
-          <p class="title">${escapeHtml(profile.title)}</p>
-          <p class="summary">
-            Game and tools developer building playable browser demos, Blender Python add-ons,
-            WebGL creative systems, native gameplay experiments, desktop utilities, and
-            AI-assisted creative workflows with a practical focus on visible proof.
-          </p>
+          <p class="title">Junior Game Developer | Python / Blender Tools</p>
         </div>
         <div class="contact" aria-label="Contact">
           <strong>${escapeHtml(profile.location)}</strong>
           <a href="mailto:${escapeHtml(profile.email)}">${escapeHtml(profile.email)}</a>
           <a href="${portfolioUrl}">curiocrafter.github.io</a>
           <a href="${escapeHtml(profile.github)}">github.com/CurioCrafter</a>
-          <a href="${escapeHtml(profile.youtube)}">youtube.com/@CurioCrafter-r1w</a>
-          <a href="${escapeHtml(profile.linkedin)}">LinkedIn profile</a>
+          <a href="${escapeHtml(profile.linkedin)}">linkedin.com/in/andrew-rainsberger</a>
         </div>
-      </section>
+      </header>
 
-      <section class="signal-grid" aria-label="Positioning">
-        ${resumeSignals
-          .map(
-            (signal) => `<article class="signal">
-              <span>${escapeHtml(signal.label)}</span>
-              <strong>${escapeHtml(signal.value)}</strong>
-            </article>`,
-          )
-          .join("")}
-      </section>
+      <p class="summary">
+        Junior game and tools developer building playable 3D systems, authored worlds, and Blender Python workflows.
+        Comfortable moving between gameplay, technical-art support, testing, and shipping reviewable work with a team.
+      </p>
 
-      <section>
-        <h2>Role-Specific Application Packets</h2>
-        <div class="packet-grid">
-          ${applicationPackets
-            .slice(0, 4)
-            .map(
-              (packet) => `<article class="packet">
-                <span class="project-kicker">${escapeHtml(packet.role)}</span>
-                <h3>${escapeHtml(packet.headline)}</h3>
-                <p>${escapeHtml(packet.fit)}</p>
-                <ul>${renderList(packet.bullets.slice(0, 2))}</ul>
-                <div class="tags">${renderTags(packet.inspect.map((item) => item.label))}</div>
-              </article>`,
-            )
-            .join("")}
-        </div>
-      </section>
-
-      <section class="two-col">
+      <div class="columns">
         <div>
-          <h2>Selected Project Proof</h2>
-          <div class="project-list">
-            ${featuredProjects
+          <section>
+            <h2>Selected Work</h2>
+            ${selectedWork
               .map(
-                (project) => `<article class="project">
-                  <span class="project-kicker">${escapeHtml(project.eyebrow)}</span>
-                  <h3><a href="${escapeHtml(linkForProject(project))}">${escapeHtml(project.name)}</a></h3>
-                  <p>${escapeHtml(project.outcome)}</p>
-                  <ul>${renderList(project.bullets.slice(0, 2))}</ul>
-                  <div class="tags">${renderTags(project.stack.slice(0, 5))}</div>
+                (work) => `<article class="item">
+                  <span class="kicker">${escapeHtml(work.label)}</span>
+                  <h3><a href="${projectUrl(work.id)}">${escapeHtml(work.displayName ?? projectName(work.id))}</a></h3>
+                  <ul>${renderList(work.bullets)}</ul>
+                  <div class="tags">${renderTags(work.stack)}</div>
                 </article>`,
               )
               .join("")}
-          </div>
-        </div>
+          </section>
 
-        <aside>
-          <h2>Project Evidence Lines</h2>
-          <div class="proof-list">
-            ${resumeProofStack
-              .map(
-                (item) => `<article class="proof">
-                  <strong>${escapeHtml(item.lane)}: ${escapeHtml(item.title)}</strong>
-                  <p>${escapeHtml(item.resumeLine)}</p>
-                </article>`,
-              )
-              .join("")}
-          </div>
-        </aside>
-      </section>
-
-      <section class="two-col">
-        <div>
-          <h2>Experience</h2>
-          <div class="experience-list">
+          <section>
+            <h2>Experience</h2>
             ${experiences
               .map(
-                (item) => `<article class="experience">
+                (item) => `<article class="item">
                   <h3>${escapeHtml(item.role)}</h3>
-                  <span>${escapeHtml(item.organization)} | ${escapeHtml(item.timeframe)}</span>
-                  <ul>${renderList(item.bullets)}</ul>
+                  <span class="meta">${escapeHtml(item.organization)} | ${escapeHtml(item.timeframe)}</span>
+                  <ul>${renderList(item.bullets.slice(0, item.role.startsWith("Independent") ? 3 : 2))}</ul>
                 </article>`,
               )
               .join("")}
-          </div>
+          </section>
         </div>
 
-        <div class="skills">
+        <aside class="rail">
           <section>
-            <h2>Role Fit</h2>
-            ${roleFit
-              .slice(0, 3)
+            <h2>Technical Skills</h2>
+            ${skillGroups
               .map(
-                (fit) => `<article class="skill-group">
-                  <h3>${escapeHtml(fit.role)}</h3>
-                  <p>${escapeHtml(fit.pitch)}</p>
-                </article>`,
+                (group) => `<div class="skill-group">
+                  <h3>${escapeHtml(group.title)}</h3>
+                  <div class="skill-list">${group.items.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+                </div>`,
               )
               .join("")}
           </section>
 
           <section>
-            <h2>Technical Stack</h2>
-            <div class="tags">${renderTags(profile.stack)}</div>
-          </section>
-
-          <section>
-            <h2>Creative Audience</h2>
-            <div class="stats">
-              ${profile.proof
-                .map(
-                  (stat) => `<article class="stat">
-                    <span>${escapeHtml(stat.label)}</span>
-                    <strong>${escapeHtml(stat.value)}</strong>
-                  </article>`,
-                )
-                .join("")}
+            <h2>Team Evidence</h2>
+            <div class="proof">
+              <strong>Merged upstream contribution</strong>
+              <p>10 commits accepted into another developer's browser game through a reviewed pull request.</p>
+            </div>
+            <div class="proof">
+              <strong>Playable and inspectable work</strong>
+              <p>Browser builds, Blender captures, geometry assertions, responsive QA, and public case studies.</p>
+            </div>
+            <div class="proof">
+              <strong>Creative feedback loop</strong>
+              <p>81K+ audience developed through repeated visual iteration, pacing, and response to feedback.</p>
             </div>
           </section>
-        </div>
-      </section>
 
-      <p class="footer-note">
-        Updated June 2026. Portfolio case studies and public demos are available at
-        <a href="${portfolioUrl}">${portfolioUrl}</a>.
-      </p>
+          <section>
+            <h2>Education + Training</h2>
+            <div class="education">
+              <h3>High School Diploma</h3>
+              <p>Job Corps</p>
+            </div>
+            <div class="education">
+              <h3>Electrical Pre-Apprenticeship</h3>
+              <p>Job Corps</p>
+            </div>
+            <div class="education">
+              <h3>Wildland Firefighting</h3>
+              <p>One season of field crew experience through Job Corps.</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Role Fit</h2>
+            <div class="proof">
+              <strong>Junior gameplay development</strong>
+              <p>Controls, cameras, HUDs, simulation rules, browser 3D, and focused vertical slices.</p>
+            </div>
+            <div class="proof">
+              <strong>Tools and technical art support</strong>
+              <p>Blender add-ons, procedural content, mesh workflows, export tooling, and artist-facing QA.</p>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <span>Portfolio case studies and live builds: ${portfolioUrl}</span>
+        <span>Updated July 2026</span>
+      </footer>
     </main>
   </body>
 </html>
@@ -512,6 +469,7 @@ const print = spawnSync(
     "--disable-gpu",
     "--no-first-run",
     "--no-default-browser-check",
+    "--no-pdf-header-footer",
     `--print-to-pdf=${resumePdfPath}`,
     pathToFileURL(resumeHtmlPath).href,
   ],
