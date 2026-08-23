@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 function ProjectFeature({ project, index }) {
   const linksToPublicRepo = project.repository && !project.isPrivate;
+  const primaryExternalLink = project.externalLinks?.[0];
 
   return (
     <article className={index % 2 === 1 ? "project-feature is-reversed" : "project-feature"}>
@@ -9,7 +10,8 @@ function ProjectFeature({ project, index }) {
         <img
           className={project.mediaFit === "contain" ? "contain-image" : undefined}
           src={project.image}
-          alt={`${project.name} project screenshot`}
+          alt={project.imageAlt || `${project.name} project screenshot`}
+          loading={index === 0 ? "eager" : "lazy"}
         />
         <span className="media-index">0{index + 1}</span>
       </Link>
@@ -40,6 +42,10 @@ function ProjectFeature({ project, index }) {
           {project.liveUrl ? (
             <a className="text-link muted" href={project.liveUrl} target="_blank" rel="noreferrer">
               Open live work
+            </a>
+          ) : primaryExternalLink ? (
+            <a className="text-link muted" href={primaryExternalLink.url} target="_blank" rel="noreferrer">
+              {primaryExternalLink.shortLabel || primaryExternalLink.label}
             </a>
           ) : linksToPublicRepo ? (
             <a className="text-link muted" href={project.repository} target="_blank" rel="noreferrer">

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import ProjectFeature from "../components/ProjectFeature";
-import StrandField from "../components/StrandField";
 import {
   capabilityGroups,
   experiences,
@@ -8,13 +7,14 @@ import {
   profile,
   projects,
 } from "../data/portfolio";
+import { formatExperienceTimeframe } from "../utils/experience";
 
 const featuredProjects = featuredProjectIds
   .slice(0, 3)
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
-const heroProject = projects.find((project) => project.id === "ocean-supremacy");
-const toolProofProjects = ["terrainforge", "laser-saw", "tidefront-blender-workflow"]
+const heroProject = projects.find((project) => project.id === "shipwreck-discovery");
+const toolProofProjects = ["shipwreck-discovery", "terrainforge", "laser-saw"]
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
 
@@ -22,45 +22,45 @@ function Home() {
   return (
     <main>
       <section className="hero">
-        <StrandField />
         <div className="hero-content">
-          <p className="eyebrow">Game developer / Python + Blender tools / Dixon, Missouri</p>
+          <p className="eyebrow">Current VR production / Godot + OpenXR / Blender technical art</p>
           <h1>{profile.name}</h1>
-          <p className="hero-title">Gameplay systems with a toolmaker&apos;s eye.</p>
+          <p className="hero-title">Game systems and production-ready 3D for Shipwreck Discovery.</p>
           <p className="hero-summary">{profile.summary}</p>
           <div className="hero-signal-line" aria-label="Core technology">
-            <span>Three.js</span>
-            <span>TypeScript</span>
-            <span>Python</span>
+            <span>Godot 4</span>
+            <span>OpenXR</span>
+            <span>GDScript</span>
             <span>Blender</span>
           </div>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects">
-              Explore selected work
+            <Link className="button primary" to="/projects/shipwreck-discovery">
+              View Shipwreck work
             </Link>
             <a className="button secondary" href={profile.resume}>
               Resume PDF
             </a>
           </div>
           <p className="hero-availability">
-            <span /> Open to junior game development, tools, and technical art support roles.
+            <span /> Currently contributing to Shipwreck Discovery; open to junior game, tools,
+            and technical art roles.
           </p>
         </div>
 
         {heroProject ? (
           <Link className="hero-stage" to={`/projects/${heroProject.id}`} aria-label={`Open ${heroProject.name} case study`}>
             <img
-              src="images/tidefront-blender-showcase.webp"
-              alt="Tidefront underwater terrain and reef scene rendered from Andrew's Blender file"
+              src={heroProject.image}
+              alt={heroProject.imageAlt}
             />
             <div className="hero-stage-topline">
-              <span>Current environment build</span>
-              <span>Blender 4.5 / Three.js</span>
+              <span>Current professional VR work</span>
+              <span>SteamVR + Meta Quest</span>
             </div>
             <div className="hero-stage-caption">
-              <span>Tidefront / Ocean Drift</span>
-              <strong>Underwater worldbuilding pipeline</strong>
-              <p>Authored terrain, coral placement, Blender scene work, and runtime handoff.</p>
+              <span>Shipwreck Discovery</span>
+              <strong>Godot systems + coral asset pipeline</strong>
+              <p>Gameplay integration, retopology, PBR delivery, and VR regression work.</p>
             </div>
           </Link>
         ) : null}
@@ -79,7 +79,7 @@ function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h2>Playable worlds, production tools, and work that shipped upstream.</h2>
+            <h2>Current VR production, independent worlds, and collaborative work.</h2>
           </div>
           <Link className="text-link" to="/projects">
             Browse all selected work
@@ -97,8 +97,8 @@ function Home() {
           <p className="eyebrow">Blender / technical art</p>
           <h2>The Blender work is built, run, and captured.</h2>
           <p>
-            Real add-ons on real geometry and production scenes: TerrainForge terrain, Laser Saw
-            mesh operations, asset handoff, and the Tidefront underwater environment.
+            Production coral retopology alongside verified add-ons on real geometry: TerrainForge
+            terrain generation, Laser Saw mesh operations, PBR preparation, and runtime handoff.
           </p>
           <Link className="button secondary" to="/software">
             Explore Blender + tools
@@ -107,7 +107,14 @@ function Home() {
         <div className="tool-reel-grid">
           {toolProofProjects.map((project) => (
             <Link key={project.id} to={`/projects/${project.id}`}>
-              <img src={project.image} alt={`${project.name} Blender workflow proof`} />
+              <img
+                src={project.toolImage || project.image}
+                alt={
+                  project.id === "shipwreck-discovery"
+                    ? "Shipwreck Discovery coral PBR result beside validated retopology"
+                    : `${project.name} Blender workflow proof`
+                }
+              />
               <span>{project.eyebrow}</span>
               <strong>{project.name}</strong>
             </Link>
@@ -140,12 +147,12 @@ function Home() {
       <section className="section experience-section">
         <div>
           <p className="eyebrow">Experience</p>
-          <h2>Independent production with real review, playtest, and audience feedback.</h2>
+          <h2>Professional VR production backed by independent systems work.</h2>
         </div>
         <div className="timeline">
           {experiences.map((item) => (
             <article key={`${item.role}-${item.timeframe}`} className="timeline-item">
-              <p>{item.timeframe}</p>
+              <p>{formatExperienceTimeframe(item)}</p>
               <h3>{item.role}</h3>
               <span>{item.organization}</span>
               <ul>

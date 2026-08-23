@@ -5,20 +5,20 @@ import { gamePortfolioIds, profile, projects } from "../data/portfolio";
 const gameProjects = gamePortfolioIds
   .map((id) => projects.find((project) => project.id === id))
   .filter(Boolean);
-const leadGame = projects.find((project) => project.id === "ocean-supremacy");
+const leadGame = projects.find((project) => project.id === "shipwreck-discovery");
 
 const systemAreas = [
   {
     title: "Player-facing systems",
-    detail: "Movement, camera feel, HUD state, abilities, objectives, lobbies, and readable feedback.",
+    detail: "VR interaction, movement, camera feel, HUD state, abilities, objectives, and readable feedback.",
   },
   {
     title: "Simulation and world rules",
     detail: "Terrain, spawning, growth, survival pressure, bot behavior, and data-driven map state.",
   },
   {
-    title: "Browser 3D delivery",
-    detail: "Three.js/WebGL rendering, Vite builds, interaction safety, responsive UI, and performance-aware scenes.",
+    title: "Runtime delivery",
+    detail: "Godot/OpenXR integration, SteamVR and Meta Quest targets, browser 3D, regression checks, and performance-aware scenes.",
   },
 ];
 
@@ -28,14 +28,14 @@ function Games() {
       <section className="lane-hero game-lane-hero">
         <div className="lane-hero-copy">
           <p className="eyebrow">Game development</p>
-          <h1>Playable 3D systems, simulated worlds, and readable feedback.</h1>
+          <h1>VR gameplay, simulated worlds, and readable interaction.</h1>
           <p>
-            I build movement, HUDs, simulation rules, generated battlefields, authored terrain,
-            and multiplayer-ready flows, then verify the slice in the browser.
+            I currently contribute Godot/OpenXR gameplay and real-time coral assets to Shipwreck
+            Discovery, while continuing to build independent 3D systems and authored worlds.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/ocean-supremacy">
-              View Tidefront case study
+            <Link className="button primary" to="/projects/shipwreck-discovery">
+              View Shipwreck case study
             </Link>
             <a className="button secondary" href={profile.resume}>
               Download resume
@@ -44,8 +44,8 @@ function Games() {
         </div>
         {leadGame ? (
           <Link className="lane-hero-image" to={`/projects/${leadGame.id}`}>
-            <img src={leadGame.image} alt="Tidefront fish gameplay in the authored reef world" />
-            <span>Gameplay / authored terrain / multiplayer flow</span>
+            <img src={leadGame.image} alt={leadGame.imageAlt} />
+            <span>Current VR production / Godot / OpenXR</span>
             <strong>{leadGame.name}</strong>
           </Link>
         ) : null}
@@ -64,7 +64,7 @@ function Games() {
       <section className="section-heading lane-project-heading">
         <div>
           <p className="eyebrow">Game case studies</p>
-          <h2>From playable worlds to live upstream collaboration.</h2>
+          <h2>Current studio work, independent builds, and upstream collaboration.</h2>
         </div>
       </section>
 

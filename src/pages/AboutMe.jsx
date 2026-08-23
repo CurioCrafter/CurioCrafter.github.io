@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { capabilityGroups, experiences, profile } from "../data/portfolio";
+import { formatExperienceTimeframe } from "../utils/experience";
 
 const workingPrinciples = [
   {
@@ -22,15 +23,16 @@ function AboutMe() {
       <section className="about-hero">
         <div>
           <p className="eyebrow">About Andrew</p>
-          <h1>A curious builder focused on games, 3D tools, and useful systems.</h1>
+          <h1>A game developer bridging runtime systems and production-ready 3D.</h1>
           <p>
-            I am an independent developer in Dixon, Missouri, building toward a junior game or
-            tools role. My strongest work combines gameplay prototyping with Python/Blender
-            tooling, editor UI, terrain systems, and browser-delivered 3D.
+            I am a game developer and 3D technical artist in Dixon, Missouri, currently
+            contributing to Shipwreck Discovery. My work spans Godot/OpenXR gameplay, coral
+            retopology and PBR delivery, Python/Blender tools, terrain systems, and browser 3D.
           </p>
           <p>
-            I bring a practical production background, a large creative audience feedback loop,
-            and the persistence to turn unfamiliar technical problems into working artifacts.
+            I bring current production experience, a practical field-work background, a large
+            creative feedback loop, and the persistence to turn unfamiliar technical problems
+            into inspectable results.
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/projects">
@@ -43,12 +45,12 @@ function AboutMe() {
         </div>
         <figure className="about-visual">
           <img
-            src="images/tidefront-blender-showcase.webp"
-            alt="Tidefront underwater environment rendered from Andrew's Blender scene"
+            src="images/shipwreck-retopology-proof.webp"
+            alt="Shipwreck Discovery coral PBR result beside validated real-time retopology"
           />
           <figcaption>
-            <span>Current focus</span>
-            <strong>Gameplay systems and Blender-to-game worldbuilding</strong>
+            <span>Current production work</span>
+            <strong>Godot gameplay and Blender-to-VR asset delivery</strong>
           </figcaption>
         </figure>
       </section>
@@ -103,7 +105,7 @@ function AboutMe() {
         <div className="timeline">
           {experiences.map((item) => (
             <article key={`${item.role}-${item.timeframe}`} className="timeline-item">
-              <p>{item.timeframe}</p>
+              <p>{formatExperienceTimeframe(item)}</p>
               <h3>{item.role}</h3>
               <span>{item.organization}</span>
               <ul>

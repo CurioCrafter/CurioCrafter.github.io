@@ -10,25 +10,26 @@ export const profile = {
   resume: "Andrew_Rainsberger_Game_Developer_Resume.pdf",
   resumePrint: "resume-print.html",
   summary:
-    "I build playable 3D systems, terrain-authoring workflows, and Blender Python tools, then turn them into focused vertical slices with clear UI, reusable data, and visible QA.",
+    "I contribute Godot/OpenXR gameplay and production-ready 3D to Shipwreck Discovery, alongside independent game systems and Blender Python tools built with visible QA.",
   focusAreas: [
+    "Godot gameplay and OpenXR interaction",
+    "Real-time retopology and PBR delivery",
     "Gameplay systems and prototyping",
     "Python and Blender API tools",
-    "Three.js and WebGL",
     "Terrain and level-authoring workflows",
-    "Editor UI and technical art support",
+    "Three.js and WebGL",
   ],
   proof: [
-    { value: "6", label: "active gameplay browser checks" },
+    { value: "VR", label: "current Shipwreck role" },
+    { value: "18", label: "coral assets prepared" },
     { value: "10", label: "commits in merged upstream PR" },
     { value: "5", label: "Blender add-ons verified" },
-    { value: "81K+", label: "creative audience" },
   ],
   evidence: [
-    "Live GitHub Pages portfolio",
-    "Browser playtests and local project screenshots",
+    "Current Godot and OpenXR feature work",
+    "Actual-game trailer and store media",
     "Blender add-on smoke and matrix artifacts",
-    "Public repos plus broader private-project case studies",
+    "Public pull request plus private-project case studies",
   ],
   roles: [
     "Junior Game Developer",
@@ -39,6 +40,9 @@ export const profile = {
     "Creative Technologist",
   ],
   stack: [
+    "Godot 4",
+    "GDScript",
+    "OpenXR",
     "Python",
     "Blender API",
     "TypeScript",
@@ -57,14 +61,13 @@ export const profile = {
 };
 
 export const featuredProjectIds = [
+  "shipwreck-discovery",
   "ocean-supremacy",
-  "dronesim",
   "claude-citizen",
-  "terrainforge",
-  "tidefront-terrain-studio",
 ];
 
 export const curatedProjectIds = [
+  "shipwreck-discovery",
   "ocean-supremacy",
   "dronesim",
   "claude-citizen",
@@ -78,6 +81,7 @@ export const curatedProjectIds = [
 ];
 
 export const gamePortfolioIds = [
+  "shipwreck-discovery",
   "ocean-supremacy",
   "dronesim",
   "claude-citizen",
@@ -97,18 +101,18 @@ export const toolsPortfolioIds = [
 
 export const evidenceScreenshots = [
   {
+    title: "Shipwreck Discovery VR",
+    label: "Current professional work",
+    image: "images/shipwreck-vr-gameplay.webp",
+    to: "/projects/shipwreck-discovery",
+    alt: "Actual Shipwreck Discovery VR gameplay above a living reef",
+  },
+  {
     title: "Tidefront reef runtime",
     label: "Current gameplay",
     image: "images/tidefront-gameplay-reef.webp",
     to: "/projects/ocean-supremacy",
     alt: "Tidefront fish gameplay in the authored underwater reef world",
-  },
-  {
-    title: "Frontline FPV",
-    label: "Browser simulation",
-    image: "images/dronesim-air-defense.webp",
-    to: "/projects/dronesim",
-    alt: "Frontline FPV missile warning during a browser combat sortie",
   },
   {
     title: "TerrainForge Archipelago",
@@ -134,6 +138,94 @@ export const evidenceScreenshots = [
 ];
 
 export const projects = [
+  {
+    id: "shipwreck-discovery",
+    name: "Shipwreck Discovery",
+    eyebrow: "Current professional VR work",
+    image: "images/shipwreck-discovery-cover.png",
+    imageAlt: "Shipwreck Discovery cover using actual underwater gameplay and the official game mark",
+    detailImage: "images/shipwreck-discovery-cover.png",
+    toolImage: "images/shipwreck-retopology-proof.webp",
+    gallery: [
+      {
+        title: "Coral retopology and PBR delivery",
+        caption:
+          "Portfolio render from the production Blender delivery: baked real-time result beside the validated topology.",
+        image: "images/shipwreck-retopology-proof.webp",
+        alt: "Elkhorn coral baked PBR result beside its gold wireframe retopology",
+      },
+      {
+        title: "Embodied VR reef interaction",
+        caption: "Actual-game trailer frame showing tracked hands above the living shipwreck reef.",
+        image: "images/shipwreck-vr-gameplay.webp",
+        alt: "Shipwreck Discovery first-person VR hands interacting above coral and reef fish",
+      },
+      {
+        title: "In-world species identification",
+        caption: "Actual-game frame showing the diegetic Spadefish identification display.",
+        image: "images/shipwreck-identification.webp",
+        alt: "Shipwreck Discovery in-world Spadefish identification interface",
+      },
+      {
+        title: "Wreck exploration environment",
+        caption: "Actual-game trailer frame establishing the underwater wreck at the center of play.",
+        image: "images/shipwreck-wreck-exploration.webp",
+        alt: "Underwater wreck explored in Shipwreck Discovery VR",
+      },
+    ],
+    repository: "",
+    repositoryNote: "Private production repository",
+    externalLinks: [
+      {
+        label: "View on Steam",
+        shortLabel: "Steam page",
+        url: "https://store.steampowered.com/app/3583270/Shipwreck_Discovery/",
+        primary: true,
+      },
+      {
+        label: "View on Meta Quest",
+        shortLabel: "Meta Quest page",
+        url: "https://www.meta.com/experiences/shipwreck-discovery/32767209856226296/",
+      },
+      {
+        label: "Official game site",
+        shortLabel: "Official site",
+        url: "https://shipwreckdiscovery.com/",
+      },
+    ],
+    stack: ["Godot 4", "GDScript", "OpenXR", "Blender", "PBR / GLB", "SteamVR / Meta Quest"],
+    proofPoints: [
+      "18 coral growth-stage assets prepared",
+      "1K / 2K PBR and GLB validation",
+      "Godot coral and wildlife feature work",
+    ],
+    outcome:
+      "Contributing gameplay systems and real-time asset work to a live Early Access underwater VR game for SteamVR and Meta Quest.",
+    contributionLabel: "Current game development and 3D technical art role",
+    evidenceLabel: "Actual-game media and captured Blender delivery",
+    primaryCaptureLabel: "Current production context",
+    primaryCaptureTitle: "Godot / OpenXR gameplay and coral asset pipeline",
+    bullets: [
+      "Retopologize and prepare coral growth-stage assets for real-time VR, including UVs, PBR baking, and Godot-ready GLB delivery.",
+      "Integrate coral growth, planting, placement, collision, and wildlife-balance systems in Godot.",
+      "Debug VR interaction behavior and add focused regression coverage for gameplay fixes.",
+      "Authored five current coral and wildlife feature commits plus a published VR gameplay fix while working inside the existing project architecture.",
+    ],
+    implementationNotes: [
+      {
+        title: "Contribution boundary",
+        body: "My role covers the coral asset pipeline and focused Godot gameplay work shown here. Shipwreck Discovery, its broader game assets, and its store presence belong to Lionfish Central.",
+      },
+      {
+        title: "Real-time coral delivery",
+        body: "The production delivery contains 18 growth-stage coral assets, 1K and 2K PBR tiers, Godot-ready GLBs, and fresh Blender reimport checks.",
+      },
+      {
+        title: "Current branch work",
+        body: "Coral growth, planting, placement, collision, and wildlife-balance changes are active feature work. This case study does not present those changes as shipped until they are merged and released.",
+      },
+    ],
+  },
   {
     id: "tidefront-terrain-studio",
     name: "Tidefront Terrain Studio",
@@ -1296,6 +1388,17 @@ export const supportOffers = [
 
 export const experiences = [
   {
+    role: "Game Developer & 3D Technical Artist",
+    organization: "Lionfish Central / Shipwreck Discovery",
+    timeframe: "July 2026 - Present",
+    tenureStart: "2026-07",
+    bullets: [
+      "Retopologize and prepare coral growth-stage assets for real-time VR, including UVs, PBR baking, and Godot-ready GLB delivery.",
+      "Integrate coral growth, planting, placement, collision, and wildlife-balance systems in Godot.",
+      "Debug VR interaction behavior and add regression coverage for gameplay fixes.",
+    ],
+  },
+  {
     role: "Independent Creative Technology Developer",
     organization: "CurioCrafter / Independent Projects",
     timeframe: "2023 - Present",
@@ -1329,14 +1432,14 @@ export const capabilityGroups = [
   {
     title: "Gameplay and 3D",
     items: [
+      "Godot 4 and GDScript",
+      "OpenXR and VR interaction",
       "Gameplay prototyping",
       "Procedural generation",
       "Simulation systems",
       "Three.js and WebGL2",
-      "Authoritative multiplayer prototypes",
       "DirectX 12 and HLSL",
-      "Native C++ game loops",
-      "HUD/UI and camera controls",
+      "HUD/UI and camera systems",
     ],
   },
   {
@@ -1344,25 +1447,25 @@ export const capabilityGroups = [
     items: [
       "Blender Python API",
       "Artist-facing add-ons",
+      "Real-time retopology",
+      "PBR baking and GLB delivery",
       "Mesh processing workflows",
       "Asset catalogs",
       "Editor tools",
       "Terrain and level builders",
-      "Quality presets and metrics",
     ],
   },
   {
     title: "Delivery and Team Workflow",
     items: [
       "Git and pull-request collaboration",
+      "Feature-branch integration",
+      "Regression coverage",
       "Playwright and visual QA",
       "React and Electron",
       "Vite and Node.js",
       "SQLite and local-first data",
-      "FastAPI web tools",
-      "Audio feature extraction",
       "GitHub workflows",
-      "AI-assisted iteration",
     ],
   },
 ];

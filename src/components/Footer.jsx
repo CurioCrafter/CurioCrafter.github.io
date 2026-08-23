@@ -8,7 +8,7 @@ function Footer() {
         <span className="footer-mark">AR</span>
         <div>
           <strong>{profile.name}</strong>
-          <p>Game systems, Blender Python tools, and technical art workflows.</p>
+          <p>VR game systems, Blender Python tools, and real-time asset workflows.</p>
         </div>
       </div>
       <div className="footer-links">

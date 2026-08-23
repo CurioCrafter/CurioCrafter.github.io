@@ -23,7 +23,7 @@ function Navbar() {
         <span className="brand-initials">AR</span>
         <span className="brand-copy">
           <strong>{profile.name}</strong>
-          <small>Game developer / Blender tools</small>
+          <small>Game developer / VR + Blender tools</small>
         </span>
       </NavLink>
 

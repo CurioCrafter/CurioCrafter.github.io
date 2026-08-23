@@ -18,6 +18,7 @@ function getRelatedProjects(project) {
 }
 
 function getContributionLabel(project) {
+  if (project.contributionLabel) return project.contributionLabel;
   if (project.id === "claude-citizen") return "Merged upstream contribution";
   if (project.liveUrl) return "Independent build with live work";
   return "Independent project case study";
@@ -45,11 +46,11 @@ function ProjectDetail() {
   const gallery = project.gallery || [];
   const linksToPublicRepo = project.repository && !project.isPrivate;
   const relatedProjects = getRelatedProjects(project);
-  const evidenceLabel = project.liveUrl
+  const evidenceLabel = project.evidenceLabel || (project.liveUrl
     ? "Live work and captured screenshots"
     : linksToPublicRepo
       ? "Public source and captured screenshots"
-      : "Captured workflow and implementation notes";
+      : "Captured workflow and implementation notes");
 
   return (
     <main className="page-shell">
@@ -67,6 +68,17 @@ function ProjectDetail() {
             ))}
           </div>
           <div className="hero-actions">
+            {project.externalLinks?.map((link) => (
+              <a
+                key={link.url}
+                className={link.primary ? "button primary" : "button secondary"}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
             {project.liveUrl ? (
               <a className="button primary" href={project.liveUrl} target="_blank" rel="noreferrer">
                 Open live work
@@ -83,11 +95,11 @@ function ProjectDetail() {
           <img
             className={project.mediaFit === "contain" ? "contain-image" : undefined}
             src={heroImage}
-            alt={`${project.name} project screenshot`}
+            alt={project.imageAlt || `${project.name} project screenshot`}
           />
           <figcaption>
-            <span>Primary project capture</span>
-            <strong>{project.proofPoints?.[0] || project.name}</strong>
+            <span>{project.primaryCaptureLabel || "Primary project capture"}</span>
+            <strong>{project.primaryCaptureTitle || project.proofPoints?.[0] || project.name}</strong>
           </figcaption>
         </figure>
       </section>
@@ -116,7 +128,11 @@ function ProjectDetail() {
           <div className="case-gallery-grid">
             {gallery.map((shot) => (
               <figure key={`${project.id}-${shot.image}`} className="case-gallery-item">
-                <img src={shot.image} alt={shot.alt || `${project.name} ${shot.title} screenshot`} />
+                <img
+                  src={shot.image}
+                  alt={shot.alt || `${project.name} ${shot.title} screenshot`}
+                  loading="lazy"
+                />
                 <figcaption>
                   <strong>{shot.title}</strong>
                   <span>{shot.caption}</span>

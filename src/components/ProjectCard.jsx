@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 function ProjectCard({ project, featured = false }) {
   const linksToPublicRepo = project.repository && !project.isPrivate;
+  const primaryExternalLink = project.externalLinks?.[0];
 
   return (
     <article className={featured ? "project-card featured" : "project-card"}>
@@ -9,7 +10,8 @@ function ProjectCard({ project, featured = false }) {
         <img
           className={project.mediaFit === "contain" ? "contain-image" : undefined}
           src={project.image}
-          alt={`${project.name} project screenshot`}
+          alt={project.imageAlt || `${project.name} project screenshot`}
+          loading="lazy"
         />
         <span>{project.eyebrow}</span>
       </Link>
@@ -39,6 +41,10 @@ function ProjectCard({ project, featured = false }) {
           {project.liveUrl ? (
             <a className="text-link muted" href={project.liveUrl} target="_blank" rel="noreferrer">
               Live work
+            </a>
+          ) : primaryExternalLink ? (
+            <a className="text-link muted" href={primaryExternalLink.url} target="_blank" rel="noreferrer">
+              {primaryExternalLink.shortLabel || primaryExternalLink.label}
             </a>
           ) : null}
           {linksToPublicRepo ? (

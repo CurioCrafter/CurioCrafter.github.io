@@ -12,6 +12,7 @@ const selectedProjects = curatedProjectIds
   .filter(Boolean);
 const gameIds = new Set(gamePortfolioIds);
 const blenderIds = new Set([
+  "shipwreck-discovery",
   "terrainforge",
   "laser-saw",
   "tidefront-blender-workflow",
@@ -27,7 +28,8 @@ const filters = [
   {
     id: "public",
     label: "Public proof",
-    matches: (project) => Boolean(project.liveUrl || (project.repository && !project.isPrivate)),
+    matches: (project) =>
+      Boolean(project.liveUrl || project.externalLinks?.length || (project.repository && !project.isPrivate)),
   },
 ];
 
@@ -43,10 +45,10 @@ function Projects() {
     <main className="page-shell">
       <section className="page-hero work-page-hero">
         <p className="eyebrow">Selected work</p>
-        <h1>Game systems, Blender tools, and production workflows.</h1>
+        <h1>VR game systems, Blender tools, and production workflows.</h1>
         <p>
-          A focused set of projects with screenshots, implementation detail, live work, or
-          public contribution history. The strongest game and tools cases are first.
+          A focused set of current production work, independent builds, verified Blender tools,
+          and public contribution history. Each case includes concrete implementation evidence.
         </p>
       </section>
 

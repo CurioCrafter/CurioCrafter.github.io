@@ -12,6 +12,10 @@ const publicResumeHtmlPath = join(publicDir, "resume-print.html");
 const resumePdfPath = join(root, profile.resume);
 const publicResumePdfPath = join(publicDir, profile.resume);
 const portfolioUrl = "https://curiocrafter.github.io";
+const updatedLabel = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+}).format(new Date());
 
 function escapeHtml(value) {
   return String(value)
@@ -39,6 +43,15 @@ function renderTags(items) {
 
 const selectedWork = [
   {
+    id: "shipwreck-discovery",
+    label: "Current VR game development + technical art",
+    bullets: [
+      "Contribute Godot/OpenXR coral growth, planting, collision, wildlife balance, and focused VR interaction fixes.",
+      "Prepare 18 coral growth-stage assets through retopology, UV/PBR work, GLB delivery, and Blender reimport validation.",
+    ],
+    stack: ["Godot 4", "GDScript", "OpenXR", "Blender", "PBR / GLB"],
+  },
+  {
     id: "ocean-supremacy",
     label: "Browser 3D game + authored world pipeline",
     bullets: [
@@ -46,16 +59,6 @@ const selectedWork = [
       "Connected authored Blender terrain, coral, landmarks, and export data to a Three.js/WebGL runtime.",
     ],
     stack: ["TypeScript", "Three.js", "WebGL2", "Blender", "WebSockets"],
-  },
-  {
-    id: "terrainforge",
-    label: "Blender Python terrain and modeling tools",
-    displayName: "TerrainForge + Blender Tools",
-    bullets: [
-      "Verified a four-tile tropical terrain build, export manifest, and a separate 1,054,721-vertex professional bake in Blender 4.5.11.",
-      "Built repeatable add-on proof scenes for terrain generation, capped mesh cutting, and PBR material assignment.",
-    ],
-    stack: ["Python", "Blender API", "NumPy", "Mesh tooling", "Visual QA"],
   },
   {
     id: "claude-citizen",
@@ -71,15 +74,15 @@ const selectedWork = [
 const skillGroups = [
   {
     title: "Gameplay + 3D",
-    items: ["TypeScript", "Three.js / WebGL", "C++", "DirectX 12 / HLSL", "Gameplay systems", "Simulation", "HUD + cameras"],
+    items: ["Godot 4", "GDScript", "OpenXR", "VR interaction", "TypeScript", "Three.js / WebGL", "C++"],
   },
   {
     title: "Tools + Technical Art",
-    items: ["Python", "Blender API", "Procedural terrain", "Mesh operations", "Asset/export pipelines", "React", "Electron"],
+    items: ["Python", "Blender API", "Retopology", "PBR baking", "GLB pipelines", "Procedural terrain", "Mesh operations"],
   },
   {
     title: "Delivery",
-    items: ["Git + GitHub", "PR collaboration", "Playwright", "Visual QA", "Vite", "Node.js", "SQLite"],
+    items: ["Git + GitHub", "Feature branches", "PR collaboration", "Regression tests", "Playwright", "Visual QA", "Vite / Node.js"],
   },
 ];
 
@@ -131,7 +134,7 @@ const html = `<!doctype html>
         grid-template-columns: minmax(0, 1fr) 2.18in;
         gap: 0.25in;
         align-items: end;
-        border-bottom: 3px solid #d51f3c;
+        border-bottom: 3px solid #087f8c;
         padding-bottom: 0.1in;
       }
 
@@ -143,7 +146,7 @@ const html = `<!doctype html>
 
       .title {
         margin-bottom: 0;
-        color: #c21835;
+        color: #087f8c;
         font-size: 10.8pt;
         font-weight: 800;
       }
@@ -186,7 +189,7 @@ const html = `<!doctype html>
 
       h2 {
         margin-bottom: 0.06in;
-        color: #bf1934;
+        color: #8a5d17;
         font-size: 9.2pt;
         line-height: 1;
         text-transform: uppercase;
@@ -219,7 +222,7 @@ const html = `<!doctype html>
       }
 
       .kicker {
-        color: #a3152d;
+        color: #08717d;
         text-transform: uppercase;
       }
 
@@ -270,7 +273,7 @@ const html = `<!doctype html>
       }
 
       .proof {
-        border-left: 3px solid #d51f3c;
+        border-left: 3px solid #d7ac5f;
         padding-left: 0.07in;
       }
 
@@ -334,7 +337,7 @@ const html = `<!doctype html>
       <header class="header">
         <div>
           <h1>${escapeHtml(profile.name)}</h1>
-          <p class="title">Junior Game Developer | Python / Blender Tools</p>
+          <p class="title">Game Developer | 3D Technical Artist | Blender Tools</p>
         </div>
         <div class="contact" aria-label="Contact">
           <strong>${escapeHtml(profile.location)}</strong>
@@ -346,8 +349,9 @@ const html = `<!doctype html>
       </header>
 
       <p class="summary">
-        Junior game and tools developer building playable 3D systems, authored worlds, and Blender Python workflows.
-        Comfortable moving between gameplay, technical-art support, testing, and shipping reviewable work with a team.
+        Game developer and 3D technical artist currently contributing Godot/OpenXR gameplay and real-time coral assets
+        to Shipwreck Discovery. Builds Python/Blender tools and independent 3D systems with focused testing,
+        source-control collaboration, and inspectable delivery.
       </p>
 
       <div class="columns">
@@ -373,7 +377,12 @@ const html = `<!doctype html>
                 (item) => `<article class="item">
                   <h3>${escapeHtml(item.role)}</h3>
                   <span class="meta">${escapeHtml(item.organization)} | ${escapeHtml(item.timeframe)}</span>
-                  <ul>${renderList(item.bullets.slice(0, item.role.startsWith("Independent") ? 3 : 2))}</ul>
+                  <ul>${renderList(
+                    item.bullets.slice(
+                      0,
+                      item.tenureStart ? 2 : item.role.startsWith("Independent") ? 2 : 1,
+                    ),
+                  )}</ul>
                 </article>`,
               )
               .join("")}
@@ -396,16 +405,16 @@ const html = `<!doctype html>
           <section>
             <h2>Team Evidence</h2>
             <div class="proof">
+              <strong>Current VR production role</strong>
+              <p>Godot/OpenXR feature work plus an 18-asset coral retopology and PBR delivery for Shipwreck Discovery.</p>
+            </div>
+            <div class="proof">
               <strong>Merged upstream contribution</strong>
               <p>10 commits accepted into another developer's browser game through a reviewed pull request.</p>
             </div>
             <div class="proof">
-              <strong>Playable and inspectable work</strong>
-              <p>Browser builds, Blender captures, geometry assertions, responsive QA, and public case studies.</p>
-            </div>
-            <div class="proof">
-              <strong>Creative feedback loop</strong>
-              <p>81K+ audience developed through repeated visual iteration, pacing, and response to feedback.</p>
+              <strong>Verified Blender workflows</strong>
+              <p>Installed add-on captures, geometry assertions, export checks, and portfolio-specific production renders.</p>
             </div>
           </section>
 
@@ -441,7 +450,7 @@ const html = `<!doctype html>
 
       <footer class="footer">
         <span>Portfolio case studies and live builds: ${portfolioUrl}</span>
-        <span>Updated July 2026</span>
+        <span>Updated ${escapeHtml(updatedLabel)}</span>
       </footer>
     </main>
   </body>

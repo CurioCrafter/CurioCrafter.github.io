@@ -17,8 +17,8 @@ function Contact() {
           <p className="eyebrow">Contact</p>
           <h1>Let&apos;s talk about a junior game or tools role.</h1>
           <p>
-            I am especially interested in gameplay prototyping, Python/Blender tools, technical
-            art support, level-authoring workflows, and small teams where I can learn by shipping.
+            I am especially interested in junior gameplay, Python/Blender tools, technical art,
+            and level-authoring roles where I can build on current VR production experience.
           </p>
           <a className="contact-email" href={`mailto:${profile.email}`}>
             {profile.email}
@@ -37,8 +37,8 @@ function Contact() {
           <strong>{profile.location}</strong>
           <p>Open to remote work and relocation conversations for the right junior opportunity.</p>
           <span>Best starting point</span>
-          <strong>Tidefront Terrain Studio</strong>
-          <Link className="text-link" to="/projects/tidefront-terrain-studio">
+          <strong>Shipwreck Discovery</strong>
+          <Link className="text-link" to="/projects/shipwreck-discovery">
             Open the lead case study
           </Link>
         </div>
