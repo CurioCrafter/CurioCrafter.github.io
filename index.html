@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrew Rainsberger · Game Developer &amp; 3D Technical Artist</title>
-<meta name="description" content="Andrew Rainsberger, game developer and 3D technical artist at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest). His YouTube channel has 94 million views.">
+<meta name="description" content="Andrew Rainsberger, game developer and 3D technical artist at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest). His YouTube channel has 94.5 million views.">
 <meta property="og:title" content="Andrew Rainsberger · Game Developer &amp; 3D Technical Artist">
-<meta property="og:description" content="VR gameplay and real-time art for Shipwreck Discovery, games you can play in the browser, and a YouTube channel with 94 million views.">
+<meta property="og:description" content="VR gameplay and real-time art for Shipwreck Discovery, games you can play in the browser, and a YouTube channel with 94.5 million views.">
 <meta property="og:image" content="https://curiocrafter.github.io/media/hero.webp">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b3550">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/BigShouldersDisplay-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
-<script>try { if (localStorage.getItem("mode") === "dive") document.documentElement.dataset.mode = "dive"; } catch (e) {}</script>
+<script>try { var m = new URLSearchParams(location.search).get("mode") || localStorage.getItem("mode"); if (m === "dive") document.documentElement.dataset.mode = "dive"; } catch (e) {}</script>
 </head>
 <body>
 <a class="skip" href="#shipwreck">Skip to the work</a>
@@ -37,7 +37,6 @@
         <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Dive mode
       </button>
     </div>
-    <p class="mode-now" aria-live="polite"><span class="p">You're in Professional view. Try Dive mode for the underwater version.</span><span class="d">You're in Dive mode: scroll to descend. Switch back any time.</span></p>
   </div>
 </div>
 
@@ -72,8 +71,7 @@
     <p class="surface-role">Game developer and 3D technical artist at AquaticXR. I build VR gameplay and real-time art for <a href="#shipwreck">Shipwreck Discovery</a>, in Early Access on Steam and Meta Quest.</p>
     <ul class="facts">
       <li>Credited developer on <strong>Shipwreck Discovery</strong></li>
-      <li><strong>94 million</strong> views on my YouTube channel</li>
-      <li>Godot · OpenXR · Blender · Python</li>
+      <li><strong>94.5 million</strong> views on my YouTube channel</li>
     </ul>
     <div class="actions">
       <button class="btn btn-light" type="button" data-trailer>
@@ -83,6 +81,7 @@
       <a class="btn" href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume</a>
       <a class="btn" href="mailto:andrewrainsberger@gmail.com">Email me</a>
     </div>
+    <p class="mode-invite"><span class="p">This is the Professional view. <button type="button" data-mode="dive">Switch to Dive mode</button> for an underwater version with a depth gauge.</span><span class="d">You're in Dive mode: scroll to descend. <button type="button" data-mode="pro">Back to the Professional view</button></span></p>
   </div>
 
   <ol class="plan" aria-label="Dive plan">
@@ -153,7 +152,7 @@
   <div class="stop-head">
     <h2 id="h-lionfish">Lionfish Reef Heroes</h2>
     <p class="lede">A pixel-art arcade game for Android and iOS. Lionfish have taken the reef; you dive in, spear them and bring the reef back across ten ocean habitats.</p>
-    <p class="meta">Built at AquaticXR with Ian McLennan and Scott Gonnello · Godot 4.5 · Android and iOS · Coming soon</p>
+    <p class="meta">Team of three at AquaticXR, with Ian McLennan and Scott Gonnello · I wrote most of the code · Godot 4.5 · Coming soon</p>
   </div>
 
   <div class="duo">
@@ -174,8 +173,8 @@
   <ul class="did did-row">
     <li>Ten habitats with animated marine life, boss fights and collectible gear.</li>
     <li>Five assignments based on real marine careers: reef survey, coral nursery, turtle rehab and more.</li>
-    <li>One Godot project builds for desktop, Android and iPhone, with automated builds for both phones.</li>
-    <li>Store integration with a server that verifies purchases.</li>
+    <li>I set up one Godot project that builds for desktop, Android and iPhone, with automated builds for both phones.</li>
+    <li>I wired up store purchases with a server that verifies them.</li>
   </ul>
 </section>
 
@@ -189,7 +188,7 @@
       <div class="stop-head">
         <h2 id="h-sector">Sector War</h2>
         <p class="lede">Real-time space strategy in the browser: the pace of an .io game with a slimmed-down grand-strategy layer. You never leave the galaxy view.</p>
-        <p class="meta">Built at AquaticXR with Ian McLennan and Scott Gonnello · TypeScript · WebSockets · Node</p>
+        <p class="meta">Team of three at AquaticXR, with Ian McLennan and Scott Gonnello · I wrote the code with Claude Opus 5.5 as my coding agent · TypeScript · Node</p>
       </div>
       <ul class="did">
         <li>Three modes, from a 20-minute blitz to a two-hour campaign. AI empires each have a personality; there's diplomacy and a Galactic Council.</li>
@@ -218,8 +217,8 @@
     </article>
     <article>
       <button class="arcade-shot" type="button" data-play="play/song-lab/index.html" data-title="Song Lab">
-        <img src="media/play-songlab.webp" alt="Song Lab: beats, energy and chroma of a song drawn on a timeline" loading="lazy">
-        <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Open here</span>
+        <img src="media/play-songlab.webp" alt="Song Lab: waveform, energy and chroma lanes of an analysed song with tempo and key" loading="lazy">
+        <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Play here</span>
       </button>
       <h3>Song Lab</h3>
       <p>The browser view of SongDeconstructor, my Python tool that breaks songs into beats, tempo, chroma and segments. Scrub through an analysed track.</p>
@@ -228,7 +227,7 @@
     <article>
       <a class="arcade-shot" href="https://dronewarfare-fpv.netlify.app" target="_blank" rel="noopener">
         <img src="media/play-fpv.webp" alt="Frontline FPV: low drone pass over trenches and armour" loading="lazy">
-        <span class="arcade-go">Fly it <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
       </a>
       <h3>Frontline FPV</h3>
       <p>An FPV drone sim in Three.js with a rate-mode flight model, a generated frontline and air defence that shoots back. Keyboard or gamepad.</p>
@@ -237,10 +236,10 @@
     <article>
       <a class="arcade-shot" href="https://claudecitizen.com" target="_blank" rel="noopener">
         <img src="media/citizen.webp" alt="Claude Citizen Solar Atlas navigation screen" loading="lazy">
-        <span class="arcade-go">Play it <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
       </a>
       <h3>Claude Citizen: Solar Atlas</h3>
-      <p>Another developer's browser space game. I reworked its Solar Atlas map: navigation, orbit selection and pointer-lock fixes, ten commits merged into the live game. Built with OpenAI Codex.</p>
+      <p>Another developer's browser space game. I reworked its Solar Atlas map: navigation, orbit selection and pointer-lock fixes, ten commits merged into the live game. I wrote them with OpenAI Codex as my coding agent.</p>
       <p class="arcade-meta">TypeScript · Three.js · <a href="https://github.com/CurioCrafter/claude-citizen/commits/codex/solar-atlas-navigation-polish">My commits</a></p>
     </article>
   </div>
@@ -287,9 +286,32 @@
 </section>
 
 <section class="stop" id="video" data-depth="66" aria-labelledby="h-video">
-  <div class="split">
-    <div class="stop-head">
+  <div class="split split-first">
+    <div>
       <h2 id="h-video">Video</h2>
+      <h3>Trailers and shorts for AquaticXR</h3>
+      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
+      <p class="links"><a href="https://www.youtube.com/@AquaticXR">AquaticXR on YouTube</a></p>
+    </div>
+    <div class="reels">
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-WhaleWouldntLetGo.webp"><source src="media/short-WhaleWouldntLetGo.mp4" type="video/mp4"></video>
+        <figcaption>The whale that wouldn't let go</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-OrcasVsGreatWhite.webp"><source src="media/short-OrcasVsGreatWhite.mp4" type="video/mp4"></video>
+        <figcaption>Orcas vs. a great white</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-ColossalSquid.webp"><source src="media/short-ColossalSquid.mp4" type="video/mp4"></video>
+        <figcaption>Colossal squid</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="split split-sub">
+    <div>
+      <h3>My YouTube channel</h3>
       <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a> on YouTube with my family: AI-made shorts that we write, pick and edit by hand. It has <strong>94.5 million views</strong> and <strong>88,000 subscribers</strong> (October 2026).</p>
       <p class="lede">Making things for a feed taught me what holds a stranger in the first two seconds. I bring that to game feel, onboarding and trailers.</p>
     </div>
@@ -309,28 +331,6 @@
         <span class="hits-n">11M views</span>
         <span class="hits-t">Giant Blobfish Regrets Opening Its Mouth to This Cat</span>
       </a>
-    </div>
-  </div>
-
-  <div class="split split-sub">
-    <div>
-      <h3>Video for AquaticXR</h3>
-      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
-      <p class="links"><a href="https://www.youtube.com/@AquaticXR">AquaticXR on YouTube</a></p>
-    </div>
-    <div class="reels">
-      <figure>
-        <video controls playsinline preload="none" poster="media/short-WhaleWouldntLetGo.webp"><source src="media/short-WhaleWouldntLetGo.mp4" type="video/mp4"></video>
-        <figcaption>The whale that wouldn't let go</figcaption>
-      </figure>
-      <figure>
-        <video controls playsinline preload="none" poster="media/short-OrcasVsGreatWhite.webp"><source src="media/short-OrcasVsGreatWhite.mp4" type="video/mp4"></video>
-        <figcaption>Orcas vs. a great white</figcaption>
-      </figure>
-      <figure>
-        <video controls playsinline preload="none" poster="media/short-ColossalSquid.webp"><source src="media/short-ColossalSquid.mp4" type="video/mp4"></video>
-        <figcaption>Colossal squid</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -362,7 +362,7 @@
     </li>
   </ol>
   <p class="toolkit"><strong>Toolkit</strong> Godot 4 · GDScript · OpenXR · Python · Blender API · TypeScript · Three.js · WebGL · C++ · Git</p>
-  <p class="toolkit"><strong>How I work</strong> I build with AI coding agents and check the results myself. Earlier projects, like the Claude Citizen Solar Atlas, were made with OpenAI Codex. Since Claude Opus 5.5 came out I use it as my main agent, including on Sector War and Admin Rights.</p>
+  <p class="toolkit"><strong>How I work</strong> I design, review and test everything I ship, and I use AI coding agents to move faster: OpenAI Codex on earlier work like the Claude Citizen Solar Atlas, and Claude Opus 5.5 since it came out, including on Sector War and Admin Rights.</p>
 </section>
 
 </main>

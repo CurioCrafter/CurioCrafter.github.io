@@ -4,12 +4,13 @@
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const MAX = 86;
   const isDive = () => root.dataset.mode === "dive";
-  const modeBtns = [...document.querySelectorAll(".mode button")];
+  const modeBtns = [...document.querySelectorAll("button[data-mode]")];
   const setMode = (m, save) => {
     root.dataset.mode = m;
-    modeBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
+    modeBtns.filter(b => b.closest(".mode")).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
     if (save) try { localStorage.setItem("mode", m); } catch (e) {}
     if (save) document.querySelectorAll(".stop").forEach(st => st.classList.add("seen"));
+    if (save && document.activeElement && !document.activeElement.offsetParent) document.querySelector('.mode-invite button[data-mode="' + (m === "dive" ? "pro" : "dive") + '"]')?.focus();
     requestAnimationFrame(() => { measure(); update(); if (isDive() && !still) requestAnimationFrame(tick); });
   };
   modeBtns.forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode, true))); // depth at the very bottom of the page
@@ -141,6 +142,7 @@
   document.querySelectorAll("[data-play]").forEach(btn => btn.addEventListener("click", () => {
     frame.src = btn.dataset.play;
     player.querySelector(".player-title").textContent = btn.dataset.title;
+    player.setAttribute("aria-label", btn.dataset.title + " demo");
     player.querySelector(".player-out").href = btn.dataset.play;
     player.showModal();
   }));
