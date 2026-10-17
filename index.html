@@ -238,6 +238,15 @@
       <p class="arcade-meta">Python · NumPy · FastAPI · Canvas</p>
     </article>
     <article>
+      <a class="arcade-shot" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=demo" target="_blank" rel="noopener">
+        <img src="media/play-visualizer.webp" alt="Music Visualizer: an ocean-liner wreck on the sea floor, its portholes lit as a spectrum" loading="lazy">
+        <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Music Visualizer</h3>
+      <p>Ten GPU shader worlds that react to the music. Play the built-in demo song, or share a tab's audio. Press M for mouse control.</p>
+      <p class="arcade-meta">WGSL · WebGPU · Chrome or Edge</p>
+    </article>
+    <article>
       <a class="arcade-shot" href="https://dronewarfare-fpv.netlify.app" target="_blank" rel="noopener">
         <img src="media/play-fpv.webp" alt="Frontline FPV: low drone pass over trenches and armour" loading="lazy">
         <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
@@ -295,14 +304,29 @@
 
 <section class="stop" id="visualizer" data-depth="54" aria-labelledby="h-viz">
   <div class="split">
-    <div class="stop-head">
-      <h2 id="h-viz">Music visualizer</h2>
-      <p class="lede">A Windows tray app that reacts to whatever your PC is playing. Ten looks, including a Shipwreck Dive scene with a live depth readout, and it lowers its own priority so games always come first.</p>
-      <p class="meta">My own project · C# · .NET 9 · WASAPI loopback · built with Claude Opus 5.5 writing the code</p>
+    <div>
+      <div class="stop-head">
+        <h2 id="h-viz">Music Visualizer</h2>
+        <p class="lede">Ten GPU shader worlds that react to every part of whatever's playing: the kick, the snare, the hi-hats, the tempo and the drop. It lives in the Windows tray, and the same shaders run in the browser and a Chrome extension.</p>
+        <p class="meta">My own project · Rust · wgpu / DirectX 12 · WGSL · WebGPU · built with Claude Opus 5.5 writing the code</p>
+      </div>
+      <ul class="did">
+        <li>A real-time analyzer splits the music into kick, snare and hi-hat hits, tempo and beat phase, the drop, section energy and even piano notes, and each look gives every signal its own job.</li>
+        <li>Each look is one WGSL shader, about half a millisecond a frame, so it stays full of detail at 4K full screen.</li>
+        <li>A frosted-glass UI drawn on the GPU, a window you can dock anywhere, mouse control, and colours taken from the current song's album art.</li>
+        <li>The same shaders run in a WebGPU web player and a Chrome extension.</li>
+      </ul>
+      <p class="actions">
+        <a class="btn btn-light" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=demo" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          Try it in your browser</a>
+        <a class="btn" href="https://curiocrafter.github.io/music-visualizer/" target="_blank" rel="noopener">Project page</a>
+        <a class="btn" href="https://github.com/CurioCrafter/music-visualizer" target="_blank" rel="noopener">GitHub</a>
+      </p>
     </div>
     <figure class="screen">
-      <video class="clip" muted loop playsinline controls preload="metadata" poster="media/visualizer.webp"><source src="media/visualizer.mp4" type="video/mp4"></video>
-      <figcaption class="screen-bar"><span class="screen-note">Playing my track "Glass Horizon". Unmute for sound.</span></figcaption>
+      <video class="clip" muted loop playsinline controls preload="metadata" poster="media/visualizer-gpu.webp"><source src="media/visualizer-gpu.mp4" type="video/mp4"></video>
+      <figcaption class="screen-bar"><span class="screen-note">All ten looks, each around a drop</span></figcaption>
     </figure>
   </div>
 </section>
