@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Shipwreck Discovery Aquarium</title>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#0d3a4a}canvas{display:block}#fps{display:none}</style></head>
+<body><div id="fps"></div>
+<script src="assets/data.js"></script>
+<script>// web build: a lighter set of species than the desktop wallpaper
+var KEEP = ["manta_ray","great_hammerhead_shark","lionfish","gulf_flounder","gray_triggerfish","scamp_grouper","goliath_grouper","blue_runner","spotted_moray","atlantic_bumper","tomtate_grunt","striped_burrfish","spotfin_butterflyfish","atlantic_creolefish","blue_angelfish","southern_stingray","sperm_whale"];
+window.AQUARIUM_SPECIES = window.AQUARIUM_SPECIES.filter(function (s) { return KEEP.indexOf(s.name) >= 0; });</script>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Andrew Rainsberger · Resume</title>
+<style>
+@font-face{font-family:'Atkinson Hyperlegible';font-weight:400;src:url(fonts/AtkinsonHyperlegible-400.woff2) format('woff2')}
+@font-face{font-family:'Atkinson Hyperlegible';font-weight:700;src:url(fonts/AtkinsonHyperlegible-700.woff2) format('woff2')}
+@font-face{font-family:'Big Shoulders Display';font-weight:800;src:url(fonts/BigShouldersDisplay-800.woff2) format('woff2')}
+@page{size:Letter;margin:0.5in 0.6in}
+*{box-sizing:border-box}
+body{margin:0;font:400 9.6pt/1.42 'Atkinson Hyperlegible',Arial,sans-serif;color:#13222d}
+h1{font:800 30pt/1 'Big Shoulders Display',sans-serif;margin:0;letter-spacing:.01em}
+.role{font-size:11pt;font-weight:700;margin:3pt 0 2pt;color:#b8500f}
+.contact{color:#42525e;font-size:9pt}
+.contact a{color:inherit;text-decoration:none}
+h2{font:800 12.5pt/1 'Big Shoulders Display',sans-serif;text-transform:uppercase;letter-spacing:.04em;margin:12pt 0 5pt;padding-bottom:3pt;border-bottom:1px solid #d8e0e5}
+.summary{margin:9pt 0 0}
+.job{margin:0 0 7pt}
+.job-head{display:flex;justify-content:space-between;gap:12pt}
+.job-head b{font-size:10.2pt}
+.when{color:#42525e;white-space:nowrap}
+.org{color:#42525e;margin:0 0 2pt}
+ul{margin:2pt 0 0;padding-left:13pt}
+li{margin:0 0 1.5pt}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+.proj b{font-weight:700}
+p{margin:0}
+</style></head><body>
+<h1>Andrew Rainsberger</h1>
+<p class="role">Game Developer &amp; 3D Technical Artist</p>
+<p class="contact">Joplin, Missouri · open to remote, hybrid or on-site · <a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a> · <a href="https://curiocrafter.github.io/">curiocrafter.github.io</a> · <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">linkedin.com/in/andrew-rainsberger-2b9b721b1</a> · <a href="https://github.com/CurioCrafter">github.com/CurioCrafter</a></p>
+<p class="summary">Game developer at AquaticXR and a credited developer on <b>Shipwreck Discovery</b>, a VR diving game in Early Access on Steam and Meta Quest. I work across Godot gameplay, the real-time art pipeline and video. I build with AI coding agents (Claude Opus 5.5, ChatGPT Codex) and design, review and test everything I ship. My family YouTube channel has 94.5 million views.</p>
+
+<h2>Experience</h2>
+<div class="job">
+  <div class="job-head"><b>Game Developer &amp; 3D Technical Artist</b><span class="when">Jul 2026 – present</span></div>
+  <p class="org">AquaticXR · full-time, remote</p>
+  <ul>
+    <li><b>Shipwreck Discovery</b> (published by Lionfish Central, Inc.): build and test coral growth, planting, placement and collision systems in Godot/GDScript, and tune wildlife balance.</li>
+    <li>Retopologize coral growth stages and large shipwreck assets, lay out UVs, bake PBR materials and deliver Godot-ready GLBs that hold up on Quest.</li>
+    <li>Build new reef creatures for the experimental branch with Claude Opus 5.5 driving Blender; debug VR interaction and add regression tests.</li>
+    <li>Make the studio's trailers and shorts and run its YouTube channel (18,800+ views in its first five weeks).</li>
+    <li><b>Lionfish Reef Heroes</b>: pixel-art arcade game for Android and iOS, team of three; built with ChatGPT Codex writing the code. One Godot 4.5 project with automated phone builds and verified store purchases.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-head"><b>Independent Developer &amp; Creator</b><span class="when">2023 – present</span></div>
+  <p class="org">CurioCrafter</p>
+  <ul>
+    <li>Run a family YouTube channel of AI-made shorts: 94.5 million views, 88,000 subscribers; top shorts at 36M, 17M and 11M views.</li>
+    <li>Own games and tools, listed below.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-head"><b>Apprentice Electrician</b><span class="when">Nov 2021 – Jan 2023</span></div>
+  <p class="org">Malm Electrical Contractors, Longmont, CO · Productive Electric LLC, Englewood, CO</p>
+</div>
+<div class="job">
+  <div class="job-head"><b>Wildland Firefighter / Electrical Pre-Apprentice</b><span class="when">Aug 2019 – Oct 2021</span></div>
+  <p class="org">Trapper Creek Job Corps CCC, Darby, MT</p>
+</div>
+
+<h2>Selected projects</h2>
+<div class="cols">
+  <p class="proj"><b>Sector War</b> · real-time space strategy in the browser. Online multiplayer for up to 8 players on a deterministic engine, AI empires, 81 automated tests. Solo; built with Claude Opus 5.5.</p>
+  <p class="proj"><b>Music Visualizer</b> · Windows tray app (C#, .NET 9, WASAPI loopback) with ten audio-reactive looks; drops its own priority so games come first.</p>
+  <p class="proj"><b>Shipwreck Discovery Aquarium</b> · music- and mouse-reactive live wallpaper (Three.js) built from the game's reef, wreck and creatures, with a Blender-rendered backdrop.</p>
+  <p class="proj"><b>Blender add-ons</b> · CurioMesh (remesher that keeps materials and UVs), Laser Saw (capped mesh cuts), Topology Transitions, TextureLayering.</p>
+  <p class="proj"><b>Admin Rights</b> · VR shooter in pre-production (Godot 4, OpenXR): typed admin commands, destructible procedural city.</p>
+  <p class="proj"><b>Claude Citizen: Solar Atlas</b> · 10 commits merged into another developer's browser space game, written with ChatGPT Codex.</p>
+</div>
+
+<h2>Skills</h2>
+<p>Godot 4 · GDScript · OpenXR · Python · Blender API · retopology, UVs, PBR baking · TypeScript · Three.js · WebGL · C# / .NET · C++ · Git · video editing · AI coding agents (Claude Opus 5.5, ChatGPT Codex)</p>
+</body></html>

@@ -53,6 +53,7 @@
     <li><a href="#sector" data-depth="34"><b>34</b>Sector War</a></li>
     <li><a href="#play" data-depth="42"><b>42</b>Play</a></li>
     <li><a href="#tools" data-depth="50"><b>50</b>Blender tools</a></li>
+    <li><a href="#visualizer" data-depth="54"><b>54</b>Music visualizer</a></li>
     <li><a href="#admin" data-depth="58"><b>58</b>Admin Rights</a></li>
     <li><a href="#video" data-depth="66"><b>66</b>Video</a></li>
     <li><a href="#log" data-depth="80"><b>80</b>Dive log</a></li>
@@ -90,6 +91,7 @@
     <li><a href="#sector"><span>34 m</span>Sector War</a></li>
     <li><a href="#play"><span>42 m</span>Play in your browser</a></li>
     <li><a href="#tools"><span>50 m</span>Blender tools</a></li>
+    <li><a href="#visualizer"><span>54 m</span>Music visualizer</a></li>
     <li><a href="#admin"><span>58 m</span>Admin Rights</a></li>
     <li><a href="#video"><span>66 m</span>Video</a></li>
     <li><a href="#log"><span>80 m</span>Dive log</a></li>
@@ -125,6 +127,7 @@
       <ul class="did">
         <li>Build and test coral growth, planting, placement and collision systems in Godot, and tune the wildlife balance around them.</li>
         <li>Retopologize coral growth stages and large shipwreck assets, lay out UVs, bake PBR materials and deliver Godot-ready GLB files that hold up on Quest.</li>
+        <li>Build new reef creatures for the experimental branch, with Claude Opus 5.5 driving Blender to model, rig and pose them.</li>
         <li>Track down VR interaction bugs and write regression tests so the fixes stay fixed.</li>
         <li>Make the trailers and short videos the studio uses to promote the game.</li>
       </ul>
@@ -146,6 +149,11 @@
       </figure>
     </div>
   </div>
+
+  <figure class="creatures">
+    <img src="media/sw-creatures.webp" alt="Four reef creature models: spotfin butterflyfish, lionfish, great hammerhead shark and scamp grouper" loading="lazy">
+    <figcaption>New reef creatures for the experimental branch: spotfin butterflyfish, lionfish, great hammerhead, scamp grouper.</figcaption>
+  </figure>
 </section>
 
 <section class="stop" id="lionfish" data-depth="24" aria-labelledby="h-lionfish">
@@ -188,7 +196,7 @@
       <div class="stop-head">
         <h2 id="h-sector">Sector War</h2>
         <p class="lede">Real-time space strategy in the browser: the pace of an .io game with a slimmed-down grand-strategy layer. You never leave the galaxy view.</p>
-        <p class="meta">Team of three at AquaticXR, with Ian McLennan and Scott Gonnello · I built it with Claude Opus 5.5 writing the code · TypeScript · Node</p>
+        <p class="meta">My own project · I built it with Claude Opus 5.5 writing the code · TypeScript · Node</p>
       </div>
       <ul class="did">
         <li>Three modes, from a 20-minute blitz to a two-hour campaign. AI empires each have a personality; there's diplomacy and a Galactic Council.</li>
@@ -196,6 +204,9 @@
         <li>81 automated tests, including a full bot-vs-bot game, plus a headless soak runner and a Python balance model.</li>
         <li>The whole game also ships as one 8&nbsp;MB HTML file that runs offline in any browser.</li>
       </ul>
+      <p class="actions"><a class="btn btn-light" href="play/sector-war.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        Play it in your browser</a></p>
     </div>
   </div>
 </section>
@@ -207,13 +218,13 @@
   </div>
   <div class="arcade">
     <article>
-      <button class="arcade-shot" type="button" data-play="play/destimmer/index.html?trip=fastTrance&amp;view3d=polytopeSwarm&amp;pattern=plasma&amp;images=false" data-title="Destimmer">
-        <img src="media/play-destimmer.webp" alt="Destimmer WebGL scene: glowing fractal cathedral ribs" loading="lazy">
+      <button class="arcade-shot" type="button" data-play="play/aquarium/index.html?demo" data-title="Shipwreck Discovery Aquarium">
+        <img src="media/wallpaper.webp" alt="Live aquarium: light rays over a reef, the dive boat's anchor line and a sunken wreck" loading="lazy">
         <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Play here</span>
       </button>
-      <h3>Destimmer</h3>
-      <p>A WebGL art piece you steer: fractal cathedrals, particle swarms and a generative music engine with live controls for key, tempo and groove.</p>
-      <p class="arcade-meta">JavaScript · WebGL · Three.js · Web Audio</p>
+      <h3>Shipwreck Discovery Aquarium</h3>
+      <p>A live wallpaper I made from the game's own reef, wreck and creatures. The fish react to music and to your mouse: move fast to scare them, hold still and the curious ones come over, click to drop food.</p>
+      <p class="arcade-meta">Three.js · Blender · Wallpaper Engine · about 45&nbsp;MB, loads when you press Play</p>
     </article>
     <article>
       <button class="arcade-shot" type="button" data-play="play/song-lab/index.html" data-title="Song Lab">
@@ -234,13 +245,13 @@
       <p class="arcade-meta">TypeScript · Three.js</p>
     </article>
     <article>
-      <a class="arcade-shot" href="https://claudecitizen.com" target="_blank" rel="noopener">
-        <img src="media/citizen.webp" alt="Claude Citizen Solar Atlas navigation screen" loading="lazy">
+      <a class="arcade-shot" href="play/sector-war.html" target="_blank" rel="noopener">
+        <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders and hyperlanes" loading="lazy">
         <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
       </a>
-      <h3>Claude Citizen: Solar Atlas</h3>
-      <p>Another developer's browser space game. I reworked its Solar Atlas map: navigation, orbit selection and pointer-lock fixes, ten commits merged into the live game. ChatGPT Codex wrote the code under my direction.</p>
-      <p class="arcade-meta">TypeScript · Three.js · <a href="https://github.com/CurioCrafter/claude-citizen/commits/codex/solar-atlas-navigation-polish">My commits</a></p>
+      <h3>Sector War</h3>
+      <p>My real-time space strategy game, the whole thing in one file. Start a quick game against AI empires, or press "Watch the AI play".</p>
+      <p class="arcade-meta">TypeScript · Canvas · runs offline</p>
     </article>
   </div>
 </section>
@@ -248,27 +259,37 @@
 <section class="stop" id="tools" data-depth="50" aria-labelledby="h-tools">
   <div class="stop-head">
     <h2 id="h-tools">Blender tools</h2>
-    <p class="lede">I write Blender add-ons in Python for the jobs I keep doing by hand: remeshing, edge loops, terrain and hard-surface cuts.</p>
+    <p class="lede">I write Blender add-ons in Python for the jobs I keep doing by hand: remeshing, edge loops, texture layers and hard-surface cuts.</p>
     <p class="meta">Python · Blender API · bmesh</p>
   </div>
 
   <div class="kit">
     <article>
-      <img src="media/tool-terrainforge.webp" alt="TerrainForge four-tile tropical archipelago in Blender" loading="lazy">
-      <h3>TerrainForge</h3>
-      <p>Tiled procedural terrain. This archipelago is four tiles and 264,196 vertices, written out with an export manifest.</p>
-    </article>
-    <article>
       <img src="media/tool-lasersaw.webp" alt="Laser Saw splitting a hard-surface housing into two capped meshes" loading="lazy">
       <h3>Laser Saw</h3>
       <p>Cut through what you see. The mesh splits into separate objects with capped faces and an adjustable kerf.</p>
     </article>
-  </div>
-  <ul class="more">
+    <ul class="more">
     <li><a href="https://github.com/CurioCrafter/CurioMesh">CurioMesh</a> Quad-dominant remesher that keeps your materials and UVs intact.</li>
     <li><a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a> Guided all-quad edge-loop reductions and expansions.</li>
     <li><a href="https://github.com/CurioCrafter/TextureLayering">TextureLayering</a> Ordered PBR texture layers and mask painting for Blender 4.5.</li>
-  </ul>
+    <li><a href="https://github.com/CurioCrafter/claude-citizen/commits/codex/solar-atlas-navigation-polish">Claude Citizen: Solar Atlas</a> Ten commits merged into another developer's browser space game, written with ChatGPT Codex under my direction. <a href="https://claudecitizen.com">Play it</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="stop" id="visualizer" data-depth="54" aria-labelledby="h-viz">
+  <div class="split">
+    <div class="stop-head">
+      <h2 id="h-viz">Music visualizer</h2>
+      <p class="lede">A Windows tray app that reacts to whatever your PC is playing. Ten looks, including a Shipwreck Dive scene with a live depth readout, and it lowers its own priority so games always come first.</p>
+      <p class="meta">My own project · C# · .NET 9 · WASAPI loopback · built with Claude Opus 5.5 writing the code</p>
+    </div>
+    <figure class="screen">
+      <video class="clip" muted loop playsinline controls preload="metadata" poster="media/visualizer.webp"><source src="media/visualizer.mp4" type="video/mp4"></video>
+      <figcaption class="screen-bar"><span class="screen-note">Playing my track "Glass Horizon". Unmute for sound.</span></figcaption>
+    </figure>
+  </div>
 </section>
 
 <section class="stop stop-quiet" id="admin" data-depth="58" aria-labelledby="h-admin">
@@ -290,7 +311,7 @@
     <div>
       <h2 id="h-video">Video</h2>
       <h3>Trailers and shorts for AquaticXR</h3>
-      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
+      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them. I also run the studio's YouTube channel: it started in September 2026 and passed 18,800 views in its first five weeks.</p>
       <p class="links"><a href="https://www.youtube.com/@AquaticXR">AquaticXR on YouTube</a></p>
     </div>
     <div class="reels">
@@ -343,12 +364,12 @@
     <li>
       <time>Jul 2026 – now</time>
       <div><h3>Game Developer &amp; 3D Technical Artist</h3><p class="org">AquaticXR · Full-time, remote</p>
-      <p>Shipwreck Discovery: VR gameplay in Godot and OpenXR, coral and shipwreck assets from retopology to GLB, regression tests for VR fixes, trailers and shorts. Also Lionfish Reef Heroes and Sector War.</p></div>
+      <p>Shipwreck Discovery: VR gameplay in Godot and OpenXR, coral and shipwreck assets from retopology to GLB, regression tests for VR fixes, trailers, shorts and the studio's YouTube channel. Also Lionfish Reef Heroes.</p></div>
     </li>
     <li>
       <time>2023 – now</time>
       <div><h3>Independent developer and creator</h3><p class="org">CurioCrafter</p>
-      <p>My own games and Blender add-ons, and a family YouTube channel with 94.5 million views.</p></div>
+      <p>My own games (Sector War, Admin Rights), Blender add-ons, a desktop music visualizer, and a family YouTube channel with 94.5 million views.</p></div>
     </li>
     <li>
       <time>Nov 2021 – Jan 2023</time>
