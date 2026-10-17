@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="pro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +13,25 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/BigShouldersDisplay-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>try { if (localStorage.getItem("mode") === "dive") document.documentElement.dataset.mode = "dive"; } catch (e) {}</script>
 </head>
 <body>
 <a class="skip" href="#shipwreck">Skip to the work</a>
+
+<div class="topbar">
+  <a class="topbar-name" href="#top">Andrew Rainsberger</a>
+  <nav class="topbar-links" aria-label="Sections">
+    <a href="#shipwreck">Work</a>
+    <a href="#play">Play</a>
+    <a href="#log">Experience</a>
+    <a href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mode" role="group" aria-label="Page style">
+    <button type="button" data-mode="pro" aria-pressed="true">Professional</button>
+    <button type="button" data-mode="dive" aria-pressed="false">Dive</button>
+  </div>
+</div>
 
 <canvas class="snow" aria-hidden="true"></canvas>
 <div class="divelight" aria-hidden="true"></div>
@@ -27,8 +43,9 @@
     <li><a href="#top" data-depth="0"><b>0</b>Surface</a></li>
     <li><a href="#shipwreck" data-depth="12"><b>12</b>Shipwreck Discovery</a></li>
     <li><a href="#lionfish" data-depth="24"><b>24</b>Lionfish Reef Heroes</a></li>
-    <li><a href="#sector" data-depth="36"><b>36</b>Sector War</a></li>
-    <li><a href="#tools" data-depth="48"><b>48</b>Blender tools</a></li>
+    <li><a href="#sector" data-depth="34"><b>34</b>Sector War</a></li>
+    <li><a href="#play" data-depth="42"><b>42</b>Play</a></li>
+    <li><a href="#tools" data-depth="50"><b>50</b>Blender tools</a></li>
     <li><a href="#admin" data-depth="58"><b>58</b>Admin Rights</a></li>
     <li><a href="#video" data-depth="66"><b>66</b>Shorts and YouTube</a></li>
     <li><a href="#log" data-depth="80"><b>80</b>Dive log</a></li>
@@ -58,8 +75,9 @@
   <ol class="plan" aria-label="Dive plan">
     <li><a href="#shipwreck"><span>12 m</span>Shipwreck Discovery</a></li>
     <li><a href="#lionfish"><span>24 m</span>Lionfish Reef Heroes</a></li>
-    <li><a href="#sector"><span>36 m</span>Sector War</a></li>
-    <li><a href="#tools"><span>48 m</span>Blender tools</a></li>
+    <li><a href="#sector"><span>34 m</span>Sector War</a></li>
+    <li><a href="#play"><span>42 m</span>Play in your browser</a></li>
+    <li><a href="#tools"><span>50 m</span>Blender tools</a></li>
     <li><a href="#admin"><span>58 m</span>Admin Rights</a></li>
     <li><a href="#video"><span>66 m</span>Shorts and YouTube</a></li>
     <li><a href="#log"><span>80 m</span>Dive log</a></li>
@@ -148,7 +166,7 @@
   </ul>
 </section>
 
-<section class="stop" id="sector" data-depth="36" aria-labelledby="h-sector">
+<section class="stop" id="sector" data-depth="34" aria-labelledby="h-sector">
   <div class="split split-flip">
     <figure class="screen">
       <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders, hyperlanes and the empire standings panel" loading="lazy">
@@ -170,7 +188,52 @@
   </div>
 </section>
 
-<section class="stop" id="tools" data-depth="48" aria-labelledby="h-tools">
+<section class="stop" id="play" data-depth="42" aria-labelledby="h-play">
+  <div class="stop-head">
+    <h2 id="h-play">Play in your browser</h2>
+    <p class="lede">Things I've built that you can try right now, no install.</p>
+  </div>
+  <div class="arcade">
+    <article>
+      <button class="arcade-shot" type="button" data-play="play/destimmer/index.html?trip=fastTrance&amp;view3d=polytopeSwarm&amp;pattern=plasma&amp;images=false" data-title="Destimmer">
+        <img src="media/play-destimmer.webp" alt="Destimmer WebGL scene: glowing fractal cathedral ribs" loading="lazy">
+        <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Play here</span>
+      </button>
+      <h3>Destimmer</h3>
+      <p>A WebGL art piece you steer: fractal cathedrals, particle swarms and a generative music engine with live controls for key, tempo and groove.</p>
+      <p class="arcade-meta">JavaScript · WebGL · Three.js · Web Audio</p>
+    </article>
+    <article>
+      <button class="arcade-shot" type="button" data-play="play/song-lab/index.html" data-title="Song Lab">
+        <img src="media/play-songlab.webp" alt="Song Lab: beats, energy and chroma of a song drawn on a timeline" loading="lazy">
+        <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Open here</span>
+      </button>
+      <h3>Song Lab</h3>
+      <p>The browser view of SongDeconstructor, my Python tool that breaks songs into beats, tempo, chroma and segments. Scrub through an analysed track.</p>
+      <p class="arcade-meta">Python · NumPy · FastAPI · Canvas</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="https://dronewarfare-fpv.netlify.app" target="_blank" rel="noopener">
+        <img src="media/play-fpv.webp" alt="Frontline FPV: low drone pass over trenches and armour" loading="lazy">
+        <span class="arcade-go">Fly it <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Frontline FPV</h3>
+      <p>An FPV drone sim in Three.js with a rate-mode flight model, a generated frontline and air defence that shoots back. Keyboard or gamepad.</p>
+      <p class="arcade-meta">TypeScript · Three.js</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="https://claudecitizen.com" target="_blank" rel="noopener">
+        <img src="media/citizen.webp" alt="Claude Citizen Solar Atlas navigation screen" loading="lazy">
+        <span class="arcade-go">Play it <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Claude Citizen</h3>
+      <p>Another developer's browser space game. My merged PR reworked the Solar Atlas: navigation, orbit selection and pointer-lock fixes.</p>
+      <p class="arcade-meta">TypeScript · Three.js · <a href="https://github.com/huiung/claude-citizen/pull/10">PR #10</a></p>
+    </article>
+  </div>
+</section>
+
+<section class="stop" id="tools" data-depth="50" aria-labelledby="h-tools">
   <div class="stop-head">
     <h2 id="h-tools">Blender tools</h2>
     <p class="lede">I write Blender add-ons in Python for the jobs I keep doing by hand: remeshing, edge loops, terrain and hard-surface cuts.</p>
@@ -193,7 +256,6 @@
     <li><a href="https://github.com/CurioCrafter/CurioMesh">CurioMesh</a> Quad-dominant remesher that keeps your materials and UVs intact.</li>
     <li><a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a> Guided all-quad edge-loop reductions and expansions.</li>
     <li><a href="https://github.com/CurioCrafter/TextureLayering">TextureLayering</a> Ordered PBR texture layers and mask painting for Blender 4.5.</li>
-    <li><a href="https://github.com/huiung/claude-citizen/pull/10">Claude Citizen, PR #10</a> Ten commits merged into another developer's browser space game: Solar Atlas navigation and orbit selection.</li>
   </ul>
 </section>
 
@@ -266,7 +328,7 @@
 
 </main>
 
-<footer class="floor" aria-labelledby="h-contact">
+<footer class="floor" id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">Hiring for gameplay, VR or technical art?</h2>
   <p>I'd like to hear about it. I'm based in Dixon, Missouri.</p>
   <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
@@ -287,6 +349,12 @@
   <form method="dialog"><button class="close" aria-label="Close trailer">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button></form>
+</dialog>
+
+<dialog class="player" aria-label="Demo">
+  <div class="player-bar"><span class="player-title"></span><a class="player-out" href="#" target="_blank" rel="noopener">Open full screen</a>
+  <form method="dialog"><button class="close" aria-label="Close demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></form></div>
+  <iframe title="Demo" loading="lazy" allow="autoplay; fullscreen"></iframe>
 </dialog>
 
 <script src="main.js" defer></script>

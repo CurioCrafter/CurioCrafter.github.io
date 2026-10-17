@@ -2,7 +2,17 @@
 (() => {
   const root = document.documentElement;
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const MAX = 86; // depth at the very bottom of the page
+  const MAX = 86;
+  const isDive = () => root.dataset.mode === "dive";
+  const modeBtns = [...document.querySelectorAll(".mode button")];
+  const setMode = (m, save) => {
+    root.dataset.mode = m;
+    modeBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
+    if (save) try { localStorage.setItem("mode", m); } catch (e) {}
+    if (save) document.querySelectorAll(".stop").forEach(st => st.classList.add("seen"));
+    requestAnimationFrame(() => { measure(); update(); if (isDive() && !still) requestAnimationFrame(tick); });
+  };
+  modeBtns.forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode, true))); // depth at the very bottom of the page
   const num = document.querySelector(".gauge-num");
   const name = document.querySelector(".gauge-name");
   const links = [...document.querySelectorAll(".gauge-stops a")];
@@ -80,11 +90,11 @@
       if (f.y > innerHeight + 4) { f.y = -4; f.x = Math.random() * innerWidth; }
     }
     draw();
-    if (!document.hidden) requestAnimationFrame(tick);
+    if (!document.hidden && isDive()) requestAnimationFrame(tick);
   };
   size(); addEventListener("resize", size);
   if (still) draw();
-  else { requestAnimationFrame(tick); document.addEventListener("visibilitychange", () => { if (!document.hidden) requestAnimationFrame(tick); }); }
+  else { requestAnimationFrame(tick); document.addEventListener("visibilitychange", () => { if (!document.hidden && isDive()) requestAnimationFrame(tick); }); }
 
   // Footage is the content, so loops play (muted) even with reduced motion; every loop can be paused.
   const loops = [...document.querySelectorAll(".clip, .surface-video")];
@@ -121,6 +131,19 @@
   });
   dialog.addEventListener("close", () => trailer.pause());
   dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
+
+  setMode(root.dataset.mode, false);
+
+  // Demos open in a dialog; the iframe is emptied on close so audio stops.
+  const player = document.querySelector(".player");
+  const frame = player.querySelector("iframe");
+  document.querySelectorAll("[data-play]").forEach(btn => btn.addEventListener("click", () => {
+    frame.src = btn.dataset.play;
+    player.querySelector(".player-title").textContent = btn.dataset.title;
+    player.querySelector(".player-out").href = btn.dataset.play;
+    player.showModal();
+  }));
+  player.addEventListener("close", () => { frame.src = "about:blank"; });
 
   // One entrance: each stop rises out of the murk the first time it comes into view.
   if (!still && "IntersectionObserver" in window) {
