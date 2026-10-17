@@ -1,25 +1,294 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Andrew Rainsberger builds game systems, terrain-authoring workflows, and Python/Blender tools for junior game development and technical art roles."
-    />
-    <meta name="theme-color" content="#071014" />
-    <meta property="og:title" content="Andrew Rainsberger | Game Developer + Blender Tools" />
-    <meta
-      property="og:description"
-      content="Playable 3D systems, terrain tools, Blender Python add-ons, and production-minded technical workflows."
-    />
-    <meta property="og:image" content="./assets/tidefront-terrain-studio-architecture-DSxVUiRC.png" />
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon-C2cz2lDu.svg" />
-    <title>Andrew Rainsberger | Game Developer + Blender Tools</title>
-    <script type="module" crossorigin src="./assets/index-BS2tyi43.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-C2Z4K0_-.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrew Rainsberger · Game Developer &amp; 3D Technical Artist</title>
+<meta name="description" content="Andrew Rainsberger builds VR gameplay and real-time art for Shipwreck Discovery (Steam, Meta Quest), plus his own games and Blender tools.">
+<meta property="og:title" content="Andrew Rainsberger · Game Developer &amp; 3D Technical Artist">
+<meta property="og:description" content="VR gameplay and real-time art for Shipwreck Discovery, plus my own games and Blender tools.">
+<meta property="og:image" content="https://curiocrafter.github.io/media/hero.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b3550">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/BigShouldersDisplay-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#shipwreck">Skip to the work</a>
+
+<canvas class="snow" aria-hidden="true"></canvas>
+<div class="divelight" aria-hidden="true"></div>
+
+<nav class="gauge" aria-label="Sections by depth">
+  <div class="gauge-read" aria-hidden="true"><span class="gauge-num">0</span><span class="gauge-unit">m</span><span class="gauge-name">Surface</span></div>
+  <div class="gauge-tape" aria-hidden="true"><div class="gauge-needle"></div></div>
+  <ol class="gauge-stops">
+    <li><a href="#top" data-depth="0"><b>0</b>Surface</a></li>
+    <li><a href="#shipwreck" data-depth="12"><b>12</b>Shipwreck Discovery</a></li>
+    <li><a href="#lionfish" data-depth="24"><b>24</b>Lionfish Reef Heroes</a></li>
+    <li><a href="#sector" data-depth="36"><b>36</b>Sector War</a></li>
+    <li><a href="#tools" data-depth="48"><b>48</b>Blender tools</a></li>
+    <li><a href="#admin" data-depth="58"><b>58</b>Admin Rights</a></li>
+    <li><a href="#video" data-depth="66"><b>66</b>Shorts and YouTube</a></li>
+    <li><a href="#log" data-depth="80"><b>80</b>Dive log</a></li>
+  </ol>
+</nav>
+
+<header class="surface" id="top" data-depth="0">
+  <video class="surface-video" autoplay muted loop playsinline poster="media/hero.webp" aria-hidden="true">
+    <source src="media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="surface-shade" aria-hidden="true"></div>
+  <button class="hold" type="button" aria-pressed="false" aria-label="Pause background video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg> Pause</button>
+
+  <div class="surface-body">
+    <h1 class="waterline">Andrew <span>Rainsberger</span></h1>
+    <p class="surface-role">Game developer and 3D technical artist. I build VR gameplay and real-time art for <a href="#shipwreck">Shipwreck Discovery</a>, in Early Access on Steam and Meta Quest.</p>
+    <div class="actions">
+      <button class="btn btn-light" type="button" data-trailer>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        Watch the trailer <span class="btn-sub">1:26</span>
+      </button>
+      <a class="btn" href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume</a>
+      <a class="btn" href="mailto:andrewrainsberger@gmail.com">Email me</a>
+    </div>
+  </div>
+
+  <ol class="plan" aria-label="Dive plan">
+    <li><a href="#shipwreck"><span>12 m</span>Shipwreck Discovery</a></li>
+    <li><a href="#lionfish"><span>24 m</span>Lionfish Reef Heroes</a></li>
+    <li><a href="#sector"><span>36 m</span>Sector War</a></li>
+    <li><a href="#tools"><span>48 m</span>Blender tools</a></li>
+    <li><a href="#admin"><span>58 m</span>Admin Rights</a></li>
+    <li><a href="#video"><span>66 m</span>Shorts and YouTube</a></li>
+    <li><a href="#log"><span>80 m</span>Dive log</a></li>
+  </ol>
+</header>
+
+<main>
+
+<section class="stop" id="shipwreck" data-depth="12" aria-labelledby="h-shipwreck">
+  <div class="stop-head">
+    <h2 id="h-shipwreck">Shipwreck Discovery</h2>
+    <p class="lede">A VR diving game set on real wrecks sunk as artificial reefs off Destin, Florida. I'm on the team at Lionfish Central, working on gameplay systems and the real-time art pipeline.</p>
+    <p class="meta">Game Developer &amp; 3D Technical Artist · July 2026 to now · Godot 4, GDScript, OpenXR, Blender</p>
+  </div>
+
+  <figure class="screen screen-open">
+    <video class="clip" data-clips muted loop playsinline preload="metadata" poster="media/sw-hammerhead.webp">
+      <source src="media/sw-hammerhead.mp4" type="video/mp4">
+    </video>
+    <figcaption class="screen-bar">
+      <div class="tabs" role="group" aria-label="Choose a clip">
+        <button type="button" aria-pressed="true" data-src="media/sw-hammerhead">Hammerhead pass</button>
+        <button type="button" aria-pressed="false" data-src="media/sw-courageous">The Courageous</button>
+        <button type="button" aria-pressed="false" data-src="media/sw-brine">Brine lake</button>
+      </div>
+      <span class="screen-note">In-game footage</span>
+    </figcaption>
+  </figure>
+
+  <div class="split">
+    <div>
+      <h3>What I do on it</h3>
+      <ul class="did">
+        <li>Retopologized 18 coral growth-stage assets for VR: UVs, PBR bakes at 1K and 2K, Godot-ready GLBs checked by reimport.</li>
+        <li>Built coral growth, planting, placement and collision systems in Godot, and tuned the wildlife balance around them.</li>
+        <li>Baked full wreck interiors down to retopologized, 4K-textured versions that hold up on Quest.</li>
+        <li>Tracked down VR interaction bugs and wrote regression tests so the fixes stay fixed.</li>
+      </ul>
+      <p class="links">
+        <a href="https://store.steampowered.com/app/3583270/Shipwreck_Discovery/">Steam</a>
+        <a href="https://www.meta.com/experiences/shipwreck-discovery/32767209856226296/">Meta Quest</a>
+        <a href="https://shipwreckdiscovery.com/">Official site</a>
+      </p>
+      <p class="fine">Shipwreck Discovery and its store pages belong to Lionfish Central. The source is private.</p>
+    </div>
+    <div class="plates">
+      <figure>
+        <img src="media/sw-retopo.webp" alt="Elkhorn coral: baked real-time result beside its retopologized wireframe" loading="lazy">
+        <figcaption>Elkhorn coral: baked result beside the new topology</figcaption>
+      </figure>
+      <figure>
+        <img src="media/sw-scanner.webp" alt="In-game creature scanner showing a spadefish identification panel" loading="lazy">
+        <figcaption>Creature scanner, in the headset</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="stop" id="lionfish" data-depth="24" aria-labelledby="h-lionfish">
+  <div class="stop-head">
+    <h2 id="h-lionfish">Lionfish Reef Heroes</h2>
+    <p class="lede">A pixel-art arcade game for Android and iOS. Lionfish have taken the reef; you dive in, spear them and bring the reef back across ten ocean habitats.</p>
+    <p class="meta">Built at AquaticXR with Ian McLennan and Scott Gonnello · Godot 4.5 · Android and iOS · Coming soon</p>
+  </div>
+
+  <div class="duo">
+    <figure class="screen">
+      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-gameplay.webp">
+        <source src="media/lion-gameplay.mp4" type="video/mp4">
+      </video>
+      <figcaption class="screen-bar"><span class="screen-note">Gameplay, recorded on device</span></figcaption>
+    </figure>
+    <figure class="screen">
+      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-trailer.webp">
+        <source src="media/lion-trailer.mp4" type="video/mp4">
+      </video>
+      <figcaption class="screen-bar"><span class="screen-note">From the trailer</span></figcaption>
+    </figure>
+  </div>
+
+  <ul class="did did-row">
+    <li>Ten habitats with animated marine life, boss fights and collectible gear.</li>
+    <li>Five assignments based on real marine careers: reef survey, coral nursery, turtle rehab and more.</li>
+    <li>One Godot project builds for desktop, Android and iPhone, with automated builds for both phones.</li>
+    <li>Store integration with a server that verifies purchases.</li>
+  </ul>
+</section>
+
+<section class="stop" id="sector" data-depth="36" aria-labelledby="h-sector">
+  <div class="split split-flip">
+    <figure class="screen">
+      <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders, hyperlanes and the empire standings panel" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">Seven AI empires, two minutes in</span></figcaption>
+    </figure>
+    <div>
+      <div class="stop-head">
+        <h2 id="h-sector">Sector War</h2>
+        <p class="lede">Real-time space strategy in the browser: the pace of an .io game with a slimmed-down grand-strategy layer. You never leave the galaxy view.</p>
+        <p class="meta">Built at AquaticXR with Ian McLennan and Scott Gonnello · TypeScript · WebSockets · Node</p>
+      </div>
+      <ul class="did">
+        <li>Three modes, from a 20-minute blitz to a two-hour campaign. AI empires each have a personality; there's diplomacy and a Galactic Council.</li>
+        <li>Online multiplayer for up to eight players over WebSockets, on a deterministic engine.</li>
+        <li>81 automated tests, including a full bot-vs-bot game, plus a headless soak runner and a Python balance model.</li>
+        <li>The whole game also ships as one 8&nbsp;MB HTML file that runs offline in any browser.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="stop" id="tools" data-depth="48" aria-labelledby="h-tools">
+  <div class="stop-head">
+    <h2 id="h-tools">Blender tools</h2>
+    <p class="lede">I write Blender add-ons in Python for the jobs I keep doing by hand: remeshing, edge loops, terrain and hard-surface cuts.</p>
+    <p class="meta">Python · Blender API · bmesh</p>
+  </div>
+
+  <div class="kit">
+    <article>
+      <img src="media/tool-terrainforge.webp" alt="TerrainForge four-tile tropical archipelago in Blender" loading="lazy">
+      <h3>TerrainForge</h3>
+      <p>Tiled procedural terrain. This archipelago is four tiles and 264,196 vertices, written out with an export manifest.</p>
+    </article>
+    <article>
+      <img src="media/tool-lasersaw.webp" alt="Laser Saw splitting a hard-surface housing into two capped meshes" loading="lazy">
+      <h3>Laser Saw</h3>
+      <p>Cut through what you see. The mesh splits into separate objects with capped faces and an adjustable kerf.</p>
+    </article>
+  </div>
+  <ul class="more">
+    <li><a href="https://github.com/CurioCrafter/CurioMesh">CurioMesh</a> Quad-dominant remesher that keeps your materials and UVs intact.</li>
+    <li><a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a> Guided all-quad edge-loop reductions and expansions.</li>
+    <li><a href="https://github.com/CurioCrafter/TextureLayering">TextureLayering</a> Ordered PBR texture layers and mask painting for Blender 4.5.</li>
+    <li><a href="https://github.com/huiung/claude-citizen/pull/10">Claude Citizen, PR #10</a> Ten commits merged into another developer's browser space game: Solar Atlas navigation and orbit selection.</li>
+  </ul>
+</section>
+
+<section class="stop stop-quiet" id="admin" data-depth="58" aria-labelledby="h-admin">
+  <div class="split">
+    <div class="stop-head">
+      <h2 id="h-admin">Admin Rights</h2>
+      <p class="lede">A VR shooter set inside a computer, in pre-production. You're a freshly booted antivirus process. Every kill unlocks admin commands you type on a wrist terminal to spawn turrets, walls and vehicles in a destructible procedural city.</p>
+      <p class="meta">Godot 4 · OpenXR · Design spec written, prototyping now</p>
+    </div>
+    <figure class="screen">
+      <img src="media/ar-skills.webp" alt="Admin Rights skill tree screen styled as a code editor, with ghost and overclock ability trees" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">Skill trees you compile like code</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stop" id="video" data-depth="66" aria-labelledby="h-video">
+  <div class="split">
+    <div class="stop-head">
+      <h2 id="h-video">Shorts and YouTube</h2>
+      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter on YouTube</a>: 88K subscribers, 347 videos. Making things for a feed taught me what holds a stranger in the first two seconds, and that carries straight into game feel and onboarding.</p>
+      <p class="lede">These shorts for Shipwreck Discovery come out of a pipeline I built: Claude (Opus) drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
+    </div>
+    <div class="reels">
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-WhaleWouldntLetGo.webp"><source src="media/short-WhaleWouldntLetGo.mp4" type="video/mp4"></video>
+        <figcaption>The whale that wouldn't let go</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-OrcasVsGreatWhite.webp"><source src="media/short-OrcasVsGreatWhite.mp4" type="video/mp4"></video>
+        <figcaption>Orcas vs. a great white</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="none" poster="media/short-ColossalSquid.webp"><source src="media/short-ColossalSquid.mp4" type="video/mp4"></video>
+        <figcaption>Colossal squid</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="stop" id="log" data-depth="80" aria-labelledby="h-log">
+  <div class="stop-head">
+    <h2 id="h-log">Dive log</h2>
+  </div>
+  <ol class="log">
+    <li>
+      <time>Jul 2026 – now</time>
+      <div><h3>Game Developer &amp; 3D Technical Artist</h3><p class="org">Lionfish Central · Shipwreck Discovery</p>
+      <p>VR gameplay in Godot and OpenXR, coral and wreck assets from retopology to GLB, regression tests for VR fixes.</p></div>
+    </li>
+    <li>
+      <time>2023 – now</time>
+      <div><h3>Independent game and tools developer</h3><p class="org">CurioCrafter</p>
+      <p>My own games, Blender add-ons, and a YouTube channel that grew to 88K subscribers.</p></div>
+    </li>
+    <li>
+      <time>2021 – 2023</time>
+      <div><h3>Apprentice Electrician</h3><p class="org">Productive Electric LLC · Malm Electrical Contractors</p>
+      <p>Commercial installs, jobsite safety and field troubleshooting.</p></div>
+    </li>
+    <li>
+      <time>One fire season</time>
+      <div><h3>Wildland Firefighter</h3><p class="org">Job Corps</p>
+      <p>A season on a fire crew, plus electrical pre-apprenticeship training.</p></div>
+    </li>
+  </ol>
+  <p class="toolkit"><strong>Toolkit</strong> Godot 4 · GDScript · OpenXR · Python · Blender API · TypeScript · Three.js · WebGL · C++ · Git</p>
+</section>
+
+</main>
+
+<footer class="floor" aria-labelledby="h-contact">
+  <h2 id="h-contact">Hiring for gameplay, VR or technical art?</h2>
+  <p>I'd like to hear about it. I'm based in Dixon, Missouri.</p>
+  <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
+  <p class="links">
+    <a href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume (PDF)</a>
+    <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
+    <a href="https://github.com/CurioCrafter">GitHub</a>
+    <a href="https://youtube.com/@CurioCrafter-r1w">YouTube</a>
+  </p>
+  <a class="ascend" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-6 6h4v8h4v-8h4z"/></svg>
+    Back to the surface
+  </a>
+</footer>
+
+<dialog class="trailer" aria-label="Shipwreck Discovery trailer">
+  <video controls playsinline preload="none" poster="media/reel.webp"><source src="media/reel.mp4" type="video/mp4"></video>
+  <form method="dialog"><button class="close" aria-label="Close trailer">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button></form>
+</dialog>
+
+<script src="main.js" defer></script>
+</body>
 </html>

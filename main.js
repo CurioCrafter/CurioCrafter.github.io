@@ -1,0 +1,137 @@
+// The Descent: scroll position becomes dive depth.
+(() => {
+  const root = document.documentElement;
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const MAX = 86; // depth at the very bottom of the page
+  const num = document.querySelector(".gauge-num");
+  const name = document.querySelector(".gauge-name");
+  const links = [...document.querySelectorAll(".gauge-stops a")];
+  links.forEach(a => a.parentElement.style.setProperty("--d", a.dataset.depth));
+
+  const anchors = [...document.querySelectorAll("[data-depth]")].filter(el => !el.closest(".gauge"));
+  let marks = [];
+  const measure = () => {
+    marks = anchors.map(el => ({ y: el.getBoundingClientRect().top + scrollY, d: +el.dataset.depth, id: el.id }));
+    marks.push({ y: document.documentElement.scrollHeight - innerHeight * 0.2, d: MAX, id: null });
+  };
+
+  let shown = -1;
+  const update = () => {
+    const probe = scrollY + innerHeight * 0.2 * Math.min(1, scrollY / innerHeight);
+    let depth = 0, current = marks[0]?.id;
+    for (let i = 0; i < marks.length - 1; i++) {
+      const a = marks[i], b = marks[i + 1];
+      if (probe >= a.y) {
+        current = a.id ?? current;
+        depth = probe >= b.y ? b.d : a.d + (b.d - a.d) * (probe - a.y) / Math.max(1, b.y - a.y);
+      }
+    }
+    depth = Math.min(MAX, Math.max(0, depth));
+    root.style.setProperty("--p", (depth / MAX).toFixed(4));
+    root.style.setProperty("--dark", Math.min(1, Math.max(0, (depth - 34) / 30)).toFixed(3));
+    const rounded = Math.round(depth);
+    if (rounded !== shown) { num.textContent = rounded; shown = rounded; }
+    links.forEach(a => {
+      const on = a.hash === "#" + current;
+      a.setAttribute("aria-current", on ? "true" : "false");
+      if (on && name.textContent !== a.lastChild.textContent) name.textContent = a.lastChild.textContent;
+    });
+  };
+
+  let ticking = false;
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); } };
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", () => { measure(); update(); });
+  addEventListener("load", () => { measure(); update(); });
+  measure(); update();
+
+  // Dive light follows the pointer once it gets dark.
+  if (matchMedia("(pointer: fine)").matches) {
+    addEventListener("pointermove", e => {
+      root.style.setProperty("--lx", e.clientX + "px");
+      root.style.setProperty("--ly", e.clientY + "px");
+    }, { passive: true });
+  }
+
+  // Marine snow. ponytail: plain 2D canvas, ~70 particles; WebGL only if this ever shows up in a profile.
+  const canvas = document.querySelector(".snow");
+  const ctx = canvas.getContext("2d");
+  let flakes = [];
+  const size = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(90, innerWidth * innerHeight / 16000));
+    flakes = Array.from({ length: n }, () => ({
+      x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+      r: Math.random() * 1.4 + 0.4, v: Math.random() * 0.25 + 0.06, s: Math.random() * Math.PI * 2,
+    }));
+  };
+  const draw = () => {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    ctx.fillStyle = "rgba(220,238,240,0.55)";
+    for (const f of flakes) {
+      ctx.beginPath(); ctx.arc(f.x + Math.sin(f.s) * 6, f.y, f.r, 0, Math.PI * 2); ctx.fill();
+    }
+  };
+  const tick = () => {
+    for (const f of flakes) {
+      f.y += f.v; f.s += 0.006;
+      if (f.y > innerHeight + 4) { f.y = -4; f.x = Math.random() * innerWidth; }
+    }
+    draw();
+    if (!document.hidden) requestAnimationFrame(tick);
+  };
+  size(); addEventListener("resize", size);
+  if (still) draw();
+  else { requestAnimationFrame(tick); document.addEventListener("visibilitychange", () => { if (!document.hidden) requestAnimationFrame(tick); }); }
+
+  // Footage is the content, so loops play (muted) even with reduced motion; every loop can be paused.
+  const loops = [...document.querySelectorAll(".clip, .surface-video")];
+  const held = new WeakSet();
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting && !held.has(e.target)) e.target.play().catch(() => {}); else e.target.pause();
+  }), { threshold: 0.25 });
+  loops.forEach(v => io.observe(v));
+  const toggle = v => {
+    if (v.paused) { held.delete(v); v.play().catch(() => {}); } else { held.add(v); v.pause(); }
+  };
+  document.querySelectorAll(".clip").forEach(v => v.addEventListener("click", () => toggle(v)));
+  const heroBtn = document.querySelector(".hold");
+  const hero = document.querySelector(".surface-video");
+  heroBtn.addEventListener("click", () => toggle(hero));
+  hero.addEventListener("play", () => { heroBtn.setAttribute("aria-pressed", "false"); heroBtn.lastChild.textContent = " Pause"; });
+  hero.addEventListener("pause", () => { heroBtn.setAttribute("aria-pressed", "true"); heroBtn.lastChild.textContent = " Play"; });
+
+  // Shipwreck clip tabs
+  const clip = document.querySelector("[data-clips]");
+  document.querySelectorAll(".tabs button").forEach(btn => btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    clip.poster = btn.dataset.src + ".webp";
+    clip.src = btn.dataset.src + ".mp4";
+    held.delete(clip); clip.play().catch(() => {});
+  }));
+
+  // Trailer
+  const dialog = document.querySelector(".trailer");
+  const trailer = dialog.querySelector("video");
+  document.querySelector("[data-trailer]").addEventListener("click", () => {
+    dialog.showModal();
+    trailer.play().catch(() => {});
+  });
+  dialog.addEventListener("close", () => trailer.pause());
+  dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
+
+  // One entrance: each stop rises out of the murk the first time it comes into view.
+  if (!still && "IntersectionObserver" in window) {
+    const stops = [...document.querySelectorAll(".stop")];
+    const below = stops.filter(s => s.getBoundingClientRect().top > innerHeight);
+    below.forEach(s => s.classList.add("pending"));
+    root.classList.add("rise-ready");
+    stops.filter(s => !s.classList.contains("pending")).forEach(s => s.classList.add("seen"));
+    const rise = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("seen"); rise.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -12% 0px" });
+    below.forEach(s => rise.observe(s));
+  }
+})();

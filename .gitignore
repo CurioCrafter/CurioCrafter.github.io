@@ -25,3 +25,6 @@ evidence
 *.njsproj
 *.sln
 *.sw?
+.impeccable/
+PRODUCT.md
+DESIGN.md
