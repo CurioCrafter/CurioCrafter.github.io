@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrew Rainsberger · Game Developer &amp; 3D Technical Artist</title>
-<meta name="description" content="Andrew Rainsberger builds VR gameplay and real-time art for Shipwreck Discovery (Steam, Meta Quest), plus his own games and Blender tools.">
+<meta name="description" content="Andrew Rainsberger, game developer and 3D technical artist at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest). His YouTube channel has 94 million views.">
 <meta property="og:title" content="Andrew Rainsberger · Game Developer &amp; 3D Technical Artist">
-<meta property="og:description" content="VR gameplay and real-time art for Shipwreck Discovery, plus my own games and Blender tools.">
+<meta property="og:description" content="VR gameplay and real-time art for Shipwreck Discovery, games you can play in the browser, and a YouTube channel with 94 million views.">
 <meta property="og:image" content="https://curiocrafter.github.io/media/hero.webp">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b3550">
@@ -23,13 +23,21 @@
   <nav class="topbar-links" aria-label="Sections">
     <a href="#shipwreck">Work</a>
     <a href="#play">Play</a>
+    <a href="#video">Video</a>
     <a href="#log">Experience</a>
-    <a href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="mode" role="group" aria-label="Page style">
-    <button type="button" data-mode="pro" aria-pressed="true">Professional</button>
-    <button type="button" data-mode="dive" aria-pressed="false">Dive</button>
+  <div class="mode-wrap">
+    <span class="mode-label" id="mode-label">Page style</span>
+    <div class="mode" role="group" aria-labelledby="mode-label">
+      <button type="button" data-mode="pro" aria-pressed="true" title="Simple, light layout">
+        <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Professional
+      </button>
+      <button type="button" data-mode="dive" aria-pressed="false" title="Dark underwater layout with a depth gauge and effects">
+        <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Dive mode
+      </button>
+    </div>
+    <p class="mode-now" aria-live="polite"><span class="p">You're in Professional view. Try Dive mode for the underwater version.</span><span class="d">You're in Dive mode: scroll to descend. Switch back any time.</span></p>
   </div>
 </div>
 
@@ -47,7 +55,7 @@
     <li><a href="#play" data-depth="42"><b>42</b>Play</a></li>
     <li><a href="#tools" data-depth="50"><b>50</b>Blender tools</a></li>
     <li><a href="#admin" data-depth="58"><b>58</b>Admin Rights</a></li>
-    <li><a href="#video" data-depth="66"><b>66</b>Shorts and YouTube</a></li>
+    <li><a href="#video" data-depth="66"><b>66</b>Video</a></li>
     <li><a href="#log" data-depth="80"><b>80</b>Dive log</a></li>
   </ol>
 </nav>
@@ -61,7 +69,12 @@
 
   <div class="surface-body">
     <h1 class="waterline">Andrew <span>Rainsberger</span></h1>
-    <p class="surface-role">Game developer and 3D technical artist. I build VR gameplay and real-time art for <a href="#shipwreck">Shipwreck Discovery</a>, in Early Access on Steam and Meta Quest.</p>
+    <p class="surface-role">Game developer and 3D technical artist at AquaticXR. I build VR gameplay and real-time art for <a href="#shipwreck">Shipwreck Discovery</a>, in Early Access on Steam and Meta Quest.</p>
+    <ul class="facts">
+      <li>Credited developer on <strong>Shipwreck Discovery</strong></li>
+      <li><strong>94 million</strong> views on my YouTube channel</li>
+      <li>Godot · OpenXR · Blender · Python</li>
+    </ul>
     <div class="actions">
       <button class="btn btn-light" type="button" data-trailer>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
@@ -79,7 +92,7 @@
     <li><a href="#play"><span>42 m</span>Play in your browser</a></li>
     <li><a href="#tools"><span>50 m</span>Blender tools</a></li>
     <li><a href="#admin"><span>58 m</span>Admin Rights</a></li>
-    <li><a href="#video"><span>66 m</span>Shorts and YouTube</a></li>
+    <li><a href="#video"><span>66 m</span>Video</a></li>
     <li><a href="#log"><span>80 m</span>Dive log</a></li>
   </ol>
 </header>
@@ -89,8 +102,8 @@
 <section class="stop" id="shipwreck" data-depth="12" aria-labelledby="h-shipwreck">
   <div class="stop-head">
     <h2 id="h-shipwreck">Shipwreck Discovery</h2>
-    <p class="lede">A VR diving game set on real wrecks sunk as artificial reefs off Destin, Florida. I'm on the team at Lionfish Central, working on gameplay systems and the real-time art pipeline.</p>
-    <p class="meta">Game Developer &amp; 3D Technical Artist · July 2026 to now · Godot 4, GDScript, OpenXR, Blender</p>
+    <p class="lede">A VR diving game set on real wrecks sunk as artificial reefs off Destin, Florida. I work on it full-time at AquaticXR, on gameplay systems and the real-time art pipeline, and I'm credited as a developer on its Steam page alongside Scott Gonnello and Ian McLennan.</p>
+    <p class="meta">Game Developer &amp; 3D Technical Artist · AquaticXR · July 2026 to now · Godot 4, GDScript, OpenXR, Blender</p>
   </div>
 
   <figure class="screen screen-open">
@@ -111,17 +124,17 @@
     <div>
       <h3>What I do on it</h3>
       <ul class="did">
-        <li>Retopologized 18 coral growth-stage assets for VR: UVs, PBR bakes at 1K and 2K, Godot-ready GLBs checked by reimport.</li>
-        <li>Built coral growth, planting, placement and collision systems in Godot, and tuned the wildlife balance around them.</li>
-        <li>Baked full wreck interiors down to retopologized, 4K-textured versions that hold up on Quest.</li>
-        <li>Tracked down VR interaction bugs and wrote regression tests so the fixes stay fixed.</li>
+        <li>Build and test coral growth, planting, placement and collision systems in Godot, and tune the wildlife balance around them.</li>
+        <li>Retopologize coral growth stages and large shipwreck assets, lay out UVs, bake PBR materials and deliver Godot-ready GLB files that hold up on Quest.</li>
+        <li>Track down VR interaction bugs and write regression tests so the fixes stay fixed.</li>
+        <li>Make the trailers and short videos the studio uses to promote the game.</li>
       </ul>
       <p class="links">
         <a href="https://store.steampowered.com/app/3583270/Shipwreck_Discovery/">Steam</a>
         <a href="https://www.meta.com/experiences/shipwreck-discovery/32767209856226296/">Meta Quest</a>
         <a href="https://shipwreckdiscovery.com/">Official site</a>
       </p>
-      <p class="fine">Shipwreck Discovery and its store pages belong to Lionfish Central. The source is private.</p>
+      <p class="fine">Published by Lionfish Central, Inc. The source code is private.</p>
     </div>
     <div class="plates">
       <figure>
@@ -154,7 +167,7 @@
       <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-trailer.webp">
         <source src="media/lion-trailer.mp4" type="video/mp4">
       </video>
-      <figcaption class="screen-bar"><span class="screen-note">From the trailer</span></figcaption>
+      <figcaption class="screen-bar"><span class="screen-note">From the trailer · <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">watch the full trailer</a></span></figcaption>
     </figure>
   </div>
 
@@ -226,9 +239,9 @@
         <img src="media/citizen.webp" alt="Claude Citizen Solar Atlas navigation screen" loading="lazy">
         <span class="arcade-go">Play it <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
       </a>
-      <h3>Claude Citizen</h3>
-      <p>Another developer's browser space game. My merged PR reworked the Solar Atlas: navigation, orbit selection and pointer-lock fixes.</p>
-      <p class="arcade-meta">TypeScript · Three.js · <a href="https://github.com/huiung/claude-citizen/pull/10">PR #10</a></p>
+      <h3>Claude Citizen: Solar Atlas</h3>
+      <p>Another developer's browser space game. I reworked its Solar Atlas map: navigation, orbit selection and pointer-lock fixes, ten commits merged into the live game. Built with OpenAI Codex.</p>
+      <p class="arcade-meta">TypeScript · Three.js · <a href="https://github.com/CurioCrafter/claude-citizen/commits/codex/solar-atlas-navigation-polish">My commits</a></p>
     </article>
   </div>
 </section>
@@ -264,7 +277,7 @@
     <div class="stop-head">
       <h2 id="h-admin">Admin Rights</h2>
       <p class="lede">A VR shooter set inside a computer, in pre-production. You're a freshly booted antivirus process. Every kill unlocks admin commands you type on a wrist terminal to spawn turrets, walls and vehicles in a destructible procedural city.</p>
-      <p class="meta">Godot 4 · OpenXR · Design spec written, prototyping now</p>
+      <p class="meta">My own project · Godot 4 · OpenXR · Design spec written, prototyping now</p>
     </div>
     <figure class="screen">
       <img src="media/ar-skills.webp" alt="Admin Rights skill tree screen styled as a code editor, with ghost and overclock ability trees" loading="lazy">
@@ -276,9 +289,34 @@
 <section class="stop" id="video" data-depth="66" aria-labelledby="h-video">
   <div class="split">
     <div class="stop-head">
-      <h2 id="h-video">Shorts and YouTube</h2>
-      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter on YouTube</a>: 88K subscribers, 347 videos. Making things for a feed taught me what holds a stranger in the first two seconds, and that carries straight into game feel and onboarding.</p>
-      <p class="lede">These shorts for Shipwreck Discovery come out of a pipeline I built: Claude (Opus) drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
+      <h2 id="h-video">Video</h2>
+      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a> on YouTube with my family: AI-made shorts that we write, pick and edit by hand. It has <strong>94.5 million views</strong> and <strong>88,000 subscribers</strong> (October 2026).</p>
+      <p class="lede">Making things for a feed taught me what holds a stranger in the first two seconds. I bring that to game feel, onboarding and trailers.</p>
+    </div>
+    <div class="hits">
+      <a href="https://www.youtube.com/shorts/LudDlMaSVOY">
+        <img src="media/yt-LudDlMaSVOY.webp" alt="Thumbnail: tiny lint monster facing a cat" loading="lazy">
+        <span class="hits-n">36M views</span>
+        <span class="hits-t">Tiny Lint Monster's Confidence Was Absolutely Destroyed</span>
+      </a>
+      <a href="https://www.youtube.com/shorts/dnHY_KKX-LM">
+        <img src="media/yt-dnHY_KKX-LM.webp" alt="Thumbnail: cat holding a small furious alien" loading="lazy">
+        <span class="hits-n">17M views</span>
+        <span class="hits-t">Cat Caught an Alien and the Alien Is Absolutely Furious About It</span>
+      </a>
+      <a href="https://www.youtube.com/shorts/vXHxQzhTOKU">
+        <img src="media/yt-vXHxQzhTOKU.webp" alt="Thumbnail: giant blobfish and a cat" loading="lazy">
+        <span class="hits-n">11M views</span>
+        <span class="hits-t">Giant Blobfish Regrets Opening Its Mouth to This Cat</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="split split-sub">
+    <div>
+      <h3>Video for AquaticXR</h3>
+      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them.</p>
+      <p class="links"><a href="https://www.youtube.com/@AquaticXR">AquaticXR on YouTube</a></p>
     </div>
     <div class="reels">
       <figure>
@@ -299,38 +337,39 @@
 
 <section class="stop" id="log" data-depth="80" aria-labelledby="h-log">
   <div class="stop-head">
-    <h2 id="h-log">Dive log</h2>
+    <h2 id="h-log"><span class="d">Dive log</span><span class="p">Experience</span></h2>
   </div>
   <ol class="log">
     <li>
       <time>Jul 2026 – now</time>
-      <div><h3>Game Developer &amp; 3D Technical Artist</h3><p class="org">Lionfish Central · Shipwreck Discovery</p>
-      <p>VR gameplay in Godot and OpenXR, coral and wreck assets from retopology to GLB, regression tests for VR fixes.</p></div>
+      <div><h3>Game Developer &amp; 3D Technical Artist</h3><p class="org">AquaticXR · Full-time, remote</p>
+      <p>Shipwreck Discovery: VR gameplay in Godot and OpenXR, coral and shipwreck assets from retopology to GLB, regression tests for VR fixes, trailers and shorts. Also Lionfish Reef Heroes and Sector War.</p></div>
     </li>
     <li>
       <time>2023 – now</time>
-      <div><h3>Independent game and tools developer</h3><p class="org">CurioCrafter</p>
-      <p>My own games, Blender add-ons, and a YouTube channel that grew to 88K subscribers.</p></div>
+      <div><h3>Independent developer and creator</h3><p class="org">CurioCrafter</p>
+      <p>My own games and Blender add-ons, and a family YouTube channel with 94.5 million views.</p></div>
     </li>
     <li>
-      <time>2021 – 2023</time>
-      <div><h3>Apprentice Electrician</h3><p class="org">Productive Electric LLC · Malm Electrical Contractors</p>
-      <p>Commercial installs, jobsite safety and field troubleshooting.</p></div>
+      <time>Nov 2021 – Jan 2023</time>
+      <div><h3>Apprentice Electrician</h3><p class="org">Malm Electrical Contractors, Longmont, CO · Productive Electric LLC, Englewood, CO</p>
+      <p>Commercial electrical work, including a school build, with jobsite safety and field troubleshooting.</p></div>
     </li>
     <li>
-      <time>One fire season</time>
-      <div><h3>Wildland Firefighter</h3><p class="org">Job Corps</p>
-      <p>A season on a fire crew, plus electrical pre-apprenticeship training.</p></div>
+      <time>Aug 2019 – Oct 2021</time>
+      <div><h3>Wildland Firefighter / Electrical Pre-Apprentice</h3><p class="org">Trapper Creek Job Corps CCC, Darby, MT</p>
+      <p>Electrical pre-apprenticeship training and a season on a wildland firefighting crew.</p></div>
     </li>
   </ol>
   <p class="toolkit"><strong>Toolkit</strong> Godot 4 · GDScript · OpenXR · Python · Blender API · TypeScript · Three.js · WebGL · C++ · Git</p>
+  <p class="toolkit"><strong>How I work</strong> I build with AI coding agents and check the results myself. Earlier projects, like the Claude Citizen Solar Atlas, were made with OpenAI Codex. Since Claude Opus 5.5 came out I use it as my main agent, including on Sector War and Admin Rights.</p>
 </section>
 
 </main>
 
 <footer class="floor" id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">Hiring for gameplay, VR or technical art?</h2>
-  <p>I'd like to hear about it. I'm based in Dixon, Missouri.</p>
+  <p>I'd like to hear about it. I'm in Joplin, Missouri, and open to remote, hybrid or on-site work.</p>
   <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
   <p class="links">
     <a href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume (PDF)</a>
@@ -340,7 +379,7 @@
   </p>
   <a class="ascend" href="#top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-6 6h4v8h4v-8h4z"/></svg>
-    Back to the surface
+    <span class="d">Back to the surface</span><span class="p">Back to top</span>
   </a>
 </footer>
 

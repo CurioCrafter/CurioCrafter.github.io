@@ -37,6 +37,7 @@
       }
     }
     depth = Math.min(MAX, Math.max(0, depth));
+    root.classList.toggle("scrolled", scrollY > 40);
     root.style.setProperty("--p", (depth / MAX).toFixed(4));
     root.style.setProperty("--dark", Math.min(1, Math.max(0, (depth - 34) / 30)).toFixed(3));
     const rounded = Math.round(depth);
