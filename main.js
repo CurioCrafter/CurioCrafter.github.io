@@ -161,3 +161,21 @@
     below.forEach(s => rise.observe(s));
   }
 })();
+// Contact form: sends through the Job Desk worker to Andrew's inbox.
+(function () {
+  var dlg = document.getElementById('msg'), form = document.getElementById('msg-form');
+  if (!dlg) return;
+  var status = form.querySelector('.msg-status'), opened = 0;
+  document.querySelectorAll('[data-message]').forEach(function (b) { b.addEventListener('click', function () { opened = Date.now(); status.textContent = ''; dlg.showModal(); }); });
+  form.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('[type=submit]'); btn.disabled = true; status.textContent = 'Sending…';
+    var d = Object.fromEntries(new FormData(form)); d.site = 'andrew'; d.elapsed = Date.now() - opened;
+    fetch('https://jobs.elisabethbailey.net/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error); }); })
+      .then(function () { form.reset(); status.textContent = 'Thanks! Your message is on its way.'; })
+      .catch(function (err) { status.textContent = (err && err.message) || 'That didn’t send. Please email andrewrainsberger@gmail.com instead.'; })
+      .finally(function () { btn.disabled = false; });
+  });
+})();

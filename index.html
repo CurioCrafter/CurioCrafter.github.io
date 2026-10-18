@@ -42,6 +42,7 @@
       </button>
     </div>
   </div>
+  <a class="signin" href="https://jobs.elisabethbailey.net/?site=andrew">Sign in</a>
 </div>
 
 <canvas class="snow" aria-hidden="true"></canvas>
@@ -85,7 +86,7 @@
         Watch the trailer <span class="btn-sub">1:26</span>
       </button>
       <a class="btn" href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume</a>
-      <a class="btn" href="mailto:andrewrainsberger@gmail.com">Email me</a>
+      <button class="btn" type="button" data-message>Send me a message</button>
     </div>
     <p class="mode-invite"><span class="p">This is the Professional view. <button type="button" data-mode="dive">Switch to Dive mode</button> for an underwater version with a depth gauge.</span><span class="d">You're in Dive mode: scroll to descend. <button type="button" data-mode="pro">Back to the Professional view</button></span></p>
   </div>
@@ -435,6 +436,7 @@
   <h2 id="h-contact">Hiring for gameplay, VR or technical art?</h2>
   <p>I'd like to hear about it. I'm in Joplin, Missouri, and open to remote, hybrid or on-site work.</p>
   <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
+  <p><button class="btn btn-light" type="button" data-message>Send me a message</button></p>
   <p class="links">
     <a href="Andrew_Rainsberger_Game_Developer_Resume.pdf">Resume (PDF)</a>
     <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
@@ -446,6 +448,19 @@
     <span class="d">Back to the surface</span><span class="p">Back to top</span>
   </a>
 </footer>
+
+<dialog class="msg" id="msg" aria-labelledby="msg-title">
+  <form id="msg-form">
+    <h2 id="msg-title">Send me a message</h2>
+    <p>It goes straight to my inbox, and I'll reply to the email you give.</p>
+    <label>Your name<input name="name" autocomplete="name" required maxlength="120"></label>
+    <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label>Message<textarea name="message" required maxlength="5000"></textarea></label>
+    <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
+    <p class="msg-status" role="status"></p>
+    <div class="msg-row"><button class="btn btn-light" type="submit">Send message</button><button class="btn" type="button" data-close>Cancel</button></div>
+  </form>
+</dialog>
 
 <dialog class="trailer" aria-label="Shipwreck Discovery trailer">
   <video controls playsinline preload="none" poster="media/reel.webp"><source src="media/reel.mp4" type="video/mp4"></video>
