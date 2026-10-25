@@ -206,25 +206,3 @@
     if (placed) { var s = document.createElement('script'); s.src = '/demos/demos.js'; document.body.appendChild(s); }
   });
 })();
-// Visitor counts for the Job Desk: no cookies, no IP address kept. ?notrack=1 leaves this device out.
-(function () {
-  try {
-    if (/[?&]notrack=1/.test(location.search)) localStorage.setItem('notrack', '1');
-    if (/[?&]notrack=0/.test(location.search)) localStorage.removeItem('notrack');
-    if (localStorage.getItem('notrack') || location.hostname !== 'curiocrafter.github.io') return;
-  } catch (e) {}
-  var url = 'https://job-finder.andrewrainsberger.workers.dev/api/visit';
-  function hit(kind) { try { navigator.sendBeacon(url, JSON.stringify({ kind: kind, path: location.pathname, ref: document.referrer, wd: navigator.webdriver ? 1 : 0 })); } catch (e) {} }
-  hit('view');
-  var shown = Date.now(), engaged = false;
-  function engage() { if (engaged || Date.now() - shown < 1500) return; engaged = true; hit('engaged'); }
-  ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (t) { addEventListener(t, engage, { capture: true, passive: true }); });
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a, button');
-    if (!a) return;
-    var href = a.getAttribute('href') || '';
-    if (/Resume\.pdf|resume\.html/i.test(href)) hit('resume');
-    else if (a.hasAttribute('data-message')) hit('message');
-    else if (/linkedin\.com/i.test(href)) hit('linkedin');
-  }, true);
-})();
