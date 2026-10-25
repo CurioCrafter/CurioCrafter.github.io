@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://www.youtube-nocookie.com https://player.vimeo.com https://www.loom.com https://www.linkedin.com https://docs.google.com https://open.spotify.com https://public.tableau.com https://app.powerbi.com; connect-src 'self' https://job-finder.andrewrainsberger.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Blog · Andrew Rainsberger, Game Developer</title>
+<meta name="description" content="Writing by Andrew Rainsberger on game development, Godot, VR, technical art and building games with AI coding agents.">
+<link rel="canonical" href="https://curiocrafter.github.io/blog/">
+<meta name="theme-color" content="#061727">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Blog · Andrew Rainsberger"><meta property="og:description" content="Writing by Andrew Rainsberger on game development, Godot, VR, technical art and building games with AI coding agents."><meta property="og:url" content="https://curiocrafter.github.io/blog/"><meta name="robots" content="noindex">
+<style>
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url(/fonts/AtkinsonHyperlegible-400.woff2) format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url(/fonts/AtkinsonHyperlegible-700.woff2) format("woff2"); }
+@font-face { font-family: "Big Shoulders Display"; font-weight: 800; font-display: swap; src: url(/fonts/BigShouldersDisplay-800.woff2) format("woff2"); }
+:root { --paper: #f4f7f8; --card: #fff; --ink: #13222d; --body: #2c3b46; --muted: #56656f; --line: #d6e0e4; --water: #061727; --water-2: #0d4462; --light: #b8500f; --light-on-dark: #ff8a3d;
+  --head: "Big Shoulders Display", "Arial Narrow", sans-serif; --text: "Atkinson Hyperlegible", system-ui, sans-serif; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.7 var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--light); text-underline-offset: 3px; } a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--light); outline-offset: 3px; }
+h1, h2, h3, h4 { font-family: var(--head); font-weight: 800; text-transform: uppercase; line-height: 1.05; letter-spacing: .01em; color: var(--ink); text-wrap: balance; }
+img { max-width: 100%; height: auto; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; } .narrow { max-width: 740px; margin: 0 auto; }
+header.top { background: linear-gradient(180deg, var(--water-2), var(--water)); color: #eaf4f3; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 64px; flex-wrap: wrap; }
+.brand { font: 800 22px/1 var(--head); text-transform: uppercase; color: #eaf4f3; text-decoration: none; letter-spacing: .02em; }
+header nav { display: flex; gap: 22px; font-size: 15px; flex-wrap: wrap; } header nav a { color: #9fbfc4; text-decoration: none; } header nav a:hover, header nav a[aria-current] { color: var(--light-on-dark); }
+main { padding: 56px 0 80px; }
+.eyebrow { font: 700 13px/1.3 var(--text); letter-spacing: .12em; text-transform: uppercase; color: var(--light); margin: 0 0 12px; } .eyebrow a { color: inherit; text-decoration: none; }
+article h1 { font-size: clamp(40px, 7vw, 64px); margin: 0 0 16px; }
+.meta { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+.cover { margin: 0 0 36px; } .cover img { width: 100%; border-radius: 6px; display: block; }
+.prose { color: var(--body); overflow-wrap: break-word; }
+.prose h2 { font-size: 36px; margin: 1.5em 0 .4em; } .prose h3 { font-size: 27px; margin: 1.3em 0 .3em; } .prose h4 { font-size: 21px; margin: 1.2em 0 .3em; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1.1em; } .prose li { margin: .3em 0; }
+.prose blockquote { margin: 1.5em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--light); font-size: 21px; color: var(--ink); }
+.prose figure { margin: 1.8em 0; } .prose img { display: block; border-radius: 6px; margin: 1.4em 0; }
+.prose figure img { margin: 0; width: 100%; } .prose figure.size-medium { max-width: 66%; margin-inline: auto; } .prose figure.size-small { max-width: 40%; margin-inline: auto; }
+.prose figcaption { font-size: 15px; color: var(--muted); margin-top: 8px; }
+.prose pre { background: var(--card); border: 1px solid var(--line); padding: 14px 16px; overflow-x: auto; font-size: 15px; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 16px; display: block; overflow-x: auto; } .prose th, .prose td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+.prose a.file { display: inline-flex; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); background: var(--card); border-radius: 6px; text-decoration: none; }
+.embed { position: relative; aspect-ratio: 16 / 9; background: #dfe8ec; border-radius: 6px; overflow: hidden; }
+.embed.tall { aspect-ratio: auto; height: 560px; } .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.demo-embed { margin: 2em 0; } .demo-band { margin-top: 40px; display: grid; gap: 40px; }
+.author { display: flex; gap: 20px; align-items: center; margin-top: 56px; padding: 24px; background: var(--water); color: #d3e6e7; border-radius: 8px; }
+.author p { margin: 0 0 8px; } .author strong { color: #fff; } .author a { color: var(--light-on-dark); } .author .links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 16px; margin: 0; }
+.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.card:hover { border-color: var(--light); } .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.card .in { padding: 18px 20px 22px; } .card h2, .card h3 { font-size: 26px; margin: 0 0 8px; } .card p { margin: 0; color: var(--body); font-size: 16px; } .card .meta { margin: 0 0 6px; font-size: 14px; }
+.more { margin-top: 64px; } .more h2 { font-size: 32px; margin: 0 0 18px; }
+.lede { font-size: 20px; color: var(--body); max-width: 640px; }
+footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 15px; } footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 640px) { .wrap { padding: 0 18px; } main { padding: 36px 0 56px; } .embed.tall { height: 480px; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/">Andrew Rainsberger</a>
+<nav aria-label="Site"><a href="/#shipwreck">Work</a><a href="/#play">Play</a><a href="/blog/" aria-current="page">Blog</a><a href="/resume.html">Résumé</a></nav></div></header>
+<main><div class="wrap"><p class="eyebrow">Blog</p><h1 style="font-size:clamp(44px,7vw,72px);margin:0 0 14px">Notes from the workshop</h1>
+      <p class="lede">Game development, VR, technical art and building with AI coding agents: what worked, what broke and what I'd do again.</p>
+      <div class="cards" style="margin-top:40px"><p>The first posts are on their way.</p></div></div></main>
+<footer><div class="wrap"><span>© 2026 Andrew Rainsberger</span><span><a href="/#contact">Get in touch</a> · <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1" rel="noopener">LinkedIn</a></span></div></footer>
+<script src="/blog/visit.js" defer></script>
+</body>
+</html>
