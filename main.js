@@ -175,7 +175,56 @@
     fetch('https://job-finder.andrewrainsberger.workers.dev/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error); }); })
       .then(function () { form.reset(); status.textContent = 'Thanks! Your message is on its way.'; })
-      .catch(function (err) { status.textContent = (err && err.message) || 'That didn’t send. Please email andrewrainsberger@gmail.com instead.'; })
+      .catch(function (err) { status.textContent = (err && err.message) || 'That didn’t send. Please message me on LinkedIn instead.'; })
       .finally(function () { btn.disabled = false; });
   });
+})();
+
+// Blog and interactive demos. The Job Desk's GitHub Action copies published posts and approved demos into
+// /blog and /demos; nothing unpublished is ever in this repo. Links appear once there is something to show.
+(function () {
+  function json(u) { return fetch(u).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); }
+  json('/blog/posts.json').then(function (p) { if (p.length) document.querySelectorAll('[data-blog-link]').forEach(function (a) { a.hidden = false; }); });
+  json('/demos/placements.json').then(function (list) {
+    if (!list.length) return;
+    document.querySelectorAll('[data-demos-link]').forEach(function (a) { a.hidden = false; });
+    var placed = 0;
+    list.forEach(function (d) {
+      var section = d.place.indexOf('home-') === 0 && document.getElementById(d.place.slice(5));
+      if (!section) return;
+      var band = document.createElement('section');
+      band.className = 'stop demo-slot';
+      var mount = document.createElement('div');
+      mount.className = 'andrew';
+      mount.setAttribute('data-demo', d.id);
+      band.appendChild(mount);
+      var after = section;
+      while (after.nextElementSibling && after.nextElementSibling.classList.contains('demo-slot')) after = after.nextElementSibling;
+      after.after(band);
+      placed++;
+    });
+    if (placed) { var s = document.createElement('script'); s.src = '/demos/demos.js'; document.body.appendChild(s); }
+  });
+})();
+// Visitor counts for the Job Desk: no cookies, no IP address kept. ?notrack=1 leaves this device out.
+(function () {
+  try {
+    if (/[?&]notrack=1/.test(location.search)) localStorage.setItem('notrack', '1');
+    if (/[?&]notrack=0/.test(location.search)) localStorage.removeItem('notrack');
+    if (localStorage.getItem('notrack') || location.hostname !== 'curiocrafter.github.io') return;
+  } catch (e) {}
+  var url = 'https://job-finder.andrewrainsberger.workers.dev/api/visit';
+  function hit(kind) { try { navigator.sendBeacon(url, JSON.stringify({ kind: kind, path: location.pathname, ref: document.referrer, wd: navigator.webdriver ? 1 : 0 })); } catch (e) {} }
+  hit('view');
+  var shown = Date.now(), engaged = false;
+  function engage() { if (engaged || Date.now() - shown < 1500) return; engaged = true; hit('engaged'); }
+  ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (t) { addEventListener(t, engage, { capture: true, passive: true }); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a, button');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/Resume\.pdf|resume\.html/i.test(href)) hit('resume');
+    else if (a.hasAttribute('data-message')) hit('message');
+    else if (/linkedin\.com/i.test(href)) hit('linkedin');
+  }, true);
 })();

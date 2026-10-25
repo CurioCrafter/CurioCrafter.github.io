@@ -1,0 +1,28 @@
+# Copies Andrew's published blog posts and approved demos from his private Job Desk into this site.
+# Only published content is ever fetched; drafts never leave the Job Desk. Runs every 15 minutes.
+name: Blog from Job Desk
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: blog-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch published posts and demos
+        run: python3 .github/sync_blog.py
+      - name: Commit if anything changed
+        run: |
+          git add -A blog demos
+          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+          git config user.name "Job Desk"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Blog and demos from the Job Desk"
+          git push

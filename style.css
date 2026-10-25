@@ -461,3 +461,7 @@ dialog.msg .hp { position: absolute; left: -9999px; }
 .msg-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.25rem; }
 .msg-status { min-height: 1.5em; margin-top: .75rem !important; font-weight: 700; color: var(--light); }
 dialog.msg .btn:not(.btn-light) { background: transparent; color: var(--foam); border-color: var(--rule); backdrop-filter: none; }
+
+/* Interactive demos placed between sections (from the Job Desk) */
+.demo-slot { padding-top: 4rem; }
+.demo-slot .ebd { max-width: 1100px; }
