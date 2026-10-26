@@ -206,3 +206,9 @@
     if (placed) { var s = document.createElement('script'); s.src = '/demos/demos.js'; document.body.appendChild(s); }
   });
 })();
+// Keep the header art below the fixed top bar, however many rows the bar wraps to on a phone.
+(function () {
+  var bar = document.querySelector('.topbar');
+  if (!bar || !window.ResizeObserver) return;
+  new ResizeObserver(function () { document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px'); }).observe(bar);
+})();
