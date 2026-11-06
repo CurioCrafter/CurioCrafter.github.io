@@ -111,6 +111,10 @@
   document.querySelectorAll(".clip").forEach(v => v.addEventListener("click", () => toggle(v)));
   const heroBtn = document.querySelector(".hold");
   const hero = document.querySelector(".surface-video");
+  // Phones keep the poster and never download the hero video.
+  const heroSrc = hero.querySelector("source[data-src]");
+  if (matchMedia("(max-width: 640px)").matches) heroBtn.style.display = "none";
+  else if (heroSrc) { heroSrc.src = heroSrc.dataset.src; hero.load(); }
   heroBtn.addEventListener("click", () => toggle(hero));
   hero.addEventListener("play", () => { heroBtn.setAttribute("aria-pressed", "false"); heroBtn.lastChild.textContent = " Pause"; });
   hero.addEventListener("pause", () => { heroBtn.setAttribute("aria-pressed", "true"); heroBtn.lastChild.textContent = " Play"; });
@@ -127,10 +131,10 @@
   // Trailer
   const dialog = document.querySelector(".trailer");
   const trailer = dialog.querySelector("video");
-  document.querySelector("[data-trailer]").addEventListener("click", () => {
+  document.querySelectorAll("[data-trailer]").forEach(b => b.addEventListener("click", () => {
     dialog.showModal();
     trailer.play().catch(() => {});
-  });
+  }));
   dialog.addEventListener("close", () => trailer.pause());
   dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
 

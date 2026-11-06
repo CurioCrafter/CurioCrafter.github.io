@@ -480,3 +480,4 @@ dialog.msg .btn:not(.btn-light) { background: transparent; color: var(--foam); b
   .mode button { padding: .45rem .6rem; font-size: .8rem; }
   .signin { padding: .4rem .7rem; font-size: .85rem; }
 }
+.arcade p strong { color: var(--foam); }

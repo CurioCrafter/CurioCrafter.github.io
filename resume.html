@@ -20,52 +20,48 @@ h2{font:800 12.5pt/1 'Big Shoulders Display',sans-serif;text-transform:uppercase
 .org{color:#42525e;margin:0 0 2pt}
 ul{margin:2pt 0 0;padding-left:13pt}
 li{margin:0 0 1.5pt}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+.cols{display:block}.sub{margin:0 0 5pt}
 .proj b{font-weight:700}
 p{margin:0}
 </style></head><body>
 <h1>Andrew Rainsberger</h1>
-<p class="role">Game Developer &amp; 3D Technical Artist</p>
-<p class="contact">Joplin, Missouri · open to remote, hybrid or on-site · <a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a> · <a href="https://curiocrafter.github.io/">curiocrafter.github.io</a> · <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">linkedin.com/in/andrew-rainsberger-2b9b721b1</a> · <a href="https://github.com/CurioCrafter">github.com/CurioCrafter</a></p>
-<p class="summary">Game developer at AquaticXR and a credited developer on <b>Shipwreck Discovery</b>, a VR diving game in Early Access on Steam and Meta Quest. I work across Godot gameplay, the real-time art pipeline and video. I build with AI coding agents (Claude Opus 5.5, ChatGPT Codex) and design, review and test everything I ship. My family YouTube channel has 94.5 million views.</p>
+<p class="role">Tools &amp; Pipeline Engineer · 3D and VR</p>
+<p class="contact">Joplin, Missouri · open to remote, hybrid or on-site · <a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a> · <a href="https://github.com/CurioCrafter">github.com/CurioCrafter</a> · <a href="https://curiocrafter.github.io/">curiocrafter.github.io</a> · <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">linkedin.com/in/andrew-rainsberger-2b9b721b1</a></p>
+<p class="summary">I build Blender Python and Rust tools and Godot/OpenXR systems that get real-time 3D assets onto a Quest budget. Credited developer on Shipwreck Discovery (Steam, Meta Quest) at AquaticXR, where I own the Blender-to-Godot asset pipeline. Author of CurioMesh, an open-source retopology add-on whose Rust core cut a 1.26M-face scan from 47 to about 5 minutes. Method: AI coding agents (Claude, Codex) write most of the code; I spec, review, test and measure it.</p>
 
-<h2>Experience</h2>
+<h2>Selected work</h2>
 <div class="job">
-  <div class="job-head"><b>Game Developer &amp; 3D Technical Artist</b><span class="when">Jul 2026 – present</span></div>
-  <p class="org">AquaticXR · full-time, remote</p>
+  <div class="job-head"><b>CurioMesh</b> · open-source Blender add-on (GPLv3, Python + Rust)<span class="when">github.com/CurioCrafter/CurioMesh</span></div>
   <ul>
-    <li><b>Shipwreck Discovery</b> (published by Lionfish Central, Inc.): build and test coral growth, planting, placement and collision systems in Godot/GDScript, and tune wildlife balance.</li>
-    <li>Retopologize coral growth stages and large shipwreck assets, lay out UVs, bake PBR materials and deliver Godot-ready GLBs that hold up on Quest.</li>
-    <li>Build about 40 animated seafloor critters for the experimental branch (octopus, mantis shrimp, crabs, lobsters) with Claude agents; debug VR interaction and add regression tests.</li>
-    <li>Make the studio's trailers and shorts and run its YouTube channel (18,800+ views in its first five weeks).</li>
-    <li><b>Lionfish Reef Heroes</b>: pixel-art arcade game for Android and iOS, team of three; built with ChatGPT Codex writing the code. One Godot 4.5 project with automated phone builds and verified store purchases.</li>
+    <li>Automatic retopology for Blender. Rust core takes a 1.26M-face scan from 47 min to about 5 min; a 79,042-face mesh becomes 24,222 quads.</li>
+    <li>CI checks the Rust core against the Python reference; ~279 tests; runs on Blender 3.6 to 5.2 on Windows, Linux and macOS.</li>
+    <li>46 GitHub stars and 17 releases.</li>
   </ul>
 </div>
 <div class="job">
-  <div class="job-head"><b>Independent Developer &amp; Creator</b><span class="when">2023 – present</span></div>
-  <p class="org">CurioCrafter</p>
+  <div class="job-head"><b>Shipwreck Discovery</b> · VR diving game, Godot 4 / OpenXR, Steam and Meta Quest<span class="when">AquaticXR · Jul 2026 – present</span></div>
   <ul>
-    <li>Run a family YouTube channel of AI-made shorts: 94.5 million views, 88,000 subscribers; top shorts at 36M, 17M and 11M views.</li>  </ul>
+    <li>Built and tested coral growth, planting, placement and collision systems in GDScript; tuned wildlife balance around them.</li>
+    <li>Own the asset pipeline for Quest: retopology, UV layout, PBR baking and Godot-ready GLB delivery for coral growth stages and large wreck assets.</li>
+    <li>Produced 37 animated seafloor species with headless Blender scripts and one shared shader that animates every limb, keeping the scene cheap on Quest.</li>
+    <li>Diagnose VR interaction bugs and add regression tests.</li>
+  </ul>
 </div>
 <div class="job">
-  <div class="job-head"><b>Apprentice Electrician</b><span class="when">Nov 2021 – Jan 2023</span></div>
-  <p class="org">Malm Electrical Contractors, Longmont, CO · Productive Electric LLC, Englewood, CO</p>
-</div>
-<div class="job">
-  <div class="job-head"><b>Wildland Firefighter / Electrical Pre-Apprentice</b><span class="when">Aug 2019 – Oct 2021</span></div>
-  <p class="org">Trapper Creek Job Corps CCC, Darby, MT</p>
+  <div class="job-head"><b>Lionfish Reef Heroes</b> · pixel-art arcade game, published on Google Play and the App Store<span class="when">AquaticXR · team of three</span></div>
+  <ul>
+    <li>One Godot 4.5 project builds desktop, Android and iPhone, with automated phone builds, server-verified store purchases and store listings in 20+ languages.</li>
+  </ul>
 </div>
 
-<h2>Selected projects</h2>
-<div class="cols">
-  <p class="proj"><b>Cuprum</b> · browser studio that turns one robot file into a routed KiCad board, a robot sim on it and fab files. Built with Claude Opus 5.5.</p>
-  <p class="proj"><b>Sector War</b> · real-time space strategy in the browser. Online multiplayer for up to 8 players on a deterministic engine, AI empires, 81 automated tests. Solo; built with Claude Opus 5.5.</p>
-  <p class="proj"><b>Music Visualizer</b> · Windows tray app (Rust, wgpu / DirectX 12, WGSL) with ten audio-reactive GPU shader looks; the same shaders run in a WebGPU web player.</p>
-  <p class="proj"><b>CurioMesh</b> · free, open-source auto-retopology for Blender with a Rust core; a 1.26M-face scan in ~5 min instead of 47. Built with Claude Opus 5.5.</p>
-  <p class="proj"><b>Clayspace</b> · Blender 5.1 in PC VR (OpenXR): draw volumes and Boolean cutters with the triggers. Built with Claude Opus 5.5.</p>
-</div>
+<h2>More projects</h2>
+<p class="sub"><b>Sector War</b> · browser RTS on a deterministic engine, online multiplayer for up to 8 players, 81 automated tests (solo build). <b>Clayspace</b> · Blender 5.1 in PC VR via OpenXR. <b>Music Visualizer</b> · Rust/wgpu Windows tray app, WGSL shaders at ~0.5 ms per frame per shader at 4K. <b>Cuprum</b> · browser studio from robot file to routed KiCad board.</p>
 
 <h2>Skills</h2>
-<p>Godot 4 · GDScript · OpenXR · Quest / PCVR · Android, iOS · co-op networking · Python · Blender API · retopology, PBR baking · TypeScript · Three.js · WebGPU / WGSL · Rust · C++ · KiCad · Git · video editing · Claude Code, Codex, MCP</p>
+<p>Python (Blender API, bmesh) · Rust · Godot 4 / GDScript · OpenXR / Quest · CI and automated testing · Git · retopology, UV, PBR baking, GLB pipelines · WGSL / GDShader · TypeScript · AI coding agents (Claude Code, Codex, MCP)</p>
+
+<h2>Earlier</h2>
+<p>Apprentice Electrician, Colorado (2021 – 2023) · Wildland firefighter and electrical pre-apprentice, Trapper Creek Job Corps, MT (2019 – 2021)</p>
+<p style="margin-top:5pt;color:#42525e">Also: family YouTube channel (94.5M views).</p>
 <script src="visit.js" defer></script>
 </body></html>

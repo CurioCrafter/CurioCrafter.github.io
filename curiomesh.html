@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CurioMesh · Andrew Rainsberger</title>
+<meta name="description" content="CurioMesh engineering write-up: a free GPLv3 Blender retopology add-on with a Rust core (1.26M-face scan, 47 min to about 5 min), camera-checked results and CI that tests Rust against the Python reference.">
+<meta property="og:title" content="CurioMesh · Andrew Rainsberger">
+<meta property="og:description" content="Open-source Blender retopology add-on. Python + Rust, camera-checked results, 47 min to ~5 min on a 1.26M-face scan.">
+<meta property="og:image" content="https://curiocrafter.github.io/media/og-home.jpg">
+<meta property="og:url" content="https://curiocrafter.github.io/curiomesh.html">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://curiocrafter.github.io/curiomesh.html">
+<link rel="icon" href="favicon.svg">
+<style>
+@font-face{font-family:'Atkinson Hyperlegible';font-weight:400;src:url(fonts/AtkinsonHyperlegible-400.woff2) format('woff2')}
+@font-face{font-family:'Atkinson Hyperlegible';font-weight:700;src:url(fonts/AtkinsonHyperlegible-700.woff2) format('woff2')}
+@font-face{font-family:'Big Shoulders Display';font-weight:800;src:url(fonts/BigShouldersDisplay-800.woff2) format('woff2')}
+@font-face{font-family:'Azeret Mono';font-weight:400;src:url(fonts/AzeretMono-400.woff2) format('woff2')}
+:root{--bg:#061727;--bg2:#0a2c47;--ink:#eaf4f3;--mute:#bcd8dc;--accent:#ff8a3d;--rule:rgba(234,244,243,.16);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 'Atkinson Hyperlegible',system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 20px 64px}
+a{color:var(--accent)}
+.back{font-weight:700;text-decoration:none}
+h1{font:800 clamp(40px,9vw,72px)/.95 'Big Shoulders Display','Arial Narrow',sans-serif;margin:20px 0 12px;text-transform:uppercase}
+h2{font:800 28px/1.1 'Big Shoulders Display','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.03em;margin:48px 0 10px;border-top:1px solid var(--rule);padding-top:20px}
+h3{font-size:18px;margin:22px 0 4px}
+p{margin:0 0 14px}
+.lede{font-size:19px;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:20px 0}
+.chips li{font:400 13px/1.3 'Azeret Mono',monospace;background:var(--bg2);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 0}
+.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:700;text-decoration:none;border:2px solid var(--accent);color:var(--accent)}
+.btn.main{background:var(--accent);color:#1a0d04}
+figure{margin:20px 0}
+figure img{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--rule)}
+figcaption{font-size:15px;color:var(--mute);margin-top:6px}
+code{font:400 .85em 'Azeret Mono',monospace;background:var(--bg2);padding:1px 5px;border-radius:3px;overflow-wrap:anywhere}
+ul{padding-left:20px}li{margin:0 0 8px}
+footer{margin-top:48px;border-top:1px solid var(--rule);padding-top:18px;color:var(--mute)}
+a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+</style></head><body>
+<main>
+<a class="back" href="index.html#curiomesh">← Back to the portfolio</a>
+
+<header>
+<h1>CurioMesh</h1>
+<p class="lede">A free, open-source (GPLv3) Blender add-on that retopologises dense sculpts and photogrammetry scans into all-quad meshes, part by part, with a camera check on every result. Python for the Blender side, Rust for the slow steps.</p>
+<ul class="chips">
+<li>46★ on GitHub</li>
+<li>17 releases</li>
+<li>47 min → ~5 min on a 1.26M-face scan</li>
+<li>~279 tests</li>
+<li>Blender 3.6–5.2 · Win / Linux / macOS</li>
+</ul>
+<div class="btns">
+<a class="btn main" href="https://github.com/CurioCrafter/CurioMesh/releases/latest">Download</a>
+<a class="btn" href="https://github.com/CurioCrafter/CurioMesh">GitHub</a>
+</div>
+</header>
+
+<h2>The problem</h2>
+<p>Artists get dense meshes from sculpts, scans and high-poly game assets, and need a clean low-poly all-quad version. Automatic remeshers redo the whole object and give you little way to tell whether the result still looks like the original. Big scans make it worse: a run can take most of an hour.</p>
+<p>CurioMesh works one loose part at a time, measures every result against the source, and lets the artist redo only the part that still looks wrong. It runs on the user's PC and uploads nothing.</p>
+
+<h2>How it works</h2>
+<h3>Per-part retopology</h3>
+<p>You say what the mesh is for (game asset, animation, subdivision, scan cleanup and so on), press one button, and the add-on reduces the model one loose part at a time. Nothing in the scene changes until Apply. The original is kept as an immutable reference, and work happens on separate objects.</p>
+<h3>Camera check from six sides</h3>
+<p>The add-on renders the original and the result from six sides and measures <em>View changed</em>: the share of the picture that differs. The camera also chooses between layouts per part, keeps a layout only where the view holds, and undoes a repair it dislikes. The default Game Asset setting allows 6% of the view to change.</p>
+<h3>Python and Rust, and why</h3>
+<p>The Blender integration, panel and orchestration are Python, because that is what Blender exposes. The slow steps (camera pictures, pairing, quad closing, reduction, crossing checks, fitting) live in a Rust crate under <code>native/</code> that uses all CPU cores and no GPU. In 0.6.0 the topology checks and quad closing got about 30x faster, and a 1.26M-face scan went from 47 to about 5 minutes with Blender staying usable. Every zip ships the compiled core for Windows, Linux and macOS, and an automatic Python fallback keeps the add-on working where the native core cannot load. The Blender extensions site allows no compiled code, so that listing is the Python-only build.</p>
+<h3>CI that checks Rust against the Python reference</h3>
+<p>Two jobs run on every push. The Python job runs ruff and the unit tests. The native job builds the Rust core with cargo, then runs equivalence tests that compare it with the Python implementation. The Python code is the reference, so a faster Rust path cannot quietly change results. Tests that need Blender itself exist but are not run in CI, so the badge does not cover the add-on inside Blender.</p>
+
+<h2>Results</h2>
+<p>Every example ran the real add-on on a free CC0 Poly Haven model at default Game Asset settings (Keep Detail, Detail 6%), on Blender 5.2.3 LTS. Original on the left, result on the right.</p>
+<figure><img src="media/curiomesh-compressor.webp" alt="Wireframe of an air compressor before and after CurioMesh" loading="lazy">
+<figcaption>Old military compressor: 79,042 faces to 15,881 quads, 5.6% of the view changed.</figcaption></figure>
+<figure><img src="media/curiomesh-chess_set.webp" width="1200" height="897" alt="Wireframe of a chess set before and after CurioMesh" loading="lazy">
+<figcaption>Chess set (33 pieces): 76,832 faces to 10,110 quads, 3.6% of the view changed.</figcaption></figure>
+<figure><img src="media/curiomesh-concrete_road_barrier.webp" width="1200" height="897" alt="Wireframe of a concrete road barrier before and after CurioMesh" loading="lazy">
+<figcaption>Concrete road barrier: 60,928 faces to 987 quads, 5.9% of the view changed. Quads follow the shape, so on smooth surfaces they can look slanted.</figcaption></figure>
+<figure><img src="media/curiomesh-hero_styles.webp" width="1200" height="686" alt="Three CurioMesh layout styles: Clean Rows on a bust and a scan, and a low-poly game asset with a baked normal map" loading="lazy">
+<figcaption>Layout styles: Clean Rows on a sculpt and on a scan, and a 47,214-face sculpt reduced to 1,068 faces with a baked normal map.</figcaption></figure>
+<p>On the large scans, a 1,260,423-face coast-rocks scan became 434,995 quads in 5 minutes, and a 1,537,926-face cliff scan became 362,292 quads in 7 minutes, on a PC that was also doing other work. Both stayed all quads. The README lists all 20 models and states its own limits: quads can look slanted on smooth surfaces, fine ornaments go jagged at high reduction, and big scans take minutes.</p>
+
+<h2>Engineering decisions</h2>
+<p>These are design choices recorded in the repository's docs (<code>docs/ALGORITHM.md</code>, <code>docs/ORIGINALITY.md</code>, the README).</p>
+<ul>
+<li><strong>Hard gates, soft targets.</strong> Topology and validity are hard gates; face count is a soft target. Geometric fidelity, face count, quad shape and topology repair conflict, and the design makes that conflict visible instead of hiding it in one score.</li>
+<li><strong>Same answer from both languages.</strong> <code>pairing.rs</code> reproduces Python's MT19937 random generator so the Rust and Python paths pick the same pairs, which is what lets the CI equivalence tests compare them directly.</li>
+<li><strong>Call Blender's remeshers, do not bundle them.</strong> QuadriFlow, Voxel Remesh, Decimate and Multires are driven through Blender's own operators. No code from other retopology tools is included, and each module is mapped to its source paper or marked as own design.</li>
+<li><strong>A metric with a stated meaning.</strong> View changed is not a quality score and says nothing about quad tidiness, so the panel shows it next to a Tidiness score and a Loop Quality score rather than treating it as the verdict.</li>
+</ul>
+
+<h2>How it was built</h2>
+<p>AI coding agents (Claude, Codex) write most of the code; I spec, review, test and measure it. The commit history shows this plainly, with co-author trailers on most recent commits. My part is the design, the choice of what to measure, accepting each release against the numbers above, and the written limits.</p>
+
+<footer>
+<p><a href="index.html#curiomesh">Back to the portfolio</a> · <a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a> · <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a> · <a href="https://github.com/CurioCrafter/CurioMesh">Source on GitHub</a></p>
+</footer>
+</main>
+<script src="visit.js" defer></script>
+</body></html>
