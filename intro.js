@@ -14,7 +14,7 @@ function end() {
 }
 
 async function run() {
-  try { localStorage.setItem('cc_intro_v1', '1'); } catch (e) {}
+  try { localStorage.setItem('cc_intro_v2', '1'); } catch (e) {}
 
   const THREE = await import('three');
   const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
