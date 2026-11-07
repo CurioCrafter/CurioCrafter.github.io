@@ -1,123 +1,73 @@
-// The Descent: scroll position becomes dive depth.
+// Ink: headings are outlines until they scroll into view, then each letter lights, like the intro.
 (() => {
   const root = document.documentElement;
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const MAX = 86;
-  const isDive = () => root.dataset.mode === "dive";
-  const modeBtns = [...document.querySelectorAll("button[data-mode]")];
-  const setMode = (m, save) => {
-    root.dataset.mode = m;
-    modeBtns.filter(b => b.closest(".mode")).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
-    if (save) try { localStorage.setItem("mode", m); } catch (e) {}
-    if (save) document.querySelectorAll(".stop").forEach(st => st.classList.add("seen"));
-    if (save && document.activeElement && !document.activeElement.offsetParent) document.querySelector('.mode-invite button[data-mode="' + (m === "dive" ? "pro" : "dive") + '"]')?.focus();
-    requestAnimationFrame(() => { measure(); update(); if (isDive() && !still) requestAnimationFrame(tick); });
-  };
-  modeBtns.forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode, true))); // depth at the very bottom of the page
-  const num = document.querySelector(".gauge-num");
-  const name = document.querySelector(".gauge-name");
-  const links = [...document.querySelectorAll(".gauge-stops a")];
-  links.forEach(a => a.parentElement.style.setProperty("--d", a.dataset.depth));
 
-  const anchors = [...document.querySelectorAll("[data-depth]")].filter(el => !el.closest(".gauge"));
-  let marks = [];
-  const measure = () => {
-    marks = anchors.map(el => ({ y: el.getBoundingClientRect().top + scrollY, d: +el.dataset.depth, id: el.id }));
-    marks.push({ y: document.documentElement.scrollHeight - innerHeight * 0.2, d: MAX, id: null });
-  };
-
-  let shown = -1;
-  const update = () => {
-    const probe = scrollY + innerHeight * 0.2 * Math.min(1, scrollY / innerHeight);
-    let depth = 0, current = marks[0]?.id;
-    for (let i = 0; i < marks.length - 1; i++) {
-      const a = marks[i], b = marks[i + 1];
-      if (probe >= a.y) {
-        current = a.id ?? current;
-        depth = probe >= b.y ? b.d : a.d + (b.d - a.d) * (probe - a.y) / Math.max(1, b.y - a.y);
-      }
-    }
-    depth = Math.min(MAX, Math.max(0, depth));
-    root.classList.toggle("scrolled", scrollY > 40);
-    root.style.setProperty("--p", (depth / MAX).toFixed(4));
-    root.style.setProperty("--dark", Math.min(1, Math.max(0, (depth - 34) / 30)).toFixed(3));
-    const rounded = Math.round(depth);
-    if (rounded !== shown) { num.textContent = rounded; shown = rounded; }
-    links.forEach(a => {
-      const on = a.hash === "#" + current;
-      a.setAttribute("aria-current", on ? "true" : "false");
-      if (on && name.textContent !== a.lastChild.textContent) name.textContent = a.lastChild.textContent;
+  // Split each .ink heading into letter spans (the heading keeps its accessible name).
+  document.querySelectorAll(".ink").forEach(h => {
+    h.setAttribute("aria-label", h.textContent.replace(/\s+/g, " ").trim());
+    let i = 0;
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        for (const tok of n.textContent.split(/(\s+)/)) { // words stay whole so a heading never wraps mid-word
+          if (!tok) continue;
+          if (/^\s+$/.test(tok)) { frag.append(tok); continue; }
+          const w = document.createElement("span");
+          w.className = "w"; w.setAttribute("aria-hidden", "true");
+          for (const ch of tok) {
+            const s = document.createElement("span");
+            s.className = "l"; s.textContent = ch; s.style.setProperty("--i", i++);
+            w.append(s);
+          }
+          frag.append(w);
+        }
+        n.replaceWith(frag);
+      } else walk(n);
     });
-  };
-
-  let ticking = false;
-  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); } };
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", () => { measure(); update(); });
-  addEventListener("load", () => { measure(); update(); });
-  measure(); update();
-
-  // Dive light follows the pointer once it gets dark.
-  if (matchMedia("(pointer: fine)").matches) {
-    addEventListener("pointermove", e => {
-      root.style.setProperty("--lx", e.clientX + "px");
-      root.style.setProperty("--ly", e.clientY + "px");
-    }, { passive: true });
+    walk(h);
+  });
+  const inks = [...document.querySelectorAll(".ink")];
+  if (still || !("IntersectionObserver" in window)) inks.forEach(h => h.classList.add("lit"));
+  else {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("lit"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -18% 0px" });
+    inks.forEach(h => io.observe(h));
   }
 
-  // Marine snow. ponytail: plain 2D canvas, ~70 particles; WebGL only if this ever shows up in a profile.
-  const canvas = document.querySelector(".snow");
-  const ctx = canvas.getContext("2d");
-  let flakes = [];
-  const size = () => {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(Math.min(90, innerWidth * innerHeight / 16000));
-    flakes = Array.from({ length: n }, () => ({
-      x: Math.random() * innerWidth, y: Math.random() * innerHeight,
-      r: Math.random() * 1.4 + 0.4, v: Math.random() * 0.25 + 0.06, s: Math.random() * Math.PI * 2,
-    }));
+  // Bar: rule once scrolled, current section highlighted.
+  const navLinks = [...document.querySelectorAll(".bar-links a[href^='#']")];
+  const targets = navLinks.map(a => document.querySelector(a.hash)).filter(Boolean);
+  const onScroll = () => {
+    root.classList.toggle("scrolled", scrollY > 40);
+    const y = scrollY + innerHeight * 0.3;
+    let cur = null;
+    for (const t of targets) if (t.offsetTop <= y) cur = t.id;
+    navLinks.forEach(a => a.setAttribute("aria-current", String(a.hash === "#" + cur)));
   };
-  const draw = () => {
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-    ctx.fillStyle = "rgba(220,238,240,0.55)";
-    for (const f of flakes) {
-      ctx.beginPath(); ctx.arc(f.x + Math.sin(f.s) * 6, f.y, f.r, 0, Math.PI * 2); ctx.fill();
-    }
-  };
-  const tick = () => {
-    for (const f of flakes) {
-      f.y += f.v; f.s += 0.006;
-      if (f.y > innerHeight + 4) { f.y = -4; f.x = Math.random() * innerWidth; }
-    }
-    draw();
-    if (!document.hidden && isDive()) requestAnimationFrame(tick);
-  };
-  size(); addEventListener("resize", size);
-  if (still) draw();
-  else { requestAnimationFrame(tick); document.addEventListener("visibilitychange", () => { if (!document.hidden && isDive()) requestAnimationFrame(tick); }); }
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
-  // Footage is the content, so loops play (muted) even with reduced motion; every loop can be paused.
-  const loops = [...document.querySelectorAll(".clip, .surface-video")];
+  // Footage is the content, so loops play (muted) when in view; every loop can be paused.
+  const loops = [...document.querySelectorAll(".clip, .hero-video")];
   const held = new WeakSet();
-  const io = new IntersectionObserver(entries => entries.forEach(e => {
+  const vio = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.isIntersecting && !held.has(e.target)) e.target.play().catch(() => {}); else e.target.pause();
   }), { threshold: 0.25 });
-  loops.forEach(v => io.observe(v));
-  const toggle = v => {
-    if (v.paused) { held.delete(v); v.play().catch(() => {}); } else { held.add(v); v.pause(); }
-  };
+  loops.forEach(v => vio.observe(v));
+  const toggle = v => { if (v.paused) { held.delete(v); v.play().catch(() => {}); } else { held.add(v); v.pause(); } };
   document.querySelectorAll(".clip").forEach(v => v.addEventListener("click", () => toggle(v)));
+
+  // Hero footage: phones keep the poster and never download the video.
+  const hero = document.querySelector(".hero-video");
   const heroBtn = document.querySelector(".hold");
-  const hero = document.querySelector(".surface-video");
-  // Phones keep the poster and never download the hero video.
   const heroSrc = hero.querySelector("source[data-src]");
-  if (matchMedia("(max-width: 640px)").matches) heroBtn.style.display = "none";
+  if (matchMedia("(max-width: 640px)").matches) heroBtn.hidden = true;
   else if (heroSrc) { heroSrc.src = heroSrc.dataset.src; hero.load(); }
   heroBtn.addEventListener("click", () => toggle(hero));
-  hero.addEventListener("play", () => { heroBtn.setAttribute("aria-pressed", "false"); heroBtn.lastChild.textContent = " Pause"; });
-  hero.addEventListener("pause", () => { heroBtn.setAttribute("aria-pressed", "true"); heroBtn.lastChild.textContent = " Play"; });
+  hero.addEventListener("play", () => { heroBtn.setAttribute("aria-pressed", "false"); heroBtn.lastChild.textContent = "Pause"; });
+  hero.addEventListener("pause", () => { heroBtn.setAttribute("aria-pressed", "true"); heroBtn.lastChild.textContent = "Play"; });
 
   // Shipwreck clip tabs
   const clip = document.querySelector("[data-clips]");
@@ -131,14 +81,9 @@
   // Trailer
   const dialog = document.querySelector(".trailer");
   const trailer = dialog.querySelector("video");
-  document.querySelectorAll("[data-trailer]").forEach(b => b.addEventListener("click", () => {
-    dialog.showModal();
-    trailer.play().catch(() => {});
-  }));
+  document.querySelectorAll("[data-trailer]").forEach(b => b.addEventListener("click", () => { dialog.showModal(); trailer.play().catch(() => {}); }));
   dialog.addEventListener("close", () => trailer.pause());
   dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
-
-  setMode(root.dataset.mode, false);
 
   // Demos open in a dialog; the iframe is emptied on close so audio stops.
   const player = document.querySelector(".player");
@@ -151,19 +96,6 @@
     player.showModal();
   }));
   player.addEventListener("close", () => { frame.src = "about:blank"; });
-
-  // One entrance: each stop rises out of the murk the first time it comes into view.
-  if (!still && "IntersectionObserver" in window) {
-    const stops = [...document.querySelectorAll(".stop")];
-    const below = stops.filter(s => s.getBoundingClientRect().top > innerHeight);
-    below.forEach(s => s.classList.add("pending"));
-    root.classList.add("rise-ready");
-    stops.filter(s => !s.classList.contains("pending")).forEach(s => s.classList.add("seen"));
-    const rise = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add("seen"); rise.unobserve(e.target); }
-    }), { rootMargin: "0px 0px -12% 0px" });
-    below.forEach(s => rise.observe(s));
-  }
 })();
 // Contact form: sends through the Job Desk worker to Andrew's inbox.
 (function () {
@@ -179,7 +111,7 @@
     fetch('https://job-finder.andrewrainsberger.workers.dev/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error); }); })
       .then(function () { form.reset(); status.textContent = 'Thanks! Your message is on its way.'; })
-      .catch(function (err) { status.textContent = (err && err.message) || 'That didn’t send. Please message me on LinkedIn instead.'; })
+      .catch(function (err) { status.textContent = (err && err.message) || 'That didn’t send. Please email me instead.'; })
       .finally(function () { btn.disabled = false; });
   });
 })();
@@ -212,7 +144,7 @@
 })();
 // Keep the header art below the fixed top bar, however many rows the bar wraps to on a phone.
 (function () {
-  var bar = document.querySelector('.topbar');
+  var bar = document.querySelector('.bar');
   if (!bar || !window.ResizeObserver) return;
   new ResizeObserver(function () { document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px'); }).observe(bar);
 })();
