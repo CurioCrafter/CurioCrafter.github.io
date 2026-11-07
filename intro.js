@@ -192,6 +192,7 @@ async function run() {
   const T_SWIM = 0.7, D_SWIM = 5.6, T_TAG = 5.2, T_OPEN = 7.6;
   const tag = 'AI-assisted tools & pipeline engineer for 3D and VR';
   const tagEl = root.querySelector('.ix-tag');
+  const words = root.querySelector('.ix-words');
   const head = new THREE.Vector3(), tmp = new THREE.Vector3(), ahead = new THREE.Vector3();
   const lit = new Set();
   const clock = new THREE.Clock();
@@ -270,6 +271,7 @@ async function run() {
       const k = Math.min((t - opening.t0) / opening.dur, 1);
       const ease = k * k * (3 - 2 * k);
       root.style.setProperty('--hole', (ease * Math.hypot(W, H) * 1.1).toFixed(1) + 'px');
+      words.style.opacity = (1 - Math.min(ease * 2.5, 1)).toFixed(3); // the page's own name takes over
       if (k >= 1) { renderer.dispose(); end(); return; }
     }
 
