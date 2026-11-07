@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrew Rainsberger · AI-Assisted Tools &amp; Pipeline Engineer for 3D and VR</title>
-<meta name="description" content="Andrew Rainsberger, tools and pipeline engineer for 3D and VR, open to tools, pipeline and gameplay engineering roles. Credited developer on Shipwreck Discovery (Steam, Meta Quest); author of CurioMesh, open-source Blender retopology with a Rust core (1.26M-face scan from 47 min to about 5).">
+<meta name="description" content="Andrew Rainsberger, AI-assisted tools and pipeline engineer for 3D and VR at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest); author of CurioMesh, open-source Blender retopology with a Rust core (1.26M-face scan from 47 min to about 5).">
 <meta property="og:title" content="Andrew Rainsberger · AI-Assisted Tools &amp; Pipeline Engineer for 3D and VR">
 <meta property="og:description" content="Blender Python and Rust tools, Godot/OpenXR gameplay on Shipwreck Discovery (Steam, Meta Quest), and CurioMesh: open-source retopology, 47 min to 5.">
 <link rel="canonical" href="https://curiocrafter.github.io/">
@@ -22,6 +22,10 @@
 <link rel="preload" href="fonts/BigShouldersDisplay-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script>try { var m = new URLSearchParams(location.search).get("mode") || localStorage.getItem("mode"); if (m === "dive") document.documentElement.dataset.mode = "dive"; } catch (e) {}</script>
+<script>try { var q = new URLSearchParams(location.search); if (q.has("intro") || (!localStorage.getItem("cc_intro_v1") && !q.has("notrack") && window.WebGLRenderingContext && !matchMedia("(prefers-reduced-motion: reduce)").matches)) { document.documentElement.classList.add("intro-on"); setTimeout(function () { if (!window.__introStarted) document.documentElement.classList.remove("intro-on"); }, 4000); } } catch (e) {}</script>
+<style>html.intro-on body { overflow: hidden; } html.intro-on:not(.intro-ready) body::after { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script type="module" src="intro.js"></script>
 </head>
 <body>
 <a class="skip" href="#engineering">Skip to the work</a>
@@ -81,7 +85,6 @@
   <button class="hold" type="button" aria-pressed="false" aria-label="Pause background video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg> Pause</button>
 
   <div class="surface-body">
-    <p class="avail"><span class="dot" aria-hidden="true"></span>Open to tools, pipeline and gameplay engineering roles · remote, hybrid or on-site</p>
     <h1 class="waterline">Andrew <span>Rainsberger</span></h1>
     <p class="surface-role"><strong>Tools &amp; pipeline engineer for 3D and VR.</strong> I build Blender Python and Rust tools and Godot/OpenXR gameplay systems for <a href="#shipwreck">Shipwreck Discovery</a> (Steam, Meta Quest) at AquaticXR, and I measure what I ship.</p>
     <ul class="facts">
@@ -478,8 +481,8 @@
 </main>
 
 <footer class="floor" id="contact" aria-labelledby="h-contact">
-  <h2 id="h-contact">Hiring a tools, pipeline or gameplay engineer?</h2>
-  <p>I'd like to hear about it. I'm in Joplin, Missouri, and open to remote, hybrid or on-site work.</p>
+  <h2 id="h-contact">Get in touch</h2>
+  <p>I'm in Joplin, Missouri. Questions about CurioMesh, Shipwreck Discovery or anything else here are welcome.</p>
   <p>I prefer LinkedIn messages: I can see who you are and that your profile is real and verified, which is the most trustworthy way for both of us.</p>
   <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
   <p><a class="btn btn-light" href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">Message me on LinkedIn</a> <button class="btn" type="button" data-message>Send me a message</button></p>
