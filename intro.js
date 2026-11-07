@@ -292,7 +292,7 @@ async function run() {
     // [screen x, screen y, distance from camera]
     const turn = (x, y0, y1, side) => { // a round U-turn between two rows, swinging toward the camera
       const r = (y1 - y0) / 2, cyM = (y0 + y1) / 2, pts = [];
-      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.15, cyM + Math.sin(a) * r, 4 - Math.cos(a) * 0.6]); }
+      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.7, cyM + Math.sin(a) * r * 1.05, 4 - Math.cos(a) * 1.1]); }
       return pts;
     };
     const xL = L + (R - L) * 0.1, xR = R - (R - L) * 0.1;
@@ -341,7 +341,7 @@ async function run() {
   };
   const archCentre = new THREE.Vector3(0, holeY, ARCH.z), ahead = new THREE.Vector3(), wreckLook = new THREE.Vector3(WRECK.x, WRECK_MID, WRECK.z);
   const fishTarget = new THREE.Object3D();
-  let lastHeading = null;
+  const fish = { u: 0, speed: 0.25, bend: 0, oriented: false };
   const look = new THREE.Vector3(), sp = new THREE.Vector3(), sp2 = new THREE.Vector3(), w1 = new THREE.Vector3(), w2 = new THREE.Vector3(), head = new THREE.Vector3();
   const lit = new Set();
   const clock = new THREE.Clock();
@@ -384,24 +384,32 @@ async function run() {
     root.style.setProperty('--ink', M.clamp((t - 0.5) / 1.2, 0, 1) * 0.3);
     if (!opening) words.style.opacity = (1 - M.clamp((t - T_WORDS_OUT) / 1.2, 0, 1)).toFixed(3); // the name clears for the flight
 
-    // lionfish
-    const u = M.clamp((t - T_SWIM) / D_SWIM, 0, 1);
+    // lionfish: travels along the path at a living pace (surges and glides, slower in the turns),
+    // and its body eases toward where it is heading instead of snapping to it
+    if (t > T_SWIM && fish.u < 1) {
+      const ta = curve.getTangentAt(Math.max(fish.u - 0.02, 0)), tb = curve.getTangentAt(Math.min(fish.u + 0.04, 1));
+      let bend = Math.atan2(tb.y, tb.x) - Math.atan2(ta.y, ta.x); bend = Math.atan2(Math.sin(bend), Math.cos(bend));
+      const pace = (1 + 0.22 * Math.sin((t - T_SWIM) * 4.4)) * (1 - 0.45 * Math.min(Math.abs(bend), 1));
+      const ease_in = M.clamp((t - T_SWIM) / 0.6, 0.25, 1);
+      fish.speed = M.lerp(fish.speed, pace * ease_in, 1 - Math.exp(-dt * 3));
+      fish.u = Math.min(fish.u + dt * fish.speed / D_SWIM, 1);
+      fish.bend = M.lerp(fish.bend, bend, 1 - Math.exp(-dt * 4));
+    }
+    const u = fish.u;
     curve.getPointAt(u, sp);
     toWorld(sp, w1);
+    w1.y += Math.sin(t * 2.3) * 0.025;                                         // a slow bob
     L1.wrap.position.copy(w1);
     if (u > 0 && u < 1) {
-      // heading and lean come straight from the smooth path (a short window around u), never from frame-to-frame deltas
-      const ua = Math.max(u - 0.015, 0), ub = Math.min(u + 0.03, 1);
-      curve.getPointAt(ub, sp2); toWorld(sp2, w2);
+      curve.getPointAt(Math.min(u + 0.04, 1), sp2); toWorld(sp2, w2);
       fishTarget.position.copy(w1); fishTarget.lookAt(w2);
-      L1.wrap.quaternion.copy(fishTarget.quaternion);
-      const ta = curve.getTangentAt(ua), tb = curve.getTangentAt(ub);
-      let dh = Math.atan2(tb.y, tb.x) - Math.atan2(ta.y, ta.x); dh = Math.atan2(Math.sin(dh), Math.cos(dh));
-      L1.wrap.children[0].rotation.z = M.clamp(-dh * 0.9, -0.6, 0.6);         // lean into the turns
+      if (!fish.oriented) { L1.wrap.quaternion.copy(fishTarget.quaternion); fish.oriented = true; }
+      else L1.wrap.quaternion.slerp(fishTarget.quaternion, 1 - Math.exp(-dt * 5));
+      L1.wrap.children[0].rotation.z = M.clamp(-fish.bend * 0.8, -0.55, 0.55);  // lean into the turns
     }
     L1.wrap.visible = t > T_SWIM - 0.1;
     L1.wrap.updateMatrixWorld();
-    L1.mixer && L1.mixer.update(dt);
+    L1.mixer && L1.mixer.update(dt * (0.7 + 0.6 * fish.speed));             // tail beat follows the pace
     if (u > 0 && u < 1) { // letters its head touches light up
       head.set(0, 0, L1.len * 0.4).applyMatrix4(L1.wrap.matrixWorld).project(camera);
       const hx = (head.x + 1) / 2 * W, hy = (1 - head.y) / 2 * H;
@@ -412,7 +420,7 @@ async function run() {
         if (hx > r.left - reach && hx < r.right + reach && hy > r.top - reach && hy < r.bottom + reach) light(el);
       }
     }
-    if (t > T_SWIM + D_SWIM) letters.forEach(light);
+    if (fish.u >= 1 || t > T_SWIM + D_SWIM * 1.6) letters.forEach(light);
     if (t > T_TAG) tagEl.textContent = tag.slice(0, Math.floor((t - T_TAG) * 26));
 
     for (const c of swimmers) {
