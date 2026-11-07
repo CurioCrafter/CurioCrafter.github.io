@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="pro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrew Rainsberger · AI-Assisted Tools &amp; Pipeline Engineer for 3D and VR</title>
-<meta name="description" content="Andrew Rainsberger, AI-assisted tools and pipeline engineer for 3D and VR at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest), creator of CurioMesh (open-source Blender retopology) and co-developer of Lionfish Reef Heroes (Google Play, App Store).">
+<meta name="description" content="Andrew Rainsberger, AI-assisted tools and pipeline engineer for 3D and VR at AquaticXR. Credited developer on Shipwreck Discovery (Steam, Meta Quest); author of CurioMesh, open-source Blender retopology with a Rust core (1.26M-face scan from 47 min to about 5).">
 <meta property="og:title" content="Andrew Rainsberger · AI-Assisted Tools &amp; Pipeline Engineer for 3D and VR">
-<meta property="og:description" content="Blender Python tools and asset pipelines, Godot/OpenXR gameplay on Shipwreck Discovery (Steam, Meta Quest), and CurioMesh, open-source Blender retopology.">
+<meta property="og:description" content="Blender Python and Rust tools, Godot/OpenXR gameplay on Shipwreck Discovery (Steam, Meta Quest), and CurioMesh: open-source retopology, 47 min to 5.">
 <link rel="canonical" href="https://curiocrafter.github.io/">
 <meta property="og:image" content="https://curiocrafter.github.io/media/og-home.jpg">
 <meta property="og:image:width" content="1200">
@@ -14,117 +14,177 @@
 <meta property="og:url" content="https://curiocrafter.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Andrew Rainsberger · AI-Assisted Tools &amp; Pipeline Engineer for 3D and VR">
-<meta name="twitter:description" content="Blender Python tools and asset pipelines, Godot/OpenXR gameplay on Shipwreck Discovery (Steam, Meta Quest), and CurioMesh, open-source Blender retopology.">
+<meta name="twitter:description" content="Blender Python and Rust tools, Godot/OpenXR gameplay on Shipwreck Discovery (Steam, Meta Quest), and CurioMesh: open-source retopology, 47 min to 5.">
 <meta name="twitter:image" content="https://curiocrafter.github.io/media/og-home.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0b3550">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/BigShouldersDisplay-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=ink2">
-<script>document.documentElement.classList.add("js");</script>
-<script>try { var q = new URLSearchParams(location.search); if (q.has("intro") || (!localStorage.getItem("cc_intro_v2") && !q.has("notrack") && window.WebGLRenderingContext && !matchMedia("(prefers-reduced-motion: reduce)").matches)) { document.documentElement.classList.add("intro-on"); setTimeout(function () { if (!window.__introStarted) document.documentElement.classList.remove("intro-on"); }, 4000); } } catch (e) {}</script>
-<style>html.intro-on body { overflow: hidden; } html.intro-on:not(.intro-ready) body::after { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }</style>
-<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.min.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
-<script type="module" src="intro.js?v=ink3"></script>
+<link rel="stylesheet" href="style.css">
+<script>try { var m = new URLSearchParams(location.search).get("mode") || localStorage.getItem("mode"); if (m === "dive") document.documentElement.dataset.mode = "dive"; } catch (e) {}</script>
 </head>
 <body>
-<a class="skip" href="#curiomesh">Skip to the work</a>
+<a class="skip" href="#engineering">Skip to the work</a>
 
-<header class="bar">
-  <a class="bar-name" href="#top">Andrew Rainsberger</a>
-  <nav class="bar-links" aria-label="Sections">
-    <a href="#curiomesh">CurioMesh</a>
-    <a href="#shipwreck">Shipwreck</a>
-    <a href="#lionfish">Lionfish</a>
-    <a href="#engineering">Builds</a>
+<div class="topbar">
+  <a class="topbar-name" href="#top">Andrew Rainsberger</a>
+  <nav class="topbar-links" aria-label="Sections">
+    <a href="#engineering">Engineering</a>
+    <a href="#shipwreck">Work</a>
     <a href="#play">Play</a>
+    <a href="#video">Video</a>
     <a href="#log">Experience</a>
     <a href="/blog/" data-blog-link hidden>Blog</a>
     <a href="/demos/" data-demos-link hidden>Demos</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="bar-cta">
-    <a class="bar-btn bar-fill" href="mailto:andrewrainsberger@gmail.com">Email</a>
-    <a class="bar-btn" href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume</a>
-  </div>
-</header>
-
-<section class="hero" id="top" aria-labelledby="h-name">
-  <h1 class="hero-name ink" id="h-name"><span>Andrew</span> <span>Rainsberger</span></h1>
-  <div class="hero-grid">
-    <div class="hero-text">
-      <p class="hero-role">AI-assisted tools &amp; pipeline engineer for 3D and VR</p>
-      <p class="hero-lede">I build Blender Python tools, asset pipelines and Godot/OpenXR gameplay systems for <a href="#shipwreck">Shipwreck Discovery</a> at AquaticXR, and I measure what I ship.</p>
-      <dl class="credits">
-        <div><dt>Credited developer</dt><dd><a href="#shipwreck">Shipwreck Discovery</a> · Steam, Meta Quest</dd></div>
-        <div><dt>Creator</dt><dd><a href="#curiomesh">CurioMesh</a> · open-source Blender retopology, 46 GitHub stars</dd></div>
-        <div><dt>Co-developer</dt><dd><a href="#lionfish">Lionfish Reef Heroes</a> · Google Play, App Store</dd></div>
-      </dl>
-      <div class="actions">
-        <a class="btn btn-fill" href="mailto:andrewrainsberger@gmail.com">Email me</a>
-        <a class="btn" href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume (PDF)</a>
-        <a class="btn" href="https://github.com/CurioCrafter">GitHub</a>
-        <a class="btn" href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
-      </div>
+  <div class="mode-wrap">
+    <span class="mode-label" id="mode-label">Page style</span>
+    <div class="mode" role="group" aria-labelledby="mode-label">
+      <button type="button" data-mode="pro" aria-pressed="true" title="Simple, light layout">
+        <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Professional
+      </button>
+      <button type="button" data-mode="dive" aria-pressed="false" title="Dark underwater layout with a depth gauge and effects">
+        <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Dive mode
+      </button>
     </div>
-    <figure class="hero-reel">
-      <video class="hero-video" autoplay muted loop playsinline poster="media/hero.webp" aria-label="Shipwreck Discovery footage">
-        <source data-src="media/hero.mp4" type="video/mp4">
-      </video>
-      <figcaption><span>Shipwreck Discovery, in-game</span>
-        <button class="hold" type="button" aria-pressed="false" aria-label="Pause footage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Pause</span></button>
-      </figcaption>
-    </figure>
   </div>
-</section>
+</div>
+
+<canvas class="snow" aria-hidden="true"></canvas>
+<div class="divelight" aria-hidden="true"></div>
+
+<nav class="gauge" aria-label="Sections by depth">
+  <div class="gauge-read" aria-hidden="true"><span class="gauge-num">0</span><span class="gauge-unit">m</span><span class="gauge-name">Surface</span></div>
+  <div class="gauge-tape" aria-hidden="true"><div class="gauge-needle"></div></div>
+  <ol class="gauge-stops">
+    <li><a href="#top" data-depth="0"><b>0</b>Surface</a></li>
+    <li><a href="#engineering" data-depth="6"><b>6</b>Engineering</a></li>
+    <li><a href="#shipwreck" data-depth="12"><b>12</b>Shipwreck Discovery</a></li>
+    <li><a href="#curiomesh" data-depth="18"><b>18</b>CurioMesh</a></li>
+    <li><a href="#log" data-depth="22"><b>22</b>Dive log</a></li>
+    <li><a href="#lionfish" data-depth="30"><b>30</b>Lionfish Reef Heroes</a></li>
+    <li><a href="#sector" data-depth="34"><b>34</b>Sector War</a></li>
+    <li><a href="#play" data-depth="42"><b>42</b>Play</a></li>
+    <li><a href="#clayspace" data-depth="46"><b>46</b>Clayspace</a></li>
+    <li><a href="#visualizer" data-depth="54"><b>54</b>Music visualizer</a></li>
+    <li><a href="#cuprum" data-depth="56"><b>56</b>Cuprum</a></li>
+    <li><a href="#video" data-depth="66"><b>66</b>Video</a></li>
+  </ol>
+</nav>
+
+<header class="surface" id="top" data-depth="0">
+  <video class="surface-video" autoplay muted loop playsinline poster="media/hero.webp" aria-hidden="true">
+    <source data-src="media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="surface-shade" aria-hidden="true"></div>
+  <button class="hold" type="button" aria-pressed="false" aria-label="Pause background video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg> Pause</button>
+
+  <div class="surface-body">
+    <h1 class="waterline">Andrew <span>Rainsberger</span></h1>
+    <p class="surface-role"><strong>Tools &amp; pipeline engineer for 3D and VR.</strong> I build Blender Python and Rust tools and Godot/OpenXR gameplay systems for <a href="#shipwreck">Shipwreck Discovery</a> (Steam, Meta Quest) at AquaticXR, and I measure what I ship.</p>
+    <ul class="facts">
+      <li><strong>CurioMesh</strong> (Rust core): 1.26M-face scan in ~5 min, down from 47</li>
+      <li><strong>37</strong> animated creatures on Quest from one limb shader</li>
+      <li><strong>Sector War</strong>: deterministic 8-player engine, 81 tests</li>
+      <li>Credited developer on <strong>Shipwreck Discovery</strong></li>
+    </ul>
+    <div class="actions">
+      <a class="btn btn-light" href="mailto:andrewrainsberger@gmail.com">Email me</a>
+      <a class="btn" href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume</a>
+      <a class="btn" href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
+      <a class="btn" href="https://github.com/CurioCrafter">GitHub</a>
+    </div>
+  </div>
+
+  <ol class="plan" aria-label="Dive plan">
+    <li><a href="#engineering"><span>6 m</span>Engineering work</a></li>
+    <li><a href="#shipwreck"><span>12 m</span>Shipwreck Discovery</a></li>
+    <li><a href="#curiomesh"><span>18 m</span>CurioMesh</a></li>
+    <li><a href="#log"><span>22 m</span>Experience</a></li>
+    <li><a href="#lionfish"><span>30 m</span>Lionfish Reef Heroes</a></li>
+    <li><a href="#sector"><span>34 m</span>Sector War</a></li>
+    <li><a href="#play"><span>42 m</span>Play in your browser</a></li>
+    <li><a href="#clayspace"><span>46 m</span>Clayspace</a></li>
+    <li><a href="#visualizer"><span>54 m</span>Music visualizer</a></li>
+    <li><a href="#cuprum"><span>56 m</span>Cuprum</a></li>
+    <li><a href="#video"><span>66 m</span>Video</a></li>
+  </ol>
+</header>
 
 <main>
 
-<section class="stop" id="curiomesh" aria-labelledby="h-curiomesh">
+<section class="stop" id="engineering" data-depth="6" aria-labelledby="h-eng">
   <div class="stop-head">
-    <h2 class="ink" id="h-curiomesh">CurioMesh</h2>
-    <p class="lede">Free automatic retopology for Blender. One guided panel turns a dense model or photogrammetry scan into clean quads, part by part, and checks every part against the original with a camera from six sides.</p>
-    <p class="meta">My own project · free and open source (GPLv3) · Python · Blender API · Rust core · AI-agent assisted</p>
+    <h2 id="h-eng">Engineering work</h2>
+    <p class="lede">Four things I built, each as the problem, my approach and the measured result.</p>
   </div>
-  <div class="split">
-    <figure class="frame">
-      <img src="media/curiomesh-compressor.webp" alt="Wireframes side by side: an air compressor at 79,042 faces and the CurioMesh result at 24,222 quads" loading="lazy">
-      <figcaption>79,042 faces to 24,222 quads, one button</figcaption>
-    </figure>
-    <div>
-      <dl class="par">
-        <div><dt>Problem</dt><dd>Retopology of dense models and scans is slow manual work.</dd></div>
-        <div><dt>Approach</dt><dd>Pick what the mesh is for (game asset, animation, subdivision, scan cleanup, sculpt base) and press Start. Each part gets its own face count, and any single part can be redone. A native Rust core runs the heavy steps on every CPU core.</dd></div>
-        <div><dt>Result</dt><dd>A 1.26-million-face scan went from 47 minutes to about 5. 46 GitHub stars, 17 releases, about 279 tests, and CI that checks the Rust core against the Python reference. Zips for every Blender from 3.6 to 5.2 on Windows, Linux and macOS.</dd></div>
-      </dl>
-      <p class="also">Also: LOD sets, normal and colour baking, kept UV seams, and region retopology for redoing just a face or a hand. And by me: <a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a>, guided all-quad edge-loop reductions and expansions.</p>
-      <p class="actions">
-        <a class="btn btn-fill" href="curiomesh.html">Read the write-up</a>
-        <a class="btn" href="https://github.com/CurioCrafter/CurioMesh/releases/latest" target="_blank" rel="noopener">Download</a>
-        <a class="btn" href="https://github.com/CurioCrafter/CurioMesh" target="_blank" rel="noopener">GitHub</a>
-      </p>
-    </div>
+  <div class="arcade">
+    <article>
+      <a class="arcade-shot" href="curiomesh.html">
+        <img src="media/curiomesh-compressor.webp" alt="Wireframes side by side: an air compressor at 79,042 faces and the CurioMesh result at 24,222 quads" loading="lazy">
+        <span class="arcade-go">Read the write-up</span>
+      </a>
+      <h3>CurioMesh: open-source retopology for Blender</h3>
+      <p><strong>Problem.</strong> Retopology of dense models and scans is slow manual work.</p>
+      <p><strong>Approach.</strong> Guided, part-by-part retopology with a Rust core that runs on every CPU core.</p>
+      <p><strong>Result.</strong> 79,042 faces to 24,222 quads. A 1.26M-face scan went from 47 minutes to about 5. 46 GitHub stars, 17 releases, ~279 tests in CI, Blender 3.6 to 5.2 on Windows, Linux and macOS.</p>
+      <p class="arcade-meta"><a href="curiomesh.html">Read the write-up</a> · <a href="https://github.com/CurioCrafter/CurioMesh" target="_blank" rel="noopener">GitHub</a> · AI-agent assisted</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="#shipwreck">
+        <img src="media/critters.webp" alt="Seafloor critters from Shipwreck Discovery: an octopus and crabs on the sand" loading="lazy">
+        <span class="arcade-go">See the footage</span>
+      </a>
+      <h3>Quest creature system</h3>
+      <p><strong>Problem.</strong> 37 animated seafloor species have to run on a Meta Quest.</p>
+      <p><strong>Approach.</strong> One shader animates every limb, and the creature behaviour is kept cheap.</p>
+      <p><strong>Result.</strong> All 37 species run in the experimental build of Shipwreck Discovery.</p>
+      <p class="arcade-meta"><a href="#shipwreck">Shipwreck Discovery</a> · Godot 4 · GDScript · AI-agent assisted</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="play/sector-war.html" target="_blank" rel="noopener">
+        <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders and hyperlanes" loading="lazy">
+        <span class="arcade-go">Play it</span>
+      </a>
+      <h3>Sector War</h3>
+      <p><strong>Problem.</strong> Real-time multiplayer that has to stay in sync.</p>
+      <p><strong>Approach.</strong> A deterministic engine over WebSockets for up to 8 players, tested with bot-vs-bot games.</p>
+      <p><strong>Result.</strong> 81 automated tests. The whole game also ships as one 8&nbsp;MB offline HTML file.</p>
+      <p class="arcade-meta"><a href="play/sector-war.html" target="_blank" rel="noopener">Play it in your browser</a> · TypeScript · AI-agent assisted</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="#visualizer">
+        <img src="media/visualizer-gpu.webp" alt="Music Visualizer: a GPU shader world reacting to a song" loading="lazy">
+        <span class="arcade-go">See the project</span>
+      </a>
+      <h3>Music Visualizer</h3>
+      <p><strong>Problem.</strong> Ten audio-reactive looks have to stay detailed at full-screen 4K.</p>
+      <p><strong>Approach.</strong> One WGSL shader per look in Rust and wgpu, driven by a real-time beat analyzer.</p>
+      <p><strong>Result.</strong> About 0.5 ms per frame per shader at 4K.</p>
+      <p class="arcade-meta"><a href="#visualizer">Project details</a> · <a href="https://github.com/CurioCrafter/music-visualizer" target="_blank" rel="noopener">GitHub</a> · AI-agent assisted</p>
+    </article>
   </div>
 </section>
 
-<section class="stop" id="shipwreck" aria-labelledby="h-shipwreck">
+<section class="stop" id="shipwreck" data-depth="12" aria-labelledby="h-shipwreck">
   <div class="stop-head">
-    <h2 class="ink" id="h-shipwreck">Shipwreck Discovery</h2>
+    <h2 id="h-shipwreck">Shipwreck Discovery</h2>
     <p class="lede">A VR diving game set on real wrecks sunk as artificial reefs off Destin, Florida. I work on it full-time at AquaticXR, on gameplay systems and the real-time art pipeline, and I'm credited as a developer on its Steam page alongside Scott Gonnello and Ian McLennan.</p>
-    <p class="meta">Game Developer &amp; 3D Technical Artist · AquaticXR · July 2026 to now · Godot 4 · GDScript · OpenXR · Blender</p>
+    <p class="meta">Game Developer &amp; 3D Technical Artist · AquaticXR · July 2026 to now · Godot 4, GDScript, OpenXR, Blender</p>
   </div>
 
-  <figure class="frame frame-wide">
+  <figure class="screen screen-open">
     <video class="clip" data-clips muted loop playsinline preload="metadata" poster="media/sw-hammerhead.webp">
       <source src="media/sw-hammerhead.mp4" type="video/mp4">
     </video>
-    <figcaption class="frame-bar">
+    <figcaption class="screen-bar">
       <div class="tabs" role="group" aria-label="Choose a clip">
         <button type="button" aria-pressed="true" data-src="media/sw-hammerhead">Hammerhead pass</button>
         <button type="button" aria-pressed="false" data-src="media/sw-courageous">The Courageous</button>
         <button type="button" aria-pressed="false" data-src="media/sw-brine">Brine lake</button>
       </div>
-      <span>In-game footage</span>
+      <span class="screen-note">In-game footage</span>
     </figcaption>
   </figure>
 
@@ -134,183 +194,68 @@
       <ul class="did">
         <li>Build and test coral growth, planting, placement and collision systems in Godot, and tune the wildlife balance around them.</li>
         <li>Retopologize coral growth stages and large shipwreck assets, lay out UVs, bake PBR materials and deliver Godot-ready GLB files that hold up on Quest.</li>
-        <li>Build the seafloor critters for the experimental branch: 37 species, from octopus and mantis shrimp to crabs, lobsters, urchins and sea slugs, each placed by its real Gulf of Mexico habitat. One shader animates every limb, so the whole field runs cheaply on Quest.</li>
+        <li>Build the seafloor critters for the experimental branch: 37 species, from octopus and mantis shrimp to crabs, lobsters, urchins and sea slugs, each placed by its real Gulf of Mexico habitat, with jointed animation and behaviour that runs cheaply on Quest.</li>
         <li>Track down VR interaction bugs and write regression tests so the fixes stay fixed.</li>
         <li>Make the trailers and short videos the studio uses to promote the game.</li>
       </ul>
-      <p class="actions">
-        <button class="btn btn-fill" type="button" data-trailer>Watch the trailer (1:18)</button>
-        <a class="btn" href="https://store.steampowered.com/app/3583270/Shipwreck_Discovery/">Steam</a>
-        <a class="btn" href="https://www.meta.com/experiences/shipwreck-discovery/32767209856226296/">Meta Quest</a>
+      <p class="links">
+        <a href="https://store.steampowered.com/app/3583270/Shipwreck_Discovery/">Steam</a>
+        <a href="https://www.meta.com/experiences/shipwreck-discovery/32767209856226296/">Meta Quest</a>
+        <a href="https://shipwreckdiscovery.com/">Official site</a>
       </p>
-      <p class="fine">Published by Lionfish Central, Inc. The source code is private. <a href="https://shipwreckdiscovery.com/">Official site</a></p>
+      <p class="actions"><button class="btn btn-light" type="button" data-trailer>Watch the trailer (1:18)</button></p>
+      <p class="fine">Published by Lionfish Central, Inc. The source code is private.</p>
     </div>
     <div class="plates">
-      <figure class="frame">
+      <figure>
         <img src="media/sw-retopo.webp" alt="Elkhorn coral: baked real-time result beside its retopologized wireframe" loading="lazy">
         <figcaption>Elkhorn coral: baked result beside the new topology</figcaption>
       </figure>
-      <figure class="frame">
+      <figure>
         <img src="media/sw-scanner.webp" alt="In-game creature scanner showing a spadefish identification panel" loading="lazy">
         <figcaption>Creature scanner, in the headset</figcaption>
       </figure>
     </div>
   </div>
 
-  <figure class="frame creatures">
-    <video class="clip" muted loop playsinline controls preload="metadata" poster="media/critters.webp"><source src="media/critters.mp4" type="video/mp4"></video>
-    <figcaption>Seafloor critters on the newest experimental build, real game footage: an octopus climbs onto the diver's hand, blue crabs fight claw to claw, an octopus hunts on the sand, then inks, turns pale and jets away. AI-agent assisted.</figcaption>
+  <figure class="creatures">
+    <video class="clip" autoplay muted loop playsinline controls preload="metadata" poster="media/critters.webp"><source src="media/critters.mp4" type="video/mp4"></video>
+    <figcaption>Seafloor critters interacting on the newest experimental build, real game footage: an octopus climbs onto the diver's hand, blue crabs fight claw to claw, an octopus hunts on the sand, then inks, turns pale and jets away. 37 species, and one shader animates every limb so the whole field runs on Quest. AI-agent assisted.</figcaption>
   </figure>
 </section>
 
-<section class="stop" id="lionfish" aria-labelledby="h-lionfish">
-  <div class="stop-head">
-    <h2 class="ink" id="h-lionfish">Lionfish Reef Heroes</h2>
-    <p class="lede">A pixel-art arcade game for Android and iOS. Lionfish have taken the reef; you dive in, spear them and bring the reef back across ten ocean habitats.</p>
-    <p class="meta">Published · team of three at AquaticXR, with Ian McLennan and Scott Gonnello · Godot 4.5 · AI-agent assisted</p>
-  </div>
-  <div class="duo">
-    <figure class="frame">
-      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-gameplay.webp">
-        <source src="media/lion-gameplay.mp4" type="video/mp4">
-      </video>
-      <figcaption>Gameplay, recorded on device</figcaption>
-    </figure>
-    <figure class="frame">
-      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-trailer.webp">
-        <source src="media/lion-trailer.mp4" type="video/mp4">
-      </video>
-      <figcaption>From the trailer · <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">watch the full trailer</a></figcaption>
-    </figure>
-  </div>
-  <ul class="did did-row">
-    <li>I set up one Godot project that builds for desktop, Android and iPhone, with automated builds for both phones.</li>
-    <li>I wired up store purchases with a server that verifies them, and the store listings are in 20+ languages.</li>
-    <li>Ten habitats with animated marine life, boss fights and collectible gear.</li>
-    <li>Five assignments based on real marine careers: reef survey, coral nursery, turtle rehab and more.</li>
-  </ul>
-  <p class="actions">
-    <a class="btn btn-fill" href="https://play.google.com/store/apps/details?id=com.aquaticxr.lionfishreefheroes" target="_blank" rel="noopener">Google Play</a>
-    <a class="btn btn-fill" href="https://apps.apple.com/us/app/lionfish-reef-heroes/id6819904425" target="_blank" rel="noopener">App Store</a>
-  </p>
-</section>
-
-<section class="stop" id="engineering" aria-labelledby="h-eng">
-  <div class="stop-head">
-    <h2 class="ink" id="h-eng">More builds</h2>
-    <p class="lede">My own projects, each as the problem, my approach and the measured result.</p>
-  </div>
-
-  <article class="build" id="sector">
-    <a class="frame shot" href="play/sector-war.html" target="_blank" rel="noopener">
-      <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders, hyperlanes and the empire standings panel" loading="lazy">
-    </a>
+<section class="stop" id="curiomesh" data-depth="18" aria-labelledby="h-curiomesh">
+  <div class="split">
     <div>
-      <h3>Sector War</h3>
-      <p class="meta">TypeScript · Node · WebSockets · AI-agent assisted</p>
-      <dl class="par">
-        <div><dt>Problem</dt><dd>Real-time space strategy with online multiplayer that has to stay in sync.</dd></div>
-        <div><dt>Approach</dt><dd>A deterministic engine over WebSockets for up to eight players, AI empires with their own personalities, tested with bot-vs-bot games, a headless soak runner and a Python balance model.</dd></div>
-        <div><dt>Result</dt><dd>81 automated tests. The whole game also ships as one 8&nbsp;MB HTML file that runs offline in any browser.</dd></div>
-      </dl>
-      <p class="actions"><a class="btn btn-fill" href="play/sector-war.html" target="_blank" rel="noopener">Play it in your browser</a></p>
-    </div>
-  </article>
-
-  <article class="build" id="visualizer">
-    <figure class="frame shot">
-      <video class="clip" muted loop playsinline controls preload="metadata" poster="media/visualizer-gpu.webp"><source src="media/visualizer-gpu.mp4" type="video/mp4"></video>
-    </figure>
-    <div>
-      <h3>Music Visualizer</h3>
-      <p class="meta">Rust · wgpu / DirectX 12 · WGSL · WebGPU · AI-agent assisted</p>
-      <dl class="par">
-        <div><dt>Problem</dt><dd>Ten audio-reactive looks that have to stay detailed at full-screen 4K.</dd></div>
-        <div><dt>Approach</dt><dd>A real-time analyzer splits the music into kick, snare and hi-hats, tempo, the drop and section energy; each look is one WGSL shader that gives every signal its own job.</dd></div>
-        <div><dt>Result</dt><dd>About 0.5 ms per frame per shader at 4K. It lives in the Windows tray, and the same shaders run in a WebGPU web player and a Chrome extension.</dd></div>
-      </dl>
+      <div class="stop-head">
+        <h2 id="h-curiomesh">CurioMesh</h2>
+        <p class="lede">Free automatic retopology for Blender. One guided panel turns a dense model or photogrammetry scan into clean quads, part by part, and checks every part against the original with a camera from six sides.</p>
+        <p class="meta">My own project · free and open source (GPLv3) · Python · Blender API · Rust · AI-agent assisted</p>
+      </div>
+      <ul class="did">
+        <li>46 GitHub stars and 17 releases, with about 279 tests and CI that checks the Rust core against the Python reference.</li>
+        <li>Pick what the mesh is for (game asset, animation, subdivision, scan cleanup, sculpt base) and press Start. Each part gets its own face count, and you can redo any single part.</li>
+        <li>A native Rust core does the heavy steps on every CPU core: a 1.26-million-face scan went from 47 minutes to about 5.</li>
+        <li>Game-asset tools: LOD sets, normal and colour baking, kept UV seams, and region retopology for redoing just a face or a hand.</li>
+        <li>17 releases so far, with zips for every Blender from 3.6 to 5.2 on Windows, Linux and macOS.</li>
+        <li>Also by me: <a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a>, guided all-quad edge-loop reductions and expansions.</li>
+      </ul>
       <p class="actions">
-        <a class="btn btn-fill" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=display" target="_blank" rel="noopener">Try it in your browser</a>
-        <a class="btn" href="https://github.com/CurioCrafter/music-visualizer" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-light" href="curiomesh.html">Read the write-up</a>
+        <a class="btn" href="https://github.com/CurioCrafter/CurioMesh/releases/latest" target="_blank" rel="noopener">Download</a>
+        <a class="btn" href="https://github.com/CurioCrafter/CurioMesh" target="_blank" rel="noopener">GitHub</a>
       </p>
     </div>
-  </article>
-
-  <article class="build" id="clayspace">
-    <figure class="frame shot">
-      <img src="media/vrb-eye.webp" alt="View from inside the headset: a floating XR Workbench panel above a selected cube on Blender's grid" loading="lazy">
+    <figure class="screen">
+      <img src="media/curiomesh-compressor.webp" alt="Wireframes side by side: an air compressor at 79,042 faces and the CurioMesh result at 24,222 quads" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">79,042 faces to 24,222 quads, one button</span></figcaption>
     </figure>
-    <div>
-      <h3>Clayspace</h3>
-      <p class="meta">Blender 5.1.2 · OpenXR · Index and Quest controllers · AI-agent assisted</p>
-      <dl class="par">
-        <div><dt>Problem</dt><dd>Modelling in Blender from inside PC VR, without paid add-ons.</dd></div>
-        <div><dt>Approach</dt><dd>Hold a trigger to draw a box, sphere, cylinder or Boolean cutter at the controller tip, release to commit. The hand menu stays on the hand that opened it, and every tool runs on Blender's own APIs.</dd></div>
-        <div><dt>Result</dt><dd>Blender 5.1 usable in the headset, captured here from the headset view.</dd></div>
-      </dl>
-    </div>
-  </article>
-
-  <article class="build" id="cuprum">
-    <figure class="frame shot">
-      <img src="media/cuprum-hexapod.webp" alt="Cuprum Robot Sim: a hexapod robot with servos and wiring standing on its generated board" loading="lazy">
-    </figure>
-    <div>
-      <h3>Cuprum</h3>
-      <p class="meta">TypeScript · Three.js · KiCad · Arduino · AI-agent assisted</p>
-      <p class="body">A browser studio for robots and the circuit boards that drive them. Describe a robot in one file, and Cuprum lays out and routes its KiCad board, simulates the robot walking or driving on that exact board, writes starter firmware, and packages the board for ordering from JLCPCB.</p>
-    </div>
-  </article>
-</section>
-
-<section class="stop" id="play" aria-labelledby="h-play">
-  <div class="stop-head">
-    <h2 class="ink" id="h-play">Play in your browser</h2>
-    <p class="lede">Things I've built that you can try right now, no install.</p>
-  </div>
-  <div class="tiles">
-    <article>
-      <button class="frame shot" type="button" data-play="play/aquarium/index.html?demo" data-title="Shipwreck Discovery Aquarium">
-        <img src="media/wallpaper.webp" alt="Live aquarium: light rays over a reef, the dive boat's anchor line and a sunken wreck" loading="lazy">
-        <span class="go">Play here</span>
-      </button>
-      <h3>Shipwreck Discovery Aquarium</h3>
-      <p>A live wallpaper made from the game's own reef, wreck and creatures. The fish react to music and to your mouse: move fast to scare them, hold still and the curious ones come over, click to drop food.</p>
-      <p class="meta">Three.js · Blender · Wallpaper Engine · about 45&nbsp;MB, loads when you press Play</p>
-    </article>
-    <article>
-      <a class="frame shot" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=display" target="_blank" rel="noopener">
-        <img src="media/play-visualizer.webp" alt="Music Visualizer: an ocean-liner wreck on the sea floor, its portholes lit as a spectrum" loading="lazy">
-        <span class="go">Open in a new tab</span>
-      </a>
-      <h3>Music Visualizer</h3>
-      <p>Ten GPU shader worlds that react to your music. It asks to hear your audio: pick the tab or screen that's playing and tick "Share audio". Press M for mouse control.</p>
-      <p class="meta">WGSL · WebGPU · Chrome or Edge</p>
-    </article>
-    <article>
-      <a class="frame shot" href="https://dronewarfare-fpv.netlify.app" target="_blank" rel="noopener">
-        <img src="media/play-fpv.webp" alt="Frontline FPV: low drone pass over trenches and armour" loading="lazy">
-        <span class="go">Open in a new tab</span>
-      </a>
-      <h3>Frontline FPV</h3>
-      <p>An FPV drone sim with a rate-mode flight model, a generated frontline and air defence that shoots back. Keyboard or gamepad.</p>
-      <p class="meta">TypeScript · Three.js</p>
-    </article>
-    <article>
-      <a class="frame shot" href="https://curiocrafter.github.io/gridpaper/" target="_blank" rel="noopener">
-        <img src="media/play-gridpaper.webp" alt="Gridpaper: a living-room blockout on a grid floor with numbered labels and the bevel panel open" loading="lazy">
-        <span class="go">Open in a new tab</span>
-      </a>
-      <h3>Gridpaper</h3>
-      <p>A grid-paper design tool for explaining ideas to AI. Sketch a layout in 2D or block out a room or level in 3D, label everything, and export a picture plus a written description Claude can build from.</p>
-      <p class="meta">JavaScript · SVG · Three.js · <a href="https://github.com/CurioCrafter/gridpaper" target="_blank" rel="noopener">GitHub</a></p>
-    </article>
   </div>
 </section>
 
-<section class="stop" id="log" aria-labelledby="h-log">
+<section class="stop" id="log" data-depth="22" aria-labelledby="h-log">
   <div class="stop-head">
-    <h2 class="ink" id="h-log">Experience</h2>
+    <h2 id="h-log"><span class="d">Dive log</span><span class="p">Experience</span></h2>
   </div>
   <ol class="log">
     <li>
@@ -321,7 +266,7 @@
     <li>
       <time>2023 – now</time>
       <div><h3>Independent tools and game developer</h3><p class="org">CurioCrafter</p>
-      <p>CurioMesh (open-source Blender retopology with a Rust core), Clayspace, Sector War, a music visualizer and the Cuprum robot and circuit-board studio. Also a family YouTube channel with 94.5 million views.</p></div>
+      <p>CurioMesh (open-source Blender retopology with a Rust core), Clayspace, Sector War, a Rust and wgpu music visualizer and the Cuprum robot and circuit-board studio. Also a family YouTube channel with 94.5 million views.</p></div>
     </li>
     <li>
       <time>Nov 2021 – Jan 2023</time>
@@ -334,17 +279,182 @@
       <p>Electrical pre-apprenticeship training and a season on a wildland firefighting crew.</p></div>
     </li>
   </ol>
-  <dl class="kit">
-    <div><dt>Toolkit</dt><dd>Godot 4 · GDScript · OpenXR · Meta Quest and PCVR · Android and iOS builds · networked co-op · Python · Blender API · retopology and PBR baking · TypeScript · Three.js · WebGL · WebGPU and WGSL · KiCad · Git</dd></div>
-    <div><dt>How I work</dt><dd>AI coding agents (Claude, Codex) write most of the code; I spec, review, test and measure it. I also build the tooling around those agents, such as MCP servers and Claude Code skills.</dd></div>
-  </dl>
+  <p class="toolkit"><strong>Toolkit</strong> Godot 4 · GDScript · OpenXR · Meta Quest and PCVR · Android and iOS builds · networked co-op · Python · Blender API · retopology and PBR baking · TypeScript · Three.js · WebGL · WebGPU and WGSL · Rust · C++ · KiCad · Git</p>
+  <p class="toolkit"><strong>How I work</strong> AI coding agents (Claude, Codex) write most of the code; I spec, review, test and measure it. I also build the tooling around those agents, such as MCP servers and Claude Code skills.</p>
 </section>
 
-<section class="stop" id="video" aria-labelledby="h-video">
+<section class="stop" id="lionfish" data-depth="30" aria-labelledby="h-lionfish">
+  <div class="stop-head">
+    <h2 id="h-lionfish">Lionfish Reef Heroes</h2>
+    <p class="lede">A pixel-art arcade game for Android and iOS. Lionfish have taken the reef; you dive in, spear them and bring the reef back across ten ocean habitats.</p>
+    <p class="meta">Team of three at AquaticXR, with Ian McLennan and Scott Gonnello · Godot 4.5 · AI-agent assisted · Published</p>
+  </div>
+
+  <div class="duo">
+    <figure class="screen">
+      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-gameplay.webp">
+        <source src="media/lion-gameplay.mp4" type="video/mp4">
+      </video>
+      <figcaption class="screen-bar"><span class="screen-note">Gameplay, recorded on device</span></figcaption>
+    </figure>
+    <figure class="screen">
+      <video class="clip" muted loop playsinline preload="metadata" poster="media/lion-trailer.webp">
+        <source src="media/lion-trailer.mp4" type="video/mp4">
+      </video>
+      <figcaption class="screen-bar"><span class="screen-note">From the trailer · <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">watch the full trailer</a></span></figcaption>
+    </figure>
+  </div>
+
+  <ul class="did did-row">
+    <li>Ten habitats with animated marine life, boss fights and collectible gear.</li>
+    <li>Five assignments based on real marine careers: reef survey, coral nursery, turtle rehab and more.</li>
+    <li>I set up one Godot project that builds for desktop, Android and iPhone, with automated builds for both phones.</li>
+    <li>I wired up store purchases with a server that verifies them, and the store listings are in 20+ languages.</li>
+  </ul>
+  <p class="actions">
+    <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.aquaticxr.lionfishreefheroes" target="_blank" rel="noopener">Google Play</a>
+    <a class="btn btn-light" href="https://apps.apple.com/us/app/lionfish-reef-heroes/id6819904425" target="_blank" rel="noopener">App Store</a>
+  </p>
+</section>
+
+<section class="stop" id="sector" data-depth="34" aria-labelledby="h-sector">
+  <div class="split split-flip">
+    <figure class="screen">
+      <img src="media/sector-galaxy.webp" alt="Sector War galaxy view with empire borders, hyperlanes and the empire standings panel" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">Seven AI empires, two minutes in</span></figcaption>
+    </figure>
+    <div>
+      <div class="stop-head">
+        <h2 id="h-sector">Sector War</h2>
+        <p class="lede">Real-time space strategy in the browser: the pace of an .io game with a slimmed-down grand-strategy layer. You never leave the galaxy view.</p>
+        <p class="meta">My own project · TypeScript · Node · AI-agent assisted</p>
+      </div>
+      <ul class="did">
+        <li>Three modes, from a 20-minute blitz to a two-hour campaign. AI empires each have a personality; there's diplomacy and a Galactic Council.</li>
+        <li>Online multiplayer for up to eight players over WebSockets, on a deterministic engine.</li>
+        <li>81 automated tests, including a full bot-vs-bot game, plus a headless soak runner and a Python balance model.</li>
+        <li>The whole game also ships as one 8&nbsp;MB HTML file that runs offline in any browser.</li>
+      </ul>
+      <p class="actions"><a class="btn btn-light" href="play/sector-war.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        Play it in your browser</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="stop" id="play" data-depth="42" aria-labelledby="h-play">
+  <div class="stop-head">
+    <h2 id="h-play">Play in your browser</h2>
+    <p class="lede">Things I've built that you can try right now, no install.</p>
+  </div>
+  <div class="arcade">
+    <article>
+      <button class="arcade-shot" type="button" data-play="play/aquarium/index.html?demo" data-title="Shipwreck Discovery Aquarium">
+        <img src="media/wallpaper.webp" alt="Live aquarium: light rays over a reef, the dive boat's anchor line and a sunken wreck" loading="lazy">
+        <span class="arcade-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg> Play here</span>
+      </button>
+      <h3>Shipwreck Discovery Aquarium</h3>
+      <p>A live wallpaper I made from the game's own reef, wreck and creatures. The fish react to music and to your mouse: move fast to scare them, hold still and the curious ones come over, click to drop food.</p>
+      <p class="arcade-meta">Three.js · Blender · Wallpaper Engine · about 45&nbsp;MB, loads when you press Play</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=display" target="_blank" rel="noopener">
+        <img src="media/play-visualizer.webp" alt="Music Visualizer: an ocean-liner wreck on the sea floor, its portholes lit as a spectrum" loading="lazy">
+        <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Music Visualizer</h3>
+      <p>Ten GPU shader worlds that react to your music. It asks to hear your audio: pick the tab or screen that's playing and tick "Share audio". Press M for mouse control.</p>
+      <p class="arcade-meta">WGSL · WebGPU · Chrome or Edge</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="https://dronewarfare-fpv.netlify.app" target="_blank" rel="noopener">
+        <img src="media/play-fpv.webp" alt="Frontline FPV: low drone pass over trenches and armour" loading="lazy">
+        <span class="arcade-go">Play in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Frontline FPV</h3>
+      <p>An FPV drone sim in Three.js with a rate-mode flight model, a generated frontline and air defence that shoots back. Keyboard or gamepad.</p>
+      <p class="arcade-meta">TypeScript · Three.js</p>
+    </article>
+    <article>
+      <a class="arcade-shot" href="https://curiocrafter.github.io/gridpaper/" target="_blank" rel="noopener">
+        <img src="media/play-gridpaper.webp" alt="Gridpaper: a living-room blockout on a grid floor with numbered labels and the bevel panel open" loading="lazy">
+        <span class="arcade-go">Open in a new tab <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      </a>
+      <h3>Gridpaper</h3>
+      <p>A grid-paper design tool for explaining ideas to AI. Sketch a website layout in 2D or block out a room or game level in 3D, label everything, and export a picture plus a written description Claude can build from.</p>
+      <p class="arcade-meta">JavaScript · SVG · Three.js · <a href="https://github.com/CurioCrafter/gridpaper" target="_blank" rel="noopener">GitHub</a></p>
+    </article>
+  </div>
+</section>
+
+<section class="stop" id="clayspace" data-depth="46" aria-labelledby="h-vrb">
+  <div class="stop-head">
+    <h2 id="h-vrb">Clayspace</h2>
+    <p class="lede">Blender 5.1 inside PC VR. Hold a trigger to draw a box, sphere, cylinder or Boolean cutter at the controller tip, release to commit. The hand menu stays on the hand that opened it, and every tool runs on Blender's own APIs, so no paid add-ons are needed.</p>
+    <p class="meta">My own project · AI-agent assisted · Blender 5.1.2 · OpenXR · Index and Quest controllers</p>
+  </div>
+  <div class="vrb">
+    <figure class="screen">
+      <img src="media/vrb-eye.webp" alt="View from inside the headset: a floating XR Workbench panel above a selected cube on Blender's grid" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">Captured from the headset view</span></figcaption>
+    </figure>
+    <figure class="screen">
+      <img src="media/vrb-menu.webp" alt="Clayspace hand menu with create, draw-a-volume and native Boolean options" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">The hand menu: draw volumes and Boolean cutters</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stop" id="visualizer" data-depth="54" aria-labelledby="h-viz">
+  <div class="split">
+    <div>
+      <div class="stop-head">
+        <h2 id="h-viz">Music Visualizer</h2>
+        <p class="lede">Ten GPU shader worlds that react to every part of whatever's playing: the kick, the snare, the hi-hats, the tempo and the drop. It lives in the Windows tray, and the same shaders run in the browser and a Chrome extension.</p>
+        <p class="meta">My own project · Rust · wgpu / DirectX 12 · WGSL · WebGPU · AI-agent assisted</p>
+      </div>
+      <ul class="did">
+        <li>A real-time analyzer splits the music into kick, snare and hi-hat hits, tempo and beat phase, the drop, section energy and even piano notes, and each look gives every signal its own job.</li>
+        <li>Each look is one WGSL shader, about half a millisecond a frame, so it stays full of detail at 4K full screen.</li>
+        <li>A frosted-glass UI drawn on the GPU, a window you can dock anywhere, mouse control, and colours taken from the current song's album art.</li>
+        <li>The same shaders run in a WebGPU web player and a Chrome extension.</li>
+      </ul>
+      <p class="actions">
+        <a class="btn btn-light" href="https://curiocrafter.github.io/music-visualizer/app/visualizer.html?mode=display" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          Try it in your browser</a>
+        <a class="btn" href="https://curiocrafter.github.io/music-visualizer/" target="_blank" rel="noopener">Project page</a>
+        <a class="btn" href="https://github.com/CurioCrafter/music-visualizer" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+    <figure class="screen">
+      <video class="clip" muted loop playsinline controls preload="metadata" poster="media/visualizer-gpu.webp"><source src="media/visualizer-gpu.mp4" type="video/mp4"></video>
+      <figcaption class="screen-bar"><span class="screen-note">All ten looks, each around a drop</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stop stop-quiet" id="cuprum" data-depth="56" aria-labelledby="h-cuprum">
   <div class="split">
     <div class="stop-head">
-      <h2 class="ink" id="h-video">Video</h2>
-      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them. The studio's <a href="https://www.youtube.com/@AquaticXR">YouTube channel</a> started in September 2026 and passed 18,800 views in its first five weeks.</p>
+      <h2 id="h-cuprum">Cuprum</h2>
+      <p class="lede">A browser studio for robots and the circuit boards that drive them. Describe a robot in one file, and Cuprum lays out and routes its KiCad board, simulates the robot walking or driving on that exact board, writes starter firmware, and packages the board for ordering from JLCPCB.</p>
+      <p class="meta">My own project · AI-agent assisted · TypeScript · Three.js · KiCad · Arduino</p>
+    </div>
+    <figure class="screen">
+      <img src="media/cuprum-hexapod.webp" alt="Cuprum Robot Sim: a hexapod robot with servos and wiring standing on its generated board" loading="lazy">
+      <figcaption class="screen-bar"><span class="screen-note">A hexapod running on its generated board</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stop" id="video" data-depth="66" aria-labelledby="h-video">
+  <div class="split split-first">
+    <div>
+      <h2 id="h-video">Video</h2>
+      <h3>Trailers and shorts for AquaticXR</h3>
+      <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude Opus 5.5 drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them. I also run the studio's YouTube channel: it started in September 2026 and passed 18,800 views in its first five weeks.</p>
+      <p class="links"><a href="https://www.youtube.com/@AquaticXR">AquaticXR on YouTube</a></p>
       <p class="fine">I also run a family YouTube channel, <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a>, with 94.5 million views.</p>
     </div>
     <div class="reels">
@@ -367,34 +477,35 @@
 </main>
 
 <footer class="floor" id="contact" aria-labelledby="h-contact">
-  <h2 class="ink" id="h-contact">Get in touch</h2>
+  <h2 id="h-contact">Get in touch</h2>
   <p>I'm in Joplin, Missouri. Questions about CurioMesh, Shipwreck Discovery or anything else here are welcome.</p>
+  <p>I prefer LinkedIn messages: I can see who you are and that your profile is real and verified, which is the most trustworthy way for both of us.</p>
   <p class="floor-mail"><a href="mailto:andrewrainsberger@gmail.com">andrewrainsberger@gmail.com</a></p>
-  <p class="actions">
-    <a class="btn btn-fill" href="mailto:andrewrainsberger@gmail.com">Email me</a>
-    <a class="btn" href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume (PDF)</a>
-    <a class="btn" href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
-    <button class="btn" type="button" data-message>Send a message here</button>
-  </p>
+  <p><a class="btn btn-light" href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">Message me on LinkedIn</a> <button class="btn" type="button" data-message>Send me a message</button></p>
   <p class="links">
+    <a href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume (PDF)</a>
+    <a href="https://linkedin.com/in/andrew-rainsberger-2b9b721b1">LinkedIn</a>
     <a href="https://github.com/CurioCrafter">GitHub</a>
     <a href="https://youtube.com/@CurioCrafter-r1w">YouTube</a>
     <a href="privacy.html">Privacy</a>
-    <a href="#top">Back to top</a>
   </p>
+  <a class="ascend" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-6 6h4v8h4v-8h4z"/></svg>
+    <span class="d">Back to the surface</span><span class="p">Back to top</span>
+  </a>
 </footer>
 
 <dialog class="msg" id="msg" aria-labelledby="msg-title">
   <form id="msg-form">
     <h2 id="msg-title">Send me a message</h2>
-    <p>It goes straight to my inbox, and I'll reply to the email you give.</p>
+    <p>It goes straight to my inbox, and I'll reply to the email you give. A LinkedIn message is even better: I can see who you are.</p>
     <label>Your name<input name="name" autocomplete="name" required maxlength="120"></label>
     <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label>Message<textarea name="message" required maxlength="5000"></textarea></label>
     <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
-    <p class="fine">Your name, email and message are only used to reply. <a href="privacy.html" target="_blank">Privacy</a></p>
+    <p style="font-size:.85rem;margin:0;opacity:.8">Your name, email and message are only used to reply. <a href="privacy.html" target="_blank">Privacy</a></p>
     <p class="msg-status" role="status"></p>
-    <div class="msg-row"><button class="btn btn-fill" type="submit">Send message</button><button class="btn" type="button" data-close>Cancel</button></div>
+    <div class="msg-row"><button class="btn btn-light" type="submit">Send message</button><button class="btn" type="button" data-close>Cancel</button></div>
   </form>
 </dialog>
 
@@ -411,7 +522,7 @@
   <iframe title="Demo" loading="lazy" allow="autoplay; fullscreen"></iframe>
 </dialog>
 
-<script src="main.js?v=ink2" defer></script>
+<script src="main.js" defer></script>
 <script src="visit.js" defer></script>
 </body>
 </html>
