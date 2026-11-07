@@ -241,3 +241,18 @@ dialog.msg .hp { position: absolute; left: -9999px; }
   .bar-name { font-size: 1.1rem; }
   .bar-btn { padding: .55rem .7rem; font-size: .85rem; }
 }
+
+/* CurioCrafter channel */
+.channel { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); }
+.channel .lede + .lede { margin-top: .9rem; }
+.hits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.hits a { display: block; text-decoration: none; }
+.hits img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border: 1px solid var(--frame); background: #0a0a0a; transition: transform .5s var(--ease); }
+.hits a:hover img { transform: translateY(-3px); }
+.hits-n { display: block; margin-top: .7rem; font: 800 1.5rem/1 var(--display); text-transform: uppercase; }
+.hits-t { display: block; margin-top: .35rem; font-size: .85rem; line-height: 1.35; color: var(--fg-2); }
+.bar-replay { border-color: rgba(255, 255, 255, .45); }
+@media (max-width: 900px) { .channel { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .bar-replay { display: none; } .hits-n { font-size: 1.1rem; } .hits-t { font-size: .78rem; } }
+.nav-replay { display: none; }
+@media (max-width: 640px) { .bar-links .nav-replay { display: inline; } }

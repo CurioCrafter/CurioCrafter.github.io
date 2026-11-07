@@ -21,6 +21,7 @@ async function run() {
   const THREE = await import('three');
   const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
   const { clone } = await import('three/addons/utils/SkeletonUtils.js');
+  const { DRACOLoader } = await import('three/addons/loaders/DRACOLoader.js');
   window.__introStarted = true;
   const { MathUtils: M } = THREE;
 
@@ -201,6 +202,7 @@ async function run() {
 
   // ---------- models ----------
   const loader = new GLTFLoader();
+  loader.setDRACOLoader(new DRACOLoader().setDecoderPath('vendor/three/examples/jsm/libs/draco/gltf/')); // the full-detail wreck is Draco-compressed
   const load = n => loader.loadAsync(`media/intro/${n}.glb`);
   const used = new WeakSet();
   function placeModel(gltf, length, mat, forwardPlusZ = false) {
@@ -292,7 +294,7 @@ async function run() {
     // [screen x, screen y, distance from camera]
     const turn = (x, y0, y1, side) => { // a round U-turn between two rows, swinging toward the camera
       const r = (y1 - y0) / 2, cyM = (y0 + y1) / 2, pts = [];
-      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.7, cyM + Math.sin(a) * r * 1.05, 4 - Math.cos(a) * 1.1]); }
+      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.5, cyM + Math.sin(a) * r, 4 - Math.cos(a) * 1.8]); }
       return pts;
     };
     const xL = L + (R - L) * 0.1, xR = R - (R - L) * 0.1;
@@ -315,7 +317,7 @@ async function run() {
   const L1 = placeModel(lion, 0.42, CREATURE);
 
   // ---------- timeline (seconds) ----------
-  const T_SWIM = 1.2, D_SWIM = 4.8, T_TAG = 5.0, T_OPEN = 15.0, D_OPEN = 1.6, T_WORDS_OUT = 8.4;
+  const T_SWIM = 1.2, D_SWIM = 4.8, T_TAG = 5.0, T_OPEN = 19.2, D_OPEN = 1.8, T_WORDS_OUT = 8.4;
   const tag = 'AI-assisted tools & pipeline engineer for 3D and VR';
   const tagEl = root.querySelector('.ix-tag');
   const words = root.querySelector('.ix-words');
@@ -323,8 +325,9 @@ async function run() {
   const T_FLY = 5.6;                       // the fly-through starts here; before it the camera only descends and drifts
   const keys = [ // [time, position]
     [0, new THREE.Vector3(-3, 16, 24)], [2.8, new THREE.Vector3(0, holeY + 0.4, 12)], [5.6, new THREE.Vector3(0.3, holeY + 0.1, 5.5)],
-    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(1.5, floorY(1.5, -21) + 2.4, -21)],
-    [12.6, new THREE.Vector3(3, floorY(3, -33) + 2.2, -33)], [15.2, new THREE.Vector3(1, floorY(1, -45) + 2.6, -45)], [17.8, new THREE.Vector3(-2, floorY(-2, -57) + 3.4, -57)],
+    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(8, floorY(8, -18) + 3, -18)],
+    [12.0, new THREE.Vector3(23, WRECK_TOP + 3, -6)], [14.4, new THREE.Vector3(31, WRECK_TOP + 3.5, -20)], [16.8, new THREE.Vector3(30.5, WRECK_TOP + 4, -38)],
+    [19.2, new THREE.Vector3(20, WRECK_TOP + 7, -52)], [21.6, new THREE.Vector3(12, WRECK_TOP + 10, -60)],
   ];
   const camPath = new THREE.CatmullRomCurve3(keys.map(k => k[1]), false, 'centripetal');
   const lens = camPath.getLengths(600), total = lens[lens.length - 1];
@@ -368,7 +371,10 @@ async function run() {
     camPath.getPointAt(Math.min((d + 9) / total, 1), ahead);
     const holdArch = 1 - ease(M.clamp((t - 5.4) / 2.2, 0, 1));   // look at the arch until the flight starts
     look.lerpVectors(ahead, archCentre, holdArch * ease(M.clamp(t / 2.6, 0, 1)) + holdArch * (1 - ease(M.clamp(t / 2.6, 0, 1))) * 0.6);
-    look.lerp(wreckLook, ease(M.clamp((t - 8.2) / 2.4, 0, 1)) * 0.22);    // past the arch: glide over the coral, the wreck keeps its distance off to the right
+    look.lerp(wreckLook, ease(M.clamp((t - 8.2) / 2, 0, 1)) * (1 - ease(M.clamp((t - 12.6) / 2, 0, 1))) * 0.7); // turn toward the wreck
+    const endShot = ease(M.clamp((t - 16) / 2.4, 0, 1));
+    look.y -= ease(M.clamp((t - 12) / 2, 0, 1)) * 4.5 * (1 - endShot);    // then look down at the deck while flying over it
+    look.lerp(wreckLook, endShot);                                          // and finally pull up and back with the whole ship in frame
     const sway = holdArch;
     camera.position.x += Math.sin(t * 0.35) * 0.15 * sway; camera.position.y += Math.sin(t * 0.5) * 0.08 * sway;
     camera.lookAt(look);
@@ -402,6 +408,7 @@ async function run() {
     L1.wrap.position.copy(w1);
     if (u > 0 && u < 1) {
       curve.getPointAt(Math.min(u + 0.04, 1), sp2); toWorld(sp2, w2);
+      w2.sub(w1); w2.y *= 0.25; w2.add(w1);                                    // fish stay level: turn sideways, never nose-down
       fishTarget.position.copy(w1); fishTarget.lookAt(w2);
       if (!fish.oriented) { L1.wrap.quaternion.copy(fishTarget.quaternion); fish.oriented = true; }
       else L1.wrap.quaternion.slerp(fishTarget.quaternion, 1 - Math.exp(-dt * 5));

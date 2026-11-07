@@ -20,12 +20,12 @@
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/CurioCut.woff2?v=30" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=ink4">
+<link rel="stylesheet" href="style.css?v=ink5">
 <script>document.documentElement.classList.add("js");</script>
 <script>try { var q = new URLSearchParams(location.search); if (q.has("intro") || (!localStorage.getItem("cc_intro_v2") && !q.has("notrack") && window.WebGLRenderingContext && !matchMedia("(prefers-reduced-motion: reduce)").matches)) { document.documentElement.classList.add("intro-on"); setTimeout(function () { if (!window.__introStarted) document.documentElement.classList.remove("intro-on"); }, 4000); } } catch (e) {}</script>
 <style>html.intro-on body { overflow: hidden; } html.intro-on:not(.intro-ready) body::after { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }</style>
 <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.min.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
-<script type="module" src="intro.js?v=ink14"></script>
+<script type="module" src="intro.js?v=ink16"></script>
 </head>
 <body>
 <a class="skip" href="#curiomesh">Skip to the work</a>
@@ -42,8 +42,10 @@
     <a href="/blog/" data-blog-link hidden>Blog</a>
     <a href="/demos/" data-demos-link hidden>Demos</a>
     <a href="#contact">Contact</a>
+    <a class="nav-replay" href="?intro">Replay intro</a>
   </nav>
   <div class="bar-cta">
+    <a class="bar-btn bar-replay" href="?intro" title="Play the intro again">Replay intro</a>
     <a class="bar-btn bar-fill" href="mailto:andrewrainsberger@gmail.com">Email</a>
     <a class="bar-btn" href="Andrew_Rainsberger_Tools_Engineer_Resume.pdf">Resume</a>
   </div>
@@ -345,7 +347,6 @@
     <div class="stop-head">
       <h2 class="ink" id="h-video">Video</h2>
       <p class="lede">I make trailers and shorts for the studio's games, like the <a href="https://www.youtube.com/watch?v=snqh4ZXvGzg">Lionfish Reef Heroes trailer</a>. The Shipwreck Discovery shorts come out of a pipeline I built: Claude drives Blender to build, animate and render the shots, ElevenLabs voices the narration, and I direct and cut them. The studio's <a href="https://www.youtube.com/@AquaticXR">YouTube channel</a> started in September 2026 and passed 18,800 views in its first five weeks.</p>
-      <p class="fine">I also run a family YouTube channel, <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a>, with 94.5 million views.</p>
     </div>
     <div class="reels">
       <figure>
@@ -360,6 +361,18 @@
         <video controls playsinline preload="none" poster="media/short-ColossalSquid.webp"><source src="media/short-ColossalSquid.mp4" type="video/mp4"></video>
         <figcaption>Colossal squid</figcaption>
       </figure>
+    </div>
+  </div>
+  <div class="channel">
+    <div>
+      <h3>My YouTube channel</h3>
+      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a> on YouTube with my family: AI-made shorts that we write, pick and edit by hand. It has <strong>94.5 million views</strong> and <strong>88,000 subscribers</strong> (October 2026).</p>
+      <p class="lede">Making things for a feed taught me what holds a stranger in the first two seconds. I bring that to game feel, onboarding and trailers.</p>
+    </div>
+    <div class="hits">
+      <a href="https://www.youtube.com/shorts/LudDlMaSVOY"><img src="media/yt-LudDlMaSVOY.webp" alt="Thumbnail: tiny lint monster facing a cat" loading="lazy"><span class="hits-n">36M views</span><span class="hits-t">Tiny Lint Monster's Confidence Was Absolutely Destroyed</span></a>
+      <a href="https://www.youtube.com/shorts/dnHY_KKX-LM"><img src="media/yt-dnHY_KKX-LM.webp" alt="Thumbnail: cat holding a small furious alien" loading="lazy"><span class="hits-n">17M views</span><span class="hits-t">Cat Caught an Alien and the Alien Is Absolutely Furious About It</span></a>
+      <a href="https://www.youtube.com/shorts/vXHxQzhTOKU"><img src="media/yt-vXHxQzhTOKU.webp" alt="Thumbnail: giant blobfish and a cat" loading="lazy"><span class="hits-n">11M views</span><span class="hits-t">Giant Blobfish Regrets Opening Its Mouth to This Cat</span></a>
     </div>
   </div>
 </section>
