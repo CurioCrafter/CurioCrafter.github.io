@@ -249,7 +249,7 @@ async function run() {
   }
   const swimmers = [];
   // fish that follow a path in world space: f(t) -> position
-  function swim(c, f, rate = 1) { c.f = f; c.rate = rate; swimmers.push(c); }
+  function swim(c, f, rate = 1, t0 = 1, loop = false) { c.f = f; c.rate = rate; c.t0 = t0; c.loop = loop; swimmers.push(c); }
 
   Promise.all(['manta_ray', 'great_hammerhead_shark', 'southern_stingray', 'spotted_moray', 'blue_angelfish', 'brain_coral', 'staghorn'].map(load)).then(([manta, ham, ray, moray, angel, brain, stag]) => {
     if (finished) return;
@@ -264,13 +264,15 @@ async function run() {
       c.wrap.position.set(x, floorY(x, z) - 0.15, z);
       c.wrap.rotation.y = hash(i, 4) * 6.28;
     }
-    swim(placeModel(manta, 3.6, CREATURE), s => new THREE.Vector3(M.lerp(22, -26, s), 8.5 + Math.sin(s * 3) * 0.8, M.lerp(-16, -6, s)), 1 / 16);
-    swim(placeModel(ham, 3.2, CREATURE), s => new THREE.Vector3(M.lerp(-34, 30, s), 5.5, M.lerp(-44, -36, s)), 1 / 17);
-    swim(placeModel(ray, 1.4, CREATURE, true), s => { const x = M.lerp(-9, 7, s), z = M.lerp(-36, -46, s); return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 15);
-    swim(placeModel(moray, 1.5, CREATURE), s => { const x = M.lerp(1, 12, s), z = WRECK.z + 7 + Math.sin(s * 9) * 0.6; return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 18);
+    swim(placeModel(manta, 3.6, CREATURE), s => new THREE.Vector3(M.lerp(22, -26, s), 8.5 + Math.sin(s * 3) * 0.8, M.lerp(-16, -6, s)), 1 / 22);
+    // the hammerhead cruises down the port side of the wreck, past the bridge, and on into the end shot
+    const shark = new THREE.CatmullRomCurve3([[27, 5, -6], [26, 5, -20], [24.5, 6.5, -34], [22, 8, -50], [16, 9, -62]].map(p => new THREE.Vector3(...p)));
+    swim(placeModel(ham, 3.2, CREATURE), s => shark.getPoint(s), 1 / 12, 12);
+    swim(placeModel(ray, 1.4, CREATURE, true), s => { const x = M.lerp(-9, 7, s), z = M.lerp(-36, -46, s); return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 22);
+    swim(placeModel(moray, 1.5, CREATURE), s => { const x = M.lerp(1, 12, s), z = WRECK.z + 7 + Math.sin(s * 9) * 0.6; return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 22);
     for (let k = 0; k < 14; k++) { // a school circling coral beyond the arch
       const ph = k / 14 * Math.PI * 2, rr = 2.2 + (k % 3) * 0.45, yy = 1.3 + (k % 4) * 0.3;
-      swim(placeModel(angel, 0.3, CREATURE), s => new THREE.Vector3(3.5 + Math.cos(ph + s * 6.28) * rr, floorY(3.5, -31) + yy + Math.sin(s * 12 + k) * 0.15, -31 + Math.sin(ph + s * 6.28) * rr * 0.6), 1 / 14);
+      swim(placeModel(angel, 0.3, CREATURE), s => new THREE.Vector3(3.5 + Math.cos(ph + s * 6.28) * rr, floorY(3.5, -31) + yy + Math.sin(s * 12 + k) * 0.15, -31 + Math.sin(ph + s * 6.28) * rr * 0.6), 1 / 14, 1, true);
     }
   }).catch(() => {});
 
@@ -292,18 +294,23 @@ async function run() {
     const cy = r.map(b => b.top + b.height * 0.55);
     const L = Math.min(...r.map(b => b.left)) - W * 0.05, R = Math.max(...r.map(b => b.right)) + W * 0.05;
     // [screen x, screen y, distance from camera]
-    const turn = (x, y0, y1, side) => { // a round U-turn between two rows, swinging toward the camera
-      const r = (y1 - y0) / 2, cyM = (y0 + y1) / 2, pts = [];
-      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.5, cyM + Math.sin(a) * r, 4 - Math.cos(a) * 1.8]); }
+    // a U-turn between two rows: a level loop that swings out and away from the camera while sinking
+    // to the next row, so the fish's heading sweeps round smoothly (it never points straight down)
+    const turn = (x, y0, y1, side, d0, d1) => {
+      const r = (y1 - y0) / 2, pts = [];
+      for (let k = 1; k < 12; k++) {
+        const a = k / 12 * Math.PI, sink = (1 - Math.cos(a)) / 2;
+        pts.push([x + side * Math.sin(a) * r * 1.15, y0 + (y1 - y0) * sink, M.lerp(d0, d1, sink) + Math.sin(a) * 1.1]);
+      }
       return pts;
     };
     const xL = L + (R - L) * 0.1, xR = R - (R - L) * 0.1;
     pathPts = [
       [-W * 0.18, cy[0] - H * 0.1, 6], [L + (R - L) * 0.05, cy[0], 4.4], [(L + R) / 2, cy[0], 4], [xR, cy[0], 4],
-      ...turn(xR, cy[0], cy[1], 1),
-      [xR, cy[1], 4], [(L + R) / 2, cy[1], 4], [xL, cy[1], 4],
-      ...turn(xL, cy[1], cy[2], -1),
-      [xL, cy[2], 4], [(L + R) / 2, cy[2], 4], [xR, cy[2], 4.2], [W * 1.25, cy[2] + H * 0.18, 7],
+      ...turn(xR, cy[0], cy[1], 1, 4, 4.6),
+      [xR, cy[1], 4.6], [(L + R) / 2, cy[1], 4.3], [xL, cy[1], 4],
+      ...turn(xL, cy[1], cy[2], -1, 4, 4.6),
+      [xL, cy[2], 4.6], [(L + R) / 2, cy[2], 4.3], [xR, cy[2], 4.2], [W * 1.25, cy[2] + H * 0.18, 7],
     ];
   }
   const screenCurve = () => new THREE.CatmullRomCurve3(pathPts.map(p => new THREE.Vector3(p[0], p[1], p[2])), false, 'centripetal');
@@ -317,7 +324,7 @@ async function run() {
   const L1 = placeModel(lion, 0.42, CREATURE);
 
   // ---------- timeline (seconds) ----------
-  const T_SWIM = 1.2, D_SWIM = 4.8, T_TAG = 5.0, T_OPEN = 19.2, D_OPEN = 1.8, T_WORDS_OUT = 8.4;
+  const T_SWIM = 1.2, D_SWIM = 4.8, T_TAG = 5.0, T_OPEN = 20.4, D_OPEN = 1.8, T_WORDS_OUT = 8.4;
   const tag = 'AI-assisted tools & pipeline engineer for 3D and VR';
   const tagEl = root.querySelector('.ix-tag');
   const words = root.querySelector('.ix-words');
@@ -325,9 +332,12 @@ async function run() {
   const T_FLY = 5.6;                       // the fly-through starts here; before it the camera only descends and drifts
   const keys = [ // [time, position]
     [0, new THREE.Vector3(-3, 16, 24)], [2.8, new THREE.Vector3(0, holeY + 0.4, 12)], [5.6, new THREE.Vector3(0.3, holeY + 0.1, 5.5)],
-    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(8, floorY(8, -18) + 3, -18)],
-    [12.0, new THREE.Vector3(23, WRECK_TOP + 3, -6)], [14.4, new THREE.Vector3(31, WRECK_TOP + 3.5, -20)], [16.8, new THREE.Vector3(30.5, WRECK_TOP + 4, -38)],
-    [19.2, new THREE.Vector3(20, WRECK_TOP + 7, -52)], [21.6, new THREE.Vector3(12, WRECK_TOP + 10, -60)],
+    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(9, floorY(9, -21) + 2.6, -21)],   // out of the arch, banking right
+    [12.0, new THREE.Vector3(15, WRECK_MID - 1.5, -27)],                                                    // low past the bow, the bridge ahead
+    [14.0, new THREE.Vector3(23, WRECK_TOP + 2.5, -61)],                                                    // swoop up and round the stern
+    [16.0, new THREE.Vector3(41, WRECK_TOP + 3, -48)],                                                      // out over the starboard quarter
+    [18.2, new THREE.Vector3(31, WRECK_TOP + 3.5, -35)],                                                    // over the bridge, toward the bow
+    [20.4, new THREE.Vector3(21, WRECK_TOP + 7, -15)], [22.6, new THREE.Vector3(9, WRECK_TOP + 11, -3)],    // climb away, the whole ship in frame
   ];
   const camPath = new THREE.CatmullRomCurve3(keys.map(k => k[1]), false, 'centripetal');
   const lens = camPath.getLengths(600), total = lens[lens.length - 1];
@@ -342,7 +352,17 @@ async function run() {
     const h = kt[i + 1] - kt[i], x = (tt - kt[i]) / h, x2 = x * x, x3 = x2 * x;
     return (2 * x3 - 3 * x2 + 1) * kd[i] + (x3 - 2 * x2 + x) * h * tan[i] + (-2 * x3 + 3 * x2) * kd[i + 1] + (x3 - x2) * h * tan[i + 1];
   };
-  const archCentre = new THREE.Vector3(0, holeY, ARCH.z), ahead = new THREE.Vector3(), wreckLook = new THREE.Vector3(WRECK.x, WRECK_MID, WRECK.z);
+  // [time, value] tables, eased between entries
+  const curveAt = (tt, tb) => {
+    if (tt <= tb[0][0]) return tb[0][1];
+    for (let i = 1; i < tb.length; i++) if (tt < tb[i][0]) return M.lerp(tb[i - 1][1], tb[i][1], ease((tt - tb[i - 1][0]) / (tb[i][0] - tb[i - 1][0])));
+    return tb[tb.length - 1][1];
+  };
+  const FOCUS = [[8.2, 0], [10.4, 0.55], [13.4, 0.7], [15.4, 0.85], [16.9, 0.2], [19.0, 0.2], [20.8, 1]];
+  const BRIDGE = [[15.6, 0], [17.0, 0.75], [18.6, 0.6], [19.8, 0]];   // over the top: eyes down on the bridge
+  const tA = new THREE.Vector3(), tB = new THREE.Vector3();
+  let bank = 0;
+  const archCentre = new THREE.Vector3(0, holeY, ARCH.z), ahead = new THREE.Vector3(), wreckLook = new THREE.Vector3(WRECK.x, WRECK_MID, WRECK.z), bridgeLook = new THREE.Vector3(WRECK.x, WRECK_TOP - 4, WRECK.z - 8);
   const fishTarget = new THREE.Object3D();
   const fish = { u: 0, speed: 0.25, bend: 0, oriented: false };
   const look = new THREE.Vector3(), sp = new THREE.Vector3(), sp2 = new THREE.Vector3(), w1 = new THREE.Vector3(), w2 = new THREE.Vector3(), head = new THREE.Vector3();
@@ -371,13 +391,16 @@ async function run() {
     camPath.getPointAt(Math.min((d + 9) / total, 1), ahead);
     const holdArch = 1 - ease(M.clamp((t - 5.4) / 2.2, 0, 1));   // look at the arch until the flight starts
     look.lerpVectors(ahead, archCentre, holdArch * ease(M.clamp(t / 2.6, 0, 1)) + holdArch * (1 - ease(M.clamp(t / 2.6, 0, 1))) * 0.6);
-    look.lerp(wreckLook, ease(M.clamp((t - 8.2) / 2, 0, 1)) * (1 - ease(M.clamp((t - 12.6) / 2, 0, 1))) * 0.7); // turn toward the wreck
-    const endShot = ease(M.clamp((t - 16) / 2.4, 0, 1));
-    look.y -= ease(M.clamp((t - 12) / 2, 0, 1)) * 4.5 * (1 - endShot);    // then look down at the deck while flying over it
-    look.lerp(wreckLook, endShot);                                          // and finally pull up and back with the whole ship in frame
+    look.lerp(bridgeLook, curveAt(t, BRIDGE));          // over the top: eyes on the bridge below
+    look.lerp(wreckLook, curveAt(t, FOCUS));          // how much the camera keeps the wreck in view as it swoops round
     const sway = holdArch;
     camera.position.x += Math.sin(t * 0.35) * 0.15 * sway; camera.position.y += Math.sin(t * 0.5) * 0.08 * sway;
     camera.lookAt(look);
+    // bank into the turns like a glider: roll follows how fast the path's heading swings
+    camPath.getTangentAt(Math.min(d / total, 1), tA); camPath.getTangentAt(Math.min((d + 5) / total, 1), tB);
+    let yaw = Math.atan2(tB.x, tB.z) - Math.atan2(tA.x, tA.z); yaw = Math.atan2(Math.sin(yaw), Math.cos(yaw));
+    bank = M.lerp(bank, M.clamp(yaw * 0.55, -0.24, 0.24) * (1 - holdArch), 1 - Math.exp(-dt * 1.6));
+    camera.rotateZ(bank);
     camera.updateMatrixWorld();
 
     // light reaches down: how far you can see
@@ -431,9 +454,10 @@ async function run() {
     if (t > T_TAG) tagEl.textContent = tag.slice(0, Math.floor((t - T_TAG) * 26));
 
     for (const c of swimmers) {
-      const s = ((t - 1) * c.rate) % 1;
-      c.wrap.position.copy(c.f(Math.max(s, 0)));
-      c.wrap.lookAt(c.f(Math.min(Math.max(s, 0) + 0.01, 1)));
+      const raw = (t - c.t0) * c.rate, s = c.loop ? ((raw % 1) + 1) % 1 : M.clamp(raw, 0, 0.99);
+      c.wrap.visible = c.loop || raw > 0;
+      c.wrap.position.copy(c.f(s));
+      c.wrap.lookAt(c.f(s + 0.01));
       c.mixer && c.mixer.update(dt);
     }
 
