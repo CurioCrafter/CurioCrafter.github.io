@@ -161,7 +161,7 @@ async function run() {
     return M.lerp(M.lerp(hash(xi, yi), hash(xi + 1, yi), u), M.lerp(hash(xi, yi + 1), hash(xi + 1, yi + 1), u), v);
   };
   const fbm = (x, y) => { let a = 0, f = 1, s = 0.5; for (let i = 0; i < 5; i++) { a += vnoise(x * f, y * f) * s; f *= 2.1; s *= 0.5; } return a; };
-  const WRECK = new THREE.Vector3(21, 0, -27);
+  const WRECK = new THREE.Vector3(30, 0, -34);
   const ARCH = new THREE.Vector3(0, 0, -10);
   let WRECK_TOP = 10;    // the camera flies through this arch as the page opens
   const floorY = (x, z) => {
@@ -169,7 +169,7 @@ async function run() {
     const dw = Math.hypot(x - WRECK.x, z - WRECK.z);
     y += Math.exp(-dw * dw / 300) * 1.2;      // sand piled against the wreck
     y -= Math.max(0, -z - 50) * 0.05;          // falls away into the deep
-    y = M.lerp(y, -0.4, Math.exp(-(x * x) / 30) * M.clamp((z + 22) / 8, 0, 1) * M.clamp((6 - z) / 6, 0, 1)); // a sandy channel to the arch
+    y = M.lerp(y, -0.4, Math.exp(-(x * x) / 30) * M.clamp((z + 64) / 8, 0, 1) * M.clamp((6 - z) / 6, 0, 1)); // a sandy channel through the arch and on
     return y;
   };
   {
@@ -231,7 +231,7 @@ async function run() {
   {
     const w = placeModel(wreckG, 38, ENV, true);
     w.wrap.position.set(WRECK.x, floorY(WRECK.x, WRECK.z) + 3.2, WRECK.z);
-    w.wrap.rotation.set(0.05, 0.75, 0.16);
+    w.wrap.rotation.set(0.05, 0.12, 0.16);
     w.wrap.updateMatrixWorld(true);
     WRECK_TOP = new THREE.Box3().setFromObject(w.wrap).max.y;  // the flight passes over the wreck
   }
@@ -252,22 +252,23 @@ async function run() {
   Promise.all(['manta_ray', 'great_hammerhead_shark', 'southern_stingray', 'spotted_moray', 'blue_angelfish', 'brain_coral', 'staghorn'].map(load)).then(([manta, ham, ray, moray, angel, brain, stag]) => {
     if (finished) return;
     // coral gardens in the foreground and along the wreck
-    for (let i = 0; i < 34; i++) {
+    for (let i = 0; i < 52; i++) {
       const g = i % 2 ? brain : stag;
-      const near = i < 22;
-      const x = near ? (hash(i, 9) - 0.5) * 22 : WRECK.x + (hash(i, 8) - 0.5) * 26;
-      const z = near ? -1 - hash(i, 7) * 16 : WRECK.z + 6 + (hash(i, 6) - 0.5) * 8;
+      const near = i < 20;
+      const side = hash(i, 3) < 0.5 ? -1 : 1;
+      const x = near ? (hash(i, 9) - 0.5) * 22 : side * (2.2 + hash(i, 8) * 7);   // beyond the arch: both sides of the glide
+      const z = near ? -1 - hash(i, 7) * 16 : -18 - hash(i, 6) * 36;
       const c = placeModel(g, (i % 2 ? 0.9 : 1.2) * (0.6 + hash(i, 5) * 0.9), ENV, true);
       c.wrap.position.set(x, floorY(x, z) - 0.15, z);
       c.wrap.rotation.y = hash(i, 4) * 6.28;
     }
     swim(placeModel(manta, 3.6, CREATURE), s => new THREE.Vector3(M.lerp(22, -26, s), 8.5 + Math.sin(s * 3) * 0.8, M.lerp(-16, -6, s)), 1 / 16);
     swim(placeModel(ham, 3.2, CREATURE), s => new THREE.Vector3(M.lerp(-34, 30, s), 5.5, M.lerp(-44, -36, s)), 1 / 17);
-    swim(placeModel(ray, 1.3, CREATURE, true), s => { const x = M.lerp(-14, 9, s), z = M.lerp(-7, -15, s); return new THREE.Vector3(x, floorY(x, z) + 0.45, z); }, 1 / 15);
+    swim(placeModel(ray, 1.4, CREATURE, true), s => { const x = M.lerp(-9, 7, s), z = M.lerp(-36, -46, s); return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 15);
     swim(placeModel(moray, 1.5, CREATURE), s => { const x = M.lerp(1, 12, s), z = WRECK.z + 7 + Math.sin(s * 9) * 0.6; return new THREE.Vector3(x, floorY(x, z) + 0.5, z); }, 1 / 18);
-    for (let k = 0; k < 9; k++) { // a school circling the near coral
-      const ph = k / 9 * Math.PI * 2, rr = 2.2 + (k % 3) * 0.45, yy = 1.3 + (k % 4) * 0.3;
-      swim(placeModel(angel, 0.26, CREATURE), s => new THREE.Vector3(-3 + Math.cos(ph + s * 6.28) * rr, yy + Math.sin(s * 12 + k) * 0.15, -11 + Math.sin(ph + s * 6.28) * rr * 0.6), 1 / 14);
+    for (let k = 0; k < 14; k++) { // a school circling coral beyond the arch
+      const ph = k / 14 * Math.PI * 2, rr = 2.2 + (k % 3) * 0.45, yy = 1.3 + (k % 4) * 0.3;
+      swim(placeModel(angel, 0.3, CREATURE), s => new THREE.Vector3(3.5 + Math.cos(ph + s * 6.28) * rr, floorY(3.5, -31) + yy + Math.sin(s * 12 + k) * 0.15, -31 + Math.sin(ph + s * 6.28) * rr * 0.6), 1 / 14);
     }
   }).catch(() => {});
 
@@ -291,7 +292,7 @@ async function run() {
     // [screen x, screen y, distance from camera]
     const turn = (x, y0, y1, side) => { // a round U-turn between two rows, swinging toward the camera
       const r = (y1 - y0) / 2, cyM = (y0 + y1) / 2, pts = [];
-      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.15, cyM + Math.sin(a) * r, 4 - Math.cos(a) * 1.3]); }
+      for (let k = 1; k < 6; k++) { const a = -Math.PI / 2 + k / 6 * Math.PI; pts.push([x + side * Math.cos(a) * r * 1.15, cyM + Math.sin(a) * r, 4 - Math.cos(a) * 0.6]); }
       return pts;
     };
     const xL = L + (R - L) * 0.1, xR = R - (R - L) * 0.1;
@@ -303,7 +304,7 @@ async function run() {
       [xL, cy[2], 4], [(L + R) / 2, cy[2], 4], [xR, cy[2], 4.2], [W * 1.25, cy[2] + H * 0.18, 7],
     ];
   }
-  const screenCurve = () => new THREE.CatmullRomCurve3(pathPts.map(p => new THREE.Vector3(p[0], p[1], p[2])), false, 'catmullrom', 0.5);
+  const screenCurve = () => new THREE.CatmullRomCurve3(pathPts.map(p => new THREE.Vector3(p[0], p[1], p[2])), false, 'centripetal');
   serpentine();
   let curve = screenCurve();
   addEventListener('resize', () => { resize(); serpentine(); curve = screenCurve(); });
@@ -318,11 +319,12 @@ async function run() {
   const tag = 'AI-assisted tools & pipeline engineer for 3D and VR';
   const tagEl = root.querySelector('.ix-tag');
   const words = root.querySelector('.ix-words');
+  const WRECK_MID = (WRECK_TOP + floorY(WRECK.x, WRECK.z)) / 2;  // after the arch the camera glides beside the hull at mid height
   const T_FLY = 5.6;                       // the fly-through starts here; before it the camera only descends and drifts
   const keys = [ // [time, position]
     [0, new THREE.Vector3(-3, 16, 24)], [2.8, new THREE.Vector3(0, holeY + 0.4, 12)], [5.6, new THREE.Vector3(0.3, holeY + 0.1, 5.5)],
-    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(1, holeY + 2, ARCH.z - 16)],
-    [12.4, new THREE.Vector3(3, WRECK_TOP + 2, -42)], [15, new THREE.Vector3(19, WRECK_TOP + 4, -52)], [17.6, new THREE.Vector3(39, WRECK_TOP + 6, -42)],
+    [7.6, new THREE.Vector3(0, holeY - 0.1, ARCH.z)], [9.8, new THREE.Vector3(1.5, floorY(1.5, -21) + 2.4, -21)],
+    [12.6, new THREE.Vector3(3, floorY(3, -33) + 2.2, -33)], [15.2, new THREE.Vector3(1, floorY(1, -45) + 2.6, -45)], [17.8, new THREE.Vector3(-2, floorY(-2, -57) + 3.4, -57)],
   ];
   const camPath = new THREE.CatmullRomCurve3(keys.map(k => k[1]), false, 'centripetal');
   const lens = camPath.getLengths(600), total = lens[lens.length - 1];
@@ -337,7 +339,7 @@ async function run() {
     const h = kt[i + 1] - kt[i], x = (tt - kt[i]) / h, x2 = x * x, x3 = x2 * x;
     return (2 * x3 - 3 * x2 + 1) * kd[i] + (x3 - 2 * x2 + x) * h * tan[i] + (-2 * x3 + 3 * x2) * kd[i + 1] + (x3 - x2) * h * tan[i + 1];
   };
-  const archCentre = new THREE.Vector3(0, holeY, ARCH.z), ahead = new THREE.Vector3(), wreckLook = new THREE.Vector3(WRECK.x, WRECK_TOP - 6, WRECK.z);
+  const archCentre = new THREE.Vector3(0, holeY, ARCH.z), ahead = new THREE.Vector3(), wreckLook = new THREE.Vector3(WRECK.x, WRECK_MID, WRECK.z);
   const fishTarget = new THREE.Object3D();
   let lastHeading = null;
   const look = new THREE.Vector3(), sp = new THREE.Vector3(), sp2 = new THREE.Vector3(), w1 = new THREE.Vector3(), w2 = new THREE.Vector3(), head = new THREE.Vector3();
@@ -366,7 +368,7 @@ async function run() {
     camPath.getPointAt(Math.min((d + 9) / total, 1), ahead);
     const holdArch = 1 - ease(M.clamp((t - 5.4) / 2.2, 0, 1));   // look at the arch until the flight starts
     look.lerpVectors(ahead, archCentre, holdArch * ease(M.clamp(t / 2.6, 0, 1)) + holdArch * (1 - ease(M.clamp(t / 2.6, 0, 1))) * 0.6);
-    look.lerp(wreckLook, ease(M.clamp((t - 8.4) / 2, 0, 1)) * 0.85);    // past the arch: keep the wreck in frame while circling it
+    look.lerp(wreckLook, ease(M.clamp((t - 8.2) / 2.4, 0, 1)) * 0.22);    // past the arch: glide over the coral, the wreck keeps its distance off to the right
     const sway = holdArch;
     camera.position.x += Math.sin(t * 0.35) * 0.15 * sway; camera.position.y += Math.sin(t * 0.5) * 0.08 * sway;
     camera.lookAt(look);
@@ -384,23 +386,22 @@ async function run() {
 
     // lionfish
     const u = M.clamp((t - T_SWIM) / D_SWIM, 0, 1);
-    curve.getPointAt(u, sp); curve.getPointAt(Math.min(u + 0.01, 1), sp2);
-    toWorld(sp, w1); toWorld(sp2, w2);
+    curve.getPointAt(u, sp);
+    toWorld(sp, w1);
     L1.wrap.position.copy(w1);
     if (u > 0 && u < 1) {
+      // heading and lean come straight from the smooth path (a short window around u), never from frame-to-frame deltas
+      const ua = Math.max(u - 0.015, 0), ub = Math.min(u + 0.03, 1);
+      curve.getPointAt(ub, sp2); toWorld(sp2, w2);
       fishTarget.position.copy(w1); fishTarget.lookAt(w2);
-      L1.wrap.quaternion.slerp(fishTarget.quaternion, lastHeading === null ? 1 : 1 - Math.exp(-dt * 7));
-      const hd = Math.atan2(sp2.y - sp.y, sp2.x - sp.x);                      // screen heading
-      if (lastHeading !== null) {
-        let dh = hd - lastHeading; dh = Math.atan2(Math.sin(dh), Math.cos(dh));
-        L1.bank = M.lerp(L1.bank || 0, M.clamp(-dh / Math.max(dt, 1e-3) * 0.12, -0.7, 0.7), 1 - Math.exp(-dt * 5));
-        L1.wrap.children[0].rotation.z = L1.bank;                              // lean into the turns
-      }
-      lastHeading = hd;
+      L1.wrap.quaternion.copy(fishTarget.quaternion);
+      const ta = curve.getTangentAt(ua), tb = curve.getTangentAt(ub);
+      let dh = Math.atan2(tb.y, tb.x) - Math.atan2(ta.y, ta.x); dh = Math.atan2(Math.sin(dh), Math.cos(dh));
+      L1.wrap.children[0].rotation.z = M.clamp(-dh * 0.9, -0.6, 0.6);         // lean into the turns
     }
     L1.wrap.visible = t > T_SWIM - 0.1;
     L1.wrap.updateMatrixWorld();
-    L1.mixer && L1.mixer.update(dt * 1.3);
+    L1.mixer && L1.mixer.update(dt);
     if (u > 0 && u < 1) { // letters its head touches light up
       head.set(0, 0, L1.len * 0.4).applyMatrix4(L1.wrap.matrixWorld).project(camera);
       const hx = (head.x + 1) / 2 * W, hy = (1 - head.y) / 2 * H;
@@ -425,7 +426,7 @@ async function run() {
     if (opening) {
       const k = Math.min((t - opening.t0) / opening.dur, 1), e = ease(k);
       root.style.setProperty('--hole', (e * Math.hypot(W, H) * 1.1).toFixed(1) + 'px');
-      words.style.opacity = (1 - Math.min(e * 2.5, 1)).toFixed(3);
+      words.style.opacity = Math.min(1 - M.clamp((t - T_WORDS_OUT) / 1.2, 0, 1), 1 - Math.min(e * 2.5, 1)).toFixed(3);
       if (k >= 1) { renderer.dispose(); rt.dispose(); end(); return; }
     }
 
