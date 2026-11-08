@@ -226,7 +226,7 @@ async function run() {
   }
 
   const timeout = new Promise((_, no) => setTimeout(() => no(new Error('slow')), 8000));
-  const [lion, wreckG, archG, nameData] = await Promise.race([Promise.all([load('lionfish'), load('wreck'), load('arch'), fetch('media/intro/name.json').then(r => r.json())]), timeout]);
+  const [lion, wreckG, archG, nameData] = await Promise.race([Promise.all([load('lionfish'), load('wreck'), load('arch'), fetch('media/intro/name.json?v=2').then(r => r.json())]), timeout]);
   await document.fonts.ready;
   if (skipping) return;
 
