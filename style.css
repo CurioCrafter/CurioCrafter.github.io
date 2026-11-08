@@ -55,10 +55,10 @@ dl, dd { margin: 0; }
 .scrolled .bar { border-bottom-color: var(--rule); }
 .bar-name { font: 800 1.35rem/1 var(--display); text-transform: uppercase; letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
 .bar-links { display: flex; gap: 1.4rem; margin-left: auto; }
-.bar-links a { font-size: .95rem; font-weight: 700; color: var(--fg-2); text-decoration: none; white-space: nowrap; transition: color .2s; }
+.bar-links a { font: 800 1.05rem/1 var(--display); text-transform: uppercase; letter-spacing: .04em; color: var(--fg-2); text-decoration: none; white-space: nowrap; transition: color .2s; }
 .bar-links a:hover, .bar-links a[aria-current="true"] { color: var(--fg); }
 .bar-cta { display: flex; gap: .45rem; }
-.bar-btn { font: 700 .9rem/1 var(--body); text-decoration: none; border: 1px solid var(--fg); padding: .6rem 1rem; white-space: nowrap; transition: background .2s, color .2s; }
+.bar-btn { font: 800 1rem/1 var(--display); text-transform: uppercase; letter-spacing: .05em; text-decoration: none; border: 1px solid var(--fg); padding: .6rem 1rem; white-space: nowrap; transition: background .2s, color .2s; }
 .bar-btn:hover { background: var(--fg); color: var(--bg); }
 .bar-fill { background: var(--fg); color: var(--bg); }
 .bar-fill:hover { background: transparent; color: var(--fg); }
@@ -240,7 +240,7 @@ dialog.msg .hp { position: absolute; left: -9999px; }
   .hero-text .actions { order: 2; margin-top: 1.25rem; }
   .hero-text .credits { order: 3; }
   .bar-name { font-size: 1.1rem; }
-  .bar-btn { padding: .55rem .7rem; font-size: .85rem; }
+  .bar-btn { padding: .55rem .7rem; font-size: .92rem; }
 }
 
 /* CurioCrafter channel */
