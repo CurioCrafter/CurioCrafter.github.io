@@ -257,3 +257,5 @@ dialog.msg .hp { position: absolute; left: -9999px; }
 @media (max-width: 640px) { .bar-replay { display: none; } .hits-n { font-size: 1.1rem; } .hits-t { font-size: .78rem; } }
 .nav-replay { display: none; }
 @media (max-width: 640px) { .bar-links .nav-replay { display: inline; } }
+.ascend { margin-top: 3rem; font: 800 1.05rem/1 var(--display); text-transform: uppercase; letter-spacing: .05em; text-decoration: none; }
+.ascend svg { width: 1.1em; height: 1.1em; fill: currentColor; }
