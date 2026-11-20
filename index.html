@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/CurioCut.woff2?v=31" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=ink9">
+<link rel="stylesheet" href="style.css?v=ink10">
 <script>document.documentElement.classList.add("js");</script>
 <script>try { var q = new URLSearchParams(location.search); if (q.has("intro") || (!localStorage.getItem("cc_intro_v2") && !q.has("notrack") && window.WebGLRenderingContext && !matchMedia("(prefers-reduced-motion: reduce)").matches)) { document.documentElement.classList.add("intro-on"); setTimeout(function () { if (!window.__introStarted) document.documentElement.classList.remove("intro-on"); }, 4000); } } catch (e) {}</script>
 <style>html.intro-on body { overflow: hidden; } html.intro-on:not(.intro-ready) body::after { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }</style>
@@ -59,7 +59,7 @@
       <p class="hero-lede">I build Blender Python tools, asset pipelines and Godot/OpenXR gameplay systems for <a href="#shipwreck">Shipwreck Discovery</a> at AquaticXR, and I measure what I ship.</p>
       <dl class="credits">
         <div><dt>Credited developer</dt><dd><a href="#shipwreck">Shipwreck Discovery</a> · Steam, Meta Quest</dd></div>
-        <div><dt>Creator</dt><dd><a href="#curiomesh">CurioMesh</a> · open-source Blender retopology, 46 GitHub stars</dd></div>
+        <div><dt>Creator</dt><dd><a href="#curiomesh">CurioMesh</a> · open-source Blender retopology, 66 GitHub stars</dd></div>
         <div><dt>Co-developer</dt><dd><a href="#lionfish">Lionfish Reef Heroes</a> · Google Play, App Store</dd></div>
       </dl>
       <div class="actions">
@@ -97,7 +97,7 @@
       <dl class="par">
         <div><dt>Problem</dt><dd>Retopology of dense models and scans is slow manual work.</dd></div>
         <div><dt>Approach</dt><dd>Pick what the mesh is for (game asset, animation, subdivision, scan cleanup, sculpt base) and press Start. Each part gets its own face count, and any single part can be redone. A native Rust core runs the heavy steps on every CPU core.</dd></div>
-        <div><dt>Result</dt><dd>A 1.26-million-face scan went from 47 minutes to about 5. 46 GitHub stars, 17 releases, about 279 tests, and CI that checks the Rust core against the Python reference. Zips for every Blender from 3.6 to 5.2 on Windows, Linux and macOS.</dd></div>
+        <div><dt>Result</dt><dd>A 1.26-million-face scan went from 47 minutes to about 5. 66 GitHub stars, 18 releases, about 279 tests, and CI that checks the Rust core against the Python reference. Zips for every Blender from 3.6 to 5.2 on Windows, Linux and macOS.</dd></div>
       </dl>
       <p class="also">Also: LOD sets, normal and colour baking, kept UV seams, and region retopology for redoing just a face or a hand. And by me: <a href="https://github.com/CurioCrafter/Topology-Transitions">Topology Transitions</a>, guided all-quad edge-loop reductions and expansions.</p>
       <p class="actions">
@@ -323,7 +323,7 @@
     <li>
       <time>2023 – now</time>
       <div><h3>Independent tools and game developer</h3><p class="org">CurioCrafter</p>
-      <p>CurioMesh (open-source Blender retopology with a Rust core), Clayspace, Sector War, a music visualizer and the Cuprum robot and circuit-board studio. Also a family YouTube channel with 94.5 million views.</p></div>
+      <p>CurioMesh (open-source Blender retopology with a Rust core), Clayspace, Sector War, a music visualizer and the Cuprum robot and circuit-board studio. Also a family YouTube channel with 113 million views.</p></div>
     </li>
     <li>
       <time>Nov 2021 – Jan 2023</time>
@@ -333,11 +333,17 @@
     <li>
       <time>Aug 2019 – Oct 2021</time>
       <div><h3>Wildland Firefighter / Electrical Pre-Apprentice</h3><p class="org">Trapper Creek Job Corps CCC, Darby, MT</p>
-      <p>Electrical pre-apprenticeship training and a season on a wildland firefighting crew.</p></div>
+      <p>Electrical pre-apprenticeship training and a season on a wildland firefighting crew, including the Robertson Draw Fire near Red Lodge, MT (29,400 acres, June 2021). Assistant dorm chief.</p>
+      <figure class="field">
+        <a class="frame" href="media/robertson-draw-map.webp" target="_blank" rel="noopener"><img src="media/robertson-draw-map.webp" width="1600" height="1302" alt="Operations map of the Robertson Draw Fire, June 20, 2021: the red fire perimeter with divisions A, E, F, P and Z marked around it" loading="lazy"></a>
+        <figcaption>My field copy of the operations map · Robertson Draw Fire · June 20, 2021</figcaption>
+      </figure></div>
     </li>
   </ol>
   <dl class="kit">
     <div><dt>Toolkit</dt><dd>Godot 4 · GDScript · OpenXR · Meta Quest and PCVR · Android and iOS builds · networked co-op · Python · Blender API · retopology and PBR baking · TypeScript · Three.js · WebGL · WebGPU and WGSL · KiCad · Git</dd></div>
+    <div><dt>Education</dt><dd>High school diploma, Trapper Creek Job Corps, Darby, MT (2021) · Montana high school equivalency (HiSET), 94 of 100 with 20 of 20 in math and social studies (2019)</dd></div>
+    <div><dt>Certifications</dt><dd>NWCG wildland fire courses: S-130, S-190, L-180, ICS-100 and S-212 Wildland Fire Chainsaws (2021)</dd></div>
     <div><dt>How I work</dt><dd>AI coding agents (Claude, Codex) write most of the code; I spec, review, test and measure it. I also build the tooling around those agents, such as MCP servers and Claude Code skills.</dd></div>
   </dl>
 </section>
@@ -366,11 +372,11 @@
   <div class="channel">
     <div>
       <h3>My YouTube channel</h3>
-      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a> on YouTube with my family: AI-made shorts that we write, pick and edit by hand. It has <strong>94.5 million views</strong> and <strong>88,000 subscribers</strong> (October 2026).</p>
+      <p class="lede">I run <a href="https://youtube.com/@CurioCrafter-r1w">CurioCrafter</a> on YouTube with my family: AI-made shorts that we write, pick and edit by hand. It has <strong>113 million views</strong> and <strong>93,800 subscribers</strong> (November 2026).</p>
       <p class="lede">Making things for a feed taught me what holds a stranger in the first two seconds. I bring that to game feel, onboarding and trailers.</p>
     </div>
     <div class="hits">
-      <a href="https://www.youtube.com/shorts/LudDlMaSVOY"><img src="media/yt-LudDlMaSVOY.webp" alt="Thumbnail: tiny lint monster facing a cat" loading="lazy"><span class="hits-n">36M views</span><span class="hits-t">Tiny Lint Monster's Confidence Was Absolutely Destroyed</span></a>
+      <a href="https://www.youtube.com/shorts/LudDlMaSVOY"><img src="media/yt-LudDlMaSVOY.webp" alt="Thumbnail: tiny lint monster facing a cat" loading="lazy"><span class="hits-n">53M views</span><span class="hits-t">Tiny Lint Monster's Confidence Was Absolutely Destroyed</span></a>
       <a href="https://www.youtube.com/shorts/dnHY_KKX-LM"><img src="media/yt-dnHY_KKX-LM.webp" alt="Thumbnail: cat holding a small furious alien" loading="lazy"><span class="hits-n">17M views</span><span class="hits-t">Cat Caught an Alien and the Alien Is Absolutely Furious About It</span></a>
       <a href="https://www.youtube.com/shorts/vXHxQzhTOKU"><img src="media/yt-vXHxQzhTOKU.webp" alt="Thumbnail: giant blobfish and a cat" loading="lazy"><span class="hits-n">11M views</span><span class="hits-t">Giant Blobfish Regrets Opening Its Mouth to This Cat</span></a>
     </div>
